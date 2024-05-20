@@ -35,3 +35,6 @@ int main()
     }
     cout << "Max is " << max << " Min is " << min << " and Sum is " << sumarr;
 }
+
+// IMP - lets say if an araay of size 5 and only 2 values are initialized
+//  in it what will be rest 3 spaces of array contain, it's 0's and not Grbage Value
