@@ -50,7 +50,6 @@ int main()
 
 /*
 Taking Input in Array
-*/
 
 int main()
 {
@@ -65,6 +64,7 @@ int main()
         cout << arr[i] << " ";
     }
 }
+*/
 
 /*
 
@@ -74,6 +74,12 @@ int arr[size];
 The above code is a bad practise to initialize the array, Memory Allocation Issue
 
 Explanation:
+Generally RAM is divided into Stack Memory and Heap Memory, Code Segment, initialized Segment, unitialized Segment
+...etc and by default Stack is assigned lower Memory and Heap with Higher Memory
+
+so all lower functionalities are done by Stack and Higher memory functionalities are covered by Heap
+like variable declaration, function calls, etz --> by Stack hence when you give 10000000 size of the array it
+will give Stack Over flow error because the size for it is  assigned very little
 
 
 */
@@ -94,4 +100,56 @@ hence index always starts with 0
 /*
 Whenever we pass an array  in function it's address value is always passed so modification
 will take place in original array
+*/
+
+/*
+XOR Swapping
+
+int main()
+{
+    int a = 5;
+    int b = 6;
+    cout << "Initially Value of a is " << a << " and b is " << b << endl;
+
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+    cout << "After Swapping Value of a is " << a << " and b is " << b << endl;
+}
+
+*/
+
+/*
+Reverse an Array using 2 pointers
+
+int main()
+{
+
+    int arr[6] = {0, 1, 3, 5, 7, 9};
+
+    int start = 0;
+    int end = 5;
+
+    while (start <= end)
+    {
+        // SWAP
+        if (start == end)
+        {
+                }
+        else
+        {
+            arr[start] = arr[start] ^ arr[end];
+            arr[end] = arr[start] ^ arr[end];
+            arr[start] = arr[start] ^ arr[end];
+        }
+        start++;
+        end--;
+    }
+
+    for (int i = 0; i < 6; i++)
+    {
+        cout << arr[i] << " ";
+    }
+}
+
 */
