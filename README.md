@@ -1,2 +1,2 @@
-# dsa_Practise
+# Data-Structures
 DSA Coding Practice and Solved Questions

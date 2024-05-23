@@ -26,7 +26,8 @@ int main()
 Vector
 
 Vector is Dynamic and it's size can increase or decrease according to requirement
-Vecotr's capacity Keeps on increasing as we insert more elemtns into it (doubles every time it reaches its capacity)
+Vecotr's capacity Keeps on increasing as we insert more elemtns into it
+(doubles every time it reaches its capacity)
 
 int main()
 {
@@ -50,27 +51,30 @@ int main()
     cout << "Capacit of v " << v.capacity() << " and size is " << v.size() << endl;
     v.push_back(6);
 
-    cout << "v at 2 "<< v.at(2) << endl;
-    cout<< " Before POP "<<endl;
-    for(int i = v.front();i<=v.back();i++){
-        cout << i <<"  ";
+    cout << "v at 2 " << v.at(2) << endl;
+    cout << " Before POP " << endl;
+    for (int i = v.front(); i <= v.back(); i++)
+    {
+        cout << i << "  ";
     }
 
     v.pop_back();
-    cout<< " After POP "<<endl;
-    for(int i = v.front();i<=v.back();i++){
-        cout << i <<"  ";
+    cout << " After POP " << endl;
+    for (int i = v.front(); i <= v.back(); i++)
+    {
+        cout << i << "  ";
     }
 
     // Different ways of Initialization
-    vector<int> a(5,1); // vector of size 5 with all1's
-    vector<int> new_vec(a); // new_vec is a vecotr of a
+    vector<int> a(5, 1);    // vector of size 5 with all 1's
+    vector<int> new_vec(a); // new_vec is a copy vecotr of a
+    v.clear(); //clears the vector
 
-
-
-
+    // Other way of printing vector v
+    for(auto it:v){
+        cout<<it<<" ";
+    }
 }
-
 */
 
 /*
@@ -320,6 +324,7 @@ int main()
 STL -  Some Algo's
 */
 
+/*
 #include <algorithm>
 #include <vector>
 int main()
@@ -330,12 +335,12 @@ int main()
     v.push_back(3);
     v.push_back(2);
     v.push_back(5);
- 
+
     cout << "Binary Search Number 3 " << binary_search(v.begin(), v.end(), 3) << endl;
     // lower_bound(), upper_bound(), max(), min(), swap(), reverse(string.begin(), string.end())
     // rotate(v.begin(), rotate_pointer,v.end())
     // sort(v.begin(), v.end()) --> based on intro sort (quick sort, heap sort, insertion sort)
-    // 
-
-
+    //
 }
+
+*/

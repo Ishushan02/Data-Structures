@@ -67,6 +67,13 @@ int main()
 */
 
 /*
+// Taking Array Input
+int n ;
+cin>>n;
+int * arr = new int[n];
+*/
+
+/*
 
 inc size cin>> size;
 int arr[size];
