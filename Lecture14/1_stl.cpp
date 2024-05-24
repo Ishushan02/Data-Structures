@@ -78,6 +78,30 @@ int main()
 */
 
 /*
+//  Vector --
+// In a Function Call only Pass by reference occurs when giving a call in other function
+//  but whereas in Vector both pass by reference and pass by value works
+
+int main()
+{
+    // 2D Array    Name (row, (no of Col, val initialize))
+    vector<vector<int>> arr(4, vector<int>(3, 0));
+    int rowSize = arr.size();
+    int colSize = arr[0].size();
+
+    for (int i = 0; i < rowSize; i++)
+    {
+        for (int j = 0; j < colSize; j++)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+*/
+
+/*
 Dequeue
 
 
