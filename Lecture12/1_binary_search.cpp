@@ -56,6 +56,14 @@ int main()
   cout << "The element " << key << " is found at " << index;
 }
 
+#include <algorithm>
+
+/*
+int invuilt_function(){
+  binary_search(arr, arr+n, key)
+}
+*/
+
 /*
 There is a catch in while finding mid
 
