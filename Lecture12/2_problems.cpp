@@ -117,7 +117,7 @@ total occurence = (last occurence - first occurence + 1)
 
 /*
 Question 3 - Peak index in a mountain
-(https://leetcode.com/problems/peak-index-in-a-mountain-array/description/)
+Leetcode 852 (https://leetcode.com/problems/peak-index-in-a-mountain-array/description/)
 
 process -
 

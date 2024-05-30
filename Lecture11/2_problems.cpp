@@ -137,3 +137,105 @@ int maxSubArray(vector<int>& nums) {
         return max_sum;
     }
 */
+
+/*
+Common Element in 3 sorted arrays
+
+// https://www.geeksforgeeks.org/problems/common-elements1132/1
+
+vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+            //code here.
+            vector<int> res;
+            set<int> s;
+
+            int i = 0;
+            int j = 0;
+            int k = 0;
+
+            while(i <n1 & j < n2 & k < n3){
+                if((A[i]==B[j] & A[i] == C[k])){
+                    s.insert(A[i]);
+                    i++;
+                    j++;
+                    k++;
+                }else if (A[i] > B[j]){
+                    j++;
+                }else if (A[i]>C[k]){
+                    k++;
+                }else{
+                    i++;
+                }
+
+            }
+
+            for (int i:s){
+                res.push_back(i);
+            }
+
+            return res;
+        }
+*/
+
+/*
+
+IMPORTANT QUESTION
+
+// SPIRAL MATRIX
+// https://leetcode.com/problems/spiral-matrix/description/?source=submission-ac
+
+vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int row = matrix.size();
+        int col = matrix[0].size();
+
+        int startingrow = 0;
+        int endingcol = col-1;
+        int endingrow = row-1;
+        int startingcol = 0;
+
+        int total_elements = row*col;
+
+        int count = 0;
+        vector <int> res ;
+
+        while(count < total_elements){
+
+            for(int i = startingcol;i<=endingcol & count < total_elements ;i++){
+                res.push_back(matrix[startingrow][i]);
+                count++;
+
+            }
+            startingrow++;
+
+            for(int i = startingrow;i<=endingrow & count < total_elements ;i++){
+                res.push_back(matrix[i][endingcol]);
+                count++;
+                // if(count>=total_elements){
+                //     break;
+                // }
+            }
+            endingcol--;
+
+            for(int i = endingcol;i>=startingcol & count < total_elements ;i--){
+                res.push_back(matrix[endingrow][i]);
+                count++;
+                // if(count>=total_elements){
+                //     break;
+                // }
+            }
+            endingrow--;
+
+            for(int i = endingrow;i>=startingrow & count < total_elements ;i--){
+                res.push_back(matrix[i][startingcol]);
+                count++;
+                // if(count>=total_elements){
+                //     break;
+                // }
+            }
+            startingcol++;
+
+        }
+        return res;
+    }
+
+*/

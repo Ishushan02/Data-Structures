@@ -3,7 +3,6 @@
 using namespace std;
 
 /*
-The First Occurence
 
 int binary_search(int arr[], int start, int end, int mid, int key, int ans)
 {
@@ -72,3 +71,32 @@ int firstRepeated(int arr[], int n) {
     }
 */
 
+/*
+Missing Number
+
+LeetCode 268 - https://leetcode.com/problems/missing-number/
+
+// X_OR Method, we can do it by summation method also(sum of n numbers) or even Binary Search
+
+int missingNumber(vector<int>& nums) {
+
+        //X-OR Method
+
+        int n = nums.size();
+        int ans = 0 ;
+
+        for(int i = 1;i<=n;i++){
+            ans = ans ^ i;
+        }
+
+
+        for(int i = 0;i<n;i++){
+            ans = ans ^ nums[i];
+        }
+
+        return ans;
+
+    }
+
+
+*/
