@@ -177,9 +177,44 @@ https://leetcode.com/problems/search-in-rotated-sorted-array/description/
 
 */
 
-
 /*
 
+// Search Space Solution
 
+// https://leetcode.com/problems/divide-two-integers/
+
+// The only question is why  isn't abs(-2147483648) not working in C++
+
+
+int divide(int dividend, int divisor) {
+
+        int tempdivd = abs(dividend);
+        int tempdivs = abs(divisor);
+        int s = 0;
+        int e = tempdivd;
+        int mid = (s + e)/2;
+        int ans = 0;
+
+        while(s <= e){
+
+            if (mid * tempdivs == tempdivd){
+                ans = mid ;
+                break;
+            }
+            else if(tempdivs * mid > tempdivd){
+                e = mid - 1;
+            }else{
+                ans = mid;
+                s = mid+1;
+            }
+            mid = (s+e)/2;
+        }
+
+        if ((dividend < 0 && divisor>0 )||( dividend > 0 && divisor < 0 )){
+            return 0 - ans ;
+        }
+
+        return ans ;
+    }
 
 */
