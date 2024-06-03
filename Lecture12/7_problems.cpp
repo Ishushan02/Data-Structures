@@ -100,3 +100,86 @@ int missingNumber(vector<int>& nums) {
 
 
 */
+
+// Very VERY Important
+
+/*
+
+//
+
+33. Search in Rotated Sorted Array
+
+https://leetcode.com/problems/search-in-rotated-sorted-array/description/
+
+
+
+    int bs(vector<int> nums, int start, int end, int target){
+        int n = nums.size();
+        int mid = (start + (end-start)/2);
+
+        while(start <= end){
+            if (target>nums[mid]){
+                start = mid+1;
+            }else if(target < nums[mid]){
+                end = mid - 1;
+            }else{
+                return mid;
+            }
+            mid = (start + (end-start)/2);
+        }
+        return -1;
+    }
+
+    int find_pivot(vector<int> nums){
+        int start = 0;
+        int n = nums.size();
+        int end = nums.size()-1;
+        int mid = (start + end)/2;
+        cout << "start " <<start << " mid " << mid << " end " << end << endl;
+        while(start <= end){
+            if ((mid+1<n) && nums[mid] > nums[mid+1] ){
+                return mid;
+            }else if((mid-1>=0) && nums[mid]<nums[mid-1] ){
+                return mid-1;
+            }else if(nums[start]>nums[mid] ){
+                end = mid-1;
+            }else{
+                start = mid+1;
+            }
+            mid = (start + end)/2;
+            cout << "start " <<start << " mid " << mid << " end " << end << endl;
+        }
+
+        cout << " returning pivot " << mid << endl;
+        return mid;
+    }
+
+    int search(vector<int>& nums, int target) {
+        if(nums.size()==1 ){
+            int ans = bs(nums, 0, nums.size()-1, target);
+            return ans;
+        }
+
+        int pivot = find_pivot(nums);
+        int end = nums.size()-1;
+
+        cout << "pivot is "<< pivot << endl;
+        int res = -1;
+        if (target<=nums[pivot] && target >= nums[0]){
+            res = bs(nums, 0, pivot, target);
+        }else  {
+            res = bs(nums, pivot+1, end, target);
+        }
+
+
+        return res;
+    }
+
+*/
+
+
+/*
+
+
+
+*/
