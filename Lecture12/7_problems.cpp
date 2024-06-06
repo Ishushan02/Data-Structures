@@ -222,6 +222,9 @@ int divide(int dividend, int divisor) {
 
 /*
 
+Nearly Sorted Array
+Solve in O(logn)
+
 Given a Sorted array arr[] of SIze N, some elements of Array are 
 moved to eitgher of the adjacent positions, i.e, arr[i] may be
 present at arr[i+1] or arr[i-1], i.e arr[i] can only be swapped
@@ -230,5 +233,43 @@ element in this array.
 
 Inp - {10, 3, 40, 20,  50, 80, 70}; Key = 40 Output is 2  .
 Inp - {10, 3, 40, 20,  50, 80, 70}; Key = 40 Output is -1 .
+
+
+int main(){
+    int arr[] =  {10, 3, 40, 20,  50, 80, 70};
+    int n = 7;
+    int s = 0;
+    int e = 6;
+    int mid = (s+e)/2;
+    int target = 70;
+    int ans = -1;
+
+    while(s<=e){
+        if(arr[mid] == target){
+            ans = mid;
+            break;
+        }
+        if(mid -1 >= 0 && arr[mid-1] == target){
+            ans = mid-1;
+            break;
+        }
+        if(mid+1 < n && arr[mid+1] == target){
+            cout << mid << endl;
+            ans = mid+1;
+            break;
+        }
+
+        if (target > arr[mid]){
+            s = mid+1;
+        }else if (target < arr[mid]){
+            e = mid - 1;
+        }
+
+        mid = (s+e)/2;
+
+    }
+
+    cout << "The key ans is " << ans;
+}
 
 */ 
