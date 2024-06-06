@@ -218,3 +218,17 @@ int divide(int dividend, int divisor) {
     }
 
 */
+
+
+/*
+
+Given a Sorted array arr[] of SIze N, some elements of Array are 
+moved to eitgher of the adjacent positions, i.e, arr[i] may be
+present at arr[i+1] or arr[i-1], i.e arr[i] can only be swapped
+with either arr[i+1] or arr[i-1]. The task is to search for an 
+element in this array.
+
+Inp - {10, 3, 40, 20,  50, 80, 70}; Key = 40 Output is 2  .
+Inp - {10, 3, 40, 20,  50, 80, 70}; Key = 40 Output is -1 .
+
+*/ 
