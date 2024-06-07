@@ -279,6 +279,8 @@ GOOD Question
 
 540. Single Element in a Sorted Array
 
+// It can work simply by EX-OR Method solve it using O(logn) time complexity
+ 
 https://leetcode.com/problems/single-element-in-a-sorted-array/description/
 
 
