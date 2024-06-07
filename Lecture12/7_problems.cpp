@@ -273,3 +273,80 @@ int main(){
 }
 
 */ 
+
+/*
+GOOD Question
+
+540. Single Element in a Sorted Array
+
+https://leetcode.com/problems/single-element-in-a-sorted-array/description/
+
+
+Logic
+
+(Movement)
+- If the pair starts at even index than the answer is in right, because
+it is correct format and no single element is present in prior to them
+- If pair starts at odd index the answer is in left
+
+- (To find which index is the answer)
+- if start = end and only one element is left that is the answer return it
+- if arr[mid]!= arr[mid-1] and arr[mid]!=arr[mid+1] prior elements are not equal then return arr[mid];
+- Let's say at the end 2 elements are left [2, 3] (Ans is 2) how do we find that index,
+store that ans in even part of condition where arr[mid]!= arr[mid+1]
+
+int singleNonDuplicate(vector<int>& nums) {
+     
+        int s = 0;
+        int n = nums.size();
+        int e = n-1;
+        int mid = (s+e)/2;
+        int ans = -1;
+
+        while(s<=e){
+            if (s==e){
+                ans = nums[mid];
+                return nums[mid];
+            }
+            if (mid-1>=0 && nums[mid] != nums[mid-1] && mid+1<n && nums[mid]!= nums[mid+1]){
+                ans = nums[mid];
+                return nums[mid];
+            }
+
+           if (mid%2==0){
+                if (mid+1 < n && nums[mid]==nums[mid+1]){
+                    s = mid+1;
+                }else{
+                    ans = nums[mid];
+                    e = mid - 1;
+                }
+           }else{
+                if (mid-1 >=0 && nums[mid]==nums[mid-1]){
+                    s = mid+1;
+                }else{
+                    e = mid - 1;
+                }
+
+           }
+
+
+            mid = (s+e)/2;
+        }
+        return ans;
+    }
+
+
+*/
+
+
+/*
+Odd Occuring ELements
+- All element occurs even number of times except one
+- Elements repeats itself in pair
+- no pair repeat itself in a single stretch
+- find element that occur odd number of times
+
+Above solution can work in both sorted and not sorted arrays (Almost similar question as of above except 
+in this question the problem is not sorted)
+
+*/
