@@ -219,16 +219,15 @@ int divide(int dividend, int divisor) {
 
 */
 
-
 /*
 
 Nearly Sorted Array
 Solve in O(logn)
 
-Given a Sorted array arr[] of SIze N, some elements of Array are 
+Given a Sorted array arr[] of SIze N, some elements of Array are
 moved to eitgher of the adjacent positions, i.e, arr[i] may be
 present at arr[i+1] or arr[i-1], i.e arr[i] can only be swapped
-with either arr[i+1] or arr[i-1]. The task is to search for an 
+with either arr[i+1] or arr[i-1]. The task is to search for an
 element in this array.
 
 Inp - {10, 3, 40, 20,  50, 80, 70}; Key = 40 Output is 2  .
@@ -272,7 +271,7 @@ int main(){
     cout << "The key ans is " << ans;
 }
 
-*/ 
+*/
 
 /*
 GOOD Question
@@ -280,7 +279,7 @@ GOOD Question
 540. Single Element in a Sorted Array
 
 // It can work simply by EX-OR Method solve it using O(logn) time complexity
- 
+
 https://leetcode.com/problems/single-element-in-a-sorted-array/description/
 
 
@@ -298,7 +297,7 @@ it is correct format and no single element is present in prior to them
 store that ans in even part of condition where arr[mid]!= arr[mid+1]
 
 int singleNonDuplicate(vector<int>& nums) {
-     
+
         int s = 0;
         int n = nums.size();
         int e = n-1;
@@ -340,7 +339,6 @@ int singleNonDuplicate(vector<int>& nums) {
 
 */
 
-
 /*
 Odd Occuring ELements
 - All element occurs even number of times except one
@@ -348,7 +346,14 @@ Odd Occuring ELements
 - no pair repeat itself in a single stretch
 - find element that occur odd number of times
 
-Above solution can work in both sorted and not sorted arrays (Almost similar question as of above except 
+Above solution can work in both sorted and not sorted arrays (Almost similar question as of above except
 in this question the problem is not sorted)
+
+*/
+
+/*
+
+2D to 1D => index = (n*i + j )
+1D to 2D index of number  at index(i,j) is => i = number/c ; j = number % c
 
 */

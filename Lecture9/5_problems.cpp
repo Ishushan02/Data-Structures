@@ -185,3 +185,15 @@ int findDuplicate(vector<int>& nums) {
 
 */
 
+/*
+
+Some Very Important Questions Needs to be Done
+
+1. Single Number 2
+2. Single Number 3
+3. Row with Max 1's
+4. Majority Element
+5. Majority ELement 2
+
+
+*/
