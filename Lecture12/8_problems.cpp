@@ -173,3 +173,69 @@ public:
 
 
 */
+
+/*
+
+K-diff Pairs (https://leetcode.com/problems/k-diff-pairs-in-an-array/submissions/1302803731/)
+
+class Solution {
+public:
+bool binary_search(vector<int>& arr, int size, int key, int index){
+  int start = 0;
+  int end = size - 1;
+  int mid = (start + ((end - start) / 2));
+
+
+  while(start <= end){
+
+    if (abs(arr[mid]) == key){
+        if (mid != index){
+            return true;
+            }
+        else{
+            return false;
+        }
+        }else if(arr[mid] > key){
+            end = mid - 1;
+        }else{
+            start = mid + 1;
+        }
+        mid = (start + ((end - start) / 2));
+    }
+    return false;
+}
+
+    int findPairs(vector<int>& nums, int k) {
+        int n =nums.size();
+        if (n == 2 ){
+            if (((nums[0]-nums[1])==k)|| (nums[1]-nums[0])==k){
+                return 1;
+            }else {
+                return 0;
+            }
+        }
+        sort(nums.begin(), nums.end());
+
+
+        set<pair<int, int>> res;
+
+        for(int i = 0;i<n;i++){
+            int val = abs(k + nums[i]);
+            int start = 0;
+            int end = n-1;
+            int mid = (start+end)/2;
+            bool temp = binary_search(nums, n, val, i);
+            if (temp){
+            cout << " Nums[i] is " << nums[i] <<" and Val is " << val << endl;
+
+            res.insert(make_pair(val, nums[i]));
+            }
+        }
+        return res.size();
+    }
+};
+
+*/
+
+
+/**/
