@@ -237,5 +237,50 @@ bool binary_search(vector<int>& arr, int size, int key, int index){
 
 */
 
+/*
 
-/**/
+IMP
+Find K Closest ELement
+LeetCode 658 (https://leetcode.com/problems/find-k-closest-elements/description/)
+
+
+Method1
+vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+
+        int n = arr.size();
+        int low = 0;
+        int high = n - 1;
+        int mid = (low+high)/2;
+
+        while(high - low >= k){
+            int lowdiff = x - arr[low];
+            int highdiff = arr[high] - x;
+
+            if (lowdiff > highdiff){
+                low++;
+            }else{
+                high--;
+            }
+        }
+
+        cout << " low is " << low << " high is "<< high << endl;
+
+        vector<int> ans ;
+        for(int i = low;i <= high;i++){
+            ans.push_back(arr[i]);
+        }
+
+        return ans;
+
+
+
+
+    }
+
+
+Method2
+try getting the first closest window and then try increasing the window according to k
+
+
+*/
+
