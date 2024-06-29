@@ -284,3 +284,32 @@ try getting the first closest window and then try increasing the window accordin
 
 */
 
+/*
+
+// EXPONENTIAL SEARCH // DOUBLING SEARCH // GALLOPING SEARCH
+
+- It's application is when the size of Array is very Large
+- The main intution of the algorithm is that instead of applying Binary Search
+in the whole array only on a part BS is applied.
+
+Algorithm 
+
+arr[0,......., n], key
+{
+    if arr[0] == key:
+        return True
+
+    // move exponentially
+    int i = 1;
+    while(i < n && arr[i] < key ):
+        i = i * 2
+
+    
+    // now apply Binary Search in
+    start index = i / 2;
+    end index = min(i, n-1);
+    
+    arr_bs(arr, i / 2, min(i, n -1), key)
+}
+
+*/
