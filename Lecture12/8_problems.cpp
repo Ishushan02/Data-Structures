@@ -292,7 +292,7 @@ try getting the first closest window and then try increasing the window accordin
 - The main intution of the algorithm is that instead of applying Binary Search
 in the whole array only on a part BS is applied.
 
-Algorithm 
+Algorithm
 
 arr[0,......., n], key
 {
@@ -304,12 +304,18 @@ arr[0,......., n], key
     while(i < n && arr[i] < key ):
         i = i * 2
 
-    
+
     // now apply Binary Search in
     start index = i / 2;
     end index = min(i, n-1);
-    
+
     arr_bs(arr, i / 2, min(i, n -1), key)
 }
+
+Time Complexity O(log ((2^logm) / 2))
+
+Application 
+- search in infinite size array (or) search in unbounded search
+- better than BS when key is near begining
 
 */
