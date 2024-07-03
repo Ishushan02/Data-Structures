@@ -314,8 +314,73 @@ arr[0,......., n], key
 
 Time Complexity O(log ((2^logm) / 2))
 
-Application 
+Application
 - search in infinite size array (or) search in unbounded search
 - better than BS when key is near begining
+
+*/
+
+/*
+very very important question
+
+BOOK ALLOCATION PROBLEM
+(https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1)
+
+Search Space Solution
+
+bool check(int arr[], int n, int m, int pageVal){
+        int pagesum = 0;
+        int studentcount = 1;
+
+        for(int i = 0;i< n;i++){
+
+            if (arr[i] > pageVal){
+                return false;
+            }
+
+            if(arr[i]+pagesum > pageVal){
+                studentcount++;
+                pagesum = arr[i];
+                if (studentcount > m){
+                    return false;
+                }
+            }else{
+                pagesum = pagesum + arr[i];
+            }
+        }
+
+        return true;
+    }
+
+    // Function to find minimum number of pages.
+    long long findPages(int n, int arr[], int m) {
+        // code here
+
+        if (m > n ){
+            return -1;
+        }
+
+        long long ans = -1;
+        int start = 0;
+        int end = 0;
+        for(int i = 0;i<n;i++){
+            end += arr[i];
+        }
+        int mid = (start+end) >> 1;
+
+        while(start <= end){
+
+            if (check(arr, n, m, mid)){
+                end = mid - 1;
+                ans = (long long)mid;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start+end)>>1;
+        }
+
+        return ans;
+    }
+
 
 */
