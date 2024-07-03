@@ -328,7 +328,7 @@ BOOK ALLOCATION PROBLEM
 
 Search Space Solution
 
-bool check(int arr[], int n, int m, int pageVal){
+    bool check(int arr[], int n, int m, int pageVal){
         int pagesum = 0;
         int studentcount = 1;
 
@@ -383,4 +383,71 @@ bool check(int arr[], int n, int m, int pageVal){
     }
 
 
+*/
+
+/*
+Painters Partition Problem
+// Similar to Book Allocation Problem
+
+(https://www.geeksforgeeks.org/problems/the-painters-partition-problem1535/1)
+
+
+
+
+bool check(int arr[], int n, int m, long long pageVal){
+        int pagesum = 0;
+        int studentcount = 1;
+
+        for(int i = 0;i< n;i++){
+
+            if (arr[i] > pageVal){
+                return false;
+            }
+
+            if(arr[i]+pagesum > pageVal){
+                studentcount++;
+                pagesum = arr[i];
+                if (studentcount > m){
+                    return false;
+                }
+            }else{
+                pagesum = pagesum + arr[i];
+            }
+        }
+
+        return true;
+    }
+
+
+  public:
+    long long minTime(int arr[], int n, int k)
+    {
+        // code here
+        // return minimum time
+
+
+        long long start = 0;
+        long long end = 0;
+        for(int i = 0;i<n;i++){
+            end += arr[i];
+        }
+        long long ans = end;
+
+        long long mid = (start+end) >> 1;
+
+        while(start <= end){
+
+            if (check(arr, n, k, mid)){
+                // cout << " Mid " <<  mid << endl;
+                end = mid - 1;
+                ans = mid;
+            }else{
+                start = mid + 1;
+
+            }
+            mid = (start+end)>>1;
+        }
+
+        return ans;
+    }
 */
