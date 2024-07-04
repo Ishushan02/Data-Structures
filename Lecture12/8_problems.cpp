@@ -451,3 +451,51 @@ bool check(int arr[], int n, int m, long long pageVal){
         return ans;
     }
 */
+
+/*
+
+Aggressive Cow (VImportant question) // similar to above question
+(https://www.geeksforgeeks.org/problems/aggressive-cows/0)
+
+bool cowPosition(int n, int k, vector<int> &stalls, int dist){
+
+        int pos = stalls[0];
+        int count = 1;
+
+        for(int i = 1;i < n ; i++){
+            if (stalls[i]-pos >= dist){
+                pos = stalls[i];
+                count++;
+            }
+            if (count==k){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    int solve(int n, int k, vector<int> &stalls) {
+        sort(stalls.begin(), stalls.end());
+        // Write your code here
+
+        int start = 0;
+        int end = stalls[n-1] - stalls[0];
+        int mid = (start+end) >> 1;
+        int ans = -1;
+
+        while(start <= end){
+            if (cowPosition(n, k, stalls, mid)){
+                start = mid+1;
+                ans = mid;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start+end) >> 1 ;
+        }
+
+        return ans;
+
+    }
+
+*/
