@@ -160,3 +160,89 @@ int main()
 }
 
 */
+
+/*
+
+EKO SPOJ Problem
+
+#include <iostream>
+using namespace std;
+
+bool checkVal(long long int arr[],long long  int n,long long  int k, long long int mid)
+{
+
+    long long int diff = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        int temp = arr[i];
+        if (arr[i] < mid)
+        {
+            temp = arr[i];
+        }
+        else
+        {
+            temp = mid;
+        }
+        diff += abs(arr[i] - temp);
+    }
+
+    if (diff >= k)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+int main()
+{
+    // your code goes here
+    long long int n, k;
+    cin >> n;
+    cin >> k;
+    long long int arr[n];
+    long long int temp;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> temp;
+        arr[i] = temp;
+    }
+
+    long long int start = 0;
+    
+    long long int end = -1;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] > end)
+        {
+            end = arr[i];
+        }
+    }
+    long long int mid = (start + end) >> 1;
+    int ans = -1;
+    
+    while (start <= end)
+    {
+        cout << "Start is " << start << " Mid is " << mid << " End is " << end << endl;
+
+        if (checkVal(arr, n, k, mid))
+        {
+            ans = (int)mid;
+            start = mid + 1;
+        }
+        else
+        {
+            end = mid - 1;
+        }
+
+        mid = (start + end) >> 1;
+    }
+
+    cout << ans << endl;
+    return ans;
+}
+
+*/
