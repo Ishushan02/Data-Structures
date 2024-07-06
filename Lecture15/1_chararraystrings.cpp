@@ -2,6 +2,7 @@
 
 using namespace std;
 
+/*
 int main()
 {
 
@@ -83,3 +84,87 @@ int main()
     // s.at(index), s.front(), s.back(), s.length(), s.empty(), s.clear(), s.substr(start index, end index)
     // s.find("word"), s1.compare(s2), s.push_back('sa'), s.pop_back()
 }
+
+*/
+
+/*
+
+Remove all Duplicates fromAdjacent
+1047 (https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/)
+
+
+Method 1
+class Solution {
+public:
+
+    string dupl(string s){
+        int i = 0;
+        int j = i+1;
+        string ans;
+
+        while(j < s.length()){
+            cout << s[i] << " " << s[j]<<endl;
+            if(s[i]!=s[j]){
+                ans = ans + s[i];
+                i++;
+                j++;
+            }else{
+                j+=2;
+                i+=2;
+            }
+
+        }
+        ans += s[i];
+        cout << ans << endl;
+
+        return ans;
+    }
+
+    string removeDuplicates(string s) {
+        string temp = s ;
+        string ans ;
+        while(true){
+            ans = dupl(temp);
+            if (temp == ans){
+                break;
+            }else{
+                temp = ans;
+            }
+
+        }
+        // int k = (int)ans;
+        // cout << "ANS " << k << endl;
+        if (ans.length() == 1){
+            cout << "----" << endl;
+            return "";
+        }
+        return ans;
+    }
+};
+
+
+
+
+
+Method 2 (easy)
+
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        string ans ;
+
+        for(int i = 0;i<s.length();i++){
+            if (ans.length()==0){
+                ans.push_back(s[i]);
+            }else if (ans.back() != s[i]){
+                ans.push_back(s[i]);
+            }else{
+                ans.pop_back();
+            }
+
+        }
+
+        return ans;
+    }
+};
+*/
