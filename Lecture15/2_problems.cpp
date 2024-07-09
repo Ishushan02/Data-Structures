@@ -55,5 +55,40 @@ Very Important Question
 
 // 647. Palindromic Substrings (https://leetcode.com/problems/palindromic-substrings/description/)
 
+int getsubstring(string s, int i, int j){
+    
+        int count = 0;
+        while(i >= 0 && j < s.length() && s[i]==s[j]){
+            string temp = s.substr(i, j);
+            count++;
+            // cout << temp << " ";
+            i--;
+            j++;
+        }
+        return count;
+
+    }
+
+    int countSubstrings(string s) {
+        int ans = 0;
+        for(int centre = 0; centre < s.length(); centre++){
+
+            // odd substring
+            int i = centre;
+            int j = centre;
+            ans += getsubstring( s, i, j);
+
+            // even substring
+            i = centre;
+            j = centre + 1;
+            if (j < s.length()){
+                ans += getsubstring( s, i, j);
+            }
+        }
+
+        
+
+        return ans;
+    }
 
 */
