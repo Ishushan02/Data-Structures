@@ -168,3 +168,26 @@ public:
     }
 };
 */
+
+/*
+
+Leetcode 1910 - Remove all occurence of a Substring
+(https://leetcode.com/problems/remove-all-occurrences-of-a-substring/)
+
+class Solution {
+public:
+    string removeOccurrences(string s, string part) {
+
+        while(s.find(part)!= string::npos){
+
+            s.erase(s.find(part), part.length()); // pos of occurence, length
+        }
+
+        cout << s << endl;
+
+        return s;
+
+    }
+};
+
+*/
