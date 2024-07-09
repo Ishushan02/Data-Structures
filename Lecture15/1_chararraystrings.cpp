@@ -210,3 +210,97 @@ public:
 };
 
 */
+
+/*
+
+Leetcode 680. Valid Palindrome II - (https://leetcode.com/problems/valid-palindrome-ii/)
+
+// Method1 (Time limit exceed)
+
+class Solution {
+public:
+
+    bool isPalindrom(string s){
+        int start = 0;
+        int end = s.length()-1;
+
+        while(start <= end){
+            if (s[start] != s[end]){
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+
+    bool validPalindrome(string s) {
+        bool ans = isPalindrom( s);
+        string temp = s;
+
+        if (ans){
+            return true;
+        }
+
+
+
+        for(int i = 0; i < temp.length();i++){
+            temp.erase(i, 1);
+            // cout << " Temp is " << temp << " and s is " << s << endl;
+            ans = isPalindrom(temp);
+            if (ans){
+                return true;
+            }
+            temp = s;
+        }
+        return false;
+    }
+};
+
+
+
+// Method 2  Efficient Method and easy
+
+class Solution {
+public:
+
+    bool checkpalindrome(string s, int start, int end){
+
+        while(start <= end){
+            if (s[start]!= s[end]){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+
+    bool validPalindrome(string s) {
+        int start = 0;
+        int end = s.length()-1;
+
+        while(start <= end){
+            if (s[start] == s[end]){
+                start++;
+                end--;
+            }else{
+                // remove a character and see if it's palindrome
+
+                bool ans1 = true;
+                bool ans2 = true;
+
+
+                ans1 = checkpalindrome(s, start+1, end); // remove start character and see if it's palindrome
+                ans2 = checkpalindrome(s, start, end-1); // remove end character and see if it's palindrome
+
+                return ans1 || ans2 ;
+            }
+        }
+
+        return true;
+    }
+};
+
+*/
