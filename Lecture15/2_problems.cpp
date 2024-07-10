@@ -105,6 +105,7 @@ public:
         char alphabet = 'a';
 
         for (int i = 0; i < key.length();i++){
+                                    // we couldhave also used count of key if it is 0
             if ((key[i] != ' ') && (convert.find(key[i]) == convert.end())){
                 convert[key[i]] = alphabet;
                 alphabet++;
@@ -123,6 +124,70 @@ public:
         }
 
     return ans;
+    }
+};
+
+
+*/
+
+/*
+
+2391. Minimum Amount of Time to Collect Garbage
+(https://leetcode.com/problems/minimum-amount-of-time-to-collect-garbage/description/)
+
+class Solution {
+public:
+    int garbageCollection(vector<string>& garbage, vector<int>& travel) {
+
+        int pickuptime = 0;
+
+        for(int i = 0;i<garbage.size();i++){
+            string var = garbage[i];
+            pickuptime += var.length();
+        }
+
+        cout << " Pickup Time " << pickuptime << endl;
+
+        // Metal travel time
+        int variabletime = 0;
+        int mtraveltime = 0;
+        for(int i = 1;i<garbage.size();i++){
+            variabletime = variabletime + travel[i-1];
+            string var = garbage[i];
+            if (var.find("M")!=string::npos){
+                mtraveltime =  variabletime;
+            }
+        }
+        cout << " M Time " << mtraveltime << endl;
+
+        variabletime = 0;
+        int ptraveltime = 0;
+        for(int i = 1;i<garbage.size();i++){
+            variabletime = variabletime + travel[i-1];
+            string var = garbage[i];
+            if (var.find("P")!=string::npos){
+                ptraveltime =  variabletime;
+            }
+        }
+        cout << " P Time " << ptraveltime << endl;
+
+        variabletime = 0;
+        int gtraveltime = 0;
+        for(int i = 1;i<garbage.size();i++){
+            variabletime = variabletime + travel[i-1];
+            // cout << gtraveltime << " - " << variabletime << " ";
+            string var = garbage[i];
+            if (var.find("G")!=string::npos){
+                // cout << " ** " ;
+                gtraveltime =  variabletime;
+            }
+
+        }
+        cout << " G Time " << gtraveltime << endl;
+
+
+        return mtraveltime + ptraveltime + gtraveltime + pickuptime;
+
     }
 };
 
