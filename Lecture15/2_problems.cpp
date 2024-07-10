@@ -196,6 +196,67 @@ public:
 
 /*
 
+791. Custom Sort String
+(https://leetcode.com/problems/custom-sort-string/description/)
+
+Method 1
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        string ans ;
+        string notpresent;
+        for(int i = 0;i<order.size();i++){
+            int cnt = count(s.begin(),s.end(),order[i]);
+            if(cnt > 0){
+                while(cnt){
+                ans += order[i];
+                cnt--;
+                }
+            }
+        }
+
+        for(int i = 0;i<s.size();i++){
+            if(ans.find(s[i]) == string::npos){
+                int cnt = count(s.begin(),s.end(),s[i]);
+                if(cnt > 0){
+                    while(cnt){
+                    ans += s[i];
+                    cnt--;
+                    }
+                }
+
+
+            }
+        }
+
+
+
+        return ans + notpresent;
+    }
+};
+
+
+Method 2
+
+string ordercopy;
+class Solution {
+public:
+
+    static bool cmp(char a, char b){
+        return (ordercopy.find(a) < ordercopy.find(b));
+    }
+
+    string customSortString(string order, string s) {
+        ordercopy = order;
+        sort(s.begin(), s.end(), cmp);
+        return s;
+    }
+};
+
+*/
+
+/*
+
 890. Find and Replace Pattern
 (https://leetcode.com/problems/find-and-replace-pattern/description/)
 
