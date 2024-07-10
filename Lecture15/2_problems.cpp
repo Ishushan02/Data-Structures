@@ -256,9 +256,50 @@ public:
 */
 
 /*
-
+IMP Question
 890. Find and Replace Pattern
 (https://leetcode.com/problems/find-and-replace-pattern/description/)
 
+class Solution {
+public:
+
+    string normalize(string key){
+        unordered_map<char, char> convert ;
+        char alphabet = 'a';
+
+        for (int i = 0; i < key.length();i++){
+            if (convert.find(key[i]) == convert.end()){
+                convert[key[i]] = alphabet;
+                alphabet++;
+            }
+        }
+
+        for(int i = 0; i < key.length();i++){
+            key[i] = convert[key[i]];
+        }
+
+        return key;
+
+
+    }
+
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+
+        vector<string> ans ;
+
+        string match_pattern = normalize(pattern);
+
+        for(int i = 0; i < words.size();i++){
+            string temp = normalize(words[i]);
+            if(temp == match_pattern){
+                ans.push_back(words[i]);
+            }
+        }
+
+        return ans;
+
+
+    }
+};
 
 */
