@@ -56,7 +56,7 @@ Very Important Question
 // 647. Palindromic Substrings (https://leetcode.com/problems/palindromic-substrings/description/)
 
 int getsubstring(string s, int i, int j){
-    
+
         int count = 0;
         while(i >= 0 && j < s.length() && s[i]==s[j]){
             string temp = s.substr(i, j);
@@ -86,9 +86,53 @@ int getsubstring(string s, int i, int j){
             }
         }
 
-        
+
 
         return ans;
     }
+
+*/
+
+/*
+2325. Decode the Message
+(https://leetcode.com/problems/decode-the-message/submissions/1316123973/)
+
+
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        unordered_map<char, string> convert ;
+        char alphabet = 'a';
+
+        for (int i = 0; i < key.length();i++){
+            if ((key[i] != ' ') && (convert.find(key[i]) == convert.end())){
+                convert[key[i]] = alphabet;
+                alphabet++;
+                // cout << key[i] << " ";
+            }
+        }
+
+        string ans ;
+        for(int i = 0; i<message.length();i++){
+            if (message[i] != ' '){
+            ans = ans + convert[message[i]];
+            }else{
+                ans = ans + ' ';
+            }
+
+        }
+
+    return ans;
+    }
+};
+
+
+*/
+
+/*
+
+890. Find and Replace Pattern
+(https://leetcode.com/problems/find-and-replace-pattern/description/)
+
 
 */
