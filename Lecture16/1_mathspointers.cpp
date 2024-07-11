@@ -153,3 +153,15 @@ class Solution {
 };
 
 */
+
+/*
+
+LCM(a, b)
+
+LCM(a, b) * HCF(a, b) = a * b ;
+
+so you know optimal way of finding FCF/GCD hence you can find LCM as well.
+
+LCM(a,b) = (a*b)/GCD(a,b)
+
+*/
