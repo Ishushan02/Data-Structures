@@ -165,3 +165,71 @@ so you know optimal way of finding FCF/GCD hence you can find LCM as well.
 LCM(a,b) = (a*b)/GCD(a,b)
 
 */
+
+/*
+
+Fast Exponential
+IMP Question - if required Learn the Code
+
+int power(int a, int b){
+
+    int ans = 1;
+    while(b > 0){
+
+        if (b & 1) {// odd
+            ans = ans * a ;
+        }
+
+        a = a * a ;
+        b = b >> 1; // b/2
+    }
+    return ans;
+
+}
+
+Time Complexity is O(logb)
+
+*/
+
+/*
+
+Modular Exponentiation for large numbers
+(https://www.geeksforgeeks.org/problems/modular-exponentiation-for-large-numbers5537/1)
+
+IMP Question
+class Solution
+{
+    public:
+        long long int PowMod(long long int x,long long int n,long long int M)
+        {
+            // Code here
+            long long int ans = 1;
+
+            while(n > 0){
+                if (n & 1){
+                    ans = (ans * x) % M; // we are doing this because product might be too large
+                }
+                x = (x * x) % M;  // we are doing this because product might be too large
+                n = n >> 1;
+
+            }
+
+            return ans % M;
+
+        }
+};
+
+*/
+
+/*
+
+IMP CP Level Maths Concept
+1. Pigeon Hole
+2. Catalan Number (BST)
+3. Inclusion-Exclusion Principle
+4. Chinese Reminder Theorem
+5. Lucas Theorem
+6. Fermat's Theorem
+7. Probability Concept
+
+*/
