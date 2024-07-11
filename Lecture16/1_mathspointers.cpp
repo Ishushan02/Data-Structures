@@ -2,6 +2,8 @@
 
 /*
 
+IMP Question
+
 204. Count Primes (https://leetcode.com/problems/count-primes/)
 
 Method 1 - TIME LIMIT EXCEEDED (Brute Force Approach)
@@ -107,5 +109,47 @@ public:
 
 };
 
+Time complexity of method 3
+N * (n/2 + n/3 + n / 4+ n/5 + .... )
+N * (logn(logn)) [ Tailor Series ]
+
+
+*/
+
+/*
+
+GCD(a, b) = GCD(a - b, b) if a > b
+            GCD(b - a, a) if b > a
+
+(or)
+
+GCD(a, b) = GCD(a % b, b) if a > b
+            GCD(b % a, a) if b > a
+
+Method 1 is better as modulous operator is very costly
+
+GCD of 2 Numbers (https://www.geeksforgeeks.org/problems/gcd-of-two-numbers3459/1)
+class Solution {
+  public:
+    int gcd(int a, int b) {
+        // code here
+
+        if (a == 0){
+            return b;
+        }else if (b == 0){
+            return a;
+        }
+
+        while(a > 0 && b > 0){
+            if ( a > b){
+                a = a - b;
+            }else{
+                b = b - a;
+            }
+        }
+
+        return a == 0 ? b:a;
+    }
+};
 
 */
