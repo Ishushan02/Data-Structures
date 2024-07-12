@@ -303,3 +303,31 @@ public:
 };
 
 */
+
+/*
+
+242. Valid Anagram (https://leetcode.com/problems/valid-anagram/description/)
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        map<char, int> maps;
+        map<char, int> mapt;
+
+        for(int i = 0; i < s.length();i++){
+            maps[s[i]] += 1;
+        }
+
+
+        for(int i = 0; i < t.length();i++){
+            mapt[t[i]] += 1;
+        }
+
+        if (maps==mapt){
+            return true;
+        }
+
+        return false;
+    }
+};
+*/
