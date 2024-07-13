@@ -333,3 +333,32 @@ public:
 
 // see the prev python submission as well using 256 char method
 */
+
+/*
+
+917. Reverse Only Letters (https://leetcode.com/problems/reverse-only-letters/submissions/1319358227/)
+
+string reverseOnlyLetters(string s) {
+
+        int i = 0;
+        int j = s.length()-1;
+
+        while(i<j){
+            if(((s[i]>= 'a' && s[i] <= 'z') || (s[i]>= 'A' && s[i] <= 'Z')) && ((s[j]>= 'a' && s[j] <= 'z') || (s[j]>= 'A' && s[j] <= 'Z'))){
+                s[i] = s[i] + s[j];
+                s[j] = s[i] - s[j];
+                s[i] = s[i] - s[j];
+                i++;
+                j--;
+            }else if (!((s[i]>= 'a' && s[i] <= 'z') || (s[i]>= 'A' && s[i] <= 'Z'))){
+                i++;
+            }else if (!((s[j]>= 'a' && s[j] <= 'z') || (s[j]>= 'A' && s[j] <= 'Z'))){
+                j--;
+            }
+        }
+
+        return s;
+    }
+
+
+*/
