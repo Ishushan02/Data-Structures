@@ -394,3 +394,34 @@ string longestCommonPrefix(vector<string>& strs) {
         return ans;
     }
 */
+
+/*
+
+345. Reverse Vowels of a String
+(https://leetcode.com/problems/reverse-vowels-of-a-string/description/)
+
+string reverseVowels(string s) {
+        int start = 0;
+        int end = s.length()-1;
+
+        string vowel =  "aeiouAEIOU";
+        while(start < end){
+           if ((vowel.find(s[start])!=string::npos) && (vowel.find(s[end])!=string::npos)){
+                swap(s[start], s[end]);
+                start++;
+                end--;
+           }else if(vowel.find(s[start])==string::npos){
+                start++;
+           }else if(vowel.find(s[end])==string::npos){
+                end--;
+           }
+
+
+        }
+
+        return s;
+    }
+
+    // good way to check whether a string has vowel or not
+
+*/
