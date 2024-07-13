@@ -20,7 +20,7 @@ int getsubstring(string s, int i, int j){
 
 
         while(i >= 0 && j < s.length()){
-            string temp = s.substr(i, j);
+            string temp = s.substr(i, j-i+1); // substr(strating index, length)
             cout << temp << " ";
             i--;
             j++;
@@ -360,5 +360,37 @@ string reverseOnlyLetters(string s) {
         return s;
     }
 
+// isalpha() is a method which checks that the char is a letter or not
 
+*/
+
+/*
+14. Longest Common Prefix
+(https://leetcode.com/problems/longest-common-prefix/submissions/1319549171/)
+
+string longestCommonPrefix(vector<string>& strs) {
+        string ans = strs[0];
+
+
+        for(int i = 1; i < strs.size();i++){
+            string var = strs[i];
+            int j = 0;
+            string tempans;
+            for(int k = 0; k < var.length(); k++){
+                if( var[k] == ans[j] ){
+                    tempans += var[k];
+                    j++;
+                }else{
+                    ans = tempans;
+                    break;
+                }
+            }
+
+            if (ans!= tempans){
+                ans = tempans;
+            }
+        }
+
+        return ans;
+    }
 */
