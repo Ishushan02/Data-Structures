@@ -41,3 +41,60 @@ bool isIsomorphic(string s, string t) {
     }
 
 */
+
+/*
+49. Group Anagrams (https://leetcode.com/problems/group-anagrams/description/)
+
+
+    map<char, int> getDict(string s) {
+        map<char, int> maps;
+
+        for(int i = 0; i < s.length();i++){
+            maps[s[i]] += 1;
+        }
+
+        return maps;
+    }
+
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>> ans;
+        vector<map<char, int>> values;
+        for(int i = 0; i<strs.size();i++){
+
+            string var = strs[i];
+            map<char, int> dict1;
+            dict1 = getDict(var);
+            values.push_back(dict1);
+
+        }
+
+        int i = 0;
+        while(i < values.size()){
+            int j = i + 1;
+            map<char, int> tempdict;
+            vector<string> tempans;
+            while(j < values.size()){
+                if (values[i] == values[j]){
+                    if (strs[j] != "ABCD"){
+                    tempans.push_back(strs[j]);
+                    strs[j] = "ABCD";
+                    }
+                    // values.erase(values.begin()+j);
+                }
+                j++;
+            }
+            if (strs[i] != "ABCD"){
+            tempans.push_back(strs[i]);
+            strs[i] = "ABCD";
+             }
+            if (tempans.size()>0){
+            ans.push_back(tempans);
+            }
+            i++;
+        }
+
+        return ans;
+
+    }
+
+*/
