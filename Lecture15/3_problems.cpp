@@ -45,7 +45,7 @@ bool isIsomorphic(string s, string t) {
 /*
 49. Group Anagrams (https://leetcode.com/problems/group-anagrams/description/)
 
-
+    1st Method
     map<char, int> getDict(string s) {
         map<char, int> maps;
 
@@ -95,6 +95,28 @@ bool isIsomorphic(string s, string t) {
 
         return ans;
 
+    }
+
+
+
+    2nd Method
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+
+        map<string, vector<string>> tempdict;
+        for(auto str:strs){
+            string temp = str;
+            sort(temp.begin(), temp.end());
+
+            tempdict[temp].push_back(str);
+        }
+
+        vector<vector<string>> ans;
+
+        for(auto it = tempdict.begin(); it != tempdict.end();it++){
+            ans.push_back(it->second);
+        }
+
+        return ans;
     }
 
 */
