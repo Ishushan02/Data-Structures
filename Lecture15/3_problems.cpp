@@ -120,3 +120,55 @@ bool isIsomorphic(string s, string t) {
     }
 
 */
+
+/*
+
+5. Longest Palindromic Substring
+(https://leetcode.com/problems/longest-palindromic-substring/description/)
+
+
+    string getsubstring(int i, int j, string s){
+
+        string temp ;
+        while(i >= 0 && j < s.length() && s[i]==s[j]){
+            string subs = s.substr(i, j-i+1);
+            if (temp.size() < subs.size()){
+                temp = subs;
+            }
+            i--;
+            j++;
+        }
+        return temp;
+
+    }
+
+    string longestPalindrome(string s) {
+
+
+
+
+        string ans ;
+
+
+        for(int centre = 0; centre < s.length();centre++){
+            string tempans;
+
+
+            // odd substring
+            tempans = getsubstring(centre, centre, s);
+            if (tempans.size() > ans.size()){
+                ans = tempans;
+            }
+            // even substring
+            if (centre+1 < s.length()){
+                tempans = getsubstring(centre, centre + 1, s);
+                if (tempans.size() > ans.size()){
+                ans = tempans;
+            }
+            }
+        }
+
+        return ans;
+    }
+
+*/
