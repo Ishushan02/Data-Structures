@@ -172,3 +172,58 @@ bool isIsomorphic(string s, string t) {
     }
 
 */
+
+/*
+
+28. Find the Index of the First Occurrence in a String
+(https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/)
+
+Method 1
+int strStr(string haystack, string needle) {
+        // int ans = -1;
+        int index = haystack.find(needle);
+        if (index != -1 ){
+            return index;
+        }
+
+        return -1;
+    }
+
+
+Method 2
+int strStr(string haystack, string needle) {
+
+        if (needle.length() > haystack.length()){
+            return -1;
+        }
+        int ans = -1;
+
+        int i = 0;
+        int j = 0;
+        
+        while(i < haystack.length()){
+            
+            if(haystack[i] == needle[j]){
+                ans = i;
+                int temp = i+1;
+                int count = 1;
+                while(count < needle.length()){
+                    if (haystack[temp]!=needle[count]){
+                        temp = -1;
+                        break;
+                    }else{
+                        count++;
+                        temp++;
+                    }
+                }
+                if (temp == ans + count){
+                    return ans;
+                }
+            }
+            i++;
+        }
+
+        return -1;
+    }
+
+*/
