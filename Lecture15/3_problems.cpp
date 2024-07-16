@@ -200,9 +200,9 @@ int strStr(string haystack, string needle) {
 
         int i = 0;
         int j = 0;
-        
+
         while(i < haystack.length()){
-            
+
             if(haystack[i] == needle[j]){
                 ans = i;
                 int temp = i+1;
@@ -225,5 +225,107 @@ int strStr(string haystack, string needle) {
 
         return -1;
     }
+
+*/
+
+/*
+
+Tricky Question
+443. String Compression (https://leetcode.com/problems/string-compression/)
+
+class Solution {
+public:
+
+    string convertDigit(int n){
+        string ans;
+        while(n > 0){
+            int digit = n % 10;
+            string t = to_string(digit);
+            char const *n_char = t.c_str();
+            ans.push_back(*n_char);
+            n = n/10;
+        }
+
+        int i = 0;
+        int j = ans.length()-1;
+        while(i < j){
+            swap(ans[i], ans[j]);
+            i++;
+            j--;
+
+        }
+        cout << " Num is " << ans << endl;
+        return ans;
+    }
+
+
+    int compress(vector<char>& chars) {
+
+        vector<char> ans ;
+        unordered_map<char, int> table;
+
+        for(int i = 0; i < chars.size();i++){
+
+            if(table.empty()){
+                table[chars[i]] += 1;
+            }else if(table.count(chars[i])>0){
+                table[chars[i]] += 1;
+
+            }else {
+
+                auto firstElement = table.begin();
+                ans.push_back(firstElement->first);
+                string value = convertDigit(firstElement->second);
+                string t = to_string(1);
+                char const *t_char = t.c_str();
+                char const *p_char = value.c_str();
+                if (value.length()==1 && *t_char == *p_char){
+                    cout<<endl;
+                }else{
+                for(auto var:value){
+                    ans.push_back(var);
+                }
+                }
+
+                table.clear();
+                table[chars[i]] += 1;
+
+            }
+
+            if (i == chars.size()-1){
+
+                auto firstElement = table.begin();
+                ans.push_back(firstElement->first);
+                string value = convertDigit(firstElement->second);
+                string t = to_string(1);
+                char const *t_char = t.c_str();
+                char const *p_char = value.c_str();
+                if (value.length()==1 && *t_char == *p_char){
+                    cout<<endl;
+                }else{
+                for(auto var:value){
+                    ans.push_back(var);
+                }
+                }
+
+                table.clear();
+            }
+        }
+
+       for(int i = 0; i < ans.size();i++){
+        cout << ans[i] << " ";
+       }
+
+        chars.clear();
+
+
+       for(int i = 0; i < ans.size();i++){
+                chars.push_back(ans[i]);
+
+       }
+        return chars.size();
+    }
+};
+
 
 */
