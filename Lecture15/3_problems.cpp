@@ -233,6 +233,7 @@ int strStr(string haystack, string needle) {
 Tricky Question
 443. String Compression (https://leetcode.com/problems/string-compression/)
 
+Method 1
 class Solution {
 public:
 
@@ -324,6 +325,51 @@ public:
 
        }
         return chars.size();
+    }
+};
+
+
+Method 2, Simple Method
+
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int prev = chars[0];
+        int count = 1;
+        int index = 0;
+
+        for(int i = 1; i < chars.size();i++){
+            if(prev==chars[i]){
+                count++;
+            }else{
+                chars[index++] = prev;
+                int start = index;
+                if(count > 1 ){
+                    while(count){
+                        chars[index++] = (count % 10) + '0';
+                        count = count/10;
+                    }
+                    reverse(chars.begin()+start, chars.begin()+index);
+                }
+
+                prev = chars[i];
+                count = 1;
+            }
+        }
+
+        chars[index++] = prev;
+        int start = index;
+        if(count > 1 ){
+            while(count){
+                chars[index++] = (count % 10) + '0';
+                count = count/10;
+            }
+            reverse(chars.begin()+start, chars.begin()+index);
+        }
+
+
+        return index;
+
     }
 };
 
