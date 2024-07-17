@@ -118,6 +118,62 @@ N * (logn(logn)) [ Tailor Series ]
 
 /*
 
+Optimization of Sieve Eratosthenes Theorem
+
+OPTIMIZATION 1.
+
+when i = 2 we use to mark --> 4, 6, 8, 10, 12, 14, 16, 18, 20, 22 ...
+when i = 3 we use to mark --> 6, 9, 12, 15, 18, 21 ...
+when i = 4 we use to mark --> 8, 12, 16, 20, 24 ...
+when i = 5 we use to mark --> 10, 15, 20, 25 ...
+
+see in 3 (we are marking again 6, 12, 18 ..etc )
+..  in 4 (we are marking again 8, 12, 16 ..etc )
+..  in 5 (we are marking again 10, 15, 20 ..etc )
+
+so to remove the marking again we will start our marking from i*i and not 2 * i;
+because if we see before that all would have been marked so now,
+
+marking from i * i
+when i = 2 we use to mark --> 4, 6, 8, 10, 12, 14, 16, 18, 20, 22 ...
+when i = 3 we use to mark --> 9, 12, 15, 18, 21 ...
+when i = 4 we use to mark --> 16, 20, 24 ...
+when i = 5 we use to mark --> 25, 30,  ...
+
+OPTIMIZATION 2.
+Go till sqrt(n) instead of n
+
+class Solution {
+public:
+    int countPrimes(int n) {
+
+        if (n == 0) return 0;
+        int ans = 0;
+        vector<bool> primenumbers(n, true);
+
+        primenumbers[0] = primenumbers[1] = true;
+
+        for(int i = 2;i < sqrt(n);i++){
+
+            if (primenumbers[i]){
+                ans += 1;
+                int j = i * i;
+                while(j < n){
+                    primenumbers[j] = false;
+                    j = j + i;
+                }
+            }
+        }
+
+        return ans;
+    }
+
+};
+
+*/
+
+/*
+
 GCD(a, b) = GCD(a - b, b) if a > b
             GCD(b - a, a) if b > a
 
