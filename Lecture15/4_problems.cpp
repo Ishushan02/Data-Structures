@@ -97,7 +97,7 @@ static bool comprator(string a, string b){
         for(int i = 0; i < nums.size();i++){
             sortedstr.push_back(to_string(nums[i]));
         }
-        sort(sortedstr.begin(), sortedstr.end(), comprator);
+        sort(sortedstr.begin(), sortedstr.end(), comprator);// custom comprator use in sort function
 
         string ans;
         for(int i = 0; i < nums.size();i++){
@@ -109,6 +109,43 @@ static bool comprator(string a, string b){
             return "0";
         }
 
+        return ans;
+    }
+
+*/
+
+/*
+2125. Number of Laser Beams in a Bank
+(https://leetcode.com/problems/number-of-laser-beams-in-a-bank/description/)
+
+int numberOfBeams(vector<string>& bank) {
+        vector<int> totallaser;
+        for(int i = 0; i < bank.size();i++){
+            string data = bank[i];
+            int sum = 0;
+            for(int j = 0; j < data.length();j++){
+                if (data[j]=='1'){
+                    sum+=1;
+                }
+            }
+            cout << sum << endl;
+            if (sum != 0){
+                totallaser.push_back(sum);
+            }
+        }
+
+        int ans = 0;
+        for(int i = 0; i < totallaser.size();i++){
+            int j = i + 1;
+            if (j < totallaser.size()){
+                if(totallaser[i] == 0 || totallaser[j] == 0){
+                    ans = ans + 0;
+                }else{
+                    ans = ans + totallaser[i] * totallaser[j];
+                }
+
+            }
+        }
         return ans;
     }
 
