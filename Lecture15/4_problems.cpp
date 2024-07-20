@@ -192,12 +192,6 @@ public:
                 continue;
 
             }
-
-
-
-
-
-
             i++;
         }
         return s;
@@ -212,5 +206,34 @@ public:
         return val;
     }
 };
+
+
+Method 2 (VVI Question)
+
+// 2 Pointer Approach, we ar just inplacing everything.
+string removeDuplicates(string s, int k) {
+        vector<int> countchar(s.length());
+
+        int i = 0;
+        int j = 0;
+
+        while(j < s.length()){
+            s[i] = s[j]; // placing jth value at i
+            countchar[i] = 1;
+
+            if (i > 0 && s[i-1]==s[i]){
+                countchar[i] += countchar[i-1];
+            }
+
+            if (countchar[i] == k){
+                i = i - k;
+            }
+            i++;
+            j++;
+
+        }
+
+        return s.substr(0, i);
+    }
 
 */
