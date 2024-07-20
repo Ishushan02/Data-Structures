@@ -150,3 +150,67 @@ int numberOfBeams(vector<string>& bank) {
     }
 
 */
+
+/*
+
+1209. Remove All Adjacent Duplicates in String II
+(https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/)
+
+Method1 - Time Limit Exceeded
+class Solution {
+public:
+
+    string deletestr(string s, int k){
+
+        map<char, int> data;
+        char previous = s[0];
+        data[previous] = 1;
+
+        int i = 1;
+        while(i < s.length()){
+            char current = s[i];
+
+            if (current != previous){
+                data.erase(previous);
+                data[current] += 1;
+                previous = current;
+            }else{
+                data[current] += 1;
+            }
+
+
+            if (data[current] == k){
+                s.erase(i-k+1, k);
+                if(s.length() < k ){
+                    return s;
+                    }
+                data.erase(current);
+                previous = s[0];
+                data[previous] = 1;
+                i = 1;
+                current = s[i];
+                continue;
+
+            }
+
+
+
+
+
+
+            i++;
+        }
+        return s;
+
+    }
+
+    string removeDuplicates(string s, int k) {
+        string val = deletestr(s, k);
+        // val = deletestr(s, k);
+        // cout << val << endl;
+
+        return val;
+    }
+};
+
+*/
