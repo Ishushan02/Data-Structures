@@ -208,7 +208,7 @@ public:
 };
 
 
-Method 2 (VVI Question)
+Method 2 (VVI Method)
 
 // 2 Pointer Approach, we ar just inplacing everything.
 string removeDuplicates(string s, int k) {
@@ -234,6 +234,73 @@ string removeDuplicates(string s, int k) {
         }
 
         return s.substr(0, i);
+    }
+
+*/
+
+/*
+
+VVI Question
+
+767. Reorganize String (https://leetcode.com/problems/reorganize-string/description/)
+// It can be done by priority Queue very easily we will see it later
+
+string reorganizeString(string s) {
+
+        // storing in letters 0 -> 26
+        int hash[26] = {0};
+
+        for(int i = 0; i < s.length(); i++){
+            hash[s[i] - 'a']++;
+        }
+        // string ans;
+
+
+        char maxfreqchar;
+        int maxfreq = -1;
+
+        for(int i = 0; i < 26; i++){
+            if(hash[i] > maxfreq){
+                maxfreq = hash[i];
+                maxfreqchar = i + 'a';
+            }
+        }
+
+        int index = 0; // placing all characters in even places
+        while(index < s.length() && maxfreq > 0){
+            s[index] = maxfreqchar;
+            index += 2;
+            maxfreq--;
+
+        }
+
+        // no places left now so it's not possible to put same characters in diff place
+        if(maxfreq > 0 ){
+            return "";
+        }
+
+        hash[maxfreqchar-'a'] = 0;
+
+        for(int i = 0; i < 26; i++){
+            cout << i + 'a' << " - " << hash[i] << endl;
+            while(hash[i] > 0){
+                if (index >= s.length()){
+                    index = 1;
+                }
+                s[index] = i + 'a';
+                hash[i]--;
+                index+=2;
+            }
+        }
+
+        //checking end char value
+        for(int i = 0; i < 26; i++){
+            if (hash[i] > 0){
+                return "";
+            }
+        }
+
+        return s;
     }
 
 */
