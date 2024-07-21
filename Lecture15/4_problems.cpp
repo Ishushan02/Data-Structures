@@ -366,3 +366,51 @@ int myAtoi(string s) {
     }
 
 */
+
+/*
+
+VVI Question
+539. Minimum Time Difference
+(https://leetcode.com/problems/minimum-time-difference/)
+
+int convertMinutes(string time){
+        int hh = stoi(time.substr(0, 2));
+        int mm = stoi(time.substr(3, 2));
+
+        return hh * 60 + mm ;
+    }
+
+    int findMinDifference(vector<string>& timePoints) {
+
+        vector<int> minutes;
+
+        for(int i = 0; i < timePoints.size();i++){
+
+            int min = convertMinutes(timePoints[i]);
+            minutes.push_back(min);
+        }
+
+
+        sort(minutes.begin(), minutes.end());
+
+        for(int i = 0; i < timePoints.size();i++){
+            cout << minutes[i] << " " ;
+        }
+
+        int ans = INT_MAX;
+        for (int i = 0;i < minutes.size();i++){
+            if(i+1 < minutes.size()){
+                ans = min(ans, minutes[i+1]-minutes[i]);
+            }
+        }
+
+        //considering the last case also
+        // Making night 00:00 --> 1440
+
+        ans = min(ans, (1440 + minutes[0])- minutes[minutes.size()-1]);
+
+       return ans;
+    }
+
+
+*/
