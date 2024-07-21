@@ -243,6 +243,7 @@ string removeDuplicates(string s, int k) {
 VVI Question
 
 767. Reorganize String (https://leetcode.com/problems/reorganize-string/description/)
+
 // It can be done by priority Queue very easily we will see it later
 
 string reorganizeString(string s) {
@@ -301,6 +302,67 @@ string reorganizeString(string s) {
         }
 
         return s;
+    }
+
+*/
+
+/*
+
+8. String to Integer (atoi)
+(https://leetcode.com/problems/string-to-integer-atoi/description/)
+
+int myAtoi(string s) {
+        string ans;
+        int i = 0;
+        while(i < s.length()){
+            if (s[i] == ' '){
+                i++;
+            }else{
+                break;
+            }
+
+        }
+
+        ans = s.substr(i);
+        cout << " Ans " << ans << " i is " << i << endl;
+
+        // determining sign
+        int sign = 1;
+        if(ans[0] == '-'){
+            sign = -1;
+            ans = ans.substr(1);
+        }else if(ans[0] == '+'){
+            sign = 1;
+            ans = ans.substr(1);
+        }
+
+        // removing leading 0
+        if(ans[0] == '0'){
+            ans = ans.substr(1);
+        }
+
+
+
+        string tempans;
+        int finalans = 0;
+        for(int i = 0; i< ans.length();i++){
+            if (ans[i] >= '0' && ans[i]<= '9'){
+                cout << finalans << " ";
+                int val = ans[i] - '0';
+                if(finalans > INT_MAX/10 || (finalans == INT_MAX/10 && ans[i]>'7')) { // 2nd condition if for "2147483646" just 1 less than INT_MAX
+                    return sign==-1 ? INT_MIN:INT_MAX;
+                }
+
+                finalans = finalans * 10 + (ans[i] - '0');
+            }else{
+                break;
+            }
+        }
+
+
+
+        return finalans * sign;
+
     }
 
 */
