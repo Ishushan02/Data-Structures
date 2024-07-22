@@ -170,6 +170,20 @@ public:
 
 };
 
+
+
+Method 3
+Given 2 integers L ,...... R (L and R), find all the primes in between L and R
+
+// In any array the max size of creating arry type of
+
+// int, double, char array with limit of 10^6 size
+// bool array with limit of 10^7 size
+// Global Array of int, double, char array with limit of 10^6 size
+// Global Array of bool  with limit of 10^6 size
+
+
+
 */
 
 /*
