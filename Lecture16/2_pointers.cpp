@@ -2,6 +2,7 @@
 
 using namespace std;
 
+/*
 int main()
 {
 
@@ -37,43 +38,73 @@ int main()
 
     // let's run this same example in an Array
 
-    // int arr[] = {1, 2, 3, 4, 5};
-    // int* p = arr;
-    // int* q = arr + 1;
+    int arr[] = {1, 2, 3, 4, 5};
+    int* m = arr;
+    int* n = arr + 1;
 
-    // cout << " arr " << arr << endl;
-    // cout << " &arr " << &arr << endl;
-    // cout << " arr[0] " << arr[0] << endl;
-    // cout << " &arr[0] " << &arr[0] << endl;
-    // cout << " p " << p << endl;
-    // cout << " &p " << &p << endl;
-    // cout << " *p " << *p << endl;
-    // cout << " q " << q << endl;
-    // cout << " &q " << &q << endl;
-    // cout << " *q " << *q << endl;
-    // cout << " arr " << arr << endl;
-    // cout << " arr " << arr << endl;
-    // cout << " &p + 1 " << &p + 1 << endl;
-    // cout << " (*p) + 2 " << (*p) + 2 << endl;
-    // cout << " *(p+2) " << *(p + 2) << endl;
+    cout << " arr " << arr << endl;
+    cout << " &arr " << &arr << endl;
+    cout << " arr[0] " << arr[0] << endl;
+    cout << " &arr[0] " << &arr[0] << endl;
+    cout << " m " << m << endl;
+    cout << " &m " << &m << endl;
+    cout << " *m " << *m << endl;
+    cout << " n " << n << endl;
+    cout << " &n " << &n << endl;
+    cout << " *n " << *n << endl;
+    cout << " arr " << arr << endl;
+    cout << " arr " << arr << endl;
+    cout << " &m + 1 " << &m + 1 << endl;
+    cout << " (*m) + 2 " << (*m) + 2 << endl;
+    cout << " *(m+2) " << *(m + 2) << endl;
 
     // Similarily with Char Array
     // char ch[10] = "RacecaR";
-    // char *p = &ch;
-    // char *q = &ch[0];
+    // char *j = &ch;
+    // char *k = &ch[0];
 
     // cout << " ch " << ch << endl;
     // cout << " &ch " << &ch << endl;
     // cout << " *(ch+3) " << *(ch + 3) << endl;
-    // cout << " p " << p << endl;
-    // cout << " *p " << *p << endl;
-    // cout << " *(p+3) " << *(p + 3) << endl;
-    // cout << " p+2 " << p + 2 << endl;
-    // cout << " p+4 " << p + 4 << endl;
+    // cout << " j " << j << endl;
+    // cout << " *j " << *j << endl;
+    // cout << " *(j+3) " << *(j + 3) << endl;
+    // cout << " k+2 " << k + 2 << endl;
+    // cout << " k " << k << endl;
+
 
     // Void Pointers are pointers which can point to any data type.
     // Wild pointer points to non-existence address
     // A Dangling pointer is the pointer which points to memory location that has been freed
 
-    
+    // Whenever we send array in a function only it's pointer
+    // is passed and not entire array in C++
+
+
 }
+
+*/
+
+// /*
+// Double Pointer
+int main()
+{
+    int a = 5;
+    int *b = &a;
+    int **c = &b;
+    int ***d = &c;
+
+    cout << " a " << a << endl;
+    cout << " *b " << *b << endl;
+    cout << " **c " << **c << endl;
+    cout << " ***d " << ***d << endl;
+    cout << " b " << b << endl;
+    cout << " c " << c << endl;
+    cout << " d " << d << endl;
+    cout << " a " << a << endl;
+    cout << " &b " << &b << endl;
+    cout << " &c " << &c << endl;
+    cout << " &d " << &d << endl;
+}
+
+// */
