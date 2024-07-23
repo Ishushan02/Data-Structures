@@ -9,8 +9,8 @@ int main()
     int a = 4;
     int b = 6;
 
-    cout << "A AND B  " << (a & b) << endl;
-    cout << "A OR B   " << (a | b) << endl;
+    cout << "A AND B  " << (a && b) << endl;
+    cout << "A OR B   " << (a || b) << endl;
     cout << "NOT A   " << (~a) << endl;
     cout << "A EXOR B " << (a ^ b) << endl;
 
