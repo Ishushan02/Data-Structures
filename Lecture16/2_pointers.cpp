@@ -135,4 +135,12 @@ int main()
     // taking input and traversing the @-D Array is same as that of normal 2D Array
 
     // What is Memory Leak
+    // A memory leak in C++ occurs when a program allocates memory on the heap
+    // (using operators like new or malloc) but fails to release it
+    // (using delete or free) after it is no longer needed. This results in the
+    // allocated memory remaining unavailable for reuse, potentially leading to
+    // reduced performance or program crashes if the available memory is exhausted.
+
+    // DO rest of the pointers question from assignment Lecture of Pointers.
+    // {It's a very important topic}
 }
