@@ -85,7 +85,7 @@ int main()
 
 */
 
-// /*
+/*
 // Double Pointer
 int main()
 {
@@ -107,4 +107,32 @@ int main()
     cout << " &d " << &d << endl;
 }
 
-// */
+*/
+
+int main()
+{
+    // Generall whenever Program is executes the variables
+    // are assigned via Stack which has a limit of 10^6,
+    // but whenever we want a large memory we get it from Heap.
+
+    // Whenever we use Hep Memory we use {new, delete} keyword
+    // To allocate Heap Memory we use Pointer
+
+    // allocating heap memory
+    int *ptr = new int; // stack memory pointer pointing to heap memory
+    // delete ptr;
+    int *arrptr = new int[50]; // creating array in heap memory
+    // delete []arrptr
+
+    // VVI
+    // creating 2-D Array in Heap
+    int **arr = new int *[4];
+    for (int i = 0; i < 4; i++)
+    {
+        arr[i] = new int[4]; // creating 1 D Array for each pointer above
+    }
+
+    // taking input and traversing the @-D Array is same as that of normal 2D Array
+
+    // What is Memory Leak
+}
