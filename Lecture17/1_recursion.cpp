@@ -117,6 +117,32 @@ void printdigit(int num)
     cout << num % 10 << " ";
 }
 
+/*
+Time Complexity
+
+Let's say there are k operations happening at each iteration
+    (F(n) = k + F(n-1))
+    
+T(n) = k + T(n-1)
+T(n-1) = k + T(n-2)
+......
+T(1) = k + T(0)
+T(0) = k1
+
+adding on bs
+T(n) = n * k + k1
+So, T(n) = O(n)
+// similarily we can find it via Tree Method as well.
+
+
+Total Time = n(k) + k1
+Time Complexity = O(n)
+
+Space Complexity
+O(n) // similar way
+
+*/
+
 int main()
 {
 
