@@ -122,7 +122,7 @@ Time Complexity
 
 Let's say there are k operations happening at each iteration
     (F(n) = k + F(n-1))
-    
+
 T(n) = k + T(n-1)
 T(n-1) = k + T(n-2)
 ......
@@ -141,6 +141,11 @@ Time Complexity = O(n)
 Space Complexity
 O(n) // similar way
 
+The above is just a sample for one of the functionality to show the procedure
+
+for(Fibonacci series - O(2^n))
+
+One of the Drawback of Recursion is that it takes Space in Stack
 */
 
 int main()
