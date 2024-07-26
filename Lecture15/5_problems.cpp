@@ -15,16 +15,16 @@ using namespace std;
 int beautySum(string s) {
         vector<string> substring;
         int ans = 0;
-        for(int i = 0; i<s.length();i++){
+        for(int i = 0; i<s.length();i++){ // Time Complexity O(n)
             map<char, int> val;
-            for(int j = i;j<s.length();j++){
+            for(int j = i;j<s.length();j++){ // Time Complexity O(n)
                 char ch = s[j];
                 val[ch]++;
 
                 int max_ = INT_MIN;
                 int min_ = INT_MAX;
 
-                for(auto each:val){
+                for(auto each:val){ // Time Complexity O(26)
                     max_ = max(max_, each.second);
                     min_ = min(min_, each.second);
 
@@ -36,5 +36,6 @@ int beautySum(string s) {
         }
         return ans;
     }
-    
+
+Time Complexity is O(n * n * 26) -> O(n^2)
 */
