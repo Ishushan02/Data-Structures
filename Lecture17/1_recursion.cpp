@@ -166,5 +166,5 @@ int main()
     // int arr[] = {10, 30, 54, 98, 105};
     // cout << " Elem 540 is present  " << BinarySearch(arr, 0, 4, 540) << endl;
 
-    printdigit(89756);
+    // printdigit(89756);
 }

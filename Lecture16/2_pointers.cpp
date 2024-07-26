@@ -144,3 +144,20 @@ int main()
     // DO rest of the pointers question from assignment Lecture of Pointers.
     // {It's a very important topic}
 }
+
+/*
+Pointing to whole Arr
+
+    int arr[5] = {1, 2, 3, 4, 5};
+
+    int *ptr = arr; // ptr is pointing to first element of the array
+    int (*p)[5] = arr; // ptr is pointing to the whole array
+
+*/
+
+/*
+
+    String Literals are those string which is stored in only read-only memory
+    char *ch = "Ishan"; // example of  read only string which cannot be modified
+
+*/
