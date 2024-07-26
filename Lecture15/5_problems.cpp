@@ -78,3 +78,56 @@ VVI Question
     }
 
 */
+
+/*
+VVVVI Question
+
+151. Reverse Words in a String
+(https://leetcode.com/problems/reverse-words-in-a-string/description/)
+
+string reverseWords(string s) {
+
+        reverse(s.begin(), s.end());
+
+        int start = 0;
+        int end = 0;
+        int i = 0;
+
+        while (i < s.length()){
+
+            // remove all leading spaces
+            while(s[i] == ' '){
+                i++;
+            }
+
+
+            if (i >= s.length()){
+                break; // such that end is at correct position hence we can trim end part
+            }
+
+            // copy all the words to starting position
+            while(s[i] != ' ' && i < s.length()){
+                s[end] = s[i];
+                end++;
+                i++;
+            }
+
+            //reverse the first word
+            reverse(s.begin()+start, s.begin()+end);
+
+            // add 1 space in between
+            s[end] = ' ';
+            end++;
+
+            cout << s.substr(start, end-start+1) <<endl;
+            start = end;
+
+        }
+
+
+        s= s.substr(0, end-1); // use resize it doesn't take extra space)
+        cout << s << endl;
+        return s;
+    }
+
+*/
