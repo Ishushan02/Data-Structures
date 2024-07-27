@@ -130,4 +130,88 @@ string reverseWords(string s) {
         return s;
     }
 
+
+Time Complexity - O(n)
+*/
+
+/*
+VVI Question - HARD Level
+68. Text Justification - (https://leetcode.com/problems/text-justification/description/)
+
+string justifyspaces(vector<string> words, int start, int end, int evenlyspaces, int remainderspaces, int maxWidth){
+
+        string tempans;
+        int totalchar = 0;
+        for(int i = start; i < end-1; i++){
+            tempans += words[i];
+            totalchar += words[i].length();
+            for(int j = 0; j < evenlyspaces;j++){
+                tempans += " ";
+                totalchar+=1;
+            }
+
+            if(remainderspaces){
+                tempans += " ";
+                totalchar+=1;
+                remainderspaces--;
+            }
+        }
+        totalchar+=words[end-1].length();
+        tempans += words[end-1];
+
+        while(totalchar < maxWidth){
+            tempans += " ";
+            totalchar++;
+        }
+
+        return tempans;
+    }
+
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string> ans;
+
+        string tempans;
+        int start = 0;
+        int totalchars = 0;
+        int wordcount = 0;
+        for(int i = 0; i < words.size();i++){
+
+            if(tempans.length() + words[i].length() <= maxWidth){
+                tempans += words[i];
+                tempans += ' ';
+                totalchars += words[i].length();
+                wordcount += 1;
+            }else{
+                int totalspaces = maxWidth - totalchars;
+                int evenlyspaces = totalspaces/max(1, (wordcount-1));
+                int remainderspaces = totalspaces % max(1, (wordcount-1));
+
+                string data = justifyspaces(words, start, i, evenlyspaces, remainderspaces, maxWidth);
+                ans.push_back(data);
+                wordcount = 1;
+                totalchars = 0;
+                totalchars += words[i].length();
+                start = i;
+                tempans = "";
+                tempans += words[i];
+                tempans += ' ';
+            }
+        }
+        if(tempans.length() > maxWidth){
+            tempans = tempans.substr(0, maxWidth);
+        }
+
+        while(tempans.length() < maxWidth){
+            tempans += " ";
+        }
+        // string data = justifyspaces(words, start, i, evenlyspaces, remainderspaces, maxWidth);
+        ans.push_back(tempans);
+        // cout << tempans << endl;
+
+
+
+        return ans;
+    }
+
+
 */
