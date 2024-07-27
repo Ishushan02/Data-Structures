@@ -17,6 +17,14 @@ bool checkSorted(int arr[], int n, int index)
     return checkSorted(arr, n, index + 1);
 }
 
+/*
+
+    VVI Importamt Pattern for Recursion
+    Include Exclude Pattern
+    
+
+*/
+
 int main()
 {
     int arr[] = {1, 2, 3, 4, 5, 9, 6, 7};
