@@ -130,3 +130,45 @@ void MaxSum(vector<int> &nums, int currentIndex, int &maxSum, int sum){
 
 */
 
+/*
+
+VVI Question Type 2 of Include Exclude Recursion
+
+322. Coin Change
+(https://leetcode.com/problems/coin-change/submissions/1336146341/)
+
+int Coins(vector<int>& coins, int amount){
+
+        if(amount == 0){
+            return 0;
+        }
+
+        int ans = INT_MAX;
+        for(int i = 0; i < coins.size();i++){
+            int coin = coins[i];
+
+            if (coin <= amount){
+                int recursionAns = Coins(coins, amount - coin);
+
+                if (recursionAns != INT_MAX){
+                    ans = min(ans, 1+recursionAns);
+                }
+
+            }
+        }
+
+
+        return ans;
+
+    }
+
+    int coinChange(vector<int>& coins, int amount) {
+        int ans = Coins(coins, amount);
+
+        if(ans == INT_MAX){
+            return -1;
+        }
+        return ans;
+    }
+
+*/
