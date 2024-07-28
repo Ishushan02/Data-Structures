@@ -66,7 +66,7 @@ int main()
 
 */
 #include <vector>
-void subsequence(string mainstring, string outputstring, int index, vector<string>& op)
+void subsequence(string mainstring, string outputstring, int index, vector<string> &op)
 {
     if (index == (int)mainstring.length())
     {
@@ -91,7 +91,42 @@ int main()
     vector<string> op;
     subsequence("abc", "", 0, op);
 
-    for(auto ch:op){
+    for (auto ch : op)
+    {
         cout << ch << " ";
     }
 }
+
+/*
+
+Important QUestion
+
+Include Exclude Pattern Simple but yet tricky
+
+198. House Robber
+(https://leetcode.com/problems/house-robber/description/)
+
+void MaxSum(vector<int> &nums, int currentIndex, int &maxSum, int sum){
+        if(currentIndex >= (int)nums.size()){
+            // cout << sum  << endl;
+            maxSum = max(sum, maxSum);
+            return ;
+        }
+
+        //include if current home is robbed go to i+2 home
+        MaxSum(nums, currentIndex+2, maxSum, sum+nums[currentIndex]);
+
+        //exclude if current home isnt robbed go to i+2 hoome
+        MaxSum(nums, currentIndex+1, maxSum, sum);
+    }
+
+    int rob(vector<int>& nums) {
+        int ans = 0;
+        MaxSum(nums, 0, ans, 0);
+        return ans;
+    }
+
+// In Leetcode it will give TLE, so we will solve this later using DP, this sol is just for practise
+
+*/
+
