@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -65,7 +66,9 @@ int main()
 
 
 */
-#include <vector>
+
+/*
+
 void subsequence(string mainstring, string outputstring, int index, vector<string> &op)
 {
     if (index == (int)mainstring.length())
@@ -96,6 +99,8 @@ int main()
         cout << ch << " ";
     }
 }
+
+*/
 
 /*
 
@@ -219,5 +224,51 @@ void MaxSum(vector<int> &nums, int currentIndex, int endIndex, int &maxSum, int 
 
 // In Leetcode it will give TLE, so we will solve this later using DP,
 // this sol is just for practise
+
+*/
+
+/*
+
+Geeks for Geeks Topic
+(Count Derangements (Permutation such that no element appears in its original position))
+(https://www.geeksforgeeks.org/count-derangements-permutation-such-that-no-element-appears-in-its-original-position/)
+
+
+- A Derangement is a permutation of n elements, such that no element appears
+in its original position. For example, a derangement of {0, 1, 2, 3} is {2, 3, 1, 0}.
+Given a number n, find the total number of Derangements of a set of n elements.
+
+let's solve for 1 case, rest the recursion will take care of
+let there be n elements
+let elements be {1, 2, 3, ........, i, .......n-2, n-1}
+
+let's switch 1 and ithe place elements
+
+for 1 to place in any available places we have n-1 available positions
+
+{i, 2, 3, .......1, .......n-2, n-1} // once i and 1 are swapped we have total (n-2) elements
+to switch positions
+
+{_, 2, 3, ...... 1, .....n - 2, n-1} // similarily for i it has (n-1) places
+// to switch positions
+
+
+hence for total number of 1 can be placed in
+        (n-1) * [f(n-2) + f(n-1)]
+
+
+
+
+
+
+int allDearrangements(int n)
+{
+    if (n == 1)
+        return 0;
+    if (n == 2)
+        return 2;
+
+    return (n - 1) * (allDearrangements(n - 2) + allDearrangements(n - 1));
+}
 
 */
