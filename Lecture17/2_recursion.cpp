@@ -116,7 +116,7 @@ void MaxSum(vector<int> &nums, int currentIndex, int &maxSum, int sum){
         //include if current home is robbed go to i+2 home
         MaxSum(nums, currentIndex+2, maxSum, sum+nums[currentIndex]);
 
-        //exclude if current home isnt robbed go to i+2 hoome
+        //exclude if current home isnt robbed go to i+1 hoome
         MaxSum(nums, currentIndex+1, maxSum, sum);
     }
 
@@ -176,5 +176,48 @@ int Coins(vector<int>& coins, int amount){
 // In Leetcode it will give TLE, so we will solve this later using DP,
 // this sol is just for practise
 
+
+*/
+
+/*
+
+213. House Robber II
+(https://leetcode.com/problems/house-robber-ii/description/)
+
+void MaxSum(vector<int> &nums, int currentIndex, int endIndex, int &maxSum, int sum){
+        if(currentIndex >= endIndex + 1){
+            maxSum = max(sum, maxSum);
+            return ;
+        }
+
+        //include if current home is robbed go to i+2 home
+        if(currentIndex <= endIndex){
+            MaxSum(nums, currentIndex+2, endIndex, maxSum, sum+nums[currentIndex]);
+        }
+
+        //exclude if current home isnt robbed go to i+1 hoome
+        MaxSum(nums, currentIndex+1, endIndex, maxSum, sum);
+    }
+
+    int rob(vector<int>& nums) {
+        // int maxSum = INT_MIN;
+        int n = nums.size();
+        if (n == 1) {
+            return nums[0];
+        }
+        int sum = 0;
+        int currentIndex = 0;
+        int ans1 = 0;
+        int ans2 = 0;
+        // itterating from 0 -> n-2
+        MaxSum(nums, 0, n-2, ans1, sum);
+
+        // itterating from 1 -> n-1
+        MaxSum(nums, 1, n-1, ans2, sum);
+        return max(ans1, ans2);
+    }
+
+// In Leetcode it will give TLE, so we will solve this later using DP,
+// this sol is just for practise
 
 */
