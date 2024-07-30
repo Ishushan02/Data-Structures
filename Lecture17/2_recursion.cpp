@@ -349,3 +349,38 @@ int minOperation(string &word1, string &word2, int i, int j){
     }
 
 */
+
+/*
+
+221. Maximal Square
+(https://leetcode.com/problems/maximal-square/description/)
+
+int square(int i, int j, vector<vector<char>>& matrix, int& maxi){
+        if(i >= matrix.size() || j >= matrix[0].size()){
+            return 0;
+            // row || col out of index
+        }
+
+        int rightmove = square(i, j+1, matrix, maxi);
+        int diagonalmove = square(i+1, j+1, matrix, maxi);
+        int downmove = square(i+1, j, matrix, maxi);
+
+        if(matrix[i][j]=='1'){
+            cout << " i " << i << " j " << j << endl;
+            int ans = 1 + min(rightmove, min(downmove, diagonalmove));
+            maxi = max(maxi, ans);
+            return ans;
+        }else{
+            // standing on 0
+            return 0;
+        }
+
+    }
+
+    int maximalSquare(vector<vector<char>>& matrix) {
+
+        int maxSqr = 0;
+        int temp =  square(0, 0, matrix,  maxSqr);
+        return maxSqr*maxSqr; // returning area
+    }
+*/
