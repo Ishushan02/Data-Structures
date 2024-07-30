@@ -3,8 +3,8 @@
 
 /*
 
-ALL Questions of Recursion are really Important
-
+ALL Questions of Recursion are really Important they are DP questions so just
+solving them for practise
 
 */
 
@@ -304,6 +304,48 @@ See the video Again, it's imp
         long long ans = (long long) ways(n, k);
 
         return ans % 1000000007;
+    }
+
+*/
+
+/*
+
+72. Edit Distance
+(https://leetcode.com/problems/edit-distance/)
+
+int minOperation(string &word1, string &word2, int i, int j){
+        if(i >= word1.length()){
+            return word2.length()-j;
+        }
+        if(j >= word2.length()){
+            return word1.length()-i;
+        }
+
+        int ans = 0;
+
+        if(word1[i]==word2[j]){
+            // no operation
+            ans = 0 + minOperation(word1, word2, i+1, j+1);
+        }else{
+            // perform operation
+
+            // insert
+            int insop = 1 + minOperation(word1, word2, i, j+1);
+            // delete
+            int delop = 1 + minOperation(word1, word2, i+1, j);
+            // replace
+            int replop = 1 + minOperation(word1, word2, i+1, j+1);
+
+            ans = min(insop, min(delop, replop));
+        }
+        return ans;
+    }
+
+    int minDistance(string word1, string word2) {
+
+        int ans = minOperation(word1, word2, 0, 0);
+
+        return ans;
     }
 
 */
