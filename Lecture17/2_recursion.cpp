@@ -272,3 +272,31 @@ int allDearrangements(int n)
 }
 
 */
+
+/*
+
+Painting the Fence (Practise Well it won't be done by intutive)
+(https://www.geeksforgeeks.org/problems/painting-the-fence3727/1)
+
+See the video Again, it's imp
+
+    int ways(int n, int k){
+        if(n==1){
+            return k;
+        }
+        if(n==2){
+            return k + ((k)*(k-1));
+        }
+
+        return (k-1) * ways(n-2, k) + (k-1) * ways(n-1, k);
+    }
+
+    long long countWays(int n, int k){
+        // code here
+
+        long long ans = (long long) ways(n, k);
+
+        return ans % 1000000007;
+    }
+
+*/
