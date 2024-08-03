@@ -46,3 +46,36 @@ bool subsetsum(vector<int> &nums, int tempsum, int targetsum, int index){
     }
 
 */
+
+/*
+
+1981. Minimize the Difference Between Target and Chosen Elements
+(https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/description/)
+
+int itterateMatrix(vector<vector<int>>& mat, int &target, int tempsum, int row){
+
+        if(row == mat.size()){
+            return abs(target - tempsum);
+        }
+
+        int ans = INT_MAX;
+
+        for(int col = 0; col<mat[row].size();col++){
+
+            int recursiveAns = itterateMatrix(mat, target, tempsum + mat[row][col], row+1);
+            ans = min(ans, recursiveAns);
+        }
+
+        return ans;
+    }
+
+    int minimizeTheDifference(vector<vector<int>>& mat, int target) {
+        int row = 0;
+        int tempsum = 0;
+        int ans = itterateMatrix(mat, target, tempsum, row);
+        return ans;
+    }
+
+
+
+*/
