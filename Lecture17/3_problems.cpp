@@ -79,3 +79,36 @@ int itterateMatrix(vector<vector<int>>& mat, int &target, int tempsum, int row){
 
 
 */
+
+/*
+
+55. Jump Game
+(https://leetcode.com/problems/jump-game/description/)
+
+bool jumpsteps(vector<int>& nums, int index){
+        if(index >= nums.size()){
+            return false;
+        }
+        if(index == nums.size()-1){
+            return true;
+        }
+
+        int maxSteps = nums[index];
+        bool ans = false;
+        for(int i = 1; i <= maxSteps;i++){
+            if(index + i < nums.size()){
+                ans = jumpsteps(nums, i + index);
+            }
+            if(ans){
+                return true;
+            }
+        }
+
+        return ans;
+    }
+
+    bool canJump(vector<int>& nums) {
+        return jumpsteps(nums, 0);
+    }
+
+*/
