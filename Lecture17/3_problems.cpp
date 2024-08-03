@@ -96,9 +96,8 @@ bool jumpsteps(vector<int>& nums, int index){
         int maxSteps = nums[index];
         bool ans = false;
         for(int i = 1; i <= maxSteps;i++){
-            if(index + i < nums.size()){
-                ans = jumpsteps(nums, i + index);
-            }
+            ans = jumpsteps(nums, i + index);
+            
             if(ans){
                 return true;
             }
