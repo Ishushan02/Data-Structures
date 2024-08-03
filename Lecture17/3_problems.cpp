@@ -111,3 +111,43 @@ bool jumpsteps(vector<int>& nums, int index){
     }
 
 */
+
+
+/*
+
+45. Jump Game II
+(https://leetcode.com/problems/jump-game-ii/description/)
+
+int minSteps(vector<int> &nums, int index, int tempcount, int& mincount){
+
+        if(index == nums.size()-1){
+            return tempcount;
+        }
+
+        if(index >= nums.size()){
+            return -1;
+        }
+
+        
+
+        int stepcount = 0;
+        int maxSteps = nums[index];
+
+        for(int i = 1; i <= maxSteps;i++){
+            stepcount = minSteps(nums, index + i, tempcount+1, mincount);
+            if(stepcount != -1){
+                mincount = min(stepcount, mincount);
+            }
+        }
+
+        return mincount;
+
+    }
+
+    int jump(vector<int>& nums) {
+        int minCount = INT_MAX;
+        int ans =  minSteps(nums, 0, 0, minCount);
+        return ans;
+    }
+    
+*/
