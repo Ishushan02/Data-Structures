@@ -22,9 +22,8 @@ int lastoccurence(string &word, int index, int ans, char c)
         ans = index;
     }
 
-    int val = lastoccurence(word, index + 1, ans, c);
+    lastoccurence(word, index + 1, ans, c);
 
-    return val;
 }
 
 int main()
