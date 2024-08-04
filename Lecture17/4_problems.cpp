@@ -6,7 +6,7 @@ using namespace std;
 
 Last Occurence of a Char
 
-
+We Can also  do this using strrchr() function of string
 */
 
 int lastoccurence(string &word, int index, int ans, char c)
@@ -23,7 +23,6 @@ int lastoccurence(string &word, int index, int ans, char c)
     }
 
     lastoccurence(word, index + 1, ans, c);
-
 }
 
 int main()
