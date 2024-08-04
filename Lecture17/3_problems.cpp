@@ -97,7 +97,7 @@ bool jumpsteps(vector<int>& nums, int index){
         bool ans = false;
         for(int i = 1; i <= maxSteps;i++){
             ans = jumpsteps(nums, i + index);
-            
+
             if(ans){
                 return true;
             }
@@ -111,7 +111,6 @@ bool jumpsteps(vector<int>& nums, int index){
     }
 
 */
-
 
 /*
 
@@ -128,7 +127,7 @@ int minSteps(vector<int> &nums, int index, int tempcount, int& mincount){
             return -1;
         }
 
-        
+
 
         int stepcount = 0;
         int maxSteps = nums[index];
@@ -149,5 +148,28 @@ int minSteps(vector<int> &nums, int index, int tempcount, int& mincount){
         int ans =  minSteps(nums, 0, 0, minCount);
         return ans;
     }
-    
+
+*/
+
+/*
+
+120. Triangle
+(https://leetcode.com/problems/triangle/description/)
+
+    int itterateTriangle(vector<vector<int>>& triangle, int row, int col){
+        if(row == triangle.size()-1){
+            return triangle[row][col];
+        }
+
+        int elem1 = triangle[row][col] + itterateTriangle(triangle, row+1, col);
+        int elem2 = triangle[row][col] + itterateTriangle(triangle, row+1, col+1);
+
+
+        return min(elem1, elem2);
+    }
+
+    int minimumTotal(vector<vector<int>>& triangle) {
+        return itterateTriangle(triangle, 0, 0);
+    }
+
 */
