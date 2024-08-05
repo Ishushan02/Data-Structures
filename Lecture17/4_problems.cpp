@@ -56,8 +56,8 @@ int main()
 
 Solve it using Recursion
 
-string addStr(string& num1, int idx1, string& num2, int idx2, int carry, string sumval){
-
+    void addStr(string& num1, int idx1, string& num2, int idx2, int carry, string& sumval){
+        
         int n1 = 0;
         int n2 = 0;
 
@@ -75,30 +75,30 @@ string addStr(string& num1, int idx1, string& num2, int idx2, int carry, string 
 
         if(idx1 < 0 && idx2 < 0){
             if(carry != 0){
-                sumval += to_string(carry);
+                sumval += (carry + '0');
             }
-            return sumval;
+            return ;
         }
 
         int val = carry + n1 + n2;
 
         carry = val/10;
         int v = val%10;
-        sumval += to_string(v);
+        sumval += (v +'0');
 
-        string ans = addStr(num1, idx1 - 1, num2, idx2 - 1, carry, sumval);
-        return ans;
+        addStr(num1, idx1 - 1, num2, idx2 - 1, carry, sumval);
+        
     }
 
     string addStrings(string num1, string num2) {
-
+        
         int idx1 = num1.length()-1;
         int idx2 = num2.length()-1;
         int carry = 0;
         string sumval;
-        string ans = addStr(num1, idx1, num2, idx2, carry, sumval);
-        reverse(ans.begin(), ans.end());
-        return ans;
+        addStr(num1, idx1, num2, idx2, carry, sumval);
+        reverse(sumval.begin(), sumval.end());
+        return sumval;
     }
 
 */
