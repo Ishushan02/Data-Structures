@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -53,6 +54,29 @@ bool palindromeCheck(string word, int idx1, int idx2)
     return ans;
 }
 
+void subarray(vector<int> &array, int i, int j)
+{
+    if ((i == (int)array.size()-1) && (j == (int)array.size()))
+    {
+        return;
+    }
+
+    if ( j == (int)array.size())
+    {
+        i += 1;
+        j = i;
+    }
+
+    // printing subarray
+    for (int var = i; var <= j; var++)
+    {
+        cout << array[var] << " ";
+    }
+    cout << endl;
+
+    subarray(array, i, j+1);
+}
+
 int main()
 {
 
@@ -65,23 +89,28 @@ int main()
     // reverseString(word, 0, word.length() - 1);
     // cout << " Reverse of a String abcddedgp" << " is " << word << endl;
 
-    string word = "MALAYALAM"; //"ROAAOR";
-    int n = word.length();
-    // check length
-    int idx1 = 0;
-    int idx2 = 0;
-    if (n % 2 == 0)
-    {
-        idx1 = n / 2 - 1;
-        idx2 = n / 2;
-    }
-    else
-    {
-        idx1 = n / 2;
-        idx2 = n / 2;
-    }
-    bool palicheck = palindromeCheck(word, idx1, idx2);
-    cout << " Word " << word << " is Palindrome " << palicheck << endl;
+    // string word = "MALAYALAM"; //"ROAAOR";
+    // int n = word.length();
+    // // check length
+    // int idx1 = 0;
+    // int idx2 = 0;
+    // if (n % 2 == 0)
+    // {
+    //     idx1 = n / 2 - 1;
+    //     idx2 = n / 2;
+    // }
+    // else
+    // {
+    //     idx1 = n / 2;
+    //     idx2 = n / 2;
+    // }
+    // bool palicheck = palindromeCheck(word, idx1, idx2);
+    // cout << " Word " << word << " is Palindrome " << palicheck << endl;
+
+    vector<int> array = {1, 2, 3, 4, 5};
+    int i = 0;
+    int j = 0;
+    subarray(array, i, j);
 }
 
 /*
