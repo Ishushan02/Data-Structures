@@ -166,3 +166,48 @@ Solve it using Recursion
     }
 
 */
+
+/*
+
+121. Best Time to Buy and Sell Stock
+(https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/)
+
+    int solve(vector<int>& prices, int minindex, int maxindex, int& maxdiff, int n){
+        
+            
+        if(maxindex == n && minindex == n-1){
+            return maxdiff;
+        }
+
+        // cout << prices[minindex] << " - " << prices[maxindex] << " - " << maxdiff << endl;
+
+        int diff = prices[maxindex] - prices[minindex];
+        if(diff > maxdiff){
+            maxdiff = diff;
+        }
+
+        if(maxindex == n-1 ){
+            minindex = minindex + 1;
+            maxindex = minindex;
+        }
+
+        int ans = solve(prices, minindex, maxindex+1, maxdiff, n);        
+        return ans;
+    }
+
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        if (n==1){
+            return 0;
+        }
+        int minindex = 0;
+        int maxindex = 1;
+        int maxdiff = -1;
+
+        int ans = solve(prices, minindex, maxindex, maxdiff, n);
+        // ans = if(ans > 0) ? ans:0;
+        return ans < 0 ? 0:ans;
+
+    }
+
+*/
