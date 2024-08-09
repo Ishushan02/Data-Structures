@@ -172,6 +172,9 @@ Solve it using Recursion
 121. Best Time to Buy and Sell Stock
 (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/)
 
+
+METHOD 1 (TLE)
+
     int solve(vector<int>& prices, int minindex, int maxindex, int& maxdiff, int n){
         
             
@@ -208,6 +211,36 @@ Solve it using Recursion
         // ans = if(ans > 0) ? ans:0;
         return ans < 0 ? 0:ans;
 
+    }
+
+
+METHOD 2 (ACCEPTED)
+
+    void solve(vector<int>& prices, int i, int minPrice, int& maxProfit, int n){
+        if (i == n){
+            return ;
+        }
+        if (prices[i] < minPrice){
+            minPrice = prices[i];
+        }
+        if (prices[i] - minPrice > maxProfit){
+            maxProfit = prices[i] - minPrice;
+        }
+
+        solve(prices,i+1, minPrice, maxProfit, n);
+    }
+
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        if (n == 1){
+            return 0;
+        }
+        int i = 0;
+        int minPrice = INT_MAX;
+        int maxProfit = INT_MIN;
+        solve(prices, i, minPrice, maxProfit, n);
+
+        return maxProfit < 0 ? 0:maxProfit;
     }
 
 */
