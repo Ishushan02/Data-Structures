@@ -2,6 +2,14 @@
 #include <vector>
 using  namespace std;
 
+
+/*
+
+    DIVIDE AND CONQUER 
+
+*/
+
+
 // Merge 2 Sorted Arrays
 void mergeSort(int arr1[], int n1, int arr2[], int n2, vector<int> & res ){
 
@@ -17,19 +25,21 @@ void mergeSort(int arr1[], int n1, int arr2[], int n2, vector<int> & res ){
         }
     }
 
-    if( i < n1 ){
-        while(i < n1){
-            res.push_back(arr1[i]);
-            i++;
-        }
-    }else{    
-        while(j < n2){
-            res.push_back(arr1[j]);
-            j++;
-        }
+
+    while(i < n1){
+        res.push_back(arr1[i]);
+        i++;
     }
+        
+    while(j < n2){
+        res.push_back(arr1[j]);
+        j++;
+    }
+    
 }
 
+
+// Merge
 
 
 int main(){
