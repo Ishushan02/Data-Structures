@@ -2,7 +2,7 @@
 #include <vector>
 using  namespace std;
 
-// Merge Sort
+// Merge 2 Sorted Arrays
 void mergeSort(int arr1[], int n1, int arr2[], int n2, vector<int> & res ){
 
     int i = 0;
