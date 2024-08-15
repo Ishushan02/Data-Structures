@@ -32,7 +32,7 @@ void mergeSort(int arr1[], int n1, int arr2[], int n2, vector<int> & res ){
     }
         
     while(j < n2){
-        res.push_back(arr1[j]);
+        res.push_back(arr2[j]);
         j++;
     }
     
@@ -57,3 +57,10 @@ int main(){
     }
 
 }
+
+/*
+
+1 Question
+Merge SOrt Performs well in either LinkedList of Array, explain why ?
+
+*/
