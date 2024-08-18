@@ -92,6 +92,36 @@ void divide(vector<int> & arr, int start, int end){
 }
 
 
+
+
+// Quick Sort {Good Method}
+
+void quickSort(vector<int>& arr, int start, int end){
+    
+    if (start >= end){
+        return;
+    }
+
+    int i = start - 1;
+    int j = start;
+    int pivot = end;
+
+    while(j < pivot){
+        if(arr[j] < arr[pivot]){
+            i++;
+            swap(arr[i], arr[j]);
+        }
+        j++;
+    }
+
+    i++;
+    swap(arr[i], arr[pivot]);
+    quickSort(arr, start, i - 1);
+    quickSort(arr, i+1, end);
+
+}
+
+
 int main(){
     // int arr1[] = {1, 11, 17, 38, 45, 70};
     // int arr2[] = {2, 8, 15, 18, 24, 30, 34, 48};
@@ -108,15 +138,26 @@ int main(){
 
     // -------------------------------------------------------------------------------------------
 
+    // vector<int> arr = {98, 43, 19, 10, 90, 63, 12, 1};
+    // // vector<int> ans;
+    // divide(arr, 0, 7);
+
+    // cout << " Merged Sorted Arrays " << endl;
+    // for(auto i : arr){
+    //     cout << i << " ";
+    // }
+
+
+    // -------------------------------------------------------------------------------------------
+
     vector<int> arr = {98, 43, 19, 10, 90, 63, 12, 1};
     // vector<int> ans;
-    divide(arr, 0, 7);
+    quickSort(arr, 0, 7);
 
-    cout << " Merged Sorted Arrays " << endl;
+    cout << " QuickSort Sorted Arrays " << endl;
     for(auto i : arr){
         cout << i << " ";
     }
-
 
 }
 
