@@ -38,6 +38,8 @@ void mergeSort(int arr1[], int n1, int arr2[], int n2, vector<int> & res ){
     
 }
 
+// -----------------------------------------------------------------------------------------------------
+
 
 // Merge Sort
 
@@ -93,6 +95,9 @@ void divide(vector<int> & arr, int start, int end){
 
 
 
+// -----------------------------------------------------------------------------------------------------
+
+
 
 // Quick Sort {Good Method}
 
@@ -120,6 +125,11 @@ void quickSort(vector<int>& arr, int start, int end){
     quickSort(arr, i+1, end);
 
 }
+
+
+
+// -----------------------------------------------------------------------------------------------------
+
 
 
 int main(){
@@ -163,5 +173,25 @@ int main(){
 
 1 Question
 Merge SOrt Performs well in either LinkedList of Array, explain why ?
+
+*/
+
+/*
+
+Backtracking -----------------
+
+Backtracking will search for all possible solutions
+but will never explore the solutions again which he
+has already explored.
+
+We discard the solutions which we have already explored.
+
+Majority of the Backtracking are solved using Brute FOrce APproach
+
+Famous Problems
+ - Rat in a Maze Problem
+ - Permutation
+ - N Queens Problem
+ - Sudoko SOlver
 
 */
