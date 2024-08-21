@@ -279,4 +279,36 @@ Rat in a Maze - Good Question
         return ans;
     }
 
+
+
+    / --------------------------------------------------------------------------------
+
+    // The Above FUnction can also be written in 
+
+    void traverse(vector<vector<int>>& mat, vector<vector<bool>>& visited, int currentRow, 
+    int currentCol, string sol, vector<string>& ans, int n){
+        
+        if(currentRow == n -1 && currentCol == n -1){
+            ans.push_back(sol);
+            return;
+        }
+        
+        int x_movement[] = {0, 0, -1, 1};
+        int y_movement[] = {1, -1, 0, 0};
+        string direction[] = {"R", "L", "U", "D"};
+        
+        for(int i = 0; i < 4;i++){
+            int newx = currentRow + x_movement[i];
+            int newy = currentCol + y_movement[i];
+            string dir = direction[i];
+            if(safePos(mat, visited, newx, newy, n)){
+                visited[newx][newy] = true;
+                traverse(mat, visited, newx, newy, sol+dir, ans, n);
+                visited[newx][newy] = false;
+                
+            }
+        }
+
+    }
+
 */
