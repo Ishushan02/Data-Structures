@@ -312,3 +312,35 @@ Rat in a Maze - Good Question
     }
 
 */
+
+
+/*
+
+Permutation of String
+
+    void solvePerm(string S, int start, int end, vector<string>& ans){
+        if(start >= end){
+            ans.push_back(S);
+            return;
+        }
+        
+        
+        for(int i = start; i <= end; i++){
+            swap(S[start], S[i]);
+            solvePerm(S, start + 1, end,  ans);
+            swap(S[start], S[i]);
+        }
+    }
+    
+	public:
+		vector<string>find_permutation(string S)
+		{
+		    // Code here there
+		    vector<string> ans;
+		    
+		    solvePerm(S, 0, S.length() - 1, ans);
+		    
+		    return ans;
+		}
+
+*/
