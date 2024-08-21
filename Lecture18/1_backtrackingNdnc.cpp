@@ -344,3 +344,29 @@ Permutation of String
 		}
 
 */
+
+/*
+
+46. Permutations
+(https://leetcode.com/problems/permutations/)
+
+    void move(vector<int>&nums, vector<vector<int>>& ans, int start, int end){
+        if(start == end){
+            ans.push_back(nums);
+            return;
+        }
+
+        for(int i = start; i <= end; i++){
+            swap(nums[i], nums[start]);
+            move(nums, ans, start+1, end);
+            swap(nums[i], nums[start]);
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        move(nums, ans, 0, nums.size()-1);
+        return ans;
+    }
+
+*/
