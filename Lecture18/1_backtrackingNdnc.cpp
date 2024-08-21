@@ -195,3 +195,88 @@ Famous Problems
  - Sudoko SOlver
 
 */
+
+
+/*
+
+Rat in a Maze - Good Question
+(https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1)
+
+    bool safePos(vector<vector<int>>& mat, vector<vector<bool>>& visited, 
+    int x,  int y, int n){
+        if(x < 0 || x >= n || y < 0 || y >= n){
+            return false;
+        }    
+        
+        if(mat[x][y] == 0 || visited[x][y] == true){
+            return false;
+        }
+        
+        return true;
+    }
+  
+    void traverse(vector<vector<int>>& mat, vector<vector<bool>>& visited, int currentRow, 
+    int currentCol, string sol, vector<string>& ans, int n){
+        
+        if(currentRow == n -1 && currentCol == n -1){
+            ans.push_back(sol);
+            return;
+        }
+        
+        // moveRight
+        int x = currentRow;
+        int y = currentCol + 1;
+        if(safePos(mat, visited, x, y, n)){
+            visited[x][y] = true;
+            traverse(mat, visited, x, y, sol+"R", ans, n);
+            visited[x][y] = false;
+            
+        }
+        
+        // moveLeft
+        x = currentRow;
+        y = currentCol - 1;
+        if(safePos(mat, visited, x, y, n)){
+            visited[x][y] = true;
+            traverse(mat, visited, x, y, sol+"L", ans, n);
+            visited[x][y] = false;
+            
+        }
+        
+        // moveUp
+        x = currentRow - 1;
+        y = currentCol;
+        if(safePos(mat, visited, x, y, n)){
+            visited[x][y] = true;
+            traverse(mat, visited, x, y, sol+"U", ans, n);
+            visited[x][y] = false;
+            
+        }
+        
+        // moveDown
+        x = currentRow + 1;
+        y = currentCol;
+        if(safePos(mat, visited, x, y, n)){
+            visited[x][y] = true;
+            traverse(mat, visited, x, y, sol+"D", ans, n);
+            visited[x][y] = false;
+            
+        }
+    }
+  
+    vector<string> findPath(vector<vector<int>> &mat) {
+        // Your code goes here
+        int n = mat[0].size();
+        int x = 0;
+        int y = 0;
+        vector<vector<bool>> visited(n, vector<bool>(n, false));
+        vector<string> ans;
+        string sol;
+        if(mat[0][0]==0) return ans;
+        visited[x][y] = true;
+        traverse(mat, visited, x, y, sol, ans, n);
+        
+        return ans;
+    }
+
+*/
