@@ -448,3 +448,85 @@ Permutation of String
     };
 
 */
+
+
+
+/*
+
+37. Sudoku Solver
+(https://leetcode.com/problems/sudoku-solver/description/)
+
+
+    bool safecheck(vector<vector<char>>& board, char c, int i, int j){
+
+
+        // row check
+        for(int row = 0; row < 9; row++){
+            if(board[i][row] == c){
+                return false;
+            }
+        }
+
+        //col check
+        for(int col = 0; col < 9; col++){
+            if(board[col][j] == c){
+                return false;
+            }
+        }
+        
+
+        // checking the box
+        int newrow;
+        int newcol;
+
+        if(i >= 0 && i < 3) newrow = 0;
+        if(i >= 3 && i < 6) newrow = 3;
+        if(i >= 6 && i < 9) newrow = 6;
+        if(j >= 0 && j < 3) newcol = 0;
+        if(j >= 3 && j < 6) newcol = 3;
+        if(j >= 6 && j < 9) newcol = 6;
+
+        for(int row = newrow; row < newrow+3; row++){
+            for(int col = newcol; col < newcol+3; col++){
+                if(board[row][col] == c){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    bool traverse(vector<vector<char>>& board){
+
+        for(int row = 0; row < 9; row++){
+            for(int col = 0; col < 9; col++){
+                if(board[row][col]=='.'){
+                    for(char val= '1'; val <= '9'; val++){
+                        if(safecheck(board, val, row, col) == true){
+                            board[row][col] = val;
+                            bool check = traverse(board);
+
+                            if(check){
+                                return true; // so the value is put correctly
+                            }else{
+                                board[row][col] = '.'; // backtracking
+                            }
+                            
+                        }
+                    }
+                    return false; // no value can be put correctly hence we backtrack the previous insertion
+                }
+            }
+        }
+
+        return true;
+    }
+        
+
+
+    void solveSudoku(vector<vector<char>>& board) {
+        bool val = traverse(board);
+    }
+
+*/
