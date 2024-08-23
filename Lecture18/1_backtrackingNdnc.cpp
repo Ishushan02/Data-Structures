@@ -530,3 +530,67 @@ Permutation of String
     }
 
 */
+
+/*
+
+36. Valid Sudoku
+(https://leetcode.com/problems/valid-sudoku/)
+
+    bool safecheck(vector<vector<char>>& board, char c, int i, int j){
+
+        // row check
+        int count = 0;
+        for(int row = 0; row < 9; row++){
+            if(board[i][row] == c && row != j){
+                return false;
+            }
+        }
+
+        //col check
+        for(int col = 0; col < 9; col++){
+            if(board[col][j] == c && col != i){
+                return false;
+            }
+        }
+        
+
+        // checking the box
+        int newrow;
+        int newcol;
+
+        if(i >= 0 && i < 3) newrow = 0;
+        if(i >= 3 && i < 6) newrow = 3;
+        if(i >= 6 && i < 9) newrow = 6;
+        if(j >= 0 && j < 3) newcol = 0;
+        if(j >= 3 && j < 6) newcol = 3;
+        if(j >= 6 && j < 9) newcol = 6;
+
+        for(int row = newrow; row < newrow+3; row++){
+            for(int col = newcol; col < newcol+3; col++){
+                if(board[row][col] == c && row != i && col != j){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    bool isValidSudoku(vector<vector<char>>& board) {
+        // bool ans;
+        for(int i = 0; i < board.size();i++){
+            for(int j = 0; j < board[0].size();j++){
+                if(board[i][j] != '.'){
+                    bool check = safecheck(board, board[i][j],i, j);
+                    if(!check){
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    
+*/
