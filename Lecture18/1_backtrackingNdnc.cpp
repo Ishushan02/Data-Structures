@@ -370,3 +370,81 @@ Permutation of String
     }
 
 */
+
+
+/*
+
+51. N-Queens
+(https://leetcode.com/problems/n-queens/description/)
+
+    class Solution {
+    public:
+
+    bool safecheck(vector<vector<char>>& chess, int i, int j, int n ){
+
+        int dx[] = {0, 0, -1, 1, -1, 1, -1, 1};
+        int dy[] = {-1, 1, 0, 0, -1, 1, 1, -1};
+
+        for(int k = 0; k < 8; k++){
+
+            int x_mov = i + dx[k];
+            int y_mov = j + dy[k];
+
+            while(x_mov >= 0 && x_mov < n && y_mov >= 0 && y_mov < n){
+                if(chess[x_mov][y_mov] == 'Q'){
+                    return false;
+                }
+                x_mov += dx[k];
+                y_mov += dy[k];
+            }
+
+        }
+
+        return true;
+
+    }
+    
+
+    void traverse(vector<vector<char>>& chess, int col, vector<vector<string>>& ans, int n){
+
+        if(col >= n){
+            cout << " Here " << endl;
+            // Store SOlution from board to strings
+            vector<string> sol;
+            for(int i = 0; i<n;i++){
+                string temp;
+                for(int j = 0; j < n; j++){
+                    if(chess[i][j]=='Q'){
+                        temp+='Q';
+                    }else{
+                        temp+='.';
+                    }
+                }
+                sol.push_back(temp);
+            }
+            ans.push_back(sol);
+        }
+        
+        for(int row = 0; row < n; row++){
+            if(safecheck(chess, row, col, n)){
+                chess[row][col] = 'Q';
+                traverse(chess, col+1, ans, n);
+                chess[row][col] = '.'; // backtracking
+                }
+            }
+        
+
+    }
+
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<char>> chess(n, vector<char>(n, '.'));
+        vector<vector<string>> ans;
+        int col = 0;
+        traverse(chess, col, ans, n);
+
+        return ans;
+    }
+    
+    };
+
+*/
