@@ -505,7 +505,7 @@ Permutation of String
                     for(char val= '1'; val <= '9'; val++){
                         if(safecheck(board, val, row, col) == true){
                             board[row][col] = val;
-                            bool check = traverse(board);
+                            bool check = traverse(board); // important thing
 
                             if(check){
                                 return true; // so the value is put correctly
@@ -516,6 +516,7 @@ Permutation of String
                         }
                     }
                     return false; // no value can be put correctly hence we backtrack the previous insertion
+                    // important thins
                 }
             }
         }
@@ -592,5 +593,5 @@ Permutation of String
         return true;
     }
 
-    
+
 */
