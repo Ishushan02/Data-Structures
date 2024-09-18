@@ -592,7 +592,7 @@ Permutation Hack By STL Library
         int newrow;
         int newcol;
 
-        if(i >= 0 && i < 3) newrow = 0;
+        if(i >= 0 && i < 3) newrow = 0; // getting the row => n - (n%3)
         if(i >= 3 && i < 6) newrow = 3;
         if(i >= 6 && i < 9) newrow = 6;
         if(j >= 0 && j < 3) newcol = 0;
