@@ -54,3 +54,35 @@ Do Inplace Merging, it's very Important
 Do it (Very Important Question)
 
 */
+
+/*
+
+22. Generate Parentheses
+(https://leetcode.com/problems/generate-parentheses/description/)
+(Important Question)
+
+    void allParenthesis(int n, int bopen, int bclose, string ans, vector<string> &res){
+
+        if(bopen + bclose == (2 * n)){
+            res.push_back(ans);
+            return;
+        }
+        
+
+        if(bopen < n){
+            allParenthesis(n, bopen+1, bclose, ans + "(", res);
+        }
+        if(bclose < bopen){
+            allParenthesis(n, bopen, bclose+1, ans + ")", res);
+        }
+    }
+
+    vector<string> generateParenthesis(int n) {
+       
+        vector<string> res;
+
+        allParenthesis(n, 0, 0, "", res);
+
+        return res;
+    }
+*/
