@@ -59,7 +59,7 @@ Do it (Very Important Question)
 
 22. Generate Parentheses
 (https://leetcode.com/problems/generate-parentheses/description/)
-(Important Question)
+(Important Question )
 
     void allParenthesis(int n, int bopen, int bclose, string ans, vector<string> &res){
 
