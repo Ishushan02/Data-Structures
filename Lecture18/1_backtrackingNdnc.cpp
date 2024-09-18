@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <algorithm> 
+
 using  namespace std;
 
 
@@ -170,6 +172,8 @@ int main(){
     for(auto i : arr){
         cout << i << " ";
     }
+
+    
 
 }
 
@@ -375,6 +379,31 @@ Permutation of String
 
 */
 
+
+/*
+
+Permutation Hack By STL Library
+
+// next_permutation(string.start(), string.end())
+    - The next_permutation takes argument by reference
+    - It returns Lexographically the next permutation of given string
+    - the next permutation will only be returned if next dictionary word of it exists
+        Ex:- if current input is "CBA" --> the next lexogrpahically word cannot be anything so it returns nothing
+           - Hence, to get all the permutation using next_permutation() we must send the words in a sorted way
+
+
+    void STLPermute(string s){
+        sort(s.begin(), s.end());
+        while(next_permutation(s.begin(), s.end())){
+            cout << s << " ";
+        }
+    }
+
+    // similar to this we have a STL prev_permutation() which does the exact opposite.
+
+
+
+*/
 
 /*
 
