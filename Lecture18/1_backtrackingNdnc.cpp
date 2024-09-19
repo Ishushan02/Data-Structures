@@ -165,13 +165,13 @@ int main(){
 
     // -------------------------------------------------------------------------------------------
 
-    vector<int> arr = {98, 43, 19, 10, 90, 63, 12, 1};
-    quickSort(arr, 0, 7);
+    // vector<int> arr = {98, 43, 19, 10, 90, 63, 12, 1};
+    // quickSort(arr, 0, 7);
 
-    cout << " QuickSort Sorted Arrays " << endl;
-    for(auto i : arr){
-        cout << i << " ";
-    }
+    // cout << " QuickSort Sorted Arrays " << endl;
+    // for(auto i : arr){
+    //     cout << i << " ";
+    // }
 
     
 

@@ -86,3 +86,45 @@ Do it (Very Important Question)
         return res;
     }
 */
+
+/*
+
+Leetcode Question No. 240
+
+*/
+
+/*
+
+77. Combinations
+(https://leetcode.com/problems/combinations/description/)
+
+    void totalComb(int n, int k, vector<int>& ans,vector<vector<int>>& res, int index){
+        
+        if(ans.size()==k){
+            res.push_back(ans);
+            return;
+        }
+
+        if(index > n){
+            return;
+        }
+
+        // include
+        ans.push_back(index);
+        totalComb(n, k, ans, res, index+1);
+        ans.pop_back();
+
+        // exclude
+        totalComb(n, k, ans, res, index+1);
+    }
+
+    vector<vector<int>> combine(int n, int k) {
+        
+        vector<vector<int>> res;
+        vector<int> ans;
+        totalComb(n, k, ans, res, 1);
+
+        return res;
+    }
+
+*/
