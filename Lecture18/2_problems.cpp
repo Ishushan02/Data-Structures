@@ -128,3 +128,53 @@ Leetcode Question No. 240
     }
 
 */
+
+/*
+
+79. Word Search
+(https://leetcode.com/problems/word-search/description/)
+
+    bool traverseMat(vector<vector<char>>& board, string& word, int index, int x, int y, int m, int n){     
+        
+        if(index >= word.length()){
+            return true;
+        }
+
+        if(x < 0 || x >= m || y < 0 || y >= n || board[x][y] != word[index]){
+            return false;
+        }
+
+        char c = board[x][y];
+        board[x][y] = '*';
+        bool ans = traverseMat(board, word, index+1, x, y+1, m, n) ||
+                   traverseMat(board, word, index+1, x+1, y, m, n) ||
+                   traverseMat(board, word, index+1, x-1, y, m, n) ||
+                   traverseMat(board, word, index+1, x, y-1, m, n)  ;
+        board[x][y] = c;
+
+        if (ans){
+            return true;
+        }
+
+        return false;
+
+        
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        int m = board.size();
+        int n = board[0].size();
+    
+        
+        for(int i = 0; i < m;i++){
+            for(int j = 0; j<n; j++){
+                int index = 0;
+                if(traverseMat(board, word, index, i, j, m, n)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+*/
