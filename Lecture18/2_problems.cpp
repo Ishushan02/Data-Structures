@@ -178,3 +178,127 @@ Leetcode Question No. 240
     }
 
 */
+
+/*
+
+52. N-Queens II
+(https://leetcode.com/problems/n-queens-ii/description/)
+
+    bool isSafe(vector<vector<char>>& chess, int x, int y, int n){
+        int tempx;
+        int tempy;
+        // right
+        tempx = x;
+        tempy = y + 1;
+        while(tempx >= 0 && tempx < n && tempy >= 0 && tempy < n){
+            if(chess[tempx][tempy] == 'Q'){
+                return false;
+            }
+            tempy = tempy + 1;
+        }
+
+        // left
+        tempx = x;
+        tempy = y - 1;
+        while(tempx >= 0 && tempx < n && tempy >= 0 && tempy < n){
+            if(chess[tempx][tempy] == 'Q'){
+                return false;
+            }
+            tempy = tempy - 1;
+        }
+
+        // up
+        tempx = x - 1;
+        tempy = y ;
+        while(tempx >= 0 && tempx < n && tempy >= 0 && tempy < n){
+            if(chess[tempx][tempy] == 'Q'){
+                return false;
+            }
+            tempx = tempx - 1;
+        }
+
+        // down
+        tempx = x + 1;
+        tempy = y ;
+        while(tempx >= 0 && tempx < n && tempy >= 0 && tempy < n){
+            if(chess[tempx][tempy] == 'Q'){
+                return false;
+            }
+            tempx = tempx + 1;
+        }
+
+        // diagUpRi
+        tempx = x - 1;
+        tempy = y + 1;
+        while(tempx >= 0 && tempx < n && tempy >= 0 && tempy < n){
+            if(chess[tempx][tempy] == 'Q'){
+                return false;
+            }
+            tempx = tempx - 1;
+            tempy = tempy + 1;
+        }
+
+        // diagUpLe
+        tempx = x - 1;
+        tempy = y - 1;
+        while(tempx >= 0 && tempx < n && tempy >= 0 && tempy < n){
+            if(chess[tempx][tempy] == 'Q'){
+                return false;
+            }
+            tempx = tempx - 1;
+            tempy = tempy - 1;
+        }
+
+        // diagBottL
+        tempx = x + 1;
+        tempy = y - 1;
+        while(tempx >= 0 && tempx < n && tempy >= 0 && tempy < n){
+            if(chess[tempx][tempy] == 'Q'){
+                return false;
+            }
+            tempx = tempx + 1;
+            tempy = tempy - 1;
+        }
+
+        // diagBottR
+        tempx = x + 1;
+        tempy = y + 1;
+        while(tempx >= 0 && tempx < n && tempy >= 0 && tempy < n){
+            if(chess[tempx][tempy] == 'Q'){
+                return false;
+            }
+            tempx = tempx + 1;
+            tempy = tempy + 1;
+        }
+
+        return true;
+
+    }
+
+    void traverseChess(vector<vector<char>>& chess, int col, int& res, int n){
+
+        if(col == n){
+            res = res + 1;
+            return;
+        }
+
+        for(int row = 0; row < n; row++){
+            if(isSafe(chess, row, col, n)){
+                chess[row][col] = 'Q';
+                traverseChess(chess, col+1, res, n);
+                chess[row][col] = '.';
+            }
+        }
+    }
+
+    int totalNQueens(int n) {
+        vector<vector<char>> chess(n, vector<char>(n, '.'));
+        int res = 0;
+        int col = 0;
+        traverseChess(chess, col, res, n);
+
+        return res;
+
+    }
+
+*/
