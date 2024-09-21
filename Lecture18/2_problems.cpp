@@ -302,3 +302,65 @@ Leetcode Question No. 240
     }
 
 */
+
+
+/*
+
+473. Matchsticks to Square
+(https://leetcode.com/problems/matchsticks-to-square/description/)
+
+    bool checkpossibility(vector<int>& matchsticks, vector<int>& eachsides, int index){
+        if(index == matchsticks.size()){ // reached the end, check whether each sides is 0 or not
+            
+            return ((eachsides[0] == 0) && (eachsides[1] == 0) && (eachsides[2] == 0) && (eachsides[3] == 0)) ;
+        } 
+
+        bool ans = false;
+
+        for(int i = 0; i < eachsides.size();i++){
+
+            // before subtracting checking if eachsides[i] > matchstick index
+            if (eachsides[i] >= matchsticks[index]){
+                eachsides[i] = eachsides[i] - matchsticks[index];
+                ans = ans || checkpossibility(matchsticks, eachsides, index+1);
+                if(ans){
+                    return true;
+                }
+                eachsides[i] = eachsides[i] + matchsticks[index];
+            }
+        }
+
+        return ans;
+    }
+
+    static bool customcmp(int a, int b){
+        return a > b;
+    } 
+
+
+    bool makesquare(vector<int>& matchsticks) {
+
+        if(matchsticks.size()<4){
+            return false;
+        }
+
+        int totalsum = accumulate(matchsticks.begin(), matchsticks.end(), 0);
+
+        if (totalsum%4 != 0){
+            return false;
+        }
+
+        int length = totalsum/4;
+
+        vector<int> eachsides(4, length);
+
+        int index = 0;
+        
+        // just sorting in decreasing order such that number of recursive call decreases
+        sort(matchsticks.begin(), matchsticks.end(), customcmp);
+        // or else you will get TLE
+
+        return checkpossibility(matchsticks, eachsides, index);
+    }
+
+*/
