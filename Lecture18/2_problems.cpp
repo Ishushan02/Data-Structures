@@ -407,10 +407,176 @@ InPlace Merge Sort (VVI -- Out of the Box Topic, but better be thorough with it)
     arr1 -> 1, 6, 7, 8, 9, 10
     arr2 -> 10, 13, 15, 17, 18, 21, 22
 
-    //---- Now we can directly merge both the array's without uaing any spaces.
+    //---- Now we can directly merge both the array's without using any spaces as both of them are sorted .
 
-    
 
+
+    Method 2
+
+    GAP Method
+    arr1 -> 1, 7, 9, 15, 18, 22
+    arr2 -> 6, 8, 10, 13, 17, 21
+
+    int n = arr1.size(), int m = arr2.size();
+
+    // combine both the arrays
+    int gap = ceil[ (m+n)/2 ]
+    int i = 0;
+    int j = i + gap;
+
+        if(arr[i] > arr[j]){
+            swap(arr[i], arr[j]);
+        }
+        i++;
+        j++;
+        // continue above iteration till i & j reaches the end of array
+
+    continue this process till gap is 1, and stop it after that iteration.
+
+
+    gap = ceil(6+6/2) = 6
+    i = 0, j = 6
+
+    arr -> 1, 7, 9, 15, 18, 22, 6, 8, 10, 13, 17, 21 
+           i                    j
+           if(a[i]> a[j]) -> no i++, j++
+
+           1, 7, 9, 15, 18, 22, 6, 8, 10, 13, 17, 21 
+              i                    j
+           if(a[i]> a[j]) -> no i++, j++
+
+           1, 7, 9, 15, 18, 22, 6, 8, 10, 13, 17, 21 
+                 i                    j
+           if(a[i]> a[j]) -> no i++, j++
+
+           1, 7, 9, 15, 18, 22, 6, 8, 10, 13, 17, 21 
+                     i                    j
+           if(a[i]> a[j]) -> yes swap(15, 13) i++, j++
+
+           1, 7, 9, 13, 18, 22, 6, 8, 10, 15, 17, 21 
+                         i                    j
+           if(a[i]> a[j]) -> yes swap(18, 17) i++, j++
+
+           1, 7, 9, 13, 17, 22, 6, 8, 10, 15, 18, 21 
+                             i                    j
+           if(a[i]> a[j]) -> yes swap(22, 21) i++, j++
+
+           1, 7, 9, 13, 17, 21, 6, 8, 10, 15, 18, 22
+                             i                    j
+
+           iteration 1 is completed
+           now gap = ceil(gap/2) -> 3
+
+           i = 0, j = 3
+           1, 7, 9, 13, 17, 21, 6, 8, 10, 15, 18, 22
+           i             j
+           if(a[i]> a[j]) -> no  i++, j++
+
+           1, 7, 9, 13, 17, 21, 6, 8, 10, 15, 18, 22
+              i             j
+           if(a[i]> a[j]) -> no  i++, j++
+
+           1, 7, 9, 13, 17, 21, 6, 8, 10, 15, 18, 22
+                 i              j
+           if(a[i]> a[j]) -> yes swap(9, 6)  i++, j++
+
+           1, 7, 6, 13, 17, 21, 9, 8, 10, 15, 18, 22
+                    i              j
+           if(a[i]> a[j]) -> yes swap(13, 8)  i++, j++
+
+           1, 7, 6, 8, 17, 21, 9, 13, 10, 15, 18, 22
+                        i              j
+           if(a[i]> a[j]) -> yes swap(17, 10)  i++, j++
+
+            1, 7, 6, 8, 10, 21, 9, 13, 17, 15, 18, 22
+                            i              j
+           if(a[i]> a[j]) -> yes swap(21, 15)  i++, j++
+
+           1, 7, 6, 8, 10, 15, 9, 13, 17, 21, 18, 22
+                               i              j
+           if(a[i]> a[j]) -> no  i++, j++
+
+           1, 7, 6, 8, 10, 15, 9, 13, 17, 21, 18, 22
+                                   i              j
+           if(a[i]> a[j]) -> no  i++, j++
+
+
+           2nd iteration is completed
+           gap = ceil(gap/2) = ceil(1.5) = 2
+           i = 0, j = 2
+
+           1, 7, 6, 8, 10, 15, 9, 13, 17, 21, 18, 22
+           i     j
+           if(a[i]> a[j]) -> no  i++, j++
+
+           1, 7, 6, 8, 10, 15, 9, 13, 17, 21, 18, 22
+              i     j
+           if(a[i]> a[j]) -> no  i++, j++
+
+           1, 7, 6, 8, 10, 15, 9, 13, 17, 21, 18, 22
+                 i     j
+           if(a[i]> a[j]) -> no  i++, j++
+
+           1, 7, 6, 8, 10, 15, 9, 13, 17, 21, 18, 22
+                    i      j
+           if(a[i]> a[j]) -> no  i++, j++
+
+           1, 7, 6, 8, 10, 15, 9, 13, 17, 21, 18, 22
+                        i      j
+           if(a[i]> a[j]) -> yes swap(10, 9)  i++, j++
+
+           1, 7, 6, 8, 9, 15, 10, 13, 17, 21, 18, 22
+                           i      j
+           if(a[i]> a[j]) -> yes swap(15, 13)  i++, j++
+
+           1, 7, 6, 8, 9, 13, 10, 15, 17, 21, 18, 22
+                               i      j
+           if(a[i]> a[j]) -> no i++, j++
+
+           1, 7, 6, 8, 9, 13, 10, 15, 17, 21, 18, 22
+                                   i      j
+           if(a[i]> a[j]) -> no i++, j++
+
+           1, 7, 6, 8, 9, 13, 10, 15, 17, 21, 18, 22
+                                       i      j
+           if(a[i]> a[j]) -> no i++, j++
+
+           1, 7, 6, 8, 9, 13, 10, 15, 17, 21, 18, 22
+                                           i      j
+           if(a[i]> a[j]) -> no i++, j++
+
+
+           3rd iteration is completed
+           gap = ceil(gap/2) = 1
+           //   as gap is 1 hence this is the last iteration
+           i = 0, j = 1
+
+           1, 7, 6, 8, 9, 13, 10, 15, 17, 21, 18, 22
+           i  j
+           if(a[i]> a[j]) -> no i++, j++
+
+           1, 7, 6, 8, 9, 13, 10, 15, 17, 21, 18, 22
+              i  j
+           if(a[i]> a[j]) -> yes swap(7, 6) i++, j++
+
+           1, 6, 7, 8, 9, 13, 10, 15, 17, 21, 18, 22
+                           i  j
+           if(a[i]> a[j]) -> yes swap(7, 6) i++, j++
+           // skipping the process till i reaches 13
+
+           if(a[i]> a[j]) -> yes swap(13, 10) i++, j++
+           
+           1, 6, 7, 8, 9, 10, 13, 15, 17, 21, 18, 22
+                                           i  j
+            swap(21, 18) i++, j++
+
+           1, 6, 7, 8, 9, 10, 13, 15, 17, 18, 21, 22
+                                               i  j
+
+           Hence the Array is Sorted via Inplace merge sort
+           the time complexity remains same, but the space complexity decrease as compared to prev normal merge sort.
+
+        
 
 
 */
