@@ -576,7 +576,28 @@ InPlace Merge Sort (VVI -- Out of the Box Topic, but better be thorough with it)
            Hence the Array is Sorted via Inplace merge sort
            the time complexity remains same, but the space complexity decrease as compared to prev normal merge sort.
 
-        
+        // Code
+        void mergeInplace(vector<int>& nums, int start, int mid, int end){
+        int length = end - start + 1;
+        int gap = length/2 + length%2; //this is ceil function (actually ceil isn't working in this case)
+
+        while(gap > 0){
+            int i = start;
+            int j = start + gap;
+
+            while(j <= end){
+                if(nums[i] > nums[j]){
+                    swap(nums[i], nums[j]);
+                }
+                i++;
+                j++;
+            }
+            
+            gap = gap <= 1 ? 0 : gap/2 + gap%2;
+            
+        }
+
+    }
 
 
 */
