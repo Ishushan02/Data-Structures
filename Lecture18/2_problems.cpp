@@ -309,6 +309,9 @@ Leetcode Question No. 240
 473. Matchsticks to Square
 (https://leetcode.com/problems/matchsticks-to-square/description/)
 
+// It's a DP Question try solving it using DP as well 
+
+
     bool checkpossibility(vector<int>& matchsticks, vector<int>& eachsides, int index){
         if(index == matchsticks.size()){ // reached the end, check whether each sides is 0 or not
             
