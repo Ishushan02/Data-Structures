@@ -360,7 +360,7 @@ Leetcode Question No. 240
         int index = 0;
         
         // just sorting in decreasing order such that number of recursive call decreases
-        sort(matchsticks.begin(), matchsticks.end(), customcmp);
+        sort(matchsticks.begin(), matchsticks.end(), customcmp); // sort(matchsticks.rbegin(), matchsticks.end());
         // or else you will get TLE
 
         return checkpossibility(matchsticks, eachsides, index);
