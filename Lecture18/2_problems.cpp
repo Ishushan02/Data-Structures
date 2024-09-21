@@ -601,3 +601,92 @@ InPlace Merge Sort (VVI -- Out of the Box Topic, but better be thorough with it)
 
 
 */
+
+/*
+
+Count Inversions (VVIII)
+(https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1)
+
+
+    Method 1 O(n2)
+    long long int inversionCount(vector<long long> &arr) {
+        // Your Code Here
+        int count = 0;
+        for(long long int i = 0; i < arr.size(); i++){
+            for(long long int j = i + 1; j < arr.size(); j++){
+                if(arr[i]>arr[j]){
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+    }
+
+
+    Method 2 O(n*logn)
+
+    long long int merge(vector<long long>& arr, long long int start, long long int mid, long long int end, long long int &x){
+        long long int i = start;
+        long long int e1 = mid;
+        long long int j = mid+1;
+        long long int e2 = end;
+        long long int count = 0;
+        vector<long long> temp;
+        while(i <= e1 && j <= e2){
+            if(arr[i] <= arr[j]){
+                temp.push_back(arr[i]);
+                i++;
+            }else{
+                x += (mid - i + 1);
+                temp.push_back(arr[j]);
+                j++;
+            }
+        }
+        
+        while(i <= e1){
+            temp.push_back(arr[i]);
+            i++;
+        }
+        
+        while(j <= e2){
+            temp.push_back(arr[j]);
+            j++;
+        }
+        
+        
+        for(int p = start; p <= end; p++){
+            arr[p] = temp[p-start];
+        }
+        
+        
+    }
+    
+    void divide(vector<long long>& arr, long long int start, long long int end, long long int& p){
+        if(start >= end){
+            return ;
+        }
+        
+        long long int mid = (start + end)/2;
+        
+        divide(arr, start, mid, p);
+        divide(arr, mid+1, end, p);
+        
+        
+        merge(arr, start, mid, end, p);
+        
+    }
+    
+    long long int inversionCount(vector<long long> &arr) {
+        // Your Code Here
+        
+        long long int count = 0;
+        divide(arr, 0, arr.size()-1, count);
+        
+        return count;
+        
+    }
+    
+    
+
+*/
