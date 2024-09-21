@@ -367,3 +367,50 @@ Leetcode Question No. 240
     }
 
 */
+
+/*
+
+InPlace Merge Sort (VVI -- Out of the Box Topic, but better be thorough with it)
+
+    Generally we do it by because while doing merge operation of 2 sorted arrays,
+    we use extra space. So, to remove that extra space we use inplace merge sorting.
+
+    Method 1
+
+    Let's say we have given 2 sorted arrays and we have to merge it.
+
+    arr1 -> 1, 7, 9, 15, 18, 22
+    arr2 -> 6, 8, 10, 13, 17, 21
+
+    i is iterating arr1 and j is itterating arr2
+
+    i = 0, j = 0, 1 < 6 so i ++
+
+    i = 1, j = 0, 7 > 6 hence swap it and rearrange 7 in it's correct place
+    arr1 -> 1, 6, 9, 15, 18, 22
+    arr2 -> 7, 8, 10, 13, 17, 21
+
+    i = 2, j = 0 9 > 7 hence swap it and rearrange 9 in it's correct place
+    arr1 -> 1, 6, 7, 15, 18, 22
+    arr2 -> 9, 8, 10, 13, 17, 21 ---> 8, 9, 10, 13, 17, 21
+
+    i = 3, j = 0 15 > 8 swap and reaarange it
+    arr1 -> 1, 6, 7, 8, 18, 22
+    arr2(after rearranging) -> 9, 10, 13, 15, 17, 21
+    i = 4, j = 0 18 > 9 Swap, reaarange
+
+    arr1 -> 1, 6, 7, 8, 9, 22
+    arr2 -> 10, 13, 15, 17, 18, 21
+
+    //ly
+
+    arr1 -> 1, 6, 7, 8, 9, 10
+    arr2 -> 10, 13, 15, 17, 18, 21, 22
+
+    //---- Now we can directly merge both the array's without uaing any spaces.
+
+    
+
+
+
+*/
