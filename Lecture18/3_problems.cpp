@@ -45,3 +45,47 @@ using namespace std;
     }
 
 */
+
+
+/*
+
+
+39. Combination Sum
+(https://leetcode.com/problems/combination-sum/description/)
+
+- The catch here is the index which helps in removing the Duplicacy of the array.
+
+    void recurssion(vector<int>& candidates, int target, vector<int> ans, vector<vector<int>>& res, int index){
+        if(target == 0){
+            res.push_back(ans);
+            return;
+        }
+
+        if(target < 0){
+            return;
+        }
+
+        for(int i = index; i < candidates.size(); i++){
+
+            if (target >= candidates[i]){
+                ans.push_back(candidates[i]);
+                recurssion(candidates, target - candidates[i], ans, res, i);
+                ans.pop_back();
+            }
+        }
+
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        vector<vector<int>> result;
+        vector<int> ans;
+
+        recurssion(candidates, target, ans, res, 0);
+        
+        // val.insert(res);
+
+        return res;
+    }
+
+*/
