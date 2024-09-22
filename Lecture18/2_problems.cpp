@@ -624,7 +624,7 @@ Count Inversions (VVIII)
     }
 
 
-    Method 2 O(n*logn)
+    Method 2 O(n*logn) // everything similar to Merge Sort, with a minor difference (Microsoft)
 
     long long int merge(vector<long long>& arr, long long int start, long long int mid, long long int end, long long int &x){
         long long int i = start;
