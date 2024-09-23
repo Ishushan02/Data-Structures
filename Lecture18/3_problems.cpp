@@ -89,3 +89,94 @@ using namespace std;
     }
 
 */
+
+/*
+
+40. Combination Sum II
+(https://leetcode.com/problems/combination-sum-ii/description/)
+
+
+    Method 1 (Memory Limit Exceeded due to Set usage)
+
+    void recurrsion(vector<int>& candidates, int target, vector<int>& ans, vector<vector<int>>& res, int index){
+        if(target == 0){
+            res.push_back(ans);
+            return;
+        }
+        if (target < 0){
+            return;
+        }
+        if(index >= candidates.size()){
+            return;
+        }
+        
+        for(int i = index; i< candidates.size(); i++){
+            ans.push_back(candidates[i]);
+            recurrsion(candidates, target - candidates[i], ans, res, i+1);
+            ans.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        
+        vector<int> ans;
+        vector<vector<int>> res;
+        sort(candidates.begin(), candidates.end());
+        recurrsion(candidates, target, ans, res, 0);
+
+        // for duplicacy
+        set<vector<int>> unq;
+
+        for(auto val:res){
+            unq.insert(val);
+        }
+
+        res.clear();
+
+        for(auto val:unq){
+            res.push_back(val);
+        }
+
+        return res;
+    }
+
+
+    Method 2
+
+    void recurrsion(vector<int>& candidates, int target, vector<int>& ans, vector<vector<int>>& res, int index){
+        if(target == 0){
+            res.push_back(ans);
+            return;
+        }
+        if (target < 0){
+            return;
+        }
+        if(index >= candidates.size()){
+            return;
+        }
+        
+        for(int i = index; i< candidates.size(); i++){
+        
+            // not picking those elements in which prev iteration is already taken
+            if(i > index && candidates[i] == candidates[i-1]){
+                continue;
+            }
+            
+            ans.push_back(candidates[i]);
+            recurrsion(candidates, target - candidates[i], ans, res, i+1);
+            ans.pop_back();
+        }
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        
+        vector<int> ans;
+        vector<vector<int>> res;
+        sort(candidates.begin(), candidates.end());
+        recurrsion(candidates, target, ans, res, 0);
+
+
+        return res;
+    }
+
+*/
