@@ -3,6 +3,11 @@
 
 using namespace std;
 
+/*
+
+THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS .CPP NOTEBOOK
+
+*/
 
 /*
 
@@ -156,7 +161,7 @@ using namespace std;
         }
         
         for(int i = index; i< candidates.size(); i++){
-        
+
             // not picking those elements in which prev iteration is already taken
             if(i > index && candidates[i] == candidates[i-1]){
                 continue;
@@ -175,6 +180,44 @@ using namespace std;
         sort(candidates.begin(), candidates.end());
         recurrsion(candidates, target, ans, res, 0);
 
+
+        return res;
+    }
+
+*/
+
+/*
+
+47. Permutations II
+(https://leetcode.com/problems/permutations-ii/description/)
+
+
+    void traverse(vector<int>& nums, int index, vector<vector<int>>& res){
+        if(index == nums.size()){
+            res.push_back(nums);
+            return;
+        }
+
+        unordered_map<int, bool> visited;
+        
+
+        for(int i = index; i<nums.size();i++){
+            if(visited.find(nums[i])!= visited.end()){
+                continue; // so the same number is already been swapped with itself earlier
+                          // hence I am not swapping it again. 
+            }
+
+            visited[nums[i]] = true;
+            swap(nums[i], nums[index]);
+            traverse(nums, index+1, res);
+            swap(nums[i], nums[index]);
+        }
+    }
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+        traverse(nums, 0, res);
 
         return res;
     }
