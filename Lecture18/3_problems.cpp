@@ -271,4 +271,39 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
         return count;
     }
 
+
+    Method - 2 
+               {1, 2, 3}
+              /     |   \
+             /      |    \
+             1      1    1
+        /      |     \
+       2(*)     2      2(*)
+            /   |    \  
+           /    |      \
+          3(*)   3(*)   3 
+
+    void traverse(vector<int>& arr, int n, int currentNum, int& count){
+        if(currentNum >= n+1){
+            count += 1;
+            return;
+        }
+
+        for(int i = 1; i <= n; i++){
+            if(arr[i] == 99 && (currentNum % i == 0 || i % currentNum == 0)){
+                arr[i] = currentNum;
+                traverse(arr, n, currentNum+1, count);
+                arr[i] = 99;
+            }
+        }
+
+    }
+
+    int countArrangement(int n) {
+        vector<int> arr(n+1, 99);
+        int count = 0;
+        traverse(arr, n, 1, count);
+        return count;
+    }
+
 */
