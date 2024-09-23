@@ -225,3 +225,50 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
     // We can do the unique thing even using Set, but it will again take high time and space.
 
 */
+
+/*
+
+526. Beautiful Arrangement
+(https://leetcode.com/problems/beautiful-arrangement/)
+
+    Method 1 - TLE
+
+    void allPerm(vector<int>& arr, int& count, int n, int index){
+        if(index == arr.size()){
+            bool check = true;
+            for(int i = 1; i<=n; i++){
+                if((arr[i] % i == 0) || (i % arr[i] == 0)){
+                    check = true;
+                }else{
+                    check = false;
+                    break;
+                }
+            }
+            if(check) count+=1;
+
+            return;
+        }
+
+        for(int i = index; i <= n; i++){
+            swap(arr[i], arr[index]);
+            allPerm(arr, count, n, index + 1);
+            swap(arr[i], arr[index]);
+        }
+    }
+
+
+    int countArrangement(int n) {
+        vector<int> arr;
+        arr.push_back(99);
+        for(int i = 1; i <= n; i++){
+            arr.push_back(i);
+        }
+        
+        int count = 0;
+        allPerm(arr, count, n, 1);
+
+        
+        return count;
+    }
+
+*/
