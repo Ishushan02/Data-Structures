@@ -350,3 +350,31 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
         return distribute(quantity, data, 0);
     }
 */
+
+/*
+
+78. Subsets
+(https://leetcode.com/problems/subsets/description/)
+
+    void traverse(vector<int>& nums, vector<int>& ans, vector<vector<int>> & res, int index){
+        if(index == nums.size()){
+            res.push_back(ans);
+            return;
+        }
+        
+        ans.push_back(nums[index]);
+        traverse(nums, ans, res, index+1);
+        ans.pop_back();
+
+        traverse(nums, ans, res, index+1);
+
+    }
+
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int> ans;
+        vector<vector<int>> res;
+        traverse(nums, ans, res, 0);
+
+        return res;
+    }
+*/
