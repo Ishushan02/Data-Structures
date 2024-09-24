@@ -378,3 +378,36 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
         return res;
     }
 */
+
+/*
+
+90. Subsets II
+(https://leetcode.com/problems/subsets-ii/description/)
+
+    void traverse(vector<int>& nums, vector<int>& ans, vector<vector<int>> & res, int index){
+        if(index == nums.size()){
+            if(find(res.begin(), res.end(), ans)== res.end()){
+                res.push_back(ans);
+            }
+            return;
+        }
+        
+        ans.push_back(nums[index]);
+        traverse(nums, ans, res, index+1);
+        ans.pop_back();
+
+        traverse(nums, ans, res, index+1);
+
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<int> ans;
+        vector<vector<int>> res;
+        sort(nums.begin(), nums.end());
+        traverse(nums, ans, res, 0);
+
+        return res;
+    }
+
+    
+*/
