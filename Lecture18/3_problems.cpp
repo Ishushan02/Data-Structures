@@ -307,3 +307,45 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
     }
 
 */
+
+/*
+
+1655. Distribute Repeating Integers
+(https://leetcode.com/problems/distribute-repeating-integers/description/)
+
+    bool distribute( vector<int>& quantity, vector<int>& data, int index){
+        if(index == quantity.size()){
+            return true;
+        }
+
+        for(int i = 0; i < data.size();i++){
+            if(data[i] >= quantity[index]){
+                data[i] = data[i] - quantity[index];
+                if(distribute(quantity, data, index+1)){
+                    return true;
+                }
+                data[i] = data[i] + quantity[index];
+            }
+        }
+
+        return false;
+
+    }
+
+    bool canDistribute(vector<int>& nums, vector<int>& quantity) {
+        
+        unordered_map <int, int> freq;
+        for(int i = 0; i < nums.size(); i++){
+            freq[nums[i]]++;
+        }
+
+        vector<int> data;
+        for (auto i : freq){
+            data.push_back(i.second);
+        }
+
+        sort(quantity.rbegin(), quantity.rend()); // now we can get false conditions quickly 
+                                                  // decrease in Time 
+        return distribute(quantity, data, 0);
+    }
+*/
