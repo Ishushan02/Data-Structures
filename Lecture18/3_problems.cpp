@@ -409,5 +409,31 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
         return res;
     }
 
-    
+    Method 2 Important Method
+
+    void traverse(vector<int>& nums, vector<int>& ans, vector<vector<int>> & res, int index){
+        res.push_back(ans);        
+        
+        for(int i = index; i < nums.size(); i++){
+            if(i != index && nums[i] == nums[i-1]){
+                continue;
+            }
+            ans.push_back(nums[i]);
+            traverse(nums, ans, res, i+1);
+            ans.pop_back();
+        }
+        
+
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<int> ans;
+        vector<vector<int>> res;
+        sort(nums.begin(), nums.end());
+        traverse(nums, ans, res, 0);
+
+        return res;
+    }
+
+
 */
