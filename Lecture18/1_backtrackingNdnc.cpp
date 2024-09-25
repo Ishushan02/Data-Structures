@@ -180,8 +180,18 @@ int main(){
 /*
 
 1 Question
-Merge SOrt Performs well in either LinkedList of Array, explain why ?
+Merge Sort Performs well in either LinkedList of Array, explain why ?
 
+    - Since arrays are a contiguous memory, splitting and merging operations can efficiently access
+    and manipulate elements.
+    - Merge Sort is particularly advantageous for linked lists because merging two sorted linked lists can be done in-place.
+
+
+    In Arrays: Merge Sort performs well because of its O(n log n) time complexity but requires additional space for merging.
+
+    In Linked Lists: Merge Sort's ability to work with sequential access, its efficient splitting mechanism, and in-place 
+    merging make it an excellent choice for linked lists. It avoids the need for extra memory, making it more space-efficient 
+    compared to arrays.
 */
 
 /*
