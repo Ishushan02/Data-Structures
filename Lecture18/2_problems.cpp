@@ -419,7 +419,7 @@ InPlace Merge Sort (VVI -- Out of the Box Topic, but better be thorough with it)
 
     int n = arr1.size(), int m = arr2.size();
 
-    // combine both the arrays
+    // combine both the arrays  (vector v1, v2, -> v1.insert(v1.end(), v2.begin(), v2.end());)
     int gap = ceil[ (m+n)/2 ]
     int i = 0;
     int j = i + gap;
