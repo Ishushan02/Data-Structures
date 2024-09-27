@@ -154,6 +154,8 @@ int minSteps(vector<int> &nums, int index, int tempcount, int& mincount){
 /*
 
 120. Triangle
+
+// remember in this itterate it via triangle structure
 (https://leetcode.com/problems/triangle/description/)
 
     int itterateTriangle(vector<vector<int>>& triangle, int row, int col){
