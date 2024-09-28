@@ -215,3 +215,36 @@ string justifyspaces(vector<string> words, int start, int end, int evenlyspaces,
 
 
 */
+
+/*
+
+1980. Find Unique Binary String
+(https://leetcode.com/problems/find-unique-binary-string/)
+
+    string createString(vector<string>& nums, int n, int index, string temp){
+        if(index == n ){
+            if(find(nums.begin(), nums.end(), temp) == nums.end()){
+                return temp;
+            }
+            return "";
+        }
+
+        string ans1 = createString(nums, n, index+1, temp+"1");
+        if(ans1 != ""){
+            return ans1;
+        }
+
+        string ans2 = createString(nums, n, index+1, temp+"0");
+        if(ans2 != ""){
+            return ans2;
+        }
+
+        return "";
+    }
+
+    string findDifferentBinaryString(vector<string>& nums) {
+        int n = nums.size();
+        return createString(nums, n, 0, "");
+    }
+
+*/
