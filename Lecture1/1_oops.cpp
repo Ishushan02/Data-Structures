@@ -3,6 +3,11 @@
 
 using namespace std;
 
+/*
+
+    CLASS, OBJECTS, ATTRIBUTES, CONSTRUCTOR, DESTRUCTOR
+
+*/
 
 /*
 
