@@ -348,6 +348,7 @@ string reverseOnlyLetters(string s) {
                 s[i] = s[i] + s[j];
                 s[j] = s[i] - s[j];
                 s[i] = s[i] - s[j];
+                //swap
                 i++;
                 j--;
             }else if (!((s[i]>= 'a' && s[i] <= 'z') || (s[i]>= 'A' && s[i] <= 'Z'))){

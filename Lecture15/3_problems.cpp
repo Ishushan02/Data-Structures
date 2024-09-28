@@ -3,7 +3,7 @@
 /*
 205. Isomorphic Strings (https://leetcode.com/problems/isomorphic-strings/description/)
 
-bool isIsomorphic(string s, string t) {
+    bool isIsomorphic(string s, string t) {
         unordered_map<char, char> sstring;
         unordered_map<char, char> tstring;
 
