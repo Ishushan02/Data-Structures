@@ -89,6 +89,23 @@ int main()
 
 /*
 
+Difference between a Subsequence and a Substring
+
+ string s = "abc"
+
+ Subsequence:
+    In this the order of the string should be maintained.
+    subsequence of string s - a, ab, abc, b, bc, c, "" {empty string is included}
+
+ Substring:
+    Any order is good but all occurence has to be written down
+    substring of string s - a, ab, ac, b, bc, c, ca, abc, "" {empty string is included}
+
+*/
+
+
+/*
+
 Remove all Duplicates fromAdjacent
 1047 (https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/)
 
