@@ -144,11 +144,7 @@
 
     string longestPalindrome(string s) {
 
-
-
-
         string ans ;
-
 
         for(int centre = 0; centre < s.length();centre++){
             string tempans;
