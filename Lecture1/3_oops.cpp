@@ -68,7 +68,7 @@ class Vehicle{
             return oiltype;
         }
 
-    Vehicle(string name, string model, int noOfTyers, string oilType){
+    Vehicle(const string name, string model, int noOfTyers, string oilType){
         this->name = name;
         this->model = model;
         this->noOfTyers = noOfTyers;
@@ -95,7 +95,7 @@ class Car: public Vehicle{
         int doors;
         int noofSeats;
 
-    Car(string name, string model, int noOfTyers, string oilType, int doors, int noofSeats):Vehicle(name, model, noOfTyers, oilType){
+    Car(const string name, string model, int noOfTyers, string oilType, int doors, int noofSeats):Vehicle(name, model, noOfTyers, oilType){
         this->doors = doors;
         this->noofSeats = noofSeats;
     }
@@ -109,6 +109,34 @@ class Car: public Vehicle{
     }
 };
 
+/*
+class MultipleInheritance: public class1, public class2, protected class3{
+
+};
+DERIVED THE CLASS FROM MULTIPLE BASE CLASSES
+
+// constructior
+    MultipleInheritance(string attr1, int attr2, string attr3, int attr 4):class1(int at1, string at2), 
+                                            class2 (int at3, string at4), class2 (int at3, string at4)
+
+*/
+
+/*
+
+Similarily Multiup level Inheritance
+
+base class {
+
+};
+
+derived class1:base class{
+};
+
+derived class2: class1 {
+
+};
+
+*/
 int main(){
 
     Car A("MercedesAMG", "G", 5, "Petrol", 2, 2);
