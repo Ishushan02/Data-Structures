@@ -248,3 +248,29 @@ string justifyspaces(vector<string> words, int start, int end, int evenlyspaces,
     }
 
 */
+
+/*
+
+    Important yet Tricky Question
+
+2405. Optimal Partition of String
+(https://leetcode.com/problems/optimal-partition-of-string/description/)
+
+    int partitionString(string s) {
+        
+        vector<bool> isPresent(26, false);
+
+        int count = 0;
+
+        for(auto c:s){
+            if(isPresent[c-'a']){
+                count++;
+                isPresent = vector<bool> (26, false);
+            }
+            isPresent[c-'a'] = true;
+        }
+
+        return count+1; // as last count will be excluded
+    }
+
+*/
