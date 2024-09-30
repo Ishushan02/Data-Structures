@@ -45,7 +45,97 @@ using namespace std;
      - Hierarchial Inheritance
      - Multiple Inheritance
      - Hybrid Inheritance
-     
 
+    Syntax
+    class DerivedClass : accessSpecifier BaseClass{
+            // accessSpecifier is the mode in which you are inheriting {Private, Public, Protected}
+    }
         
+*/
+
+class Vehicle{
+
+    private:
+        string oiltype;
+
+    public:
+        string name;
+        string model;
+        int noOfTyers;
+
+    // getter for getting private Attribute
+        string getoil(){
+            return oiltype;
+        }
+
+    Vehicle(string name, string model, int noOfTyers, string oilType){
+        this->name = name;
+        this->model = model;
+        this->noOfTyers = noOfTyers;
+        this->oiltype = oilType;
+    }
+    
+    public:
+        void start_engine(){
+            cout << " Engine is Starting of " << name << " and model " << model << endl;
+        }
+
+        void stop_engine(){
+            cout << " Engine is Stoping " << name << " and model " << model << endl;
+        }
+
+    ~Vehicle(){
+        cout << " I am inside Vehicles Destructor " << endl;
+    }
+};
+
+class Car: public Vehicle{
+
+    public:
+        int doors;
+        int noofSeats;
+
+    Car(string name, string model, int noOfTyers, string oilType, int doors, int noofSeats):Vehicle(name, model, noOfTyers, oilType){
+        this->doors = doors;
+        this->noofSeats = noofSeats;
+    }
+    
+    void StartAC(){
+        cout <<  " AC is started of " << name << " and model " << model << endl;
+    }
+
+    ~Car(){
+        cout << " I am inside Car Destructor " << endl;
+    }
+};
+
+int main(){
+
+    Car A("MercedesAMG", "G", 5, "Petrol", 2, 2);
+    A.start_engine();
+
+    A.StartAC();
+
+    string oilTpye = A.getoil(); // getter method for accessing private variable
+    cout << " The Oil type is " << oilTpye << endl;
+
+    A.stop_engine();
+
+
+    return 0;
+}
+
+/*
+
+                |    Derived Class        Derived Class       Derived Class
+    Base Class  |    Private Mode        Protected Mode        Public Mode
+    ------------|----------------------------------------------------------
+    Private     |    Not Inherited        Not Inherited        Not Inherited
+    Protected   |     Private              Protected             Protected
+    Public      |     Private              Protected             Public
+
+Similarily all properties follow the rule for the above Table
+
+// Also note that the derived class destructor is called first and then later the base class
+
 */
