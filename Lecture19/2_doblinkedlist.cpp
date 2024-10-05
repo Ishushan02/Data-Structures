@@ -73,7 +73,7 @@ Node* insertAtIndex(int value, int index, Node* &head, Node* &tail){
 
 Node* deleteAtIndex(int index, Node* &head, Node* &tail){
      if(index == 0){
-          Node* nextelem = head;
+          Node* nextelem = head->next;
           nextelem->prev = NULL;
           head = nextelem;
           return head;
@@ -142,7 +142,7 @@ int main(){
      printForwards(head);
      printBackwards(tail);
 
-     head = deleteAtIndex(3, head, tail);
+     head = deleteAtIndex(0, head, tail);
      printForwards(head);
      printBackwards(tail);
 
