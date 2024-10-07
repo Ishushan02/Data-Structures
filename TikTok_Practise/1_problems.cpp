@@ -42,10 +42,25 @@ void oper3(vector<int> &stck, vector<int> &que){
 (https://aonecode.com/Interview-Question/Tiktok-OA/Video-Buffering)
 
 
-*/
 
-void printss(vecotr<int>& arr, unordered_map<int, int> availablePackets, int t){
-    
+void printss(vector<int>& buffer, unordered_map<int, int> availablePackets, int t){
+    cout << " At time T: " << t << endl;
+
+    cout <<" BufferData "<< " ";
+    for(int i = 0; i < buffer.size(); i++){
+        cout << buffer[i] << " ";
+    }
+
+    cout << endl;
+
+    cout <<" Available Packets Data "<< " ";
+    for(auto val:availablePackets){
+        cout << val.first << " ";
+    }
+
+    cout << endl;
+
+
 }
 
 int videoBuffering(vector<int>& packets, int arrivalRate){
@@ -60,6 +75,16 @@ int videoBuffering(vector<int>& packets, int arrivalRate){
         int j = i;
         int limit = j + arrivalRate;
         i = j + arrivalRate;
+
+        cout <<" Initially BufferData "<< " ";
+        for(int i = 0; i < buffer.size(); i++){
+            cout << buffer[i] << " ";
+        }
+        cout << endl;
+        if(buffer.size() == 0 && t != 1){
+            ans = t;
+            return ans;
+        }
         while(j < limit){
             if(availablePackets.find(packets[j]) == availablePackets.end()){
                 buffer.push_back(packets[j]);
@@ -68,14 +93,22 @@ int videoBuffering(vector<int>& packets, int arrivalRate){
             j++;
         }
 
+
         if(buffer.size() == 0){
             ans = t;
             return ans;
+        }else{
+            buffer.erase(buffer.begin());
         }
+
+        // printss(buffer, availablePackets, t);
+        
+        t++;
     }
 
     return ans;
 }
+*/
 
 int main(){
 
@@ -109,5 +142,23 @@ int main(){
     cout << endl;
     */
 
-    // return 0;
+   /*
+   2. Video Buffering
+
+   vector<int> packets ;
+   packets.push_back(1);
+   packets.push_back(3);
+   packets.push_back(2);
+   packets.push_back(1);
+   packets.push_back(2);
+   packets.push_back(3);
+   packets.push_back(3);
+   packets.push_back(4);
+   int arrivalRate = 2;
+   int ans = videoBuffering(packets, arrivalRate);
+   cout<< " Ans is " << ans << endl;
+
+   */
+
+    return 0;
 }
