@@ -117,6 +117,44 @@ int videoBuffering(vector<int>& packets, int arrivalRate){
 
 */
 
+/*
+
+4. Paths on a Grid
+(https://aonecode.com/Interview-Question/Tiktok-OA/Paths-on-a-Grid)
+*/
+
+bool isSafe(int x, int y, int n, int m, vector<vector<int>>& grid){
+    if(x > m || y > n){
+        return false;
+    }
+    if(grid[x][y] == 1){
+        return false;
+    }
+    return true;
+}
+
+void traverseGrid(int n, int m, int& res, int i, int j, vector<vector<int>>& grid){
+    cout <<" i:"<<i << " j:" << j << endl;
+    if(i == n && j == m){
+        cout << " Res " << res << endl;
+        res+= 1;
+        return ;
+    }
+
+    if(isSafe(i+1, j, n, m, grid)){
+        grid[i+1][j] = 1;
+        traverseGrid(n, m, res, i+1, j, grid);
+        grid[i+1][j] = 0;
+    }
+    if(isSafe(i, j+1, n, m, grid)){
+        grid[i+1][j] = 1;
+        traverseGrid(n, m, res, i, j+1, grid);
+        grid[i+1][j] = 0;
+    }
+
+    return;
+}
+
 int main(){
 
     /*
@@ -166,6 +204,11 @@ int main(){
    cout<< " Ans is " << ans << endl;
 
    */
+  int res = 0;
+  int n = 2;
+  int m = 2;
+  vector<vector<int>> grid(n, vector<int>(m, 0));
+  traverseGrid(2, 2, res, 0, 0, grid);
 
     return 0;
-}
+}~
