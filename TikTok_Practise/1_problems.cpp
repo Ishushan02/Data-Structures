@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -33,6 +34,48 @@ void oper3(vector<int> &stck, vector<int> &que){
 }
 
 */
+
+
+/*
+
+2. Video Buffering
+(https://aonecode.com/Interview-Question/Tiktok-OA/Video-Buffering)
+
+
+*/
+
+void printss(vecotr<int>& arr, unordered_map<int, int> availablePackets, int t){
+    
+}
+
+int videoBuffering(vector<int>& packets, int arrivalRate){
+    int ans = -1;
+    vector<int> buffer;
+    unordered_map<int, int> availablePackets;
+
+    int t = 1;
+    int i = 0;
+
+    while(i < packets.size()){
+        int j = i;
+        int limit = j + arrivalRate;
+        i = j + arrivalRate;
+        while(j < limit){
+            if(availablePackets.find(packets[j]) == availablePackets.end()){
+                buffer.push_back(packets[j]);
+                availablePackets[packets[j]]++;
+            }
+            j++;
+        }
+
+        if(buffer.size() == 0){
+            ans = t;
+            return ans;
+        }
+    }
+
+    return ans;
+}
 
 int main(){
 
