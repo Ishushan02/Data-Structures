@@ -59,4 +59,28 @@ int main(){
 
         
     }
+
+
+    VVI Approach - Tortoise Approach
+
+    ListNode* middleNode(ListNode* head) {
+        
+        // Tortoise Approach
+        // While Rabbit takes 2 steps tortoise takes 1 step
+        ListNode* step1 = head;
+        ListNode* step2 = head;
+
+        while(step2){
+            
+            step2 = step2->next;
+            if (step2){
+                step2 = step2->next;
+            }else{
+                return step1;
+            }
+            step1 = step1->next;
+            
+        }
+        return step1;
+    }
 */
