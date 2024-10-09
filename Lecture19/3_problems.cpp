@@ -84,3 +84,56 @@ int main(){
         return step1;
     }
 */
+
+/*
+
+2095. Delete the Middle Node of a Linked List
+(https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/)
+
+    ListNode* middleNode(ListNode* head){
+        ListNode* step1 = head;
+        ListNode* step2 = head;
+
+        while(step2){
+            
+            step2 = step2->next;
+            if (step2){
+                step2 = step2->next;
+            }else{
+                return step1;
+            }
+            step1 = step1->next;
+            
+        }
+        return step1;
+    }
+
+    ListNode* deleteMiddle(ListNode* head) {
+        if(head->next == NULL){
+            return NULL;
+        }
+        int n = 0;
+        ListNode* midlNode = middleNode(head);
+        ListNode* temp = head;
+        ListNode* prev = head;
+
+        
+        while(temp){
+
+            if(temp->next == midlNode){
+                prev = temp;
+                cout << temp->val << endl;
+                ListNode* nextNode = temp->next;
+                temp->next = nextNode->next;
+                
+                
+            }else{
+                temp = temp->next;
+            }
+            
+            
+        }
+
+        return head;
+    }
+*/
