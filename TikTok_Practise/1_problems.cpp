@@ -5,6 +5,12 @@
 using namespace std;
 
 /*
+All TikTok Questions
+    - https://aonecode.com/tiktok-online-assessment-questions
+*/
+
+
+/*
 
 1. Stack and Queue
 (https://aonecode.com/Interview-Question/Tiktok-OA/Stack-and-Queue)
@@ -179,7 +185,7 @@ void arrange(vector<int>& arr){
     for(int i = 1; i <= arr.size()-1; i++){
         int tempelem = arr[i];
         int j = 0;
-        
+
     }
 
 }
