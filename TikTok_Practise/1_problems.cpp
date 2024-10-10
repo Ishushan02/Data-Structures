@@ -170,6 +170,20 @@ do it later
 - Very Important Question, Please do it.
 */
 
+void arrange(vector<int>& arr){
+    sort(arr.rbegin(), arr.rend());
+
+    vector<int> tempArr;
+    tempArr[0] = arr[0]; // setting up initial element
+    int sum = 0;
+    for(int i = 1; i <= arr.size()-1; i++){
+        int tempelem = arr[i];
+        int j = 0;
+        
+    }
+
+}
+
 
 int main(){
 

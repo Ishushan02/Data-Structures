@@ -137,3 +137,70 @@ int main(){
         return head;
     }
 */
+
+/*
+
+234. Palindrome Linked List
+(https://leetcode.com/problems/palindrome-linked-list/description/)
+
+    ListNode* MiddleNode(ListNode* &temp){
+        ListNode* tor = temp;
+        ListNode* rab = temp;
+
+        while(rab){
+            rab = rab->next;
+            if(rab){
+                rab = rab->next;
+            }else{
+                return tor;
+            }
+            tor = tor->next;
+        }
+        return tor;
+    }
+
+    int Length(ListNode* temp){
+        int count = 0;
+        while(temp){
+            count++;
+            temp = temp->next;
+        }
+        return count;
+    }
+
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+
+        while(curr){
+            ListNode* forw = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forw;
+        }
+        return prev;
+    }
+
+    bool isPalindrome(ListNode* head) {
+        int len = Length(head);
+        ListNode* midl = MiddleNode(head);
+        cout << midl->val << " length is " << len << endl;
+        ListNode* start = NULL;
+        if(len%2 == 0){
+            start = reverseList(midl);
+        }else{
+            start = reverseList(midl->next);
+        }
+
+        int temp = 0;
+        while(temp<len/2){
+            if(start->val != head->val){
+                return false;
+            }
+            start = start->next;
+            head = head->next;
+            temp++;
+        }
+        return true;
+    }
+*/
