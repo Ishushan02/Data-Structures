@@ -204,3 +204,28 @@ int main(){
         return true;
     }
 */
+
+/*
+
+141. Linked List Cycle
+(https://leetcode.com/problems/linked-list-cycle/submissions/1418112537/)
+
+    bool hasCycle(ListNode *head) {
+        int temp = 99999999;
+        // cout << head->pos << endl;
+        if(head == NULL || head->next == NULL){
+            cout << " Here " << endl;
+            return false;
+        }
+        while(head){
+            if(head->val == 99999999){
+                return true;
+            }else{
+                head->val = 99999999;
+            }
+            head = head->next;
+        }
+
+        return false;;
+    }
+*/
