@@ -228,4 +228,38 @@ int main(){
 
         return false;;
     }
+
+// Fast pointer and slow pointer approach, if they meet at same pointer location then cycle approach. (rabbit and tortoise)
+*/
+
+/*
+
+83. Remove Duplicates from Sorted List
+(https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/)
+
+    ListNode* deleteDuplicates(ListNode* head) {
+
+        if(head == NULL){
+            return head;
+        }
+        
+        ListNode* prev = head;
+        ListNode* curr = head->next;
+
+        while(curr){
+            if(prev->val == curr->val){
+                ListNode* forw = curr->next;
+                prev->next = forw;
+                //. delete
+                curr = curr->next;
+            }else{
+                curr = curr->next;
+                prev = prev->next;
+            }
+        }
+
+
+        return head;
+    }
+
 */
