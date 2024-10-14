@@ -263,3 +263,111 @@ int main(){
     }
 
 */
+
+/*
+
+    Sort a linked list of 0s, 1s and 2s
+    (https://www.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1)
+
+    void printss(Node* temp){
+        
+        Node* newNode = temp;
+        
+        while(newNode){
+            cout << newNode->data << " ";
+            newNode = newNode->next;
+        }
+        
+        cout << endl;
+    }
+    
+    void updatess(int data, Node* &temp,  Node* &headzero, Node* &tailzero, Node* &headone, Node* &tailone, Node* &headtwo, Node* &tailtwo){
+        Node* var1 = NULL;
+        Node* var2 = NULL;
+        
+        if(data == 0){
+            var1 = headzero;
+            var2 = tailzero;
+        }else if (data = 1){
+            var1 = headone;
+            var2 = tailone;
+        }else if (data = 2){
+            var1 = headtwo;
+            var2 = tailtwo;
+        }
+            
+        if(var1 == NULL){
+            Node* newdata = temp;
+            var1 = newdata;
+            var2 = newdata;
+            
+        }else{
+            Node* newdata = temp;
+            Node* currdata = var2;
+            currdata->next = newdata;
+            var2 = newdata;
+        }
+        
+        if(data == 0){
+            headzero = var1;
+            tailzero = var2;
+        }else if (data = 1){
+            headone = var1;
+            tailone = var2;
+            
+        }else if (data = 2){
+            headtwo = var1;
+            tailtwo = var2;
+            
+        }
+          
+    }
+    
+    
+    // Function to sort a linked list of 0s, 1s and 2s.
+    Node* segregate(Node* head) {
+
+        // Add code here
+        Node* headzero = NULL;
+        Node* tailzero = NULL;
+        
+        Node* headone = NULL;
+        Node* tailone = NULL;
+        
+        Node* headtwo = NULL;
+        Node* tailtwo = NULL;
+        
+        Node* temp = head;
+        
+        while(temp){
+            updatess(temp->data, temp, headzero, tailzero, headone, tailone, headtwo, tailtwo);
+            temp = temp->next;
+        
+            
+            
+            // if(temp->data == 2){
+            //     if(headtwo == NULL){
+            //         Node* newdata = temp;
+            //         headtwo = newdata;
+            //         tailtwo = newdata;
+            //     }else{
+            //         Node* newdata = temp;
+            //         Node* currdata = tailzero;
+            //         currdata->next = newdata;
+            //         tailtwo = newdata;
+                    
+            //     }
+            // }
+            
+            // temp = temp->next;
+        }
+        
+        printss(headzero);
+        printss(headone);
+        printss(headtwo);
+        
+        return headzero;
+        
+    }
+
+*/
