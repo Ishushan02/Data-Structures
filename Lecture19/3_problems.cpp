@@ -399,3 +399,17 @@ int main(){
         return node;
     }
 */
+
+
+/*
+
+    IMP Question
+    Add 2 numbers given in LinkedList
+
+*/
+
+/*
+
+    Detect and Delete Loops
+
+*/
