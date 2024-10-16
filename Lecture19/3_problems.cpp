@@ -339,3 +339,63 @@ int main(){
     
 
 */
+
+/*
+
+    Add 1 to a Linked List Number
+    (https://www.geeksforgeeks.org/problems/add-1-to-a-number-represented-as-linked-list/1)
+
+    Node* reverse(Node* head){
+        Node* prev = NULL;
+        Node* curr = head;
+
+        while(curr){
+            Node* forw = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forw;
+        }
+        return prev;
+
+        
+    }
+  
+    Node* addOne(Node* head) {
+        // Your Code here
+        // return head of list after adding one
+        Node* node = reverse(head);
+        // print(node);
+        
+        Node* temp = node;
+        
+        int carry = 1;
+        while(temp){
+            // cout << temp->data << endl;
+            int val = temp->data;
+            int sum = val + carry;
+            carry = sum / 10;
+            int k = sum % 10;
+            temp->data = k;
+            
+            // cout << newNode->data << endl;
+            temp = temp->next;
+        }
+        
+        if(carry != 0){
+            Node* nn = new Node(carry);
+            nn->next = node;
+            node = nn;
+            // node->next = NULL;
+        }else{
+            Node* ans = reverse(node);
+            return ans;
+        }
+        // print(node);
+
+        
+        
+        // print(node);
+        
+        return node;
+    }
+*/
