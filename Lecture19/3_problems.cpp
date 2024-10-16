@@ -269,105 +269,73 @@ int main(){
     Sort a linked list of 0s, 1s and 2s
     (https://www.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1)
 
-    void printss(Node* temp){
-        
-        Node* newNode = temp;
-        
-        while(newNode){
-            cout << newNode->data << " ";
-            newNode = newNode->next;
-        }
-        
-        cout << endl;
-    }
-    
-    void updatess(int data, Node* &temp,  Node* &headzero, Node* &tailzero, Node* &headone, Node* &tailone, Node* &headtwo, Node* &tailtwo){
-        Node* var1 = NULL;
-        Node* var2 = NULL;
-        
-        if(data == 0){
-            var1 = headzero;
-            var2 = tailzero;
-        }else if (data = 1){
-            var1 = headone;
-            var2 = tailone;
-        }else if (data = 2){
-            var1 = headtwo;
-            var2 = tailtwo;
-        }
-            
-        if(var1 == NULL){
-            Node* newdata = temp;
-            var1 = newdata;
-            var2 = newdata;
-            
+    void insertAtTail(Node* &tomove, Node* &head, Node* &tail){
+        if(head == NULL && tail == NULL){
+            head = tomove;
+            tail = tomove;
         }else{
-            Node* newdata = temp;
-            Node* currdata = var2;
-            currdata->next = newdata;
-            var2 = newdata;
+            tail->next = tomove;
+            tail = tomove;
         }
-        
-        if(data == 0){
-            headzero = var1;
-            tailzero = var2;
-        }else if (data = 1){
-            headone = var1;
-            tailone = var2;
-            
-        }else if (data = 2){
-            headtwo = var1;
-            tailtwo = var2;
-            
-        }
-          
     }
-    
-    
+  
     // Function to sort a linked list of 0s, 1s and 2s.
     Node* segregate(Node* head) {
 
         // Add code here
-        Node* headzero = NULL;
-        Node* tailzero = NULL;
-        
-        Node* headone = NULL;
-        Node* tailone = NULL;
-        
-        Node* headtwo = NULL;
-        Node* tailtwo = NULL;
+        Node* onehead = NULL;
+        Node* onetail = NULL;
+        Node* twohead = NULL;
+        Node* twotail = NULL;
+        Node* zerohead = NULL;
+        Node* zerotail = NULL;
         
         Node* temp = head;
         
         while(temp){
-            updatess(temp->data, temp, headzero, tailzero, headone, tailone, headtwo, tailtwo);
+            
+            Node* tomove = temp;
             temp = temp->next;
-        
+            tomove->next = NULL; // isolating it
             
+            if(tomove->data == 0){
+                insertAtTail(tomove, zerohead, zerotail);
+            }else if(tomove->data == 1){
+                insertAtTail(tomove, onehead, onetail);
+            }else if(tomove->data = 2){
+                insertAtTail(tomove, twohead, twotail);
+            }
             
-            // if(temp->data == 2){
-            //     if(headtwo == NULL){
-            //         Node* newdata = temp;
-            //         headtwo = newdata;
-            //         tailtwo = newdata;
-            //     }else{
-            //         Node* newdata = temp;
-            //         Node* currdata = tailzero;
-            //         currdata->next = newdata;
-            //         tailtwo = newdata;
-                    
-            //     }
-            // }
-            
-            // temp = temp->next;
         }
         
-        printss(headzero);
-        printss(headone);
-        printss(headtwo);
+        // merge all of them, don't forget empty list
         
-        return headzero;
-        
+        if(zerohead != NULL){
+            if(onehead != NULL){
+                zerotail->next = onehead;
+                if(twohead != NULL){
+                    onetail->next = twohead;
+                }
+                    //do nothing for else case
+                
+            }else{
+                zerotail->next = twohead;
+            }
+            return zerohead;
+            
+        }else{
+            if(onehead != NULL){
+                onetail->next = twohead;
+                    //do nothing for else case
+            
+                return onehead;
+                
+            }else{
+                return twohead;
+            }
+        }
     }
+    
+    
 
 */
