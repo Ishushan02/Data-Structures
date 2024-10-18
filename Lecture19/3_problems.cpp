@@ -413,3 +413,9 @@ int main(){
     Detect and Delete Loops
 
 */
+
+/*
+
+    Which Sorting Algo is best for LinkedList (QuickSort or MergeSort)
+
+*/
