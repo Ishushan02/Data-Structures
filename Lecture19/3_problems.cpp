@@ -3,6 +3,12 @@
 
 using namespace std;
 
+/*
+
+    ADOBDE and MICROSOFT asks lots of LinkeList Questions
+
+*/
+
 int main(){
 
 
