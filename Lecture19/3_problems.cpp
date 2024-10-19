@@ -408,9 +408,111 @@ int main(){
 
 
 /*
-
     IMP Question
-    Add 2 numbers given in LinkedList
+    
+    2. Add Two Numbers
+    (https://leetcode.com/problems/add-two-numbers/)
+
+    ListNode* reverseLL(ListNode* l){
+        ListNode* temp = l;
+        ListNode* prev = NULL;
+
+        while(temp){
+            ListNode* newNode = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = newNode;
+        }
+
+        return prev;
+    }
+
+    void print(ListNode* head){
+        ListNode* temp = head;
+
+        while(temp){
+            cout << temp->val << " ";
+            temp = temp->next;
+        }
+
+        cout << endl;
+    }
+
+    int getLength(ListNode* head){
+        ListNode* temp = head;
+        int count = 0;
+        while(temp){
+            count = count + 1;
+            temp =temp->next;
+        }
+
+        return count;
+    }
+
+    ListNode* insertNode(ListNode* &head, ListNode* newNode){
+        
+        if(head == NULL){
+            head = newNode;
+            head->next = NULL;
+            return head;
+        }
+        ListNode* temp = head;
+
+        while(temp->next){
+            temp = temp->next;
+        }
+        temp->next = newNode;
+        newNode->next = NULL;
+
+        return head;
+    }
+
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        ListNode* listnum1 = l1;//reverseLL(l1);
+        ListNode* listnum2 = l2;//reverseLL(l2);
+
+
+
+        int n1 = getLength(listnum1);
+        int n2 = getLength(listnum2);
+        
+
+        int count = n1 > n2 ? n1 : n2;
+        
+        // cout << count << " Count " << endl;
+        int k = 0;
+        int carry = 0;
+        ListNode* ans = NULL;
+
+        ListNode* temp = ans;
+        while(k < count){
+            
+            int num1 = listnum1 ? listnum1->val : 0;
+            int num2 = listnum2 ? listnum2->val : 0;
+
+            int sum = num1 + num2 + carry;
+
+            carry = sum / 10;
+            int data = sum%10;
+
+            ListNode* newNode = new ListNode(data);
+            ans = insertNode(ans, newNode);
+            k++;
+            listnum1 = listnum1 ? listnum1->next: NULL;
+            listnum2 = listnum2 ? listnum2->next: NULL;
+
+        }
+
+        if(carry != 0){
+            ListNode* nn = new ListNode(carry);
+            ans = insertNode(ans, nn);
+            // return nn;
+        }
+
+
+        return ans;
+    }
 
 */
 
