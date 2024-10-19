@@ -70,3 +70,109 @@ int main(){
     }
 
 */
+
+
+/*
+
+    328. Odd Even Linked List
+    (https://leetcode.com/problems/odd-even-linked-list/description/)
+
+    void print(ListNode* head){
+        ListNode* temp = head;
+        while(temp){
+            cout << temp->val << " ";
+            temp = temp->next;
+        }
+
+        cout << endl;
+    }
+
+    ListNode* insertNode(ListNode* toInsert, ListNode* &evenNode, ListNode* &oddNode, bool flag){
+
+
+
+        if (flag == false){
+            // even
+            if(evenNode == NULL){
+                evenNode = toInsert;
+                evenNode->next = NULL;
+
+            }else{
+                ListNode* temp = evenNode;
+                while(temp->next){
+                    temp = temp->next;
+                }
+                temp->next = toInsert;
+                toInsert->next = NULL;
+
+                return evenNode;
+            }
+        }else{
+            // odd
+            if(oddNode == NULL){
+                oddNode = toInsert;
+                oddNode->next = NULL;
+
+            }else{
+                ListNode* temp = oddNode;
+                while(temp->next){
+                    temp = temp->next;
+                }
+                temp->next = toInsert;
+                toInsert->next = NULL;
+
+                return oddNode;
+            }
+        }
+
+        return toInsert;
+    }
+
+    ListNode* oddEvenList(ListNode* head) {
+
+        if(head == NULL){
+            return head;
+        }
+        
+        
+        ListNode* odd = NULL;
+        ListNode* even = NULL;
+
+        ListNode* temp = head;
+        bool flag = true;
+
+        while(temp){
+
+            ListNode* newNode = new ListNode(temp->val);
+            
+            if(flag){
+                // cout << temp->val << " odd " << endl;
+                odd = insertNode(newNode, even, odd, flag);
+                flag = false;
+            }else{
+                // cout << temp->val << " even " << endl;
+                even = insertNode(newNode, even, odd, flag);
+                flag = true;
+            }
+
+
+            temp = temp->next;
+        }
+
+        print(odd);
+        print(even);
+
+        ListNode* p = odd;
+
+        while(p->next){
+            p = p->next;
+        }
+
+        p->next = even;
+
+        return odd;
+
+    }
+
+
+*/
