@@ -191,6 +191,7 @@ int main(){
         ListNode* tor = head;
         ListNode* rab = head;
 
+        // Just to check cycle
         while(rab && rab->next){
             // cout << tor->val <<"****" << rab->val << endl;
             tor = tor->next;
@@ -205,10 +206,13 @@ int main(){
             }
         }
 
+
+        // if it's null then no cycle
         if(rab->next == NULL || rab == NULL){
             return NULL;
         }
 
+        // Once cycle is confirmed return the node where both meets
         rab = head;
 
         while(tor != rab){
