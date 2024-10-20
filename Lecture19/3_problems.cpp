@@ -216,6 +216,7 @@ int main(){
 141. Linked List Cycle
 (https://leetcode.com/problems/linked-list-cycle/submissions/1418112537/)
 
+    Method 1
     bool hasCycle(ListNode *head) {
         int temp = 99999999;
         // cout << head->pos << endl;
@@ -235,8 +236,30 @@ int main(){
         return false;;
     }
 
+
+    Method 2
+
 // Fast pointer and slow pointer approach, if they meet at same pointer location then cycle approach. (rabbit and tortoise)
-*/
+
+    bool hasCycle(ListNode *head) {
+        if (!head || !head->next){
+            return false;
+        }
+
+        ListNode* tor = head;
+        ListNode* rab = head->next;
+        
+        while(rab && rab->next){
+            if(tor == rab){
+                return true;
+            }
+
+            tor = tor->next;
+            rab = rab->next->next;
+        }
+
+        return false;
+    }
 
 /*
 
