@@ -177,3 +177,44 @@ int main(){
 
 */
 
+/*
+
+    142. Linked List Cycle II
+    (https://leetcode.com/problems/linked-list-cycle-ii/description/)
+
+    ListNode *detectCycle(ListNode *head) {
+        
+        if(!head || !head->next){
+            return NULL;
+        }
+
+        ListNode* tor = head;
+        ListNode* rab = head;
+
+        while(rab && rab->next){
+            // cout << tor->val <<"****" << rab->val << endl;
+            tor = tor->next;
+            if (rab->next->next){
+                rab = rab->next->next;
+            }else{
+                return NULL;
+            }
+            
+            if(rab==tor){
+                break;
+            }
+        }
+
+        if(rab->next == NULL || rab == NULL){
+            return NULL;
+        }
+
+        rab = head;
+
+        while(tor != rab){
+            tor = tor->next;
+            rab = rab->next;
+        }
+        return rab;
+    }
+*/
