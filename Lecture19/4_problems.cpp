@@ -225,6 +225,8 @@ int main(){
 
 /*
 
+    // Note the additional addition of temp in the LinkedList (the condition in For Loop)
+
     725. Split Linked List in Parts
     (https://leetcode.com/problems/split-linked-list-in-parts/)
 
@@ -258,7 +260,7 @@ int main(){
 
         temp = head;
         vector<ListNode*> ans(k, nullptr);
-        for(int i = 0; i < k && temp; i++){
+        for(int i = 0; i < k && temp; i++){    // Important thing of adding condition in For Loop
             ans[i] = temp;
             int totalelements =  buckets[i];
             for(int j = 0; j < totalelements-1; j++){
