@@ -222,3 +222,59 @@ int main(){
         return rab;
     }
 */
+
+/*
+
+    725. Split Linked List in Parts
+    (https://leetcode.com/problems/split-linked-list-in-parts/)
+
+    vector<ListNode*> splitListToParts(ListNode* head, int k) {
+        vector<int> buckets;
+
+        int n = 0;
+        ListNode* temp = head;
+        while(temp){
+            n++;
+            temp = temp->next;
+        }
+
+        int totalequalelements = n / k;
+        int remainingelements = n % k;
+
+        for(int i = 0; i < k; i++){
+            buckets.push_back(totalequalelements);
+        }
+
+        
+        while(remainingelements){
+            for(int i = 0; i < k; i++){
+                if(remainingelements <= 0){
+                    break;
+                }
+                buckets[i] = buckets[i] + 1;
+                remainingelements--;
+            }
+        }
+
+        temp = head;
+        vector<ListNode*> ans(k, nullptr);
+        for(int i = 0; i < k && temp; i++){
+            ans[i] = temp;
+            int totalelements =  buckets[i];
+            for(int j = 0; j < totalelements-1; j++){
+                temp = temp->next;
+            }
+
+            ListNode* newelem = temp->next;
+            temp->next = nullptr;
+            temp = newelem;
+
+        }
+
+        
+
+        return ans;
+
+    }
+
+*/
