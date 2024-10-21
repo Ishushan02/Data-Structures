@@ -280,3 +280,48 @@ int main(){
     }
 
 */
+
+
+/*
+
+VVVIIII Question
+
+    430. Flatten a Multilevel Doubly Linked List
+    (https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/description/)
+
+    Node* flattenNode(Node* head){
+
+        Node* curr = head;
+        Node* tail = head;
+
+        while(curr){
+
+            if(curr->child){
+                Node* childTail = flattenNode(curr->child);
+                Node* temp = curr->next;
+                curr->next = curr->child;
+                curr->next->prev = curr;
+                childTail->next = temp;
+                if(temp){
+                    temp->prev = childTail;
+                }
+                curr->child = NULL;
+            }
+
+            tail = curr;
+            curr = curr->next;
+        }
+
+        return tail;
+    }
+
+    Node* flatten(Node* head) {
+        if (head == NULL){
+            return NULL;
+        }
+        flattenNode(head);
+        return head;
+    }
+
+
+*/
