@@ -538,3 +538,57 @@ Important QUestion, took many times to solve please focus on variable traversal
         return ans;
     }
 */
+
+
+/*
+
+    Print Kth Node from back (0 based index)
+    (https://www.hackerrank.com/challenges/get-the-value-of-the-node-at-a-specific-position-from-the-tail/problem)
+
+ 
+    SinglyLinkedListNode* reverse(SinglyLinkedListNode* head){
+        SinglyLinkedListNode* prev = new SinglyLinkedListNode(head->data);
+        SinglyLinkedListNode* temp = head;
+        
+        while(temp){
+            SinglyLinkedListNode* newNode = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = newNode;
+        }
+        
+        return prev;
+    }
+
+    void print(SinglyLinkedListNode* head){
+        SinglyLinkedListNode* temp = head;
+        
+        while(temp){
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+
+
+    int getNode(SinglyLinkedListNode* llist, int positionFromTail) {
+        if(llist == NULL){
+            return -1;
+        }
+        SinglyLinkedListNode* newllist = reverse(llist);
+        print(newllist);
+        SinglyLinkedListNode* temp = newllist;
+        int i = 0;
+        while(temp){
+            if(i == positionFromTail){
+                return temp->data;
+            }
+            temp = temp->next;
+            i = i + 1;
+        }
+        return -1;
+    }
+
+
+
+*/
