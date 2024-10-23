@@ -325,3 +325,54 @@ VVVIIII Question
 
 
 */
+
+
+/*
+
+Important QUestion, took many times to solve please focus on variable traversal
+
+    Delete N nodes after M nodes of a linked list
+    (https://www.geeksforgeeks.org/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/1)
+
+    void deleteNode(Node* head, int n, int m){
+        
+        if(head == NULL){
+            return;
+        }
+        
+        Node* temp = head;
+        
+        for(int i = 0; i < m-1; i++){
+            if(temp == NULL){
+                return;
+            }
+            temp = temp->next;
+        }
+        if(temp == NULL){
+                return;
+            }
+        Node* MthNode = temp;
+        temp = MthNode->next;
+        
+        for(int i = 0; i < n; i++){
+            if(temp == NULL){
+                break;
+            }
+            Node* nextTodelete = temp->next;
+            delete temp;
+            temp = nextTodelete;
+        }
+        
+        MthNode->next = temp;
+        
+        deleteNode(temp, n, m);
+    }
+  
+    Node* linkdelete(Node* head, int n, int m) {
+        // code here
+        deleteNode(head, n, m);
+        return head;
+        
+    }
+
+*/
