@@ -376,3 +376,165 @@ Important QUestion, took many times to solve please focus on variable traversal
     }
 
 */
+
+
+/*
+    21. Merge Two Sorted Lists
+    (https://leetcode.com/problems/merge-two-sorted-lists/submissions/1431053260/)
+
+    Method 1 
+
+    void print(ListNode* head){
+        ListNode* temp = head;
+        // int count = 0;
+        while(temp){
+            cout << temp->val << endl;
+            temp = temp->next;
+        }
+
+        // return count;
+    }
+
+    ListNode* insertNode(ListNode* &head, ListNode* elem){
+        if(head == NULL){
+            head = elem;
+            head->next = NULL;
+            return head;
+        }
+        ListNode* temp = head;
+
+        while(temp->next){
+            temp = temp->next;
+        }
+        temp->next = elem;
+        elem->next = NULL;
+
+        return head;
+    }
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+
+        // int count1 = getLength(list1);
+        // int count2 = getLength(list2);
+        if(list1 == NULL ){
+            return list2;
+        }
+        if(list2 == NULL){
+            return list1;
+        }
+        ListNode* temp1 = list1;
+        ListNode* temp2 = list2;
+        ListNode* ans = NULL;
+        while(temp1 && temp2){
+            print(ans);
+            cout << temp1->val << "--" << temp2->val << endl;
+            if(temp1->val < temp2->val){
+                ListNode* elem1 = new ListNode(temp1->val);
+                ans = insertNode(ans, elem1);
+                temp1 = temp1->next;
+            }else if (temp1->val == temp2->val){
+                ListNode* elem1 = new ListNode(temp1->val);
+                ListNode* elem2 = new ListNode(temp2->val);
+                ans = insertNode(ans, elem1);
+                ans = insertNode(ans, elem2);
+                temp1 = temp1->next;
+                temp2 = temp2->next;
+            }else{
+                ListNode* elem1 = new ListNode(temp2->val);
+                ans = insertNode(ans, elem1);
+                temp2 = temp2->next;
+            }
+        }
+
+        while(temp1){
+            ListNode* elem1 = new ListNode(temp1->val);
+            ans = insertNode(ans, elem1);
+            temp1 = temp1->next;
+        }
+
+        while(temp2){
+            ListNode* elem1 = new ListNode(temp2->val);
+            ans = insertNode(ans, elem1);
+            temp2 = temp2->next;
+        }
+
+        return ans;
+
+    }
+
+
+
+
+
+    // ----------------------------------------------------------------------------------------------------
+
+
+    Method 2
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if(list1 == NULL){
+            return list2;
+        }
+        if(list2 == NULL){
+            return list1;
+        }
+
+        int elem;
+        if(list1->val <= list2->val){
+            elem = list1->val;
+            list1 = list1->next;
+        }else{
+            elem = list2->val;
+            list2 = list2->next;
+        }
+
+        ListNode* temp1 = list1;
+        ListNode* temp2 = list2;
+        
+        ListNode* ans = new ListNode(elem);
+
+        ListNode* ansptr = ans;
+
+        while(temp1 && temp2){
+
+            if(temp1->val < temp2->val){
+                ListNode* newelem = new ListNode(temp1->val);
+                ansptr->next = newelem;
+                ansptr = ansptr->next;
+                temp1 = temp1->next;
+            }else if(temp1->val > temp2->val){
+                ListNode* newelem = new ListNode(temp2->val);
+                ansptr->next = newelem;
+                ansptr = ansptr->next;
+                temp2 = temp2->next;
+            }else{
+                ListNode* newelem2 = new ListNode(temp2->val);
+                ListNode* newelem1 = new ListNode(temp1->val);
+                ansptr->next = newelem1;
+                ansptr = ansptr->next;
+                ansptr->next = newelem2;
+                ansptr = ansptr->next;
+                temp2 = temp2->next;
+                temp1 = temp1->next;
+            }
+        }
+
+        while(temp1){
+            ListNode* newelem = new ListNode(temp1->val);
+            ansptr->next = newelem;
+            ansptr = ansptr->next;
+            temp1 = temp1->next;
+        }
+
+        while(temp2){
+            ListNode* newelem = new ListNode(temp2->val);
+            ansptr->next = newelem;
+            ansptr = ansptr->next;
+            temp2 = temp2->next;
+        }
+        print(ans);
+        
+       
+        return ans;
+    }
+*/
