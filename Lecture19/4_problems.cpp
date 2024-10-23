@@ -592,3 +592,46 @@ Important QUestion, took many times to solve please focus on variable traversal
 
 
 */
+
+
+/*
+
+    160. Intersection of Two Linked Lists
+    (https://leetcode.com/problems/intersection-of-two-linked-lists/description/)
+
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA == NULL || headB == NULL){
+            return NULL;
+        }
+
+        ListNode* temp1 = headA;
+        ListNode* temp3 = headA;
+        ListNode* temp2 = headB;
+        ListNode* ans = NULL;
+
+        while(temp1){
+            temp1->val = -1 * temp1->val;
+
+            temp1 = temp1->next;
+        }
+
+        while(temp2){
+            if(temp2->val < 0){
+                temp2->val = temp2->val;
+                 ans = temp2;
+                break;
+            }
+
+            temp2 = temp2->next;
+        }
+
+        while(temp3){
+            temp3->val = -1 * temp3->val;
+
+            temp3 = temp3->next;
+        }
+
+        return ans;
+    }
+
+*/
