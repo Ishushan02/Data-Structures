@@ -761,7 +761,7 @@ Important QUestion, took many times to solve please focus on variable traversal
             return a;
         }
         
-        Node* ans = 0;
+        Node* ans = 0; // This is same sa initializing it to NULL
         
         if(a->data < b->data){
             ans = a;
