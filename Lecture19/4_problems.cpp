@@ -635,3 +635,114 @@ Important QUestion, took many times to solve please focus on variable traversal
     }
 
 */
+
+
+/*
+
+    Flattening a Linked List
+    (https://www.geeksforgeeks.org/problems/flattening-a-linked-list/1)
+
+    Node* mergeTwoLists(Node* list1, Node* list2) {
+        if(list1 == NULL){
+            return list2;
+        }
+        if(list2 == NULL){
+            return list1;
+        }
+
+        int elem;
+        if(list1->data <= list2->data){
+            elem = list1->data;
+            list1 = list1->bottom;
+        }else{
+            elem = list2->data;
+            list2 = list2->bottom;
+        }
+
+        Node* temp1 = list1;
+        Node* temp2 = list2;
+        
+        Node* ans = new Node(elem);
+
+        Node* ansptr = ans;
+
+        while(temp1 && temp2){
+
+            if(temp1->data < temp2->data){
+                Node* newelem = new Node(temp1->data);
+                ansptr->bottom = newelem;
+                ansptr = ansptr->bottom;
+                temp1 = temp1->bottom;
+            }else if(temp1->data > temp2->data){
+                Node* newelem = new Node(temp2->data);
+                ansptr->bottom = newelem;
+                ansptr = ansptr->bottom;
+                temp2 = temp2->bottom;
+            }else{
+                Node* newelem2 = new Node(temp2->data);
+                Node* newelem1 = new Node(temp1->data);
+                ansptr->bottom = newelem1;
+                ansptr = ansptr->bottom;
+                ansptr->bottom = newelem2;
+                ansptr = ansptr->bottom;
+                temp2 = temp2->bottom;
+                temp1 = temp1->bottom;
+            }
+        }
+
+        while(temp1){
+            Node* newelem = new Node(temp1->data);
+            ansptr->bottom = newelem;
+            ansptr = ansptr->bottom;
+            temp1 = temp1->bottom;
+        }
+
+        while(temp2){
+            Node* newelem = new Node(temp2->data);
+            ansptr->bottom = newelem;
+            ansptr = ansptr->bottom;
+            temp2 = temp2->bottom;
+        }
+        
+        // print(ans);
+        // cout << "******" << endl;
+        return ans;
+    }
+    
+    Node* insertNode(Node* &head, Node* elem){
+        if(head == NULL){
+            head = elem;
+            head->next = NULL;
+            return head;
+        }
+        Node* temp = head;
+
+        while(temp->next){
+            temp = temp->next;
+        }
+        temp->next = elem;
+        elem->next = NULL;
+
+        return head;
+    }
+    
+     
+    // Function which returns the  root of the flattened linked list.
+    Node *flatten(Node *root) {
+        // Your code here
+        
+        Node* temp = root;
+        Node* list1 = temp;
+        temp = temp->next;
+        
+        while(temp){
+            Node* list2 = temp;
+            list1 = mergeTwoLists(list1, list2);
+            temp = temp->next;
+        }
+        
+        return list1;
+        
+    }
+
+*/
