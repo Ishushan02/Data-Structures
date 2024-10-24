@@ -745,4 +745,46 @@ Important QUestion, took many times to solve please focus on variable traversal
         
     }
 
+
+
+
+    // ---------------------------------------------------------------------------------------
+
+    // VVVVVI Method 2, Focus on the method -- 
+
+    Node* mergeNode(Node* a, Node* b){
+        if(a == NULL){
+            return b;
+        }
+        
+        if(b == NULL){
+            return a;
+        }
+        
+        Node* ans = 0;
+        
+        if(a->data < b->data){
+            ans = a;
+            a->bottom = mergeNode(a->bottom, b);
+        }else{
+            ans = b;
+            b->bottom = mergeNode(a, b->bottom);
+        }
+        
+        return ans;
+        
+        
+    }
+  
+    // Function which returns the  root of the flattened linked list.
+    Node *flatten(Node *root) {
+        // Your code here
+        if(root == NULL){
+            return NULL;
+        }
+        Node* ans = mergeNode(root, flatten(root->next));
+        
+        return ans;
+    }
+
 */
