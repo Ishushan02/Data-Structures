@@ -226,4 +226,74 @@ int main(){
     }
 
 
+    Method 2
+
+    vector<int> nodesBetweenCriticalPoints(ListNode* head) {
+        vector<int> ans;
+        ListNode* prev = head;
+        ListNode* forw = head;
+        ListNode* itr = head;
+        int i = 1;
+        // vector<int> criticalPoints;
+        int prevcriticalPoint = -1; // to calculate minDistance at each iteration
+        int firstcriticalPoint = -1; // store the first cPoint
+        int lastcriticalPoint = -1; // store the last cPoint
+        int minDist = INT_MAX; // store minimum dist between CPoint
+        bool cPoint = false; // check at each iteration Cpoint is there or not and store that in prevCpoint
+
+
+        while(itr->next){
+            ListNode* curr = itr;
+            forw = itr->next;
+
+            if(curr->val < prev->val && curr->val < forw->val){
+                cPoint = true;
+                if(firstcriticalPoint == -1){
+                    firstcriticalPoint = i;
+                }
+
+                lastcriticalPoint = i;
+
+                if(lastcriticalPoint != firstcriticalPoint && prevcriticalPoint != -1){
+                    minDist = min(minDist, abs(lastcriticalPoint - prevcriticalPoint));
+                }
+
+            }
+            if(curr->val > prev->val && curr->val > forw->val){
+                cPoint = true;
+                if(firstcriticalPoint == -1){
+                    firstcriticalPoint = i;
+                }
+
+                lastcriticalPoint = i;
+
+                if(lastcriticalPoint != firstcriticalPoint && prevcriticalPoint != -1){
+                    minDist = min(minDist, abs(lastcriticalPoint - prevcriticalPoint));
+                }
+            }
+
+            if(cPoint){
+                prevcriticalPoint = i;
+                cPoint = false;
+            }
+            
+            prev = curr;
+            itr = itr->next;
+            i++;
+        }
+        
+        if (minDist == INT_MAX){
+            ans.push_back(-1);
+            ans.push_back(-1);
+            return ans;
+        }
+
+        ans.push_back(minDist);
+        ans.push_back(lastcriticalPoint - firstcriticalPoint);
+        
+        
+        return ans;
+    }
+
+
 */
