@@ -166,3 +166,75 @@ int main(){
     }
 
 */
+
+/*
+
+    VVI Question - It's a Good Question
+
+    2058. Find the Minimum and Maximum Number of Nodes Between Critical Points
+    (https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/description/)
+
+
+    Method 1 (TLE)
+    vector<int> nodesBetweenCriticalPoints(ListNode* head) {
+        vector<int> ans;
+        ListNode* prev = head;
+        ListNode* forw = head;
+        ListNode* itr = head;
+        int i = 1;
+        vector<int> criticalPoints;
+
+        while(itr->next){
+            ListNode* curr = itr;
+            forw = itr->next;
+
+            if(curr->val < prev->val && curr->val < forw->val){
+                criticalPoints.push_back(i);
+                // cout << "Local Minima " << curr->val << " at " << i << endl;
+            }
+            if(curr->val > prev->val && curr->val > forw->val){
+                criticalPoints.push_back(i);
+                // cout << "Local Maxima " << curr->val << " at " << i << endl;
+            }
+            
+            prev = curr;
+            itr = itr->next;
+            i++;
+        }
+
+        int n = criticalPoints.size();
+        if(n == 0 || n == 1){
+            ans.push_back(-1);
+            ans.push_back(-1);
+            return ans;
+        }
+
+        int min_dist = INT_MAX;
+        int max_dist = INT_MIN;
+        for(int i = 0; i < n; i++){
+            for(int j = i + 1; j < n; j++){
+                min_dist = min(min_dist, abs(criticalPoints[i] - criticalPoints[j]));
+                max_dist = max(max_dist, abs(criticalPoints[i] - criticalPoints[j]));
+            }
+        }
+
+        ans.push_back(min_dist);
+        ans.push_back(max_dist);
+
+
+        return ans;
+
+
+        // int minPoint = min(criticalPoints.begin(), criticalPoints.end());
+        // int maxPoint = max(criticalPoints.begin(), criticalPoints.end());
+
+
+        // for(auto i : criticalPoints){
+        //     cout << i << " ";
+        // }
+        cout << endl;
+        return ans; 
+    }
+
+
+*/
