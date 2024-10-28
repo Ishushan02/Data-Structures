@@ -223,17 +223,6 @@ int main(){
 
 
         return ans;
-
-
-        // int minPoint = min(criticalPoints.begin(), criticalPoints.end());
-        // int maxPoint = max(criticalPoints.begin(), criticalPoints.end());
-
-
-        // for(auto i : criticalPoints){
-        //     cout << i << " ";
-        // }
-        cout << endl;
-        return ans; 
     }
 
 
