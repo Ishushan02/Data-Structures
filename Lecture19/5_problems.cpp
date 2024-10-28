@@ -385,3 +385,55 @@ int main(){
     }
 
 */
+
+/*
+
+    2816. Double a Number Represented as a Linked List
+    (https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/description/)
+
+    ListNode* reverse(ListNode* head){
+        ListNode* prev = NULL;
+        ListNode* itr = head;
+
+        while(itr){
+            ListNode* newNode = new ListNode(itr->val);
+            newNode->next = prev;
+            prev = newNode;
+            itr = itr->next;
+        }
+
+        return prev;
+    }
+
+    ListNode* doubleIt(ListNode* head) {
+        if (head == NULL){
+            return NULL;
+        }
+        ListNode* temp = head;
+        ListNode* reversedNode = reverse(temp);
+
+        ListNode* itr = reversedNode;
+        ListNode* prev = reversedNode;
+        int carry = 0;
+        while(itr){
+            int value = itr->val * 2 + carry;
+            itr->val = value%10;
+            carry = value/10;
+            prev = itr;
+            itr = itr->next;
+        }
+
+        ListNode* ans = reverse(reversedNode);
+
+        // instead of adding carry in rever, first reverse it and then add it on head
+        if(carry != 0){
+            ListNode* data = new ListNode(carry);
+            data->next = ans;
+            ans = data;
+        }
+
+
+        return ans;
+    }
+    
+*/
