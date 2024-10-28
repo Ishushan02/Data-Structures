@@ -295,5 +295,59 @@ int main(){
         return ans;
     }
 
+    Method 3  - (Same Logic as Method 2 but different way)
+
+    vector<int> nodesBetweenCriticalPoints(ListNode* head) {
+        vector<int> ans = {-1, -1};
+
+        ListNode* prevNode = head;
+        if (prevNode == NULL){
+            return ans;
+        }
+        ListNode* currNode = prevNode->next;
+        if (currNode == NULL){
+            return ans;
+        }
+        ListNode* futureNode = currNode->next;
+        if (futureNode == NULL){
+            return ans;
+        }
+
+        int MinDist = INT_MAX;
+        int i = 1;
+        int FNode = -1;
+        int LNode = -1;
+
+        while(currNode->next){
+
+            futureNode = currNode->next;
+
+            bool isCPoint = (currNode->val > futureNode->val && currNode->val > prevNode->val) || (currNode->val < futureNode->val && currNode->val < prevNode->val);
+ 
+            if (isCPoint){
+                if(FNode && LNode == -1){
+                    FNode = i;
+                    LNode = i;
+                }else{
+                    MinDist = min(MinDist, i - LNode);
+                    LNode = i;
+                }
+
+            }
+            i++;
+            prevNode = currNode;
+            currNode = currNode->next;
+        }
+
+        if(FNode == -1 || MinDist == INT_MAX){
+            return ans;
+        }
+
+        ans[0] = MinDist;
+        ans[1] = abs(LNode - FNode);
+
+        return ans;
+
+    }
 
 */
