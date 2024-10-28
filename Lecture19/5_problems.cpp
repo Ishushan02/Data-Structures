@@ -351,3 +351,37 @@ int main(){
     }
 
 */
+
+/*
+
+
+    2181. Merge Nodes in Between Zeros
+    (https://leetcode.com/problems/merge-nodes-in-between-zeros/submissions/1435719601/)
+
+    ListNode* mergeNodes(ListNode* head) {
+        int sum = 0;
+        ListNode* ans = new ListNode(-1);
+        ListNode* ansptr = ans;
+
+        ListNode* temp = head;
+
+        while(temp){
+
+            if(temp->val == 0 && sum != 0){
+                ListNode* newNode = new ListNode(sum);
+                ansptr->next = newNode;
+                newNode = ansptr;
+                ansptr = ansptr->next;                
+                sum = 0;
+            }else{
+                sum = sum + temp->val;
+            }
+
+            temp = temp->next;
+        }
+
+
+        return ans->next; // the first element contains -1
+    }
+
+*/
