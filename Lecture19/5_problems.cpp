@@ -437,3 +437,55 @@ int main(){
     }
     
 */
+
+/*
+
+    1171. Remove Zero Sum Consecutive Nodes from Linked List
+    (https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/description/)
+
+    void sanitizeMap(unordered_map<int, ListNode*>& sumvalues, ListNode* fromNode, int currSum){
+        // DELETE THOSE MAP ENTERIES WHICH HAS TO BE REMOVED FROM LL
+        int tempsum = currSum;
+
+        while(true){
+            tempsum += fromNode->val;
+            if(tempsum == currSum){
+                break;
+            }
+            sumvalues.erase(tempsum);
+            fromNode = fromNode->next;
+        }
+
+       
+    }
+
+    ListNode* removeZeroSumSublists(ListNode* head) {
+        ListNode* it = head;
+        if(head == NULL){
+            return NULL;
+        }
+
+        unordered_map<int, ListNode*> sumvalues;
+
+        int sum = 0;
+        while(it){
+            sum = sum + it->val;
+            if(sum == 0){
+                head = it->next;
+                sumvalues.clear();
+            }else if(sumvalues.find(sum) != sumvalues.end()){
+                // to delete 
+                sanitizeMap(sumvalues, sumvalues[sum]->next, sum); 
+                sumvalues[sum]->next = it->next;
+            }else{
+                // ListNode* newNode = it;
+                sumvalues[sum] = it;
+            }
+
+            it = it->next;
+        }
+
+        return head;
+    }
+
+*/
