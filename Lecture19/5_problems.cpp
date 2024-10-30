@@ -490,3 +490,53 @@ int main(){
     }
 
 */
+
+/*
+
+    1721. Swapping Nodes in a Linked List
+    (https://leetcode.com/problems/swapping-nodes-in-a-linked-list/submissions/1438207425/)
+
+    int length(ListNode* head){
+
+        int n = 0;
+
+        ListNode* temp = head;
+
+        while(temp){
+            n++;
+            temp = temp->next;
+        }
+
+        return n;
+    }
+
+    ListNode* swapNodes(ListNode* head, int k) {
+        int n = length(head);
+        ListNode* firstptr = NULL;
+        ListNode* secondptr = NULL;
+
+
+        ListNode* temp = head;
+        int i = 1;
+        while(temp){
+
+            if(i == k){
+                ListNode* nn = temp;
+                firstptr = nn;
+            }
+            if(i == n-k+1){
+                ListNode* nn = temp;
+                secondptr = nn;
+            }
+            i++;
+            temp = temp->next;
+        }
+
+        int p = firstptr->val;
+        firstptr->val = secondptr->val;
+        secondptr->val = p;
+
+        return head;
+    }
+
+*/
