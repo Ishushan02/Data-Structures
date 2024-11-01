@@ -540,3 +540,128 @@ int main(){
     }
 
 */
+
+
+/*
+VVVVIIIIII Question--
+// Sort LinkedList using Merge Sort
+
+    148. Sort List
+    (https://leetcode.com/problems/sort-list/description/)
+
+
+    ListNode* getMid(ListNode* head){
+
+        ListNode* sloptr = head;
+        ListNode* fastptr = head->next;
+
+
+        while(fastptr && fastptr->next){
+            
+            sloptr = sloptr->next;
+            fastptr = fastptr->next->next; 
+        }
+        cout << sloptr->val << endl;
+        return sloptr;
+
+    }
+
+    // fromquestion 21
+     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if(list1 == NULL){
+            return list2;
+        }
+        if(list2 == NULL){
+            return list1;
+        }
+
+        int elem;
+        if(list1->val <= list2->val){
+            elem = list1->val;
+            list1 = list1->next;
+        }else{
+            elem = list2->val;
+            list2 = list2->next;
+        }
+
+        ListNode* temp1 = list1;
+        ListNode* temp2 = list2;
+        
+        ListNode* ans = new ListNode(elem);
+
+        ListNode* ansptr = ans;
+
+        while(temp1 && temp2){
+
+            if(temp1->val < temp2->val){
+                ListNode* newelem = new ListNode(temp1->val);
+                ansptr->next = newelem;
+                ansptr = ansptr->next;
+                temp1 = temp1->next;
+            }else if(temp1->val > temp2->val){
+                ListNode* newelem = new ListNode(temp2->val);
+                ansptr->next = newelem;
+                ansptr = ansptr->next;
+                temp2 = temp2->next;
+            }else{
+                ListNode* newelem2 = new ListNode(temp2->val);
+                ListNode* newelem1 = new ListNode(temp1->val);
+                ansptr->next = newelem1;
+                ansptr = ansptr->next;
+                ansptr->next = newelem2;
+                ansptr = ansptr->next;
+                temp2 = temp2->next;
+                temp1 = temp1->next;
+            }
+        }
+
+        while(temp1){
+            ListNode* newelem = new ListNode(temp1->val);
+            ansptr->next = newelem;
+            ansptr = ansptr->next;
+            temp1 = temp1->next;
+        }
+
+        while(temp2){
+            ListNode* newelem = new ListNode(temp2->val);
+            ansptr->next = newelem;
+            ansptr = ansptr->next;
+            temp2 = temp2->next;
+        }
+        // print(ans);
+        
+       
+        return ans;
+    }
+
+    ListNode* Divide(ListNode* head){
+
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+
+        ListNode* mid = getMid(head);
+        
+        ListNode* leftNode = head;
+        ListNode* rightNode = mid->next;
+        mid->next = NULL;
+
+        leftNode = Divide(leftNode);
+        rightNode = Divide(rightNode);
+
+        ListNode* mergedList = mergeTwoLists(leftNode, rightNode);
+        return mergedList;
+
+    }
+
+    ListNode* sortList(ListNode* head) {
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+
+        ListNode* mergedLL = Divide(head);
+
+        return mergedLL;
+    }
+
+*/
