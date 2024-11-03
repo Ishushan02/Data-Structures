@@ -127,7 +127,7 @@ int main(){
 
     20. Valid Parentheses
     (https://leetcode.com/problems/valid-parentheses/description/)
-    
+
     bool isValid(string s) {
         stack<char> st;
 
@@ -157,4 +157,35 @@ int main(){
         }
 
     }
+*/
+
+
+/*
+
+    Redundant Brackets (Count pair of brackets which is additional and not performing any operations)
+
+    int main() {
+    // cout << "Hello world!" << endl;
+
+    string s = "((3)+(5)+9)";
+    int totalPairs = 0;
+
+    stack<char> st;
+
+    for(int i = 0; i < s.length(); i++){
+        if(s[i] == '(' || s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+        st.push(s[i]);
+        }else if(s[i] == ')'){
+        if(st.top() == '('){
+            totalPairs += 1;
+        }
+        st.pop();
+        }
+    }
+
+    cout << totalPairs << endl;
+
+    return 0;
+        }
+
 */
