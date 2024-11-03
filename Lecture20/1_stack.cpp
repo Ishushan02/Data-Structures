@@ -162,30 +162,37 @@ int main(){
 
 /*
 
-    Redundant Brackets (Count pair of brackets which is additional and not performing any operations)
+    Expression contains redundant bracket or not
+    (https://www.geeksforgeeks.org/problems/expression-contains-redundant-bracket-or-not/0)
 
-    int main() {
-    // cout << "Hello world!" << endl;
+        int checkRedundancy(string s) {
+        // code here
+        int totalPairs = 0;
 
-    string s = "((3)+(5)+9)";
-    int totalPairs = 0;
-
-    stack<char> st;
-
-    for(int i = 0; i < s.length(); i++){
-        if(s[i] == '(' || s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
-        st.push(s[i]);
-        }else if(s[i] == ')'){
-        if(st.top() == '('){
-            totalPairs += 1;
+        stack<char> st;
+    
+        for(int i = 0; i < s.length(); i++){
+            if(s[i] == '(' || s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+            st.push(s[i]);
+            }else if(s[i] == ')'){
+                if(!st.empty() && st.top() == '('){
+                    return 1;
+                }
+                while(true && !st.empty()){
+                    st.pop();
+                    if(!st.empty() && st.top()=='('){
+                        st.pop();
+                        break;
+                    }
+                }
+                
+            }
         }
-        st.pop();
-        }
-    }
 
-    cout << totalPairs << endl;
+    
 
     return 0;
-        }
+    }
+
 
 */
