@@ -76,18 +76,31 @@ void reverse(stack<int>& stck){
 }
 
 
+void sortedInsert(stack<int>& stck, int value){
+
+    int topelem = stck.top();
+    if(topelem < value){
+        stck.push(value);
+        return;
+    }
+
+    stck.pop();
+    sortedInsert(stck, value);
+    stck.push(topelem);
+}
+
 int main(){
 
     stack<int> s;
     s.push(10);
-    s.push(5);
-    s.push(11);
-    s.push(13);
-    s.push(9);
-    s.push(12);
-    s.push(8);
-    s.push(14);
     s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    s.push(60);
+    s.push(70);
+    s.push(80);
+    s.push(90);
 
     cout << s.size() << endl;
     cout << " Stack s is empty " << s.empty() << endl;
@@ -102,6 +115,9 @@ int main(){
 
     // reverse(s);
     // printstack(s);
+
+    sortedInsert(s, 40);
+    printstack(s);
 
     return 0;
 }
