@@ -199,8 +199,8 @@ int main(){
 
 /*
 
-    Important Question
-
+    // Important Question
+    // (Similar will be the smallest on Right Question try that)
     Smaller on Left
     (https://www.geeksforgeeks.org/problems/smallest-number-on-left3403/1)
 
