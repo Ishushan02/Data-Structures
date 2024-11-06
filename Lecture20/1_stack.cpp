@@ -8,6 +8,8 @@ using namespace std;
     Follows LIFO Ordering(Last In First Out)
     Stack can only be accessible from TOP and no other way to access it
 
+    Do, N Stack in an Array Question --
+
 */
 
 
@@ -75,6 +77,25 @@ void reverse(stack<int>& stck){
 
 }
 
+// let's say in decreasing order
+bool checkSorted(stack<int>& stck, int element, bool &ans){
+    if(stck.size()==0){
+        // cout << "Stack is Sorted" << endl;
+        return true;
+    }
+
+    int topelem = stck.top();
+
+    if(element < topelem){
+        return false;
+    }
+    stck.pop();
+    ans = ans && checkSorted(stck, topelem, ans);
+    stck.push(topelem);
+
+    return ans;
+}
+
 
 void sortedInsert(stack<int>& stck, int value){
 
@@ -116,8 +137,15 @@ int main(){
     // reverse(s);
     // printstack(s);
 
-    sortedInsert(s, 40);
-    printstack(s);
+    bool ans = true;
+    checkSorted(s, INT_MAX, ans); // decreasing order check
+    if(ans){
+        cout << "Stack is Sorted " << endl;
+    }else{
+        cout << "Stack is not Sorted " << endl;
+    }
+    // sortedInsert(s, 40);
+    // printstack(s);
 
     return 0;
 }
