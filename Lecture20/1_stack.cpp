@@ -80,7 +80,6 @@ void reverse(stack<int>& stck){
 // let's say in decreasing order
 bool checkSorted(stack<int>& stck, int element, bool &ans){
     if(stck.size()==0){
-        // cout << "Stack is Sorted" << endl;
         return true;
     }
 
@@ -195,31 +194,30 @@ int main(){
 
         int checkRedundancy(string s) {
         // code here
-        int totalPairs = 0;
-
+        
         stack<char> st;
-    
+        
         for(int i = 0; i < s.length(); i++){
+            
             if(s[i] == '(' || s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
-            st.push(s[i]);
+                st.push(s[i]);
             }else if(s[i] == ')'){
                 if(!st.empty() && st.top() == '('){
                     return 1;
                 }
-                while(true && !st.empty()){
+                
+                while(!st.empty() && st.top() != '('){
                     st.pop();
-                    if(!st.empty() && st.top()=='('){
-                        st.pop();
-                        break;
-                    }
                 }
                 
+                //pop '('
+                if(!st.empty() && st.top() == '('){
+                    st.pop();
+                }
             }
         }
-
-    
-
-    return 0;
+        
+        return 0;
     }
 
 
