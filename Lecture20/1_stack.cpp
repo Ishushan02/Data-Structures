@@ -257,4 +257,60 @@ int main(){
     84. Largest Rectangle in Histogram
     (https://leetcode.com/problems/largest-rectangle-in-histogram/)
 
+
+    vector<int> nextSmaller(vector<int>&heights){
+        vector<int> ans;
+        stack<int> st;
+        st.push(-1);
+
+        for(int i = heights.size()-1; i>=0; i--){
+
+            while(st.top()!= -1 && heights[st.top()] >= heights[i]){
+                st.pop();
+            }
+            ans.push_back(st.top());
+            st.push(i);
+        }
+
+        // it's from backwards
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+
+    vector<int> prevSmaller(vector<int>&heights){
+        vector<int> ans;
+        stack<int> st;
+        st.push(-1);
+
+        for(int i = 0; i < heights.size(); i++){
+
+            while(st.top()!= -1 && heights[st.top()] >= heights[i]){
+                st.pop();
+            }
+            ans.push_back(st.top());
+            st.push(i);
+        }
+
+
+        return ans;
+    }
+
+    int largestRectangleArea(vector<int>& heights) {
+        
+        vector<int> backsmall = prevSmaller(heights);
+        vector<int> frontsmall = nextSmaller(heights);
+        int maxArea = -1;
+        for(int i = 0; i < heights.size(); i++){
+            if(frontsmall[i] == -1){
+                frontsmall[i] = heights.size();
+            }
+            int width = frontsmall[i] - backsmall[i] - 1;
+            int height = heights[i];
+
+            maxArea = max(maxArea, width * height);
+        }
+
+        return maxArea;
+    }
+    
 */
