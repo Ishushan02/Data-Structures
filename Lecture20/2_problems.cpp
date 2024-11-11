@@ -81,3 +81,53 @@
     }
 
 */
+
+
+/*
+
+Celebrity Problem
+(https://www.geeksforgeeks.org/problems/the-celebrity-problem/1)
+
+    Method 1 O(n^2)
+
+    int celebrity(vector<vector<int> >& mat) {
+        // code here
+        
+        int zerorow = 0;
+        for(int row = 0; row < mat.size(); row++){
+            bool flag = false;
+            for(int col = 0; col < mat.size(); col++){
+                // all row elemets are 0 and for that all col elements are 1 
+                if(mat[row][col] == 0){
+                    flag = true;
+                }else if(mat[row][col] ==1 && row == col){
+                    flag = true;
+                }else{
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                zerorow = row;
+                break;
+            }
+        }
+        // int ans = -1
+        for(int col = 0; col < mat.size(); col++){
+            if(col!= zerorow && mat[col][zerorow] != 1){
+                return -1;
+            }
+        }
+        
+        return zerorow;
+        
+        
+    }
+
+
+
+    
+
+    
+
+*/
