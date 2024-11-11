@@ -129,6 +129,61 @@ Celebrity Problem
     // The 2nd method O(n) is very very important and frequently asked in Interviews
     // Very Very Very Important method ( Stack Implementation)
 
+    int celebrity(vector<vector<int> >& mat) {
+        // code here
+        
+        // Method 2
+        stack <int> st;
+        
+        //input all mat index in stack
+        for(int i = 0; i<mat.size(); i++){
+            st.push(i);
+        }
+        
+        int celeb = -1;
+        while(st.size() != 1){
+            int A = st.top();
+            st.pop();
+            int B = st.top();
+            st.pop();
+            
+            if(mat[A][B] == 1){
+                // A is not celebrity, A knows B and B is celebrity
+                st.push(B);
+            }else if(mat[B][A] == 1){
+                // B is not celebrity, B knows A and A is celebrity
+                st.push(A);
+            }
+            
+            if(st.empty()){
+                return -1;
+            }
+        }
+        
+        celeb = st.top();
+        // cout << "Celeb Value is " << celeb << endl;
+        
+        // check all row elem of celeb is 0 disregard it's same row value
+        // celebrity might know himself or not doesn't effect our answer
+        
+        for(int col = 0; col < mat.size(); col++){
+            if(celeb != col && mat[celeb][col] != 0){
+                return -1;
+            }
+        }
+        
+        // check all col elem of celeb is 1 disregard it's same row value
+        // celebrity might know himself or not doesn't effect our answer
+        
+        for(int row = 0; row < mat.size(); row++){
+            if(celeb != row && mat[row][celeb] != 1){
+                return -1;
+            }
+        }
+        
+        return celeb;
+
+    }
     
 
 */
