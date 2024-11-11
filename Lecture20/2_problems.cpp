@@ -191,11 +191,12 @@ Celebrity Problem
 
 /*
 
-    
+
     1019. Next Greater Node In Linked List
     (https://leetcode.com/problems/next-greater-node-in-linked-list/description/)
-    // Method 1, Time Limit Exceeded by 1 test case
     
+    
+    // Method 1, Time Limit Exceeded by 1 test case
     vector<int> nextLargerNodes(ListNode* head) {
         stack<ListNode*> st;
 
@@ -240,5 +241,38 @@ Celebrity Problem
 
         return ans;
     }
+
+
+    // Method 2 (Good Approach)
+    vector<int> nextLargerNodes(ListNode* head) {
+        
+        vector<int> ans;
+        vector<int> llemelements;
+
+        ListNode* temp = head;
+
+        while(temp){
+            llemelements.push_back(temp->val);
+            ans.push_back(0);
+            temp = temp->next;
+        }
+
+        stack<int> st;
+        // st.push(0);
+
+        for(int i = 0; i < llemelements.size(); i++){
+            while(!st.empty() && llemelements[i] > llemelements[st.top()]){
+                int idx = st.top();
+                ans[idx] = llemelements[i];
+                st.pop();
+            }
+            st.push(i);
+
+        }
+
+        return ans;
+
+    }
+
 
 */
