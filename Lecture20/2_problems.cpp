@@ -187,3 +187,58 @@ Celebrity Problem
     
 
 */
+
+
+/*
+
+    
+    1019. Next Greater Node In Linked List
+    (https://leetcode.com/problems/next-greater-node-in-linked-list/description/)
+    // Method 1, Time Limit Exceeded by 1 test case
+    
+    vector<int> nextLargerNodes(ListNode* head) {
+        stack<ListNode*> st;
+
+        ListNode* temp = head;
+        vector<int> ans;
+
+        st.push(temp);
+        while(temp != NULL && !st.empty()){
+            ListNode* topNode = st.top();
+            // cout << topNode->val << " - curr temp val " << temp->val << endl;
+            if(temp->val > topNode->val){
+                ans.push_back(temp->val);
+                st.pop();
+
+                ListNode* newNode = topNode->next;
+                if(newNode != NULL){
+                    st.push(newNode);
+                }
+                temp = newNode;
+            }else{        
+                // no element greater than that element
+                if(temp->next == NULL){
+                    ans.push_back(0);
+                    st.pop();
+
+                    ListNode* newNode = topNode->next;
+                    if(newNode != NULL){
+                        st.push(newNode);
+                    }
+                    temp = newNode;
+                }else{
+                    temp = temp->next;
+                }
+
+                
+            }
+
+        }
+
+        // always last element will not have any next greater
+        // ans.push_back(0);
+
+        return ans;
+    }
+
+*/
