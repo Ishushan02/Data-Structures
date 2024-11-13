@@ -282,3 +282,48 @@ Celebrity Problem
 COMPLETE THE N STACKS IN AN ARRAY - 
 
  */
+
+/*
+
+    901. Online Stock Span
+    (https://leetcode.com/problems/online-stock-span/)
+
+
+    public :
+        stack <pair <int, int>> st;
+
+    StockSpanner() {
+        
+    }
+    
+    int next(int price) {
+
+
+        int count = 1;
+        cout << " Price: " << price << endl;
+        while(!st.empty() ){
+            pair<int, int> val = st.top();
+            // cout << " Price: " << val.first << ", Count: " << val.second << endl;
+            if(price >= val.first){
+                count = count + val.second;
+            }else{
+                break;
+            }
+            st.pop();
+        }
+
+        pair<int, int> newPr;
+        newPr.first = price;
+        newPr.second = count;
+        st.push(newPr);
+
+        
+
+
+        return count;
+        // st.push(price);
+
+
+    }
+
+*/
