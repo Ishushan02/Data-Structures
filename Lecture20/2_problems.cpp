@@ -361,3 +361,59 @@ COMPLETE THE N STACKS IN AN ARRAY -
 
 
 */
+
+
+/*
+    394. Decode String
+    (https://leetcode.com/problems/decode-string/)
+
+    string decodeString(string s) {
+        
+        stack<string> st;
+
+        for(int i = 0; i < s.length(); i++){
+
+            if(s[i] == ']'){
+
+                string tempstr;
+                while(!st.empty() && st.top() != "["){
+                    tempstr += st.top();
+                    st.pop();
+                }
+                st.pop(); // popping "["
+
+                string numstr;
+                while(!st.empty() && isdigit(st.top()[0])){
+                    numstr += st.top();
+                    st.pop();
+                }
+
+                reverse(numstr.begin(), numstr.end());
+                int n = stoi(numstr);
+
+                string value;
+                for(int j = 0; j < n; j++){
+                    value += tempstr;
+                }
+                // cout << value << endl;
+                st.push(value);
+
+            }else{
+
+                string temp(1, s[i]);
+                st.push(temp);
+            }
+        }
+        string ans;
+        while(!st.empty()){
+            ans += st.top();
+            // cout << st.top() << endl;
+            st.pop();
+        }
+        reverse(ans.begin(), ans.end());
+
+
+        return ans;
+    }
+
+*/
