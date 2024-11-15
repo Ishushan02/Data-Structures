@@ -327,3 +327,37 @@ COMPLETE THE N STACKS IN AN ARRAY -
     }
 
 */
+
+
+/*
+
+    1003. Check If Word Is Valid After Substitutions
+    (https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/description/)
+
+
+    bool isValid(string s) {
+
+        while(true){
+            auto k = s.find("abc");
+            if(k == -1){
+                break;
+            }
+            s = s.erase(k, 3);
+
+            // cout << s << endl;
+            // break;
+        }
+
+        if(s == ""){
+            return true;
+        }else{
+            return false;
+        }
+
+
+        
+        return true;
+    }
+
+
+*/
