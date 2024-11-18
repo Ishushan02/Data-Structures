@@ -417,3 +417,68 @@ COMPLETE THE N STACKS IN AN ARRAY -
     }
 
 */
+
+/*  
+        pos = [10, 8, 0, 5, 3]; time = [2, 4, 1, 1, 3]
+        Approach is get sort each of them wrt position
+
+        now after sorting  w.r.t position
+        [{0, 1}, {3, 3}, {5, 1}, {8, 4}, {10, 2}]
+
+        so time is also on basis of position
+        time = [12, 4, 7, 1, 1]
+
+        so, now for car 1 with time 12 there is no bigger time than 12 it will reach alone
+        for car 2, t = 4, it will catch up 7 so they both will reach together
+        for car (3 gone with 2 already)
+
+        for car 4, t = 1, (car 4 and car 5 will go together)
+
+        hence the logic is if fron cars time is larger than the current car will go along with it.
+
+        calculate each time for each car (target-currpos)/time
+
+
+
+    853. Car Fleet (VVIII and Good Question )
+    (https://leetcode.com/problems/car-fleet/description/)
+
+    static bool comp(pair<int, int> &a, pair<int, int> &b){
+        return a.first < b.first;
+    }
+    int carFleet(int target, vector<int>& position, vector<int>& speed) {
+        if(position.size() == 1){
+            return 1;
+        }
+       
+
+        // doing it for sorting, in py we can do it easily via lambda
+        vector<pair<int, int>> data;
+        for(int i = 0; i < position.size(); i++){
+            pair<int, int> val;
+            val.first = position[i];
+            val.second = speed[i];
+            data.push_back(val);
+        }
+
+        sort(data.begin(), data.end(), comp);
+        // sorted based on position
+
+        // for(auto a:data){
+        //     cout << a.first << "--"<< a.second << " ";
+        // }
+        // cout << endl;
+
+        stack<float> st;
+        for(int i = 0; i < data.size(); i++){
+            float time = (target - data[i].first)/(float)(data[i].second);
+            while(!st.empty() && (time >= st.top())){
+                st.pop();
+            }
+            st.push(time);
+        }
+        return st.size();
+
+    }
+
+*/
