@@ -482,3 +482,42 @@ COMPLETE THE N STACKS IN AN ARRAY -
     }
 
 */
+
+/*  
+
+    It is a HARD level question and quite confusing, so please see it again and again
+    Just check it out, and get the gist.
+
+    1776. Car Fleet II
+    (https://leetcode.com/problems/car-fleet-ii/submissions/1457236171/)
+
+    vector<double> getCollisionTimes(vector<vector<int>>& cars) {
+        vector<double> ans(cars.size(), -1);
+
+        stack<int> st;
+        for(int i = cars.size()-1; i >= 0; i--){
+
+            // check curr car is faster than st.top
+            while(!st.empty() &&  cars[st.top()][1] >= cars[i][1]){
+                st.pop();
+            }
+
+            // check speed, and collision time
+            while(!st.empty()){
+                double collisionTime = (double)(cars[st.top()][0] - cars[i][0])/(cars[i][1] - cars[st.top()][1] );
+
+                if(ans[st.top()] == -1 || collisionTime <= ans[st.top()]){
+                    ans[i] = collisionTime;
+                    break; // get only the first collision
+                }
+                st.pop();
+                
+
+            }
+            st.push(i);
+
+        }
+        return ans;
+    }
+
+*/
