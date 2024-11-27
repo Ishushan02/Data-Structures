@@ -524,7 +524,7 @@ COMPLETE THE N STACKS IN AN ARRAY -
 
 /*
 
-    71. Simplify Path
+    71. Simplify Path (Good and Important Question)
     (https://leetcode.com/problems/simplify-path/)
 
 
