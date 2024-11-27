@@ -521,3 +521,76 @@ COMPLETE THE N STACKS IN AN ARRAY -
     }
 
 */
+
+/*
+
+    71. Simplify Path
+    (https://leetcode.com/problems/simplify-path/)
+
+
+    void reverse(stack<string>& stck, string& ans){
+        if(stck.empty()){
+            return;
+        }
+
+        string topelem = stck.top();
+        stck.pop();
+        reverse(stck, ans);
+        ans += topelem;
+    }
+
+    string simplifyPath(string path) {
+        
+        string ans;
+        stack <string> st;
+
+        int i = 0;
+        while(i < path.length()){
+
+            int j = i;
+            string next;
+            next += path[i];
+            j += 1;
+            while(j < path.length()){
+                if(path[j] == '/'){
+                    break;
+                }
+                next += path[j];
+                j++;
+            }
+            i = j;
+
+            if(!st.empty() && next == "/.."){
+                st.pop();
+            }else if(next == "/" || next == "/."){
+                // do nothing
+                continue;
+            }else if(next != "/.."){
+                st.push(next);
+            }
+
+
+            // cout << next << endl;
+            // i++;
+        }
+
+        
+        if(st.empty()){
+            // root directory
+            return "/";
+        }
+
+        // reverse the stack or else add that string there itself
+        reverse(st, ans);
+
+        // ans
+        // while(!newstck.empty()){
+        //     ans += newstck.top();
+        //     newstck.pop();
+        // }
+        cout << "Ans " << ans << endl;
+
+        return ans;
+
+    }
+*/
