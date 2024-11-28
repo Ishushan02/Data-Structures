@@ -78,3 +78,30 @@
         return ans;
     }
 */
+
+
+/*
+    921. Minimum Add to Make Parentheses Valid
+    (https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/description/)
+
+    int minAddToMakeValid(string s) {
+        
+        stack<char> val;
+        int k = 0;
+
+        for(int i = 0; i<s.length(); i++){
+            if(s[i] == '('){
+                val.push(s[i]);
+            }else if(s[i] == ')' && !val.empty()){
+                val.pop();
+            }else{
+                k++;
+            }
+
+        }
+        cout << "k: " << k << " val: " << val.size() << endl;
+        return val.size() + k ;
+        // return k || val.size() ;
+    }
+
+*/
