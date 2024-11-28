@@ -122,6 +122,7 @@
 
                 if(st.empty()){
                     st.push(i); // such that last elem index is stored to count len
+                                // this also means that it's invalid parenthesis
                 }else{
                     int totLen = i - st.top(); // not doing + 1(for indexing) because prev-1 elem is being subtracted
                     ans = max(ans, totLen);
@@ -130,5 +131,56 @@
         }
 
         return ans;
+    }
+*/
+
+/*  
+        735. Asteroid Collision
+        (https://leetcode.com/problems/asteroid-collision/)
+
+        vector<int> asteroidCollision(vector<int>& asteroids) {
+        
+        stack<int> st;
+        vector<int> ans;
+
+        for(auto ast:asteroids){
+            bool destroy = false;
+            if(ast > 0){
+                // cout << ast << endl;
+                st.push(ast);
+            }else{
+                if(st.empty() || st.top() < 0 ){
+                    st.push(ast);
+                }else{
+                    // bombard
+                    while(!st.empty() && st.top() > 0){
+                        if(abs(ast) == st.top()){
+                            destroy = true;
+                            st.pop();
+                            break;
+                        }else if(abs(ast) > st.top()){
+                            st.pop();
+                        }else{
+                            destroy = true;
+                            break;
+                        }
+                    }
+
+                    if(!destroy){
+                        st.push(ast);
+                    }
+
+                }
+            }
+        }
+        
+        while(!st.empty()){
+            // cout << st.top() << endl;
+            ans.insert(ans.begin(), st.top());
+            st.pop();
+        }
+
+        return ans;
+
     }
 */
