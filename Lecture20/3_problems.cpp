@@ -27,7 +27,7 @@
 
 /*
 
-    402. Remove K Digits
+    402. Remove K Digits (Good No. of Companies asked this questions)
     (https://leetcode.com/problems/remove-k-digits/description/)
 
     string removeKdigits(string num, int k) {
