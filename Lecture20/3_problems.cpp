@@ -105,3 +105,30 @@
     }
 
 */
+
+/*
+    32. Longest Valid Parentheses
+    (https://leetcode.com/problems/longest-valid-parentheses/)
+    int longestValidParentheses(string s) {
+        int ans = 0;
+        stack<int> st;
+        st.push(-1); // for starting case
+        bool continuous = false;
+        for(int i = 0; i < s.length(); i++){
+            if(s[i] == '('){
+                st.push(i);
+            }else{
+                st.pop(); // elements are popped
+
+                if(st.empty()){
+                    st.push(i); // such that last elem index is stored to count len
+                }else{
+                    int totLen = i - st.top(); // not doing + 1(for indexing) because prev-1 elem is being subtracted
+                    ans = max(ans, totLen);
+                }
+            }
+        }
+
+        return ans;
+    }
+*/
