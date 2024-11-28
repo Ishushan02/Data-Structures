@@ -30,61 +30,49 @@
     402. Remove K Digits
     (https://leetcode.com/problems/remove-k-digits/description/)
 
-    void reversest(stack<char>& st, stack<char>& ansst){
-        if(st.empty()){
-            return;
-        }
-        char topelem = st.top();
-        st.pop();
-        ansst.push(topelem);
-        reversest(st, ansst);
-        
-    }
-
     string removeKdigits(string num, int k) {
+        stack<char> st;
 
-        // if(num.length() ==1 and k == 1){
-        //     return "0";
-        // }
-        string ans;
-        stack <char> st;
+        for(int i = 0; i < num.length(); i++){
 
-        int i = 0;
-        while(i < num.length()){
-            char curr = num[i];
-
-            while(!st.empty() && st.top() > curr && k > 0){
+            while(!st.empty() && st.top() > num[i] && k > 0){
                 st.pop();
                 k--;
             }
-
-            st.push(curr);
-            i++;
+            st.push(num[i]);
         }
 
-        // for remaining k's
         while(!st.empty() && k != 0){
             st.pop();
             k--;
         }
 
-        stack<char> ansst;
-        reversest(st, ansst);
-
-        // removing all leading 0's
-
-        while(!ansst.empty() && ansst.top() == '0'){
-            ansst.pop();
-        }
-
-        if(ansst.empty()){
+        if(st.empty()){
             return "0";
         }
-        
-        while(!ansst.empty()){
-            ans += ansst.top();
-            ansst.pop();
 
+        // reverse the stack
+        stack<char> reversedst;
+
+        while(!st.empty()){
+            reversedst.push(st.top());
+            st.pop();
+        }
+
+        // removing all leading 0's
+        while(!reversedst.empty() && reversedst.top() == '0'){
+            reversedst.pop();
+        }
+
+        if(reversedst.empty()){
+            return "0";
+        }
+
+        // storing ans;
+        string ans;
+        while(!reversedst.empty()){
+            ans += reversedst.top();
+            reversedst.pop();
         }
 
         return ans;
