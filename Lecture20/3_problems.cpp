@@ -184,3 +184,50 @@
 
     }
 */
+
+/*
+    1472. Design Browser History
+    (https://leetcode.com/problems/design-browser-history/)
+
+        class BrowserHistory {
+    public:
+    stack<string> browserstck;
+    stack<string> forwardstck;
+    BrowserHistory(string homepage) {
+        browserstck.push(homepage);
+    }
+    
+    void visit(string url) {
+        browserstck.push(url);
+
+        //given condition to clear forwstck
+        while(!forwardstck.empty()){
+            forwardstck.pop();
+        }
+    }
+    
+    string back(int steps) {
+        int i = 0;
+        // homepage will always be there in the browser stack so that 1 condition
+        while(i < steps && browserstck.size()>1){
+            forwardstck.push(browserstck.top());
+            browserstck.pop();
+            i = i + 1;
+        }
+        return browserstck.top();
+    }
+    
+    string forward(int steps) {
+        int i = 0;
+        while(i < steps && !forwardstck.empty()){
+            browserstck.push(forwardstck.top());
+            forwardstck.pop();
+            i = i + 1;
+        }
+        return browserstck.top();
+
+    }
+    };
+
+
+*/
