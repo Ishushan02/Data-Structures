@@ -76,10 +76,15 @@ class CircularQueue{
     
 
     int getSize(){
+        // cout << rear << "--"<<front << endl;
         if(rear == -1 and front == -1){
             return 0;
+        }else if(front > rear){
+            return (n - front ) + rear + 1;
+        }else{
+            return abs(rear - front) + 1;
         }
-        return abs(rear - front) + 1;
+        // return abs(rear - front) + 1;
     }
 
     int getFront(){
@@ -160,8 +165,8 @@ int main(){
     cque.push(1);
     cque.push(2);
     cque.print();
-    cout << "Size of Queue: "<<cque.getSize()<< endl;
-    cout << "Front of Queue: "<<cque.getFront()<< endl;
+    cout << "Size of Circular Queue: "<<cque.getSize()<< endl;
+    cout << "Front of Circular Queue: "<<cque.getFront()<< endl;
     cque.push(3);
     cque.push(4);
     cque.push(5);
@@ -177,6 +182,6 @@ int main(){
      cque.push(20);
     cque.print();
 
-
+    cout << "Size of Circular Queue "<< cque.getSize() << endl;;
 
 }
