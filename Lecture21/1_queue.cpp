@@ -302,3 +302,40 @@ int main(){
 }
 
 
+
+/*  
+    Interleave the First Half of the Queue with Second Half
+    (https://www.geeksforgeeks.org/problems/interleave-the-first-half-of-the-queue-with-second-half/0)
+
+    vector<int> rearrangeQueue(queue<int> &q){
+        vector<int> ans;
+        
+        int k = q.size()/2;
+        queue<int> strq;
+        while(k){
+            strq.push(q.front());
+            q.pop();
+            k--;
+        }
+        
+        while(!q.empty()&& !strq.empty()){
+            ans.push_back(strq.front());
+            ans.push_back(q.front());
+            q.pop();
+            strq.pop();
+        }
+        
+        while(!q.empty()){
+            ans.push_back(q.front());
+            q.pop();
+        }
+        
+        while(!strq.empty()){
+            ans.push_back(strq.front());
+            strq.pop();
+        }
+        
+        return ans;
+    }
+
+*/
