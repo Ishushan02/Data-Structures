@@ -113,7 +113,70 @@ class CircularQueue{
 
 };
 
+void reverseQueue(queue<int>& que){
+    stack<int> st;
+    while(!que.empty()){
+        st.push(que.front());
+        que.pop();
+    }
 
+    while(!st.empty()){
+        que.push(st.top());
+        st.pop();
+    }
+
+}
+
+void recurseReverse(queue<int> &que){
+    if(que.empty()){
+        return;
+    }
+
+    int elem = que.front();
+    que.pop();
+    recurseReverse(que);
+    que.push(elem);
+
+}
+
+
+// reverse in the group of k 
+// {1, 2, 3, 4, 5, 6, 7, 8, 9, 10} k = 3
+// OP: {3, 2, 1, 6, 5, 4, 9, 8, 7, 10}
+
+// if we have to not use the extra space, we will keep a counter of the elements processed in queue
+// and push in back of the queue, when counter comes to an end just original queue will have reversed kGroups
+
+void reverseKGroup(queue<int>& que, int k, queue<int>& ansque){
+    if(int(que.size()) < k){
+        while(!que.empty()){
+            ansque.push(que.front());
+            que.pop();
+        }
+        return;
+    }
+
+    stack<int> st;
+    int it = k;
+    while(it){
+        st.push(que.front());
+        que.pop();
+        it--;
+    }
+
+    it = k;
+    while(it){
+        ansque.push(st.top());
+        st.pop();
+        it--;
+    }
+
+    reverseKGroup(que, k, ansque);
+
+
+
+
+}
 
 int main(){
 
@@ -146,6 +209,7 @@ int main(){
     dqq.push_front(40);
     dqq.push_back(50);
     dqq.push_front(60);
+
 
     cout << "Front of DeQueue " << dqq.front() << endl;
     cout << "Size of DeQueue " << dqq.size() << endl;
@@ -184,4 +248,57 @@ int main(){
 
     cout << "Size of Circular Queue "<< cque.getSize() << endl;;
 
+
+    // Reversing the Queue
+    que.push(10);
+    que.push(20);
+    que.push(30);
+    que.push(40);
+    que.push(50);
+    cout << "Revering the QUeue" << endl;
+    reverseQueue(que);
+    cout << "Printing all elements of Reversed Queue " << endl;
+    while(!que.empty()){
+        cout << que.front() << " ";
+        que.pop(); // it will pop from front
+    }
+    cout << endl;
+
+    que.push(10);
+    que.push(20);
+    que.push(30);
+    que.push(40);
+    que.push(50);
+    recurseReverse(que);
+    cout << "Printing all elements of Recursed Reversed Queue " << endl;
+    while(!que.empty()){
+        cout << que.front() << " ";
+        que.pop(); // it will pop from front
+    }
+    cout <<endl;
+
+
+    // Reverse in Groups of K
+    que.push(10);
+    que.push(20);
+    que.push(30);
+    que.push(40);
+    que.push(50);
+    que.push(60);
+    que.push(70);
+    que.push(80);
+    que.push(90);
+    que.push(100);
+
+    queue<int> ansqueue;
+    reverseKGroup(que, 4, ansqueue);
+    cout << "Reversing in Groups of K " << endl;
+    while(!ansqueue.empty()){
+        cout << ansqueue.front() << " ";
+        ansqueue.pop(); // it will pop from front
+    }
+    cout <<endl;
+
 }
+
+
