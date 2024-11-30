@@ -353,7 +353,7 @@ Procedure is (let's say window size is K)
     - first do the process for k window
     - store all the ans's in a queue
 
-    - start from k to N
+    - start from k to N //(all current window will always be in K-index+1 to index)
         // store the answer, process whatever is required
         // this is actually storing answer for previous case
 
