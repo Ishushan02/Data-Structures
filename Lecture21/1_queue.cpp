@@ -339,3 +339,29 @@ int main(){
     }
 
 */
+
+/*
+
+VVIIIII AlGORITHM
+
+Sliding Window Applications
+     - Find Subarray ....
+     - Find Substring ....
+     - Find Window ....
+
+Procedure is (let's say window size is K)
+    - first do the process for k window
+    - store all the ans's in a queue
+
+    - start from k to N
+        // store the answer, process whatever is required
+        // this is actually storing answer for previous case
+
+        // now time is to move the window, so include next element and remove previous element from que
+        // if(!q.empty() && index - q.front() >= k ) -->remove it q.pop()
+
+        //store next eleme
+        nexnew elem = arr[i]
+        //according to method do the procedure and q.push(arr[i])
+
+*/
