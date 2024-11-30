@@ -365,3 +365,63 @@ Procedure is (let's say window size is K)
         //according to method do the procedure and q.push(arr[i])
 
 */
+
+
+/*
+    // SLIDING WINDOW APPLICATION
+
+    First negative in every window of size k
+    (https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/1)
+
+    vector<int> FirstNegativeInteger(vector<int>& arr, int k) {
+        // write code here
+        
+        vector<int> ans;
+        queue<int> que;
+        
+        // for first window
+        for(int i = 0; i < k; i++){
+            if(arr[i] < 0){
+                que.push(i);
+                // cout << i << endl;
+            }
+        }
+        // cout << "---" << endl;
+        
+        
+        // for next windows
+        for(int index = k; index < arr.size(); index++){
+            
+            // store prev window ans
+            if(que.empty()){
+                ans.push_back(0); // no negative element
+            }else{
+                ans.push_back(arr[que.front()]);// as queue has indexes
+            }
+            
+            // remove 1 elemt from prev window
+            if((!que.empty()) && (index - que.front() >= k)){
+                // cout << que.front() << endl;
+                que.pop();
+            }
+            
+            // add new elem
+            int elem = arr[index];
+            if(elem < 0){
+                que.push(index); // store index
+            }
+            
+        }
+        
+        // the last window is left to push into answer
+        if(que.empty()){
+            ans.push_back(0); // no negative element
+        }else{
+            ans.push_back(arr[que.front()]);// as queue has indexes
+        }
+        
+        return ans;
+        
+    }
+
+*/
