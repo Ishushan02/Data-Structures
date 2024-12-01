@@ -476,3 +476,44 @@ Procedure is (let's say window size is K)
     }
 
 */
+
+
+/*
+
+IMP Question
+
+First non-repeating in a stream
+(https://www.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1)
+
+
+Method 1 -> TLE
+
+    string FirstNonRepeating(string &s) {
+        // Code here
+        string ans;
+        unordered_map<char, int> freq;
+        
+        for(int i = 0; i < s.length(); i++){
+            
+            char curr = s[i];
+            freq[curr]++;
+            
+            char res = '#';
+            // see prev 
+            for(int j = 0; j <= i; j++){
+                
+                if(freq[s[j]] == 1){
+                    res = s[j];
+                    break;
+                }
+            }
+            
+            ans += res;
+        }
+        
+        
+        
+        return ans;
+    }
+
+*/
