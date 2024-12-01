@@ -516,4 +516,45 @@ Method 1 -> TLE
         return ans;
     }
 
+
+    Method 2: // QUEUE IMPLEMENTATION
+
+    string FirstNonRepeating(string &s) {
+        // Code here
+        
+        unordered_map<char, int> freq;
+        queue<int> que;
+        string ans;
+        for(int i = 0; i < s.length(); i++){
+            
+            char ch = s[i];
+            que.push(ch);
+            freq[ch]++;
+            
+            while(!que.empty()){
+                char topelem = que.front();
+                
+                if(freq[topelem] == 1){
+                    // single element
+                    ans += topelem;
+                    break;
+                }else{
+                    // remove this element as count > 1
+                    que.pop();
+                    
+                }
+            }
+            
+            if(que.empty()){
+                // all duplicate element are present
+                ans += '#';
+            }
+            
+        }
+        
+        return ans;
+        
+        
+    }
+
 */
