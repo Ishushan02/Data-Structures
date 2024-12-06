@@ -62,3 +62,53 @@
     }
 
 */
+
+
+/*
+    341. Flatten Nested List Iterator
+    (https://leetcode.com/problems/flatten-nested-list-iterator/)
+
+    class NestedIterator {
+public:
+    int ansidx = 0;
+    int traverseidx = 0;
+    vector<int> ans;
+    bool intVal = false;
+
+    void getElemt(vector<NestedInteger> &nestedList, vector<int>& ans){
+        if(nestedList.size() == 0){
+            return;
+        }
+
+        for(int i = 0; i < nestedList.size(); i++){
+            if(nestedList[i].isInteger()){
+                ans.push_back(nestedList[i].getInteger());
+            }else{
+                vector<NestedInteger> newlist = nestedList[i].getList();
+                getElemt(newlist, ans);
+            }
+        }
+    }
+
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        getElemt(nestedList, ans);
+        
+    }
+    
+    // cout << nestedList[0] << endl;
+    
+    int next() {
+        int val =  ans[ansidx];
+        ansidx++;
+        return val;
+    }
+    
+    bool hasNext() {
+        if(ansidx < ans.size()){
+            return true;
+        }
+        
+        return false;
+    }
+};
+*/
