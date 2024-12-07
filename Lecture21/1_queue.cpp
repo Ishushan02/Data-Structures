@@ -16,6 +16,15 @@ using namespace std;
     Dequeue In Doubly Ended Queue we can push and pop from front and back both way
 
     Circular Queue as the name suggests it means the same
+
+
+    A VERY IMPORTANT IMPLEMENTATION OF QUEUE IN DSA CONCEPTS
+    - NORMAL SIMULATION
+    - CIRCULAR TRAVERSAL APPLICATIONS(LIKE REVISITING THE STARTING INDEX OF ARR APPLICATION)
+    - FLATTEN DESIGN
+    - SHORTEST PATH, MIN DIST APPLICATION  (LEVEL ORDER TRAVERSAL BASED)
+    - SLIDING WINDOW (DEQUEUE APPLICATION)
+
 */
 
 
