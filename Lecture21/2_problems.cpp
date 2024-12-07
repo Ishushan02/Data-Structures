@@ -112,3 +112,53 @@ public:
     }
 };
 */
+
+
+/*
+
+    649. Dota2 Senate
+    (https://leetcode.com/problems/dota2-senate/)
+
+    string predictPartyVictory(string senate) {
+        deque<int> dr;
+        deque<int> rd;
+        string ans = "Radiant";
+
+        for(int i = 0; i < senate.length(); i++){
+            if(senate[i] == 'R'){
+                rd.push_back(i);
+            }else{
+                dr.push_back(i);
+            }
+        }
+
+        int lastIndex = senate.size();
+        while(rd.size() != 0 && dr.size()!= 0){
+            int drid = dr.front();
+            int rdid = rd.front();
+            dr.pop_front();
+            rd.pop_front();
+
+            if(drid<rdid){
+                dr.push_back(lastIndex);
+            }else{
+                rd.push_back(lastIndex);
+            }
+
+            lastIndex += 1;   
+        }
+
+
+        if(rd.size() == 0){
+            return "Dire";
+        }
+
+        if(dr.size() == 0){
+            return "Radiant";
+        }
+
+        return "Dire"; // simply this line
+    }
+
+
+*/
