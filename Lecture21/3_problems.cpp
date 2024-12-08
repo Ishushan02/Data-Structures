@@ -133,3 +133,25 @@
 
     }
 */
+
+/*
+
+IMPLEMENT K QUEUES IN AN ARRAY 
+
+    - Very Important Question based on Interviews Perspective
+
+Method 1 Brute Force Approach
+
+    let's array of size (N)4 and k with (K)2 hence there will be (N / K) total queses possible
+    here in this case 2 queues will be possible, (for this example both are of size 4 each)
+    - We create Q1(0 -> 3) and Q2(4 -> 8) 
+    let's say Q1 is filled comwith 4 elemets and next elemet is to be filled, what it will do is 
+    while inserting Q1 it will throw error saying Q1 is fully filled
+    - but array is still not completely filled, hence this is not an optimal Use of Space
+    - This is known as Fragmentation Problem (even though space is available we are not able to insert elements in the queue)
+    - So, this method is discarded
+
+
+Method 2
+
+*/
