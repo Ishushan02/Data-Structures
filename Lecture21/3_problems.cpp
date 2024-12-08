@@ -1,3 +1,4 @@
+#include<iostream>
 /*
 
     DO IT GOOD QUESTION 
@@ -152,6 +153,157 @@ Method 1 Brute Force Approach
     - So, this method is discarded
 
 
-Method 2
+Method 2 OPTIMAL APPROACH
+
+    - front[k] an Array storing starting indexes of Kth Array [0, 1, ... k-1] front Indices of all queues
+    - rear[k] an Array storing rear indexes of Kth Array [0, 1, ... k-1] rear Indices of all queues
+    - next[N] store indices of next item for all item in an array 
+        {Ex : let's say we have 2 queue in an Arr and elements are like this, Q0 and Q1 representing any element of that subscript
+         {Q0, Q1, Q1, Q0, Q0, Q1, Q0, Q1, Q1}
+        so as Q0 is in 0th position the next arr will have the pointer of Q0th next elem which here is 3, and so on }
+    - freespot[k] current available free spot of k in main array (initalize with 0) 
+
+        PUSH ALGORITHM
+            - check overflow
+                if freespot == - return false
+            - find first free Idx, 
+                int index = freespot
+            - update freespot by next[index]
+            - if first elem of Qith 
+                if(front [qn] == -1) then fron[qn] = 0
+                else:
+                    // link new element to that queue's rearest element
+                    next[rear[qn]] = index
+                    // update next
+                    next[index] = -1
+                    // update rear
+                    rear[qn] = index; arr[index] = x;
+        
+        POP ALGORITHM
+            - check underFlow
+                if(front[qn] == -1) return -1
+            - find index to pop
+                int index = front[qn]
+            - update front
+                front[qn] = next[index]
+            - manage free spot
+                next[index] = freespot
+            
+            
+
 
 */
+
+using namespace std;
+
+class KQueue{
+
+    public:
+        int n, k, freespot;
+        int *arr, *front, *rear, *next;
+
+        KQueue(int _n, int _k):n(_n), k(_k), freespot(0){
+            
+            arr = new int[n];
+            front = new int[k];
+            rear = new int[k];
+            next = new int[n];
+
+            // initialize front and rear with -1
+            for(int i = 0; i <k; i++){
+                front[i] = -1;
+                rear[i] = -1;
+            }
+
+            // initialize next with sequential flow and last elemt with -1
+            for(int i = 0; i < n; i++){
+                next[i] = i + 1;
+                next[n-1] = -1;
+            }
+        }
+
+        bool push(int x, int qi){
+
+            // overflow
+            if(freespot == -1){
+                return false;
+            }
+
+            // get first free item and update it
+            int index = freespot;
+            freespot = next[index];
+
+            // first elemt in q1
+            if(front[qi] == -1){
+                front[qi] = index;  
+            }else{
+                // link new element to that queue's rearest element
+                next[rear[qi]] = index;
+            }
+
+            // update next
+            next[index] = -1;
+
+            // update rear
+            rear[qi] = index;
+            arr[index] = x;
+
+            return true;
+
+        }
+
+
+        int pop(int qi){
+            // underflow
+            if(front[qi] == -1){
+                return -1;
+            }
+
+            int index = front[qi];
+
+            // front update
+            front[qi] = next[index];
+
+            // update freespot
+            next[index] = freespot;
+            freespot = index;
+
+            return arr[index];
+        }
+
+
+        ~KQueue(){
+            delete [] arr;
+            delete [] front;
+            delete [] rear;
+            delete [] next;
+        }
+
+};
+
+int main(){
+
+        KQueue kq(8, 3);
+
+        cout << kq.push(1, 0) << endl;
+        cout << kq.push(2, 0) << endl;
+        cout << kq.push(5, 2) << endl;
+        cout << kq.push(-5, 1) << endl;
+        cout << kq.push(7, 0) << endl;
+        cout << kq.push(-9, 1) << endl;
+        cout << kq.push(15, 2) << endl;
+
+        // Q0 --> 1, 2, 7
+        // Q1 --> -5, -9
+        // Q2 --> 5, 15
+        cout << "Popping Elements " << endl;
+        cout << kq.pop(0) << endl;
+        cout << kq.pop(1) << endl;
+        cout << kq.pop(2) << endl;
+        cout << kq.pop(0) << endl;
+        cout << kq.pop(1) << endl;
+        cout << kq.pop(1) << endl;
+
+        return 0;
+
+}
