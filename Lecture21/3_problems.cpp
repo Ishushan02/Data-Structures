@@ -670,3 +670,37 @@ public:
 
 
 */
+
+/*
+    933. Number of Recent Calls
+    (https://leetcode.com/problems/number-of-recent-calls/description/)
+
+    class RecentCounter {
+public:
+
+    vector<int> requests;
+
+    RecentCounter() {
+        
+    }
+    
+    int ping(int t) {
+        int count = 1;
+        if(requests.empty()){
+            requests.push_back(t);
+            // return count;
+        }else{
+            
+            for(int i = 0; i < requests.size(); i++){
+                int req = requests[i];
+                if(req >= t - 3000 && req <= t){
+                    count += 1;
+                }
+            }
+            requests.push_back(t);
+        }
+
+        return count;
+    }
+};
+*/
