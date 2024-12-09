@@ -753,4 +753,29 @@ public:
         return ans % (1000000007);
     }
 
+
+    Method 2 - Efficient Method
+    Good Explanation Video (https://www.youtube.com/watch?v=dalyTgkiH0s)
+
+    int peopleAwareOfSecret(int n, int delay, int forget) {
+        
+        vector<long long int> knownby(2*n + 10, 0);
+
+        knownby[1] = 1;
+
+        for(int day = 1; day <= n; day++){
+            for(int j = delay + day; j < day + forget; j++){
+                knownby[j] = (knownby[j] + knownby[day]) % 1000000007;
+            }
+        }
+
+        long long int ans = 0;
+
+        for(int k = n; k >= n - forget+1; k--){
+            ans = (ans + knownby[k])% 1000000007 ;
+        }
+
+        return ans;
+    }
+
 */
