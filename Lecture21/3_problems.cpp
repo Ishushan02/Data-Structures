@@ -493,3 +493,73 @@ public:
 
 
 */
+
+/*
+    K Sized Subarray Maximum
+    (https://www.geeksforgeeks.org/problems/maximum-of-all-subarrays-of-size-k3101/1)
+
+    Method 1 (TLE)
+    void rearrange(deque<int>& que, vector<int>& arr, int elem){
+        // Max ...... Min
+        
+        if(que.empty()){
+            que.push_front(elem);
+            return ;
+        }
+        
+        int topidx = que.front();
+        if(arr[elem] >= arr[topidx]){
+            que.push_front(elem);
+        }else{
+            
+            que.pop_front();
+            rearrange(que, arr, elem);
+            que.push_front(topidx);
+            
+        }
+        
+        return;
+        
+    }
+  
+    // Function to find maximum of each subarray of size k.
+    vector<int> maxOfSubarrays(vector<int>& arr, int k) {
+        // code here
+        
+        // first window
+        int maxelem = INT_MIN;
+        vector<int> ans;
+        deque<int> que;
+        for(int i = 0; i < k; i++){
+            if(que.empty()){
+                que.push_front(i);
+            }else{
+                rearrange(que, arr, i);
+            }
+            
+        }
+        
+        for(int i = k; i < arr.size(); i++){
+            
+            // store ans
+            ans.push_back(arr[que.front()]);
+            
+            // remove elem which is not in the front
+            while(!que.empty() && i - que.front() >= k){
+                que.pop_front();
+            }
+            
+            if(que.empty()){
+                que.push_front(i);
+            }else{
+                rearrange(que, arr, i);
+            }
+            
+        }
+        ans.push_back(arr[que.front()]);
+        
+        return ans;
+    }
+
+
+*/
