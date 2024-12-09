@@ -397,7 +397,66 @@ int main(){
 /*
 
     QUEUE USING STACKS
+    (https://leetcode.com/problems/implement-queue-using-stacks/description/)
 
+    class MyQueue {
+public:
+
+    stack<int> s1, s2;
+    MyQueue() {
+        
+    }
+    
+    void push(int x) {
+        s1.push(x);
+
+        if(s2.empty()){
+                
+                while(!s1.empty()){
+                    s2.push(s1.top());
+                    s1.pop();
+                }
+
+            }else{
+                
+                stack<int> s3;
+                
+                while(!s2.empty()){
+                    s3.push(s2.top());
+                    s2.pop();
+                }
+
+                while(!s1.empty()){
+                    s2.push(s1.top());
+                    s1.pop();
+                }
+
+                while(!s3.empty()){
+                    s2.push(s3.top());
+                    s3.pop();
+                }
+
+
+            }
+
+    }
+    
+    int pop() {
+        int elem = s2.top();
+        s2.pop();
+        return elem;
+    }
+    
+    int peek() {
+        return s2.top();
+    }
+    
+    bool empty() {
+        return s2.empty();
+    }
+};
 
 
 */
+
+
