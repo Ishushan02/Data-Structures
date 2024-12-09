@@ -704,3 +704,53 @@ public:
     }
 };
 */
+
+
+/*
+
+    2327. Number of People Aware of a Secret
+    (https://leetcode.com/problems/number-of-people-aware-of-a-secret/)
+
+
+    Method 1 (TLE) - Brute Force Approach
+    int peopleAwareOfSecret(int n, int delay, int forget) {
+        
+        vector<bool> available ;
+        vector<int> born ;
+
+        // 1st day
+        available.push_back(true);
+        born.push_back(1);
+
+        for (int each_day = 1; each_day < n; each_day++){
+
+            for(int memb = 0; memb < available.size(); memb++){
+                bool curravail = available[memb];
+                int bv = born[memb];
+
+                // forgets
+                if( each_day + 1 - bv == forget){
+                    available[memb] = false;
+                }
+
+                // create
+                if((each_day + 1 - bv >= delay) && (available[memb])){
+                    available.push_back(true);
+                    // delayVal.push_back(delay);
+                    born.push_back(each_day + 1);
+                }
+                }
+
+        }
+    
+        long long int ans = 0;
+        for(auto i:available){
+            if(i){
+                ans += 1;
+            }
+        }
+        // cout << ans << endl;
+        return ans % (1000000007);
+    }
+
+*/
