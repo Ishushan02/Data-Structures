@@ -562,4 +562,46 @@ public:
     }
 
 
+    Method 2 (Efficient Method)
+    vector<int> maxOfSubarrays(vector<int>& arr, int k) {
+        // code here
+        
+        // first window
+        int maxelem = INT_MIN;
+        vector<int> ans;
+        deque<int> que;
+        for(int i = 0; i < k; i++){
+            
+            // remove all smaller elem which is less than curr elem
+            while(!que.empty() && arr[que.back()] <= arr[i]){
+                que.pop_back();
+            }
+            que.push_back(i);
+            
+        }
+        
+        for(int i = k; i < arr.size(); i++){
+            
+            // store ans
+            ans.push_back(arr[que.front()]);
+            
+            // remove elem which is not in the window
+            while(!que.empty() && i - que.front() >= k){
+                que.pop_front();
+            }
+            
+            // remove all smaller elem which is less than curr elem
+            while(!que.empty() && arr[que.back()] <= arr[i]){
+                que.pop_back();
+            }
+            
+            que.push_back(i);
+            
+        }
+        ans.push_back(arr[que.front()]);
+        
+        return ans;
+    }
+
+
 */
