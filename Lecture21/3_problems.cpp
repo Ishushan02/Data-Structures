@@ -281,6 +281,62 @@ class KQueue{
 
 };
 
+
+
+class QueueUsingStack{
+
+    public:
+        stack<int> s1, s2;
+
+        QueueUsingStack(){
+        }
+
+        void push(int value){
+            s1.push(value);
+            
+            if(s2.empty()){
+                
+                while(!s1.empty()){
+                    s2.push(s1.top());
+                    s1.pop();
+                }
+
+            }else{
+                
+                stack<int> s3;
+                
+                while(!s2.empty()){
+                    s3.push(s2.top());
+                    s2.pop();
+                }
+
+                while(!s1.empty()){
+                    s2.push(s1.top());
+                    s1.pop();
+                }
+
+                while(!s3.empty()){
+                    s2.push(s3.top());
+                    s3.pop();
+                }
+
+
+            }
+
+
+
+        }
+
+        void pop(){
+            s2.pop();
+        }
+
+        int top(){
+            return s2.top();
+        }
+
+};
+
 int main(){
 
         KQueue kq(8, 3);
@@ -304,6 +360,44 @@ int main(){
         cout << kq.pop(1) << endl;
         cout << kq.pop(1) << endl;
 
+
+
+        cout << "All Operations are using Stacks Implemented Via Queue " << endl;
+
+        QueueUsingStack que;
+
+        // que --> 10, 11, -9, 1, 2, 7, 3
+        que.push(10);
+        que.push(11);
+        que.push(-9);
+        que.push(1);
+        que.push(2);
+        que.push(7);
+        que.push(3);
+
+        cout << que.top() << endl;
+
+        // que -9, 1, 2, 7, 3
+        que.pop();
+        que.pop();
+
+        cout << que.top() << endl;
+
+        // que  7, 3
+        que.pop();
+        que.pop();
+        que.pop();
+        cout << que.top() << endl;
+
+
         return 0;
 
 }
+
+/*
+
+    QUEUE USING STACKS
+
+
+
+*/
