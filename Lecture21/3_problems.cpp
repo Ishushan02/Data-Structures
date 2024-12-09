@@ -605,3 +605,68 @@ public:
 
 
 */
+
+/*
+    Sum of minimum and maximum elements of all subarrays of size k.
+    (https://www.geeksforgeeks.org/sum-minimum-maximum-elements-subarrays-size-k/)
+
+    vector<int> sumOfmaxminSubarrays(vector<int>& arr, int k) {
+        // code here
+        
+        // first window
+        int sum;
+        deque<int> greaterque; // contains max elems at the top
+        deque<int> lesserque; // contains min elems at the top
+
+        for(int i = 0; i < k; i++){
+            
+            // remove all smaller elem which is less than curr elem
+            while(!greaterque.empty() && arr[greaterque.back()] <= arr[i]){
+                greaterque.pop_back();
+            }
+            
+            // remove all greater elem which is more than curr elem
+            while(!lesserque.empty() && arr[lesserque.back()] >= arr[i]){
+                lesserque.pop_back();
+            }
+
+            greaterque.push_back(i);
+            lesserque.push_back(i);
+            
+        }
+        
+        for(int i = k; i < arr.size(); i++){
+            
+            // store ans
+            sum = sum + arr[greaterque.front()] + arr[lesserque.front()];
+            
+            // remove elem which is not in the window
+            while(!greaterque.empty() && i - greaterque.front() >= k){
+                greaterque.pop_front();
+            }
+            
+            while(!lesserque.empty() && i - lesserque.front() >= k){
+                lesserque.pop_front();
+            }
+            
+            // remove all smaller elem which is less than curr elem
+            while(!greaterque.empty() && arr[greaterque.back()] <= arr[i]){
+                greaterque.pop_back();
+            }
+            
+            // remove all greater elem which is more than curr elem
+            while(!lesserque.empty() && arr[lesserque.back()] >= arr[i]){
+                lesserque.pop_back();
+            }
+            greaterque.push_back(i);
+            lesserque.push_back(i);
+            
+        }
+        sum = sum + arr[greaterque.front()] + arr[lesserque.front()];
+                
+        return ans;
+    }
+
+
+
+*/
