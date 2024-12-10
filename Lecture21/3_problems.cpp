@@ -825,3 +825,37 @@ public:
     }  
 
 */
+
+/*
+        950. Reveal Cards In Increasing Order (EASY YET TRICKY- DO IT AGAIN)
+        (https://leetcode.com/problems/reveal-cards-in-increasing-order/)
+
+        vector<int> deckRevealedIncreasing(vector<int>& deck) {
+        int n = deck.size();
+        vector<int> ans(n, 0);
+        deque<int> que;
+
+        sort(deck.begin(), deck.end());
+
+        for(int i = 0; i < n; i++){
+            que.push_back(i);
+        }
+
+        // reverse simulation
+
+        for(int i = 0; i < n; i++){
+
+            // reveal
+            ans[que.front()] = deck[i];
+            que.pop_front();
+
+            // push
+            if(!que.empty()){
+                que.push_back(que.front());
+                que.pop_front();
+            }
+        }
+        
+        return ans;
+    }
+*/
