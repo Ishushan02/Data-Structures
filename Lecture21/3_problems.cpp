@@ -859,3 +859,64 @@ public:
         return ans;
     }
 */
+
+/*
+    480. Sliding Window Median
+    (https://leetcode.com/problems/sliding-window-median/)
+
+    Method 1 - TLE
+    void storeAnswers(deque<int> que, vector<int>& nums, vector<double>& ans, int k){
+        vector<int> temp2;
+
+        while(!que.empty()){
+            int num = nums[que.front()];
+            temp2.push_back(num);
+            que.pop_front();
+        }
+
+        sort(temp2.begin(), temp2.end());
+        int n = temp2.size();
+
+        if(k %2 != 0){
+            // odd
+            int id =  n/2;
+            ans.push_back(temp2[id]);
+        }else{
+            // even
+            int id1 =  n/2 -1;
+            int id2 =  n/2;
+            double as = (temp2[id1] + (double)temp2[id2]) / 2;
+            ans.push_back(as);
+        }
+
+
+    }
+
+    vector<double> medianSlidingWindow(vector<int>& nums, int k) {
+        vector<double> ans;
+        deque<int> que;
+
+        // 1st window
+        for(int i =0; i < k; i++){
+            que.push_back(i);
+        }
+
+
+        for(int i = k; i < nums.size(); i++){
+            // cout << que.front() << endl;
+            // get answer
+            storeAnswers(que, nums, ans, k);
+
+            // eliminate not in windows
+            while(!que.empty() && (i - que.front() >= k)){
+                que.pop_front();
+            }
+
+            // store answer
+            que.push_back(i);
+        }
+        storeAnswers(que, nums, ans, k);
+
+        return ans;
+    }
+*/
