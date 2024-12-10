@@ -779,3 +779,32 @@ public:
     }
 
 */
+
+/*
+    1823. Find the Winner of the Circular Game
+    (https://leetcode.com/problems/find-the-winner-of-the-circular-game/)
+
+    int findTheWinner(int n, int k) {
+        
+        deque<int> que;
+
+        for(int i = 1; i<=n; i++){
+            que.push_back(i);
+        }
+
+        while(que.size() > 1){
+
+            int count = 1;
+            while(count<k){
+                que.push_back(que.front());
+                que.pop_front();
+                count = count + 1;
+            }
+            que.pop_front();
+
+        }
+
+        return que.front();
+    }
+
+*/
