@@ -28,6 +28,8 @@ using namespace std;
     - Morris Order Traversal (In Google Interview it's generally asked) {40, 20, 50, 10, 60, 30, 70}
       (Inorder Traversal without Recursion or Stack)
 
+    - Skew Tree all Nodes are only on the left part of the tree
+
 */
 
 class Node{
@@ -96,8 +98,27 @@ class Node{
         cout << node->data << " ";
     }
 
+    void levelOrderTraversal(Node* node){
+        if(node == NULL){
+            return;
+        }
+
+        if(node->left){
+            cout << node->left->data << " ";
+        }
+        if(node->right){
+            cout << node->right->data << " ";
+        }
+
+        levelOrderTraversal(node->left);
+        levelOrderTraversal(node->right);
+
+    }
+
 
 };
+
+
 
 int main(){
 
@@ -117,6 +138,11 @@ int main(){
 
     cout << "PostOrder Traversal of the Tree "<< endl;
     root->postOrderTraversal(root);
+    cout << endl;
+
+    cout << "LevelOrder Traversal of the Tree "<< endl;
+    cout << root->data << " ";
+    root->levelOrderTraversal(root);
     cout << endl;
 
 
