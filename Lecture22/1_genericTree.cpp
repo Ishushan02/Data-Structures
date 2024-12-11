@@ -118,7 +118,21 @@ class Node{
 
 };
 
+void levelrightOrderTraversal(Node* node){
+     if(node == NULL){
+            return;
+        }
 
+    if(node->right){
+        cout << node->right->data << " ";
+    }
+    if(node->left){
+        cout << node->left->data << " ";
+    }
+    levelrightOrderTraversal(node->right);
+    levelrightOrderTraversal(node->left);
+
+}
 
 int main(){
 
@@ -144,6 +158,12 @@ int main(){
     cout << root->data << " ";
     root->levelOrderTraversal(root);
     cout << endl;
+
+    cout << "Level Right Order Traversal of the Tree "<< endl;
+    cout << root->data << " ";
+    levelrightOrderTraversal(root);
+    cout << endl;
+    
 
 
     return 0;
