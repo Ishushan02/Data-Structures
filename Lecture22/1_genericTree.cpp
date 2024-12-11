@@ -64,6 +64,19 @@ class Node{
 
     }
 
+    void preOrderTraversal(Node* node){
+
+        if(node == NULL){
+            return ;
+        }
+
+        cout << node->data << " ";
+        preOrderTraversal(node->left);
+        preOrderTraversal(node->right);
+
+        // cout << endl;
+    }
+
 
 };
 
@@ -71,5 +84,11 @@ int main(){
 
     Node* root = NULL; // just initializing 
     root = root->createTree();
+
+    // created the above tree given in the comment
+    // {10, 20, 40, -1, -1, 50, -1, -1, 30, 60, -1, -1, 70, -1, -1}
+    cout << " Preorder Traversal of the Node "<< endl;
+    root->preOrderTraversal(root);
+
     return 0;
 }
