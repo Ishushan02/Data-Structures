@@ -74,7 +74,16 @@ class Node{
         preOrderTraversal(node->left);
         preOrderTraversal(node->right);
 
-        // cout << endl;
+    }
+
+    void inOrderTraversal(Node* node){
+        if(node == NULL){
+            return ;
+        }
+
+        inOrderTraversal(node->left);
+        cout << node->data << " ";
+        inOrderTraversal(node->right);
     }
 
 
@@ -89,6 +98,13 @@ int main(){
     // {10, 20, 40, -1, -1, 50, -1, -1, 30, 60, -1, -1, 70, -1, -1}
     cout << " Preorder Traversal of the Node "<< endl;
     root->preOrderTraversal(root);
+    cout << endl;
+
+
+    cout << " Inorder Traversal of the Node "<< endl;
+    root->inOrderTraversal(root);
+    cout << endl;
+
 
     return 0;
 }
