@@ -4,6 +4,8 @@ using namespace std;
 
 /*
 
+    ALWAYS SOLVE THE TREE QUESTION BY MAKING DIAGRAM FIRST -- VERY VERY IMPORTANT
+
     Trees is a Non Linear Data Structure
                                     10                                            Level0
 
