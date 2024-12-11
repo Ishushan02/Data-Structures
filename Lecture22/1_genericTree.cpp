@@ -86,6 +86,16 @@ class Node{
         inOrderTraversal(node->right);
     }
 
+    void postOrderTraversal(Node* node){
+        if(node == NULL){
+            return ;
+        }
+
+        postOrderTraversal(node->left);
+        postOrderTraversal(node->right);
+        cout << node->data << " ";
+    }
+
 
 };
 
@@ -96,13 +106,17 @@ int main(){
 
     // created the above tree given in the comment
     // {10, 20, 40, -1, -1, 50, -1, -1, 30, 60, -1, -1, 70, -1, -1}
-    cout << " Preorder Traversal of the Node "<< endl;
+    cout << "Preorder Traversal of the Tree "<< endl;
     root->preOrderTraversal(root);
     cout << endl;
 
 
-    cout << " Inorder Traversal of the Node "<< endl;
+    cout << "Inorder Traversal of the Tree "<< endl;
     root->inOrderTraversal(root);
+    cout << endl;
+
+    cout << "PostOrder Traversal of the Tree "<< endl;
+    root->postOrderTraversal(root);
     cout << endl;
 
 
