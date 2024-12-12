@@ -186,7 +186,7 @@ using namespace std;
     }
 
 
-    Method 2
+    Method 2 (both have same complexity and Runtime so both answers are equally correct)
     TreeNode* process(TreeNode* root, TreeNode* p, TreeNode* q){
 
         if(root == NULL){
