@@ -127,8 +127,11 @@ using namespace std;
 */
 
 /*
-    236. Lowest Common Ancestor of a Binary Tree
+    It is Very Very Important Question - VVVIII
+    
+    236. Lowest Common Ancestor of a Binary Tree 
     (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+
 
     Method 1
 
@@ -224,4 +227,39 @@ using namespace std;
         return process(root, p, q);
     }
 
+*/
+
+
+/*
+    112. Path Sum (VVIII)
+    (https://leetcode.com/problems/path-sum/description/)
+
+    bool targetSumprocess(TreeNode* root, int targetSum, int currentSum){
+        if(currentSum == targetSum && root->left == NULL && root->right == NULL){
+            return true;
+        }
+        if(root == NULL){
+            return false;
+        }
+
+        bool lsum = false;
+        bool rsum = false;
+        if(root->left){
+         lsum = targetSumprocess(root->left, targetSum, currentSum + root->left->val);
+        }
+        if(root->right){
+         rsum = targetSumprocess(root->right, targetSum, currentSum + root->right->val);
+        }
+
+        return lsum || rsum ;
+        
+    }
+
+
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root == NULL){
+            return false;
+        }
+        return targetSumprocess(root, targetSum, root->val);
+    }
 */
