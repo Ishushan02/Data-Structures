@@ -263,3 +263,47 @@ using namespace std;
         return targetSumprocess(root, targetSum, root->val);
     }
 */
+
+/*
+    113. Path Sum II
+    (https://leetcode.com/problems/path-sum-ii/description/)
+
+    void storeSum(TreeNode* root, int targetSum, int currentSum, vector<int>& ans, vector<vector<int>>& sol){
+        if(currentSum == targetSum && root->left == NULL && root->right == NULL){
+            sol.push_back(ans);
+            return;
+        }
+
+        if(root == NULL){
+            return ;
+        }
+
+        if(root->left){
+            ans.push_back(root->left->val);
+            storeSum(root->left, targetSum, currentSum + root->left->val, ans, sol);
+            ans.pop_back();
+        }
+
+        if(root->right){
+            ans.push_back(root->right->val);
+            storeSum(root->right, targetSum, currentSum + root->right->val, ans, sol);
+            ans.pop_back();
+        }
+    }
+
+
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+        vector<vector<int>> sol;
+
+        if(root == NULL){
+            return sol;
+        }
+        int currentSum = root->val;
+        vector<int> ans = {root->val};
+        
+        
+        storeSum(root, targetSum, currentSum, ans, sol);
+
+        return sol;
+    }
+*/
