@@ -31,6 +31,8 @@ using namespace std;
     543. Diameter of Binary Tree
     (https://leetcode.com/problems/diameter-of-binary-tree/description/)
 
+    Method 1 O(n^2)
+
     int getHeight(TreeNode* root){
         if(root == NULL){
             return 0;
