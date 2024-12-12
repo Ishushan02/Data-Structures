@@ -75,3 +75,53 @@ using namespace std;
 /*
     THE ABOVE 2 PROBLEMS ARE SO IMPORTANT PLEASE SEE THE LOGIC AGAIN AND AGAIN- VVVVVIIIIIIMPORTANT
 */
+
+
+/*
+
+    110. Balanced Binary Tree (Asked in Many IV Questions)
+    (https://leetcode.com/problems/balanced-binary-tree/)
+
+    int height(TreeNode* node){
+
+        if(node == NULL){
+            return 0;
+        }
+
+        int leftheight = height(node->left);
+        int rightheight = height(node->right);
+
+        return max(leftheight, rightheight) + 1;
+    }
+
+    bool balance(TreeNode* node){
+        if(node == NULL){
+            return true;
+        }
+
+        int lheight = height(node->left);
+        int rheight = height(node->right);
+
+        // cout << "Node: " << node->val << "-" << lheight << ", " << rheight << endl;
+        
+        // the upper node is balanced or not
+        bool balanced = true;
+        if(abs(lheight - rheight) > 1){
+            balanced = false;
+        }
+
+        bool lbalanced = balance(node->left);
+        bool rbalanced = balance(node->right);
+
+        if(balanced && lbalanced && rbalanced){
+            return true;
+        }
+
+        return false;
+    }
+
+    bool isBalanced(TreeNode* root) {
+        return balance(root);
+    }
+
+*/
