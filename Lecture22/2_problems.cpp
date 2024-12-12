@@ -130,6 +130,8 @@ using namespace std;
     236. Lowest Common Ancestor of a Binary Tree
     (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 
+    Method 1
+
     bool ifexists(TreeNode* root, int checkNode){
         if(root == NULL){
             return false;
@@ -151,7 +153,6 @@ using namespace std;
         }
 
         if(ifexists(root, p->val) && ifexists(root, q->val)){
-            // ans = NULL;
             ans = root;
             cout << "Ans: " << ans->val << endl;
         }
@@ -182,6 +183,45 @@ using namespace std;
         checkNodes(root, p, q, ans);
 
         return ans;
+    }
+
+
+    Method 2
+    TreeNode* process(TreeNode* root, TreeNode* p, TreeNode* q){
+
+        if(root == NULL){
+            return NULL;
+        }
+
+        // p case
+        if(root->val == p->val){
+            return p;
+        }
+        // q case
+        if(root->val == q->val){
+            return q;
+        }
+
+        TreeNode* leftAns = process(root->left, p, q);
+        TreeNode* rightAns = process(root->right, p, q);
+
+        if(leftAns == NULL && rightAns == NULL){
+            return NULL;
+        }
+        else if(leftAns == NULL && rightAns != NULL){
+            return rightAns;
+        }else if(rightAns == NULL && leftAns != NULL){
+            return leftAns;
+        }
+
+        return root;
+
+
+
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        return process(root, p, q);
     }
 
 */
