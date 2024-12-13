@@ -310,4 +310,51 @@ using namespace std;
 
 /*
     CONSTRUCT Tree FROM PREORDER AND POST ORDER TRAVERSAL (VVVVVIIIIIII Question)
+
+    105. Construct Binary Tree from Preorder and Inorder Traversal
+    (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+    int getInorderIdx(vector<int>& inorder, int element){
+        for(int i = 0; i < inorder.size(); i++){
+            if(inorder[i] == element){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder, int &preorderstartIdx, int inorderstartIdx, int inorderendIdx, int arrSize){
+
+        if(preorderstartIdx >= arrSize){
+            return NULL;
+        }
+
+        if(inorderstartIdx > inorderendIdx){
+            return NULL;
+        }
+
+        TreeNode* root = new TreeNode(preorder[preorderstartIdx]);
+        
+
+        cout << preorder[preorderstartIdx] << endl;
+        int idx = getInorderIdx(inorder, preorder[preorderstartIdx]);
+        preorderstartIdx++;
+
+        root->left = buildTree(preorder, inorder, preorderstartIdx, inorderstartIdx, idx -1, arrSize);
+        root->right = buildTree(preorder, inorder, preorderstartIdx, idx + 1, inorderendIdx, arrSize);
+
+        return root;
+        
+
+    }
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int preorderstartIdx = 0;
+        int inorderstartIdx = 0;
+        int arrSize = inorder.size();
+        int inorderendIdx = arrSize - 1;
+        return buildTree(preorder, inorder, preorderstartIdx, inorderstartIdx, inorderendIdx, arrSize);
+    }
+    
 */
