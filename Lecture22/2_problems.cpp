@@ -311,6 +311,8 @@ using namespace std;
 /*
     CONSTRUCT Tree FROM PREORDER AND POST ORDER TRAVERSAL (VVVVVIIIIIII Question)
 
+    Method 1 O(n2) {going on each node * searching for index in inorder Index}
+
     105. Construct Binary Tree from Preorder and Inorder Traversal
     (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 
@@ -355,6 +357,50 @@ using namespace std;
         int arrSize = inorder.size();
         int inorderendIdx = arrSize - 1;
         return buildTree(preorder, inorder, preorderstartIdx, inorderstartIdx, inorderendIdx, arrSize);
+    }
+
+
+    Method 2 O(n)
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder, unordered_map<int, int> &inorderIndex, int &preorderstartIdx, int inorderstartIdx, int inorderendIdx, int arrSize){
+
+        if(preorderstartIdx >= arrSize){
+            return NULL;
+        }
+
+        if(inorderstartIdx > inorderendIdx){
+            return NULL;
+        }
+
+        TreeNode* root = new TreeNode(preorder[preorderstartIdx]);
+        
+
+        // cout << preorder[preorderstartIdx] << endl;
+        int idx = inorderIndex[preorder[preorderstartIdx]];
+        preorderstartIdx++;
+
+        root->left = buildTree(preorder, inorder, inorderIndex, preorderstartIdx, inorderstartIdx, idx -1, arrSize);
+        root->right = buildTree(preorder, inorder, inorderIndex, preorderstartIdx, idx + 1, inorderendIdx, arrSize);
+
+        return root;
+        
+
+    }
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int preorderstartIdx = 0;
+        int inorderstartIdx = 0;
+        int arrSize = inorder.size();
+        int inorderendIdx = arrSize - 1;
+        // TO get index we store index value in map by which time complexity will change
+        // from O(n) - O(1) for accessing index of inorder element
+
+        unordered_map<int, int> inorderIndex;
+        for(int i = 0; i < arrSize; i++){
+            inorderIndex[inorder[i]] = i;
+        }
+
+        return buildTree(preorder, inorder, inorderIndex, preorderstartIdx, inorderstartIdx, inorderendIdx, arrSize);
     }
     
 */
