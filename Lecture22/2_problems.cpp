@@ -542,5 +542,44 @@ using namespace std;
         
         return ans;
     }
-    
+
+*/
+
+
+/*
+
+    Left View of Binary Tree
+    (https://www.geeksforgeeks.org/problems/left-view-of-binary-tree/1)
+
+
+    void levelNodes(Node* root, map<int, vector<int>> &values, int height){
+        if(root == NULL){
+            return ;
+        }
+        
+        values[height].push_back(root->data);
+        levelNodes(root->left, values, height+1);
+        levelNodes(root->right, values, height+1);
+        
+    }
+  
+    vector<int> leftView(Node *root) {
+        // code here
+        vector<int> ans;
+        if(root == NULL){
+            return ans;
+        }
+        // ans.push_back(root->data);
+        
+        // getLeftNodes(root, ans, root->data);
+        map<int, vector<int>> values;
+        levelNodes(root, values, 0);
+        
+        for(auto idx:values){
+            // vector<int> val = idx
+            ans.push_back(idx.second[0]);
+        }
+        return ans;
+    }
+
 */
