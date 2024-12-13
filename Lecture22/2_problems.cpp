@@ -457,3 +457,90 @@ using namespace std;
     NOTE THIS IN MIND, IT'S VERY IMPORTANT FOR THIS TYPE OF PROBLEMS
 
 */
+
+/*
+
+    Tree Boundary Traversal
+    (https://www.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1)
+
+
+    void getLeftNodes(Node* root, vector<int> &arr, int val){
+        
+        if(root == NULL){
+            return ;
+        }
+        
+        if(root->left == NULL && root->right == NULL){
+            return ;
+        }
+        // cout << root->data << endl;
+        if(root->data != val){
+            arr.push_back(root->data);
+        }
+        
+        if(root->left){
+            getLeftNodes(root->left, arr, val);
+        }else{
+            getLeftNodes(root->right, arr, val);
+        }
+        
+    
+    }
+    
+    void getRightNodes(Node* root, vector<int> &arr, int val){
+        if(root == NULL){
+            return ;
+        }
+        // cout << root->data << endl;
+        if(root->left == NULL && root->right == NULL){
+            return ;
+        }
+        
+        if(root->right){
+            getRightNodes(root->right, arr, val);
+        }else{
+            getRightNodes(root->left, arr, val);
+        }
+        
+        if(root->data != val){
+            arr.push_back(root->data); // it should be reversed right
+        }
+        
+    
+    }
+    
+    void getLeafNodes(Node* root, vector<int> &arr, int val){
+        if(root == NULL){
+            return ;
+        }
+        if(root->left == NULL && root->right == NULL && root->data != val){
+            // cout << root->data << endl;
+            
+            arr.push_back(root->data);
+        }
+        
+        getLeafNodes(root->left, arr, val);
+        getLeafNodes(root->right, arr, val);
+        
+    
+    }
+  
+    vector<int> boundaryTraversal(Node *root) {
+        // code here
+        vector<int> ans;
+        
+        if(root == NULL){
+            return ans;
+        }
+        
+        
+        
+        ans.push_back(root->data);
+        getLeftNodes(root->left, ans, root->data);
+        getLeafNodes(root, ans, root->data);
+        getRightNodes(root->right, ans, root->data);
+        
+        return ans;
+    }
+    
+*/
