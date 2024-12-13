@@ -404,3 +404,47 @@ using namespace std;
     }
     
 */
+
+
+/*
+
+    106. Construct Binary Tree from Inorder and Postorder Traversal
+    (https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/)
+
+    TreeNode* GenerateTree(vector<int>& inorder, vector<int>& postorder, unordered_map<int, int> &inorderIdxMap, int &postorderIdx, int inorderStartIdx, int inorderendIdx){
+
+        if(postorderIdx < 0){
+            return NULL;
+        }
+
+        if(inorderStartIdx > inorderendIdx){
+            return NULL;
+        }
+
+        int rootElem = postorder[postorderIdx];
+        postorderIdx--;
+
+        int idx = inorderIdxMap[rootElem];
+
+        TreeNode* root = new TreeNode(rootElem);
+
+        root->right = GenerateTree(inorder, postorder, inorderIdxMap, postorderIdx, idx+1, inorderendIdx);
+        root->left = GenerateTree(inorder, postorder, inorderIdxMap, postorderIdx,inorderStartIdx, idx-1);
+
+        return root;
+    }
+
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        
+        unordered_map<int, int> inorderIdxMap;
+        for(int i = 0; i < inorder.size(); i++){
+            inorderIdxMap[inorder[i]] = i;
+        }
+
+        int postorderIdx = postorder.size() - 1;
+        int inorderStartIdx = 0;
+        int inorderendIdx = inorder.size() - 1;
+
+        return GenerateTree(inorder, postorder, inorderIdxMap, postorderIdx, inorderStartIdx, inorderendIdx);
+    }
+*/
