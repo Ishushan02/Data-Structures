@@ -649,3 +649,53 @@ using namespace std;
 
 
 */
+
+
+/*
+    Very Very Important Question- Took very much of my Time
+    Top View of Binary Tree 
+    (https://www.geeksforgeeks.org/problems/top-view-of-binary-tree/1)
+
+    vector<int> topView(Node *root) {
+        // code here
+        vector<int> ans;
+        if(root == NULL){
+            return ans;
+        }
+        queue<pair<Node*, int>> que;
+        unordered_map<int, Node*> minDistmap;
+        que.push(make_pair(root, 0));
+        
+        int minDist = INT_MAX;
+        int maxDist = INT_MIN;
+        
+        while(!que.empty()){
+            pair<Node*, int> value = que.front();
+            Node* topNode = value.first;
+            int dist = value.second;
+            que.pop();
+            
+            minDist = min(minDist, dist);
+            maxDist = max(maxDist, dist);
+            
+            if(minDistmap.find(dist) == minDistmap.end()){
+                minDistmap[dist] = topNode;
+            }
+            
+            if(topNode->left){
+                que.push(make_pair(topNode->left, dist-1));
+            }
+            if(topNode->right){
+                que.push(make_pair(topNode->right, dist+1));
+            }
+            
+        }
+        
+        for(int i = minDist; i <= maxDist; i++){
+            Node* node = minDistmap[i];
+            ans.push_back(node->data);
+        }
+        
+        return ans;
+    }
+*/
