@@ -588,6 +588,9 @@ using namespace std;
     199. Binary Tree Right Side View
     (https://leetcode.com/problems/binary-tree-right-side-view/description/)
 
+
+
+    Method 1
     void levelNodes(TreeNode* root, map<int, vector<int>> &values, int height){
         if(root == NULL){
             return ;
@@ -615,5 +618,34 @@ using namespace std;
         }
         return ans;
     }
+
+
+    Method 2 (Good Method  and Efficient One the same can also be used in Left View)
+
+    void levelNodes(TreeNode* root, vector<int> &ans, int height){
+        if(root == NULL){
+            return ;
+        }
+
+        if(height == ans.size()){
+            ans.push_back(root->val);
+        }
+        
+        levelNodes(root->right, ans, height+1);
+        levelNodes(root->left, ans, height+1);
+        
+    }
+  
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ans;
+        if(root == NULL){
+            return ans;
+        }
+
+        levelNodes(root, ans, 0);
+    
+        return ans;
+    }
+
 
 */
