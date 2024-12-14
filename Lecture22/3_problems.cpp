@@ -100,3 +100,51 @@ using namespace std;
         return ans;
     }
 */
+
+
+/*
+    Bottom View of Binary Tree
+    (https://www.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1)
+
+    vector <int> bottomView(Node *root) {
+        // Your Code Here
+        
+        vector<int> ans;
+        if(root == NULL){
+            return ans;
+        }
+        
+        queue<pair<Node*, int>> que;
+        map<int, int> ansMap;
+        
+        que.push(make_pair(root, 0));
+        ansMap[0] = root->data;
+        
+        while(!que.empty()){
+            
+            pair<Node*, int> topelem = que.front();
+            Node* topNode = topelem.first;
+            int height = topelem.second;
+            
+            que.pop();
+            
+            ansMap[height] = topNode->data;
+            
+            if(topNode->left){
+                que.push(make_pair(topNode->left, height - 1));
+            }
+            if(topNode->right){
+                que.push(make_pair(topNode->right, height + 1));
+            }
+            
+        }
+        
+        for(auto i:ansMap){
+            ans.push_back(i.second);
+        }
+        
+        return ans;
+        
+    }
+    
+*/
