@@ -148,3 +148,60 @@ using namespace std;
     }
     
 */
+
+/*
+    662. Maximum Width of Binary Tree
+    (https://leetcode.com/problems/maximum-width-of-binary-tree/description/)
+
+    void levelOrderTraversal(queue<pair<TreeNode*, int>> &que, map<int, vector<unsigned long long int>> &ansMap, unsigned long long int parentIndex){
+        if(que.empty()){
+            return ;
+        }
+
+        pair<TreeNode*, int> frontElem = que.front();
+        TreeNode* currNode = frontElem.first;
+        int height = frontElem.second;
+        que.pop();
+
+        ansMap[height].push_back(parentIndex);
+
+        unsigned long long int leftChild = 2 * parentIndex;
+        unsigned long long int rightChild = 2 * parentIndex + 1;
+
+        if(currNode->left){
+            que.push(make_pair(currNode->left, height + 1));
+            levelOrderTraversal(que, ansMap, leftChild);
+        }
+        if(currNode->right){
+            que.push(make_pair(currNode->right, height + 1));
+            levelOrderTraversal(que, ansMap, rightChild);
+        }
+
+
+        
+    }
+
+
+    int widthOfBinaryTree(TreeNode* root) {
+        
+        queue<pair<TreeNode*, int>> que;
+        map< int, vector<unsigned long long int>> ansMap;
+        unsigned long long int index = 1;
+        que.push(make_pair(root, 0));
+        levelOrderTraversal(que, ansMap, index);
+
+        unsigned long long maxWidth = 1;
+        for(auto val:ansMap){
+            vector<unsigned long long > arr = val.second;
+            int n = arr.size();
+            if(n > 1){
+                // cout << val.first <<": " <<arr[0] << " " << arr[n - 1] << endl;
+                maxWidth = max(maxWidth, arr[n - 1] - arr[0] + 1);
+            }
+
+        }
+
+        return maxWidth;
+
+    }
+*/
