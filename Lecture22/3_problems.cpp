@@ -204,4 +204,48 @@ using namespace std;
         return maxWidth;
 
     }
+
+
+    Method 2 (Efficient Method)
+
+    int widthOfBinaryTree(TreeNode* root) {
+        queue<pair<TreeNode*, unsigned long long int>> que;
+        unsigned long long int maxWidth = 0;
+
+        if (root == NULL){
+            return maxWidth;
+        }
+
+        que.push(make_pair(root, 1));
+
+        while(!que.empty()){
+
+            int size = que.size();
+
+            pair<TreeNode*, unsigned long long int> firstelem = que.front();
+            pair<TreeNode*, unsigned long long int> lastelem = que.back();
+
+            maxWidth = max(maxWidth, lastelem.second - firstelem.second + 1);
+
+            for(int i = 0; i < size; i++){
+                pair<TreeNode*, unsigned long long int> frontElem = que.front();
+                que.pop();
+
+                TreeNode* node = frontElem.first;
+                unsigned long long int currIdx = frontElem.second;
+
+                if(node->left){
+                    que.push(make_pair(node->left, currIdx * 2));
+                }
+                if(node->right){
+                    que.push(make_pair(node->right, currIdx * 2 + 1));
+                }
+
+            }
+
+        }
+        return maxWidth;
+
+
+    }
 */
