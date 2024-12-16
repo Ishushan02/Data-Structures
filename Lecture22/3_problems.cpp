@@ -249,3 +249,107 @@ using namespace std;
 
     }
 */
+
+/*
+
+    Very Very Good Question
+
+    863. All Nodes Distance K in Binary Tree
+    (https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/)
+
+    void  traverseNodes(TreeNode* root, unordered_map<TreeNode*, TreeNode*> &nodeMap){
+        if(root == NULL){
+            return ;
+        }
+
+        // cout << root->val << " -- " << dist << " -- " << sol << endl;
+        if(root->left){
+            nodeMap[root->left] = root;
+        }
+
+        if(root->right){
+            nodeMap[root->right] = root;
+        }
+
+        // sol = dist;
+        traverseNodes(root->left, nodeMap);
+        traverseNodes(root->right, nodeMap);
+        
+    }
+
+
+    vector<int>  TraverseSol(TreeNode* target, unordered_map<TreeNode*, TreeNode*> &nodesConnected, int dist, int k){
+
+        unordered_map<int, bool> visited;
+        queue<TreeNode* > que;
+
+        que.push(target);
+        visited[target->val] = true;
+        int distance = 0;
+
+        while(!que.empty()){
+            
+            int size = que.size();
+            // que.pop();
+
+            if(distance == k){
+                break;
+            }
+
+            for(int i = 0; i < size; i++) {
+                TreeNode* frontNode = que.front();
+                if(frontNode->left && visited.find(frontNode->left->val) == visited.end()){
+                    que.push(frontNode->left);
+                    visited[frontNode->left->val] = true;
+                }
+
+                if(frontNode->right && visited.find(frontNode->right->val) == visited.end()){
+                    que.push(frontNode->right);
+                    visited[frontNode->right->val] = true;
+
+                }
+
+                if(nodesConnected.find(frontNode) != nodesConnected.end()){
+                    TreeNode* parentNode = nodesConnected[frontNode];
+                    if(visited.find(parentNode->val) == visited.end()){
+                        que.push(parentNode);
+                        visited[parentNode->val] = true;
+                    }
+                }
+                que.pop();
+            
+            }
+            distance += 1;
+
+        }
+
+        vector<int> ans;
+        while(!que.empty()){
+            TreeNode* frontNode = que.front();
+            ans.push_back(frontNode->val);
+            que.pop();
+        }
+
+        return ans;
+
+    }
+    
+
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        
+        int dist = 0;
+        vector<int> ans;
+        unordered_map<TreeNode*, TreeNode*> nodesConnected;
+        // nodesConnected[root] = NULL;
+        traverseNodes(root, nodesConnected);
+
+        // for(auto value:nodesConnected){
+        //     cout << value.first->val << " : " << value.second->val << endl;
+        // }
+
+        return TraverseSol(target, nodesConnected, 0, k);
+
+        // return ans;
+    }
+
+*/
