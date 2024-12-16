@@ -414,3 +414,49 @@ using namespace std;
 
     }
 */
+
+/*
+
+    968. Binary Tree Cameras
+    (https://leetcode.com/problems/binary-tree-cameras/submissions/1480616371/)
+
+    // 2 Installed, 1 Covered, 0 not covered, TRaverse from Bottom to Top(Post Order)
+    // 1  (cov) and 1 (cov) -> ret 0 curr not covered
+    // 0 or anything --> ret 2 install camera in curr node
+    // 2 or anything --> ret 1 current node is covered
+
+    int coverNodes(TreeNode* root, int &camCount){
+        if(root == NULL){
+            return 1; // asssuming leaves to be covered
+        }
+
+        int leftCov = coverNodes(root->left, camCount);
+        int rightCov = coverNodes(root->right, camCount);
+
+        if(leftCov == 0 || rightCov == 0){
+            camCount++;
+            return 2; // need to install camera
+        }
+
+        if(leftCov == 2 || rightCov == 2){
+            return 1; // already covered
+        }
+        
+        
+        return 0; // this is not covered
+
+    }
+
+
+    int minCameraCover(TreeNode* root) {
+
+        int ans = 0;
+        int rootState = coverNodes(root, ans);
+        if(rootState == 0){
+            ans++ ; // installing camera at root Node
+        }
+        
+        return ans;
+    }
+
+*/
