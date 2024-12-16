@@ -353,3 +353,64 @@ using namespace std;
     }
 
 */
+
+/*
+
+    (DO IT AGAIN ------- IT's Good INTERVIEW LEVEL QUESTION)
+
+    222. Count Complete Tree Nodes
+    (https://leetcode.com/problems/count-complete-tree-nodes/description/)
+
+
+    // logn n time
+    int lheight(TreeNode* root, int height){
+        if(root == NULL){
+            return height;
+        }
+
+        return lheight(root->left, height + 1);
+    }
+
+    // logn n time
+    int rheight(TreeNode* root, int height){
+        if(root == NULL){
+            return height;
+        }
+
+        return rheight(root->right, height + 1);
+    }
+
+    int getCount(TreeNode* root, int lh, int rh, int nodes){
+        if(root == NULL){
+            return nodes;
+        }
+
+        lh = lheight(root, 0);
+        rh = rheight(root, 0);
+
+        if(lh == rh){
+
+            nodes += pow(2, lh) - 1;
+            return nodes;
+        }
+
+        int lans = getCount(root->left, lh, rh, nodes);
+        int rans = getCount(root->right, lh, rh, nodes);
+        
+
+        return 1 + lans + rans;
+    }   
+
+    int countNodes(TreeNode* root) {
+        int ans = 0;
+
+        int lh = 0;
+        int rh = 0; 
+        int nodes = 0;
+        // cout << lheight(root, 0) << endl;
+        // cout << rheight(root, 0) << endl;
+
+        return getCount(root, lh, rh, nodes);
+
+    }
+*/
