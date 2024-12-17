@@ -667,7 +667,7 @@ vector<int> diagonal(Node *root)
 */
 
 /*
-    987. Vertical Order Traversal of a Binary Tree (NEW CONCEPT)
+    987. Vertical Order Traversal of a Binary Tree (NEW CONCEPT: multiset)
     (https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/)
 
     void assignOrder(TreeNode* root, int col, int row, map<int, vector<int>> &rowMap, map<int, map<int, multiset<int>>> &valMap){
