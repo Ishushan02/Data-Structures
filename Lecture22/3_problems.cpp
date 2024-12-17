@@ -665,3 +665,56 @@ vector<int> diagonal(Node *root)
     }
 
 */
+
+/*
+    987. Vertical Order Traversal of a Binary Tree (NEW CONCEPT)
+    (https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/)
+
+    void assignOrder(TreeNode* root, int col, int row, map<int, vector<int>> &rowMap, map<int, map<int, multiset<int>>> &valMap){
+        if(root == NULL){
+            return;
+        }
+
+        // {
+        //     col : 
+        //     {
+        //         row : data;
+        //     }
+        // }
+
+        // { col : {row : x, y, z, a ,. ... }} {inside elements will be sorted because of multiset}
+  
+        valMap[col][row].insert(root->val);
+        assignOrder(root->right, col+1,  row + 1, rowMap, valMap);
+        assignOrder(root->left, col-1, row +1, rowMap, valMap);
+
+
+    }
+
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        
+        vector<vector<int>> ans;
+
+        if(root == NULL){
+            return ans;
+        }
+        int col = 0;
+        int row = 0;
+        map<int, vector<int>> rowMap;
+        map<int, map<int, multiset<int>>> valMap;
+        assignOrder(root, col, row, rowMap, valMap);
+
+        for(auto v:valMap){
+            map<int, multiset<int>> data = v.second;
+            vector<int> temp;
+            for (auto each_val : data){
+                // cout << each
+                temp.insert(temp.end(), each_val.second.begin(), each_val.second.end());
+            }
+            ans.push_back(temp);
+        }
+
+        return ans;
+    }
+
+*/
