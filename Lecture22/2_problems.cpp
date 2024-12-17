@@ -69,6 +69,34 @@ using namespace std;
     int diameterOfBinaryTree(TreeNode* root) {
         return getDiameter(root);
     }
+
+
+    Method 2 O(n)
+
+    int height(TreeNode* node, int &diameter){
+        if(node == NULL){
+            return 0;
+        }
+        
+        int lh = height(node->left, diameter);
+        int rh = height(node->right, diameter);
+
+        if (lh + rh > diameter){
+            diameter = lh + rh;
+        }
+
+        return max(lh, rh) + 1;
+    }
+
+
+    int diameterOfBinaryTree(TreeNode* root) {
+        
+        int diameter = 0;
+        int h = height(root, diameter);
+
+        return diameter;
+    }
+    
 */
 
 
