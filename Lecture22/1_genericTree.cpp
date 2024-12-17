@@ -7,18 +7,18 @@ using namespace std;
     ALWAYS SOLVE THE TREE QUESTION BY MAKING DIAGRAM FIRST -- VERY VERY IMPORTANT
 
     Trees is a Non Linear Data Structure
-                                    10                                            Level0
+                                    10                                            Level 0
 
 
-                    20                             30                             Level1
+                    20                             30                             Level 1
  
                       
-            40               50           60                      70              Level2
+            40               50           60                      70              Level 2
 
 
             - Adjacent Nodes are known as Siblings if they are from same parent Node.
             - Root Node is the top Node from which all nodes are generated
-            - Nod which has no child at all is known as leaf Node
+            - Node which has no child at all is known as leaf Node
             - Binary tree is a tree in which a Node will have either 1 or 2 Node as it's child 
             - Nodes above the parent Node is known as Ancestor Node
     

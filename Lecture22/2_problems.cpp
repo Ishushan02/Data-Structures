@@ -80,7 +80,7 @@ using namespace std;
 /*
 
     110. Balanced Binary Tree (Asked in Many IV Questions)
-    (https://leetcode.com/problems/balanced-binary-tree/)
+    (https://leetcode.com/problems/balanced-binary-tree/) O(n2)
 
     int height(TreeNode* node){
 
@@ -122,6 +122,34 @@ using namespace std;
 
     bool isBalanced(TreeNode* root) {
         return balance(root);
+    }
+
+
+    Method 2 O(n)
+
+    int getHeight(TreeNode* root, bool &isbalanced){
+        if(root == NULL){
+            return 0;
+        }
+
+        int lh = getHeight(root->left, isbalanced);
+        int rh = getHeight(root->right, isbalanced);
+
+        if(abs(lh - rh) > 1){
+            isbalanced = false;
+        }
+
+        return max(lh, rh) + 1;
+    }
+
+
+    bool isBalanced(TreeNode* root) {
+        
+        bool isbalanced = true;
+
+        int h = getHeight(root, isbalanced);
+
+        return isbalanced;
     }
 
 */
