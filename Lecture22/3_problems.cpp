@@ -581,7 +581,8 @@ using namespace std;
 
 /*
 
-    Diagonal Tree Traversal
+    Method 1 Diagonal Tree Traversal
+
     (https://www.geeksforgeeks.org/problems/diagonal-traversal-of-binary-tree/1)
 
     void numberNodes(Node* root, int height, map<int, vector<int>> &ansMap){
@@ -621,4 +622,46 @@ vector<int> diagonal(Node *root)
    
    return ans;
 }
+
+
+    // Method 2 
+    // Procedure is (get the root node initially in the que),
+
+    // ans vector
+    // store all the right node of the node present in que in to Ans Vector
+    // ans check in between if there is left of it, store that in que  
+
+    // repeat this untill que is empty
+
+
+    vector<int> diagonal(Node *root)
+    {
+    // your code here
+    
+    queue<Node*> que;
+    vector<int> ans;
+    
+    que.push(root);
+        //   ans.push(root->data);
+    while(!que.empty()){
+        
+            Node* topNode = que.front();
+            que.pop();
+            
+            while(topNode){
+                ans.push_back(topNode->data);
+                if(topNode->left){
+                    que.push(topNode->left);
+                }
+                
+                topNode = topNode->right;
+            }
+        
+    }
+    
+    return ans;
+    
+    
+    }
+
 */
