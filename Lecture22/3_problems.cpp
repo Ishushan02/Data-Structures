@@ -461,3 +461,36 @@ using namespace std;
 
 */
 
+/*
+
+    100. Same Tree
+    (https://leetcode.com/problems/same-tree/description/)
+
+    void isIdenticalTree(TreeNode* proot, TreeNode* qroot, bool &isIdentical){
+        if(proot == NULL && qroot == NULL){
+            return ;
+        }else if (proot == NULL && qroot != NULL){
+            isIdentical = false;
+            return ;
+        }else if (proot != NULL && qroot == NULL){
+            isIdentical = false;
+            return ;
+        }
+
+        if(proot->val != qroot->val){
+            isIdentical = false;
+        }
+
+        isIdenticalTree(proot->left, qroot->left, isIdentical);
+        isIdenticalTree(proot->right, qroot->right, isIdentical);
+
+    }
+
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        
+        bool isIdentical = true;
+        isIdenticalTree(p, q, isIdentical);
+        return isIdentical;
+
+    }
+*/
