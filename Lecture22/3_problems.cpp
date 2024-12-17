@@ -578,3 +578,47 @@ using namespace std;
     }
 
 */
+
+/*
+
+    Diagonal Tree Traversal
+    (https://www.geeksforgeeks.org/problems/diagonal-traversal-of-binary-tree/1)
+
+    void numberNodes(Node* root, int height, map<int, vector<int>> &ansMap){
+    if(root == NULL){
+        return;
+    }
+    
+    if(root->right){
+        numberNodes(root->right, height, ansMap);
+    }
+    if(root->left){
+        numberNodes(root->left, height + 1, ansMap);
+    }
+    ansMap[height].push_back(root->data);
+    
+    // cout << root->data << ": " << height << endl;
+}
+
+vector<int> diagonal(Node *root)
+{
+   // your code here
+   int height = 0;
+     map<int, vector<int>> ansMap;
+   numberNodes(root, height, ansMap);
+   vector<int> ans ;
+   
+   for(auto val:ansMap){
+       vector<int> arr = val.second;
+       reverse(arr.begin(), arr.end());
+    //   for(auto j : arr){
+    //       cout << j << " ";
+    //   }
+    //   cout << endl;
+      ans.insert(ans.end(), arr.begin(), arr.end());
+       
+   }
+   
+   return ans;
+}
+*/
