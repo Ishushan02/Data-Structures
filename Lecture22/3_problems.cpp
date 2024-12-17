@@ -494,3 +494,57 @@ using namespace std;
 
     }
 */
+
+/*
+    103. Binary Tree Zigzag Level Order Traversal
+    (https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/)
+
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        
+        queue<pair<TreeNode*, int>> que;
+        vector<vector<int>> ans;
+        map<int, vector<int>> values;
+
+        if(root == NULL){
+            return ans;
+        }
+
+
+        que.push(make_pair(root, 0));
+
+        while(!que.empty()){
+
+            pair<TreeNode*, int> frontElem = que.front();
+            TreeNode* node = frontElem.first;
+            int height = frontElem.second;
+            values[height].push_back(node->val);
+            que.pop();
+
+            if(node->left){
+                que.push(make_pair(node->left, height + 1));
+            }
+            if(node->right){
+                que.push(make_pair(node->right, height + 1));
+            }
+            
+        }
+
+        bool reverseVal = false;
+        for(auto val:values){
+            
+            vector<int> arr = val.second;
+            if(reverseVal){
+                reverse(arr.begin(), arr.end());
+                ans.push_back(arr);
+                reverseVal = false;
+            }else{
+                ans.push_back(arr);
+                reverseVal = true;
+            }
+            
+        }
+
+        return ans;
+
+    }
+*/
