@@ -548,3 +548,33 @@ using namespace std;
 
     }
 */
+
+/*
+    Transform to Sum Tree
+    (https://www.geeksforgeeks.org/problems/transform-to-sum-tree/1)
+
+    int addNodes(Node* node){
+        if(node == NULL){
+            return 0;
+        }
+        
+        
+        int lSum = addNodes(node->left);
+        int rSum = addNodes(node->right);
+        
+        int totalSum = node->data + lSum + rSum;
+        // cout << node->data << " - " << totalSum << " - " << lSum + rSum << endl;
+        node->data = lSum + rSum;
+        
+        
+        return totalSum;
+    }
+    
+    void toSumTree(Node *node)
+    {
+        // Your code here
+        
+        addNodes(node);
+    }
+
+*/
