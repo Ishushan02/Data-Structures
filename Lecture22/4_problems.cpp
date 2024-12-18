@@ -119,4 +119,39 @@
         return ans;
         
     }
+
+
+    Method 2 (Good Method )
+
+    pair<int, int> MaxSum(Node* root){
+        if(root == NULL){
+            return {0, 0};
+        }
+        
+        auto lheight = MaxSum(root->left);
+        auto rheight = MaxSum(root->right);
+        
+        int maxSum = root->data;
+        
+        if(lheight.first == rheight.first){ //comparing height
+            if(lheight.second > rheight.second){
+                maxSum += lheight.second;
+            }else{
+                maxSum += rheight.second;
+            }
+        }else if(lheight > rheight){
+            maxSum += lheight.second;
+        }else{
+            maxSum += rheight.second;
+        }
+    
+        return {max(lheight.first, rheight.first) + 1, maxSum};      
+    }
+  
+    int sumOfLongRootToLeafPath(Node *root) {
+        // code here
+        auto Sum = MaxSum(root);
+        return Sum.second;
+    }
+    
 */
