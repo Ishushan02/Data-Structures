@@ -45,3 +45,35 @@
     }
 
 */
+
+/*
+    114. Flatten Binary Tree to Linked List (Think Like Morris Traversal)
+    (https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/)
+
+    void flatten(TreeNode* root) {
+        
+        if(root == NULL){
+            return ;
+        }
+
+        TreeNode* currNode = root;
+
+        while(currNode){
+            // like Morris Traversal point get the right most and pin it to root->right
+            if(currNode->left){
+                TreeNode* predecessor = currNode->left;
+                while(predecessor->right){
+                    predecessor = predecessor->right;
+                }
+
+                predecessor->right = currNode->right;
+                currNode->right = currNode->left;
+                currNode->left = nullptr;
+                
+            }
+            currNode = currNode->right;
+
+        }
+
+    }
+*/
