@@ -77,3 +77,46 @@
 
     }
 */
+
+/*
+    Sum of nodes on the longest path
+    (https://www.geeksforgeeks.org/problems/sum-of-the-longest-bloodline-of-a-tree/1)
+
+    int sumNodes(Node* root, int prevSum, int height, unordered_map<int, int> &ansMap){
+        if(root == NULL){
+            return 0;
+        }
+        // cout << root->data << " " << height << " - " << prevSum + root->data << endl;
+        if(root->left == NULL && root->right == NULL){
+            if(ansMap.find(height) == ansMap.end()){
+                ansMap[height] = prevSum + root->data;
+            }else{
+                int temp = ansMap[height];
+                ansMap[height] = max(prevSum+ root->data, temp);
+            }
+        }
+        sumNodes(root->left, prevSum + root->data, height + 1, ansMap);
+        sumNodes(root->right, prevSum + root->data, height + 1, ansMap);
+        
+    }
+  
+    int sumOfLongRootToLeafPath(Node *root) {
+        // code here
+        int ans = 0;
+        if(root == NULL){
+            return ans;
+        }
+        unordered_map<int, int> ansMap;
+        int maxH = INT_MIN;
+        sumNodes(root, 0, 0, ansMap);
+        for(auto val:ansMap){
+            // cout << val.first << ": " << val.second << endl;
+            if(val.first > maxH){
+                maxH = val.first;
+                ans = val.second;
+            }
+        }
+        return ans;
+        
+    }
+*/
