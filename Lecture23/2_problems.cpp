@@ -222,3 +222,37 @@
         return ans;
     }
 */
+
+/*
+    235. Lowest Common Ancestor of a Binary Search Tree
+    (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
+
+
+    Method 2 {Use BST Property}
+        TreeNode* processLCA(TreeNode* root, TreeNode* p, TreeNode* q){
+
+        if(root == NULL){
+            return NULL;
+        }
+
+        if (p->val < root->val && q->val < root->val){
+            TreeNode* lans = processLCA(root->left, p, q);
+            if(lans != NULL){
+                return lans;
+            }
+            
+        }else if (p->val > root->val && q->val > root->val){
+            TreeNode* rans = processLCA(root->right, p, q);
+            if(rans != NULL){
+                return rans;
+            }
+        }
+
+        return root;
+       
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        return processLCA(root, p, q);
+    }
+*/
