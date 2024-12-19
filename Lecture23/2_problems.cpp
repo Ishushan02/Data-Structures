@@ -259,7 +259,7 @@
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         return processLCA(root, p, q);
     }
-    
+
 
     Method 2 {Use BST Property}
         TreeNode* processLCA(TreeNode* root, TreeNode* p, TreeNode* q){
@@ -268,12 +268,14 @@
             return NULL;
         }
 
+        // Node lies in left part
         if (p->val < root->val && q->val < root->val){
             TreeNode* lans = processLCA(root->left, p, q);
             if(lans != NULL){
                 return lans;
             }
-            
+        
+        // Node lies in right part
         }else if (p->val > root->val && q->val > root->val){
             TreeNode* rans = processLCA(root->right, p, q);
             if(rans != NULL){
@@ -281,6 +283,7 @@
             }
         }
 
+        //else root is the common one
         return root;
        
     }
