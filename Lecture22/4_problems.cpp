@@ -153,5 +153,39 @@
         auto Sum = MaxSum(root);
         return Sum.second;
     }
-    
+
+*/
+
+/*
+    Maximum sum of Non-adjacent nodes (Good Question )
+    (https://www.geeksforgeeks.org/problems/maximum-sum-of-non-adjacent-nodes/1)
+
+    // include, exclude
+    pair<int, int> getSum(Node* root){
+        if(root == NULL){
+            return {0,0};
+        }
+        
+        auto lsum = getSum(root->left);
+        auto rsum = getSum(root->right);
+        
+        // include
+        int a = root->data + lsum.second + rsum.second;
+        
+        // exclude
+        int b = max(lsum.first, lsum.second) + max(rsum.first, rsum.second);
+        
+
+        return {a, b};
+    }
+  
+    //Function to return the maximum sum of non-adjacent nodes.
+    int getMaxSum(Node *root) 
+    {
+        // Add your code here
+        auto ans = getSum(root);
+        return max(ans.first, ans.second);
+    }
+
+
 */
