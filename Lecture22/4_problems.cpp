@@ -189,3 +189,100 @@
 
 
 */
+
+/*
+    Burning Tree
+    (https://www.geeksforgeeks.org/problems/burning-tree/1)
+
+    void getParent(Node* root, unordered_map<Node*, Node*> &parentNode){
+        
+        if(root == NULL){
+            return ;
+        }
+        
+        if(root->left){
+            parentNode[root->left] = root;
+        }
+        if(root->right){
+            parentNode[root->right] = root;
+        }
+        
+        
+        getParent(root->left, parentNode);
+        getParent(root->right, parentNode);
+        
+    }
+    
+    Node* getTarget(Node* root, int target){
+        if(root == NULL){
+            return NULL;
+        }
+        
+        if(root->data == target){
+            return root;
+        }
+        Node* n1 = getTarget(root->left, target);
+        
+        Node* n2 = getTarget(root->right, target);
+        if(n1 != NULL && n1->data == target){
+            return n1;
+        }else if(n2 != NULL && n2->data == target){
+            return n2;
+        }
+        
+        return NULL;
+    }
+  
+    int minTime(Node* root, int target) {
+        // code here
+        
+        unordered_map<Node*, Node*> parentNode;
+        getParent(root, parentNode);
+        unordered_map<Node*, bool> visitedNode;
+        
+        // cout << parentNode.size() << endl;
+        Node* targetNode = getTarget(root, target);
+        
+        // cout << targetNode->left->data << " - " << targetNode->right->data << endl;
+        
+        queue<Node*> que;
+        que.push(targetNode);
+        visitedNode[targetNode] = true;
+        
+        int ans = -1;
+        while(!que.empty()){
+            
+            int size = que.size();
+            
+            for(int i = 0; i < size; i++){
+                
+                Node* frontNode = que.front();
+                // cout << frontNode->data << " ";
+                
+                if(frontNode->left != NULL && visitedNode.find(frontNode->left) == visitedNode.end()){
+                    que.push(frontNode->left);
+                    visitedNode[frontNode->left] = true;
+                }
+                if(frontNode->right != NULL && visitedNode.find(frontNode->right) == visitedNode.end()){
+                    que.push(frontNode->right);
+                    visitedNode[frontNode->right] = true;
+                }
+                
+                if(parentNode.find(frontNode) != parentNode.end()){
+                    Node* parent = parentNode[frontNode];
+                    if(visitedNode.find(parent) == visitedNode.end()){
+                        que.push(parent);
+                        visitedNode[parent] = true;
+                    }
+                }
+                que.pop();
+            }
+            // cout << endl;
+            ans += 1;
+            
+            
+        }
+        
+        return ans;
+    }
+*/
