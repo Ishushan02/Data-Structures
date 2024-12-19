@@ -67,6 +67,76 @@ bool search(int val, Node* root){
     return ans1 || ans2;    
 }
 
+
+/*
+
+`Delete Node {All Cases}
+    if the Node has 2 child
+    if the Node has 1 left child
+    if the node has 1 right child
+    if the node doesn't have any child
+
+*/
+
+
+int getMax(Node* root){
+    if(root == NULL){
+        return -1;
+    }
+    while(root->right){
+        root = root->right;
+    }
+
+    return root->data;
+}
+
+Node* deleteNode(Node* root, int val){
+
+    if(root == NULL){
+        return NULL;
+    }
+
+    // search the node first
+    if(root->data == val){
+        // delete karna hai
+
+        if(root->left == NULL && root->right == NULL){ // no children
+            root = NULL;
+            delete root;
+            return NULL;
+        }else if(root->left != NULL && root->right == NULL){ // only left node is present
+            Node* leftchild = root->left;
+            root->left = NULL;
+            delete root;
+            return leftchild;
+        }else if(root->right != NULL && root->left == NULL){ // only right node is present
+            Node* rightchild = root->right;
+            root->right = NULL;
+            delete root;
+            return rightchild;
+        }else{ // both Nodes are present
+
+            // get next smallest element, which is max in the left of it
+            int maxVal = getMax(root->left);
+            root->data = maxVal; // replace root by that elemt
+
+            // delete the max left from left tree;
+            root->left = deleteNode(root->left, maxVal);
+            return root;
+
+        }
+        
+    }else{
+        if(val < root->data){
+            root->left = deleteNode(root->left, val);
+        }else{
+            root->right = deleteNode(root->right, val);
+        }
+    }
+    return root;
+    
+}
+
 int main(){
 
     int arr[] = {100, 50, 200, 70, 20, 250, 150, -1};
@@ -87,4 +157,15 @@ int main(){
 
     // The Min value of BST will be at the left->left->left.....
     // The Max value of BST will be at the right->right->right.......
+
+    cout << "Max element in Left Tree is " << getMax(root->left) << endl;
+    cout << "Max element in Right Tree is " << getMax(root->right) << endl;
+
+
+    // delete Node 
+    // deleteNode(root, 250);
+    // deleteNode(root, 200);
+    deleteNode(root, 100);
+    preOrder(root);
+
 }
