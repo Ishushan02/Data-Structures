@@ -192,4 +192,33 @@
 
         return arr[k - 1];
     }
+
+
+    // Method 2 (Same procedure without Space)
+
+    // method 2 without extra O(n) space
+
+    void inOrderTraversal(TreeNode* root, int &count, int &ans, int k){
+        if(root == NULL){
+            return ;
+        }
+        
+        inOrderTraversal(root->left, count, ans, k);
+        count = count + 1;
+        if(count == k){
+            ans = root->val;
+            cout << ":--"<< ans << endl;
+            // k = 100000;
+        }
+        inOrderTraversal(root->right, count, ans, k);
+
+    }
+
+    int kthSmallest(TreeNode* root, int k) {
+        int ans = 0;
+        int count = 0;
+        inOrderTraversal(root, count, ans, k);
+
+        return ans;
+    }
 */
