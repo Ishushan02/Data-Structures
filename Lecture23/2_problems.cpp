@@ -107,3 +107,66 @@
         return twoPointerSum(arr, k);
     }
 */
+
+/*
+    1038. Binary Search Tree to Greater Sum Tree
+    (https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/description/)
+
+    void getSum(TreeNode* root, TreeNode* currNode, int &ans){
+
+        if(root == NULL){
+            return ;
+        }
+
+        if(root->val > currNode->val){
+            ans += root->val;
+        }
+        getSum(root->left, currNode, ans);
+        getSum(root->right, currNode, ans);
+
+    }
+
+    void storeNodes(TreeNode* root, TreeNode* rootNode, unordered_map<int, int> &ansMap){
+        if(root == NULL){
+            return;
+        }
+        int ans = root->val;
+        getSum(rootNode, root, ans);
+        ansMap[root->val] = ans;
+
+        
+        storeNodes(root->left, rootNode, ansMap);
+        storeNodes(root->right, rootNode, ansMap);
+
+    }
+
+    void changeNodes(TreeNode* &root, unordered_map<int, int> &ansMap){
+        if(root == NULL){
+            return;
+        }
+        root->val = ansMap[root->val];
+        
+        changeNodes(root->left, ansMap);
+        changeNodes(root->right, ansMap);
+    }
+
+    TreeNode* bstToGst(TreeNode* root) {
+        if(root == NULL){
+            return NULL;
+        }
+        unordered_map<int, int> ansMap;
+        storeNodes(root, root, ansMap);
+        changeNodes(root, ansMap);
+        // for(auto values:ansMap){
+        //     // cout << values.first->val << " ParentNode: " << values.second->val << endl;
+        //     // int sum = getSum(values.second, values.first->val, values.first->val);
+        //     cout << values.first << ": " << values.second << endl;
+
+        // }
+        
+
+
+        return root;
+
+    }
+*/
