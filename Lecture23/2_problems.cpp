@@ -228,6 +228,39 @@
     (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
 
 
+    Method 1 // Normal Binary Tree Approach
+    TreeNode* processLCA(TreeNode* root, TreeNode* p, TreeNode* q){
+
+        if(root == NULL){
+            return NULL;
+        }
+
+        if(root->val == p->val){
+            return p;
+        }
+        if(root->val == q->val){
+            return q;
+        }
+
+        TreeNode* ans1 = processLCA(root->left, p, q);
+        TreeNode* ans2 = processLCA(root->right, p, q);
+
+        if(ans1 == NULL && ans2 == NULL){
+            return NULL;
+        }else if(ans1 != NULL && ans2 == NULL){
+            return ans1;
+        }else if(ans2 != NULL && ans1 == NULL){
+            return ans2;
+        }
+
+        return root;
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        return processLCA(root, p, q);
+    }
+    
+
     Method 2 {Use BST Property}
         TreeNode* processLCA(TreeNode* root, TreeNode* p, TreeNode* q){
 
