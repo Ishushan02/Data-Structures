@@ -63,3 +63,47 @@
     }
 
 */
+
+/*
+    653. Two Sum IV - Input is a BST
+    (https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/)
+
+    void preOrder(TreeNode* root, vector<int> &nodes){
+        if(root == NULL){
+            return ;
+        }
+        
+        preOrder(root->left, nodes);
+        nodes.push_back(root->val);
+        preOrder(root->right, nodes);
+
+    }
+
+    bool twoPointerSum(vector<int> arr, int k){
+        int start = 0;
+        int n = arr.size();
+        int end = n -1 ;
+
+        while(start < end){
+            int sum = arr[start] + arr[end];
+
+            if(sum == k){
+                return true;
+            }
+            else if(sum > k){
+                end--;
+            }else{
+                start++;
+            }
+        }
+        return false;
+    }
+
+    bool findTarget(TreeNode* root, int k) {
+        
+        vector<int> arr;
+        preOrder(root, arr);
+
+        return twoPointerSum(arr, k);
+    }
+*/

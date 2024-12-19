@@ -142,12 +142,11 @@ int main(){
     int arr[] = {100, 50, 200, 70, 20, 250, 150, -1};
     Node* root = NULL;
     for(auto i : arr){
-        if (i == -1){
+        if(i == -1){
             break;
         }else{
             root = BST(i, root);
         }
-
     }
 
     preOrder(root);
