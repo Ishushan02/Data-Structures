@@ -411,5 +411,57 @@
         createTree(root, ans);
         return ans;
     }
-    
+
+*/
+
+/*
+    109. Convert Sorted List to Binary Search Tree
+    (https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/description/)
+
+    Method 1 -> same as above 108
+    void createTree(int start, int end, vector<int> &nums, TreeNode* &root){
+
+        if(end < start || start > end){
+            return ;
+        }
+
+        int mid = (start + end) / 2;
+
+        TreeNode* newNode = new TreeNode(nums[mid]);
+
+        if(root == NULL){
+            root = newNode;
+        }else{
+            if(nums[mid] > root->val){
+                root->right = newNode;
+            }else{
+                root->left = newNode;
+            }
+        }
+
+        // left Subtree
+        createTree(start, mid - 1, nums, newNode);
+
+        //right Subtree
+        createTree(mid + 1, end, nums, newNode);
+
+
+    }
+
+    TreeNode* sortedListToBST(ListNode* head) {
+        vector<int> nums;
+
+        ListNode* temp = head;
+        while(temp){
+            nums.push_back(temp->val);
+            temp = temp->next;
+        }
+        int start = 0;
+        int end = nums.size() - 1;
+        TreeNode* root = NULL;
+        createTree(start, end, nums, root);
+
+        return root;
+    }
+
 */
