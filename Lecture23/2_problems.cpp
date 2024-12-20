@@ -319,6 +319,8 @@
 
         // left Subtree
         createTree(start, mid - 1, nums, newNode);
+
+        //right Subtree
         createTree(mid + 1, end, nums, newNode);
 
 
@@ -332,5 +334,54 @@
         createTree(start, end, nums, root);
 
         return root;
+    }
+*/
+
+/*
+    Binary Tree to DLL
+    (https://www.geeksforgeeks.org/problems/binary-tree-to-dll/1)
+
+    void getNodes(Node* root, vector<int> &arr){
+        if(root == NULL){
+            return ;
+        }
+        
+        getNodes(root->left, arr);
+        arr.push_back(root->data);
+        getNodes(root->right, arr);
+        
+    }
+    
+    void createDLL(Node* &root, vector<int> &arr, int currIdx, Node* &head){
+        
+        if(currIdx >= arr.size()){
+            return;
+        }
+        
+        int curr = arr[currIdx];
+        Node* currNode = new Node(curr);
+
+        if(root == NULL){
+            root = currNode;
+            head = currNode;
+        }else{
+            root->right = currNode;
+            currNode->left = root;
+        }
+        createDLL(currNode, arr, currIdx + 1, head);
+        
+    }
+  
+    Node* bToDLL(Node* root) {
+        // code here
+        
+        Node* startNode = NULL;
+        Node* head = NULL;
+        vector<int> arr;
+        int currIdx = 0;
+        getNodes(root, arr);
+        createDLL(startNode, arr, currIdx, head);
+        
+        return head;
     }
 */
