@@ -384,4 +384,32 @@
         
         return head;
     }
+
+
+    Method 2 (Inplace Method: doesn't use extra space)
+
+    void createTree(Node* root, Node* &head){
+        if(root == NULL){
+            return ;
+        }
+        
+        createTree(root->right, head);
+        root->right = head;
+        if(head != NULL){
+            head->left = root;
+        }
+        head = root;// update head
+        
+        createTree(root->left, head);
+        
+    }
+  
+    Node* bToDLL(Node* root) {
+        // code here
+        
+        Node* ans = NULL;
+        createTree(root, ans);
+        return ans;
+    }
+    
 */
