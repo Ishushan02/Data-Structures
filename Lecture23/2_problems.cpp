@@ -464,4 +464,44 @@
         return root;
     }
 
+
+    Method 2 : Intution is same as that of above (Do this again)
+
+    int getLength(ListNode* head){
+        int n = 0;
+        while(head){
+            n += 1;
+            head = head->next;
+        }
+        return n;
+    }
+
+    TreeNode* createTree(ListNode* &head, int n){
+        if(head == NULL || n <= 0){
+            return NULL;
+        }
+
+        TreeNode* leftSubtree = createTree(head, n/2);
+
+        TreeNode* root = new TreeNode(head->val);
+        root->left = leftSubtree;
+        head = head->next;
+        TreeNode* rightSubtree = createTree(head, n - n/2 -1);
+        root->right = rightSubtree;
+
+        return root;
+    }
+
+    TreeNode* sortedListToBST(ListNode* head) {
+        // the procedure will be same as of 108
+        // divide in between and get  root Node
+
+        int n = getLength(head);
+
+        TreeNode* root = createTree(head, n);
+
+        return root;
+
+    }
+
 */
