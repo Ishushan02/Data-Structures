@@ -292,3 +292,45 @@
         return processLCA(root, p, q);
     }
 */
+
+/*
+    108. Convert Sorted Array to Binary Search Tree
+    (https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
+
+    void createTree(int start, int end, vector<int> &nums, TreeNode* &root){
+
+        if(end < start || start > end){
+            return ;
+        }
+
+        int mid = (start + end) / 2;
+
+        TreeNode* newNode = new TreeNode(nums[mid]);
+
+        if(root == NULL){
+            root = newNode;
+        }else{
+            if(nums[mid] > root->val){
+                root->right = newNode;
+            }else{
+                root->left = newNode;
+            }
+        }
+
+        // left Subtree
+        createTree(start, mid - 1, nums, newNode);
+        createTree(mid + 1, end, nums, newNode);
+
+
+    }
+
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        
+        int start = 0;
+        int end = nums.size() - 1;
+        TreeNode* root = NULL;
+        createTree(start, end, nums, root);
+
+        return root;
+    }
+*/
