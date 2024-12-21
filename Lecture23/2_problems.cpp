@@ -2,6 +2,7 @@
     450. Delete Node in a BST
     (https://leetcode.com/problems/delete-node-in-a-bst/description/)
 
+    Method 1.
     int getMax(TreeNode* root){
         if(root == NULL){
             return -1;
@@ -60,6 +61,70 @@
         TreeNode* node = deleteBSTNode(root, key);
 
         return node;
+    }
+
+
+
+
+    Method 2 (Iplace Method)
+    TreeNode* deleteBSTNode(TreeNode* root, int key){
+
+        if(root == NULL){
+            return NULL;
+        }
+
+        if(root->val == key){
+
+            // root is leaf Node with no child
+            if(root->left == NULL && root->right == NULL){
+                delete root;
+                return NULL;
+            }else if(root->left != NULL && root->right == NULL){ //only left child
+
+                TreeNode* leftchild = root->left;
+                delete root;
+                return leftchild;
+            }else if(root->left == NULL && root->right != NULL){ //only right child
+
+                TreeNode* rightchild = root->right;
+                delete root;
+                return rightchild;
+            }else{
+
+                // get min of right subtree
+                // minNode ka left hoga root-right
+                // delete root
+
+                TreeNode* leftmin = root->right;
+                // TreeNode* rootleft = root->left;
+                TreeNode* rightChild = root->right;
+                
+                while(leftmin->left){
+                    leftmin = leftmin->left;
+                }
+
+                leftmin->left = root->left;
+                delete root;
+                return rightChild;
+
+
+            }
+        }else{
+
+            if(key > root->val){
+                root->right = deleteBSTNode(root->right, key);
+            }else{
+                root->left = deleteBSTNode(root->left, key);
+            }
+        }
+
+        return root;
+    }
+
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        
+        TreeNode* ans = deleteBSTNode(root, key);
+        return ans;
     }
 
 */
