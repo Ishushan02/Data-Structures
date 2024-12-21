@@ -570,7 +570,7 @@
         return n;
     }
 
-    TreeNode* createTree(ListNode* &head, int n){
+    TreeNode* createTree(ListNode* &head, int n){ 
         if(head == NULL || n <= 0){
             return NULL;
         }
@@ -661,4 +661,61 @@
         return true;
     }
 
+*/
+
+
+/*
+
+    1373. Maximum Sum BST in Binary Tree (Interview Question,/ coding wise global MaxSum )
+    (https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/description/)
+
+
+    struct Info{
+        bool isbst = true;
+        int sum = 0;
+        int minVal = INT_MAX;
+        int maxVal = INT_MIN;
+    };
+    int Maxsum = 0 ;
+    Info traverse(TreeNode* root){
+        if (root == NULL){
+            Info temp;
+            temp.isbst = true;
+            temp.sum = 0;
+            temp.minVal = INT_MAX;
+            temp.maxVal = INT_MIN;
+            return temp;
+        }
+
+        Info leftAns = traverse(root->left);
+        Info rightAns = traverse(root->right);
+
+
+        Info currNode;
+        //is bst
+        if(root->val > leftAns.maxVal && root->val < rightAns.minVal && leftAns.isbst && rightAns.isbst){
+            currNode.isbst = true;
+            currNode.sum = root->val + leftAns.sum + rightAns.sum;
+            Maxsum = max(Maxsum, currNode.sum);
+            currNode.minVal = min(root->val, min(leftAns.minVal, rightAns.minVal));
+            currNode.maxVal = max(root->val, max(leftAns.maxVal, rightAns.maxVal));
+            return currNode;
+        }
+        
+        currNode.isbst = false;
+        currNode.sum = max(leftAns.sum, max(Maxsum, rightAns.sum));
+        currNode.minVal = min(root->val, min(leftAns.minVal, rightAns.minVal));
+        currNode.maxVal = max(root->val, max(leftAns.maxVal, rightAns.maxVal));
+        return currNode;
+
+        // you can also return {false, 0, 0, 0} in else case
+    }
+
+    int maxSumBST(TreeNode* root) {
+        
+        int ans = 0;
+        Info temp = traverse(root);
+        // cout << temp.isbst << " " <<temp.sum  << " "<<temp.minVal  << " " <<temp.maxVal << endl;
+        return Maxsum;
+    }
 */
