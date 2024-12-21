@@ -511,8 +511,34 @@
     98. Validate Binary Search Tree
     (https://leetcode.com/problems/validate-binary-search-tree/)
 
+    Method 1. (Best Way is Range Method )
+    bool isbst(TreeNode* root, long lowRange, long highRange){
+        if(root == NULL){
+            return true;
+        }
 
-    Method 2. (Bad Method)
+        // cout << root->val << ": " << lowRange <<" <-> " << highRange << endl;
+        if(!((lowRange < root->val) && (root->val < highRange))){
+            return false;
+        }
+
+        bool lans = isbst(root->left, lowRange, root->val);
+        bool rans = isbst(root->right, root->val, highRange);
+
+        return lans && rans;
+    }
+
+    bool isValidBST(TreeNode* root) {
+        
+        if(root->left == NULL && root->right == NULL){
+            return true;
+        }
+        
+        return isbst(root, LONG_MIN, LONG_MAX);
+    }
+
+
+    Method 2. (Bad Method) // but correct solution
     void getInorder(TreeNode* root, vector<int> &arr){
         if(root == NULL){
             return ;
