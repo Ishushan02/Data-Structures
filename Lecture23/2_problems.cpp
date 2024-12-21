@@ -486,7 +486,7 @@
         TreeNode* root = new TreeNode(head->val);
         root->left = leftSubtree;
         head = head->next;
-        TreeNode* rightSubtree = createTree(head, n - n/2 -1);
+        TreeNode* rightSubtree = createTree(head, n - n/2 -1); // -1 beacuse root node is also excluded
         root->right = rightSubtree;
 
         return root;
@@ -502,6 +502,43 @@
 
         return root;
 
+    }
+
+*/
+
+
+/*
+    98. Validate Binary Search Tree
+    (https://leetcode.com/problems/validate-binary-search-tree/)
+
+
+    Method 2. (Bad Method)
+    void getInorder(TreeNode* root, vector<int> &arr){
+        if(root == NULL){
+            return ;
+        }
+        getInorder(root->left, arr);
+        arr.push_back(root->val);
+        getInorder(root->right, arr);
+
+    }
+
+    bool isValidBST(TreeNode* root) {
+        vector<int> arr;
+        getInorder(root, arr);
+
+        int start = 0;
+        int next = 1;
+
+        while(next < arr.size()){
+            if(arr[start] >= arr[next]){
+                cout << arr[start] << " " << arr[next] << endl;
+                return false;
+            }
+            start += 1;
+            next += 1;
+        }
+        return true;
     }
 
 */
