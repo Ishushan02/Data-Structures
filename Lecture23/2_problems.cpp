@@ -719,3 +719,37 @@
         return Maxsum;
     }
 */
+
+/*
+    783. Minimum Distance Between BST Nodes
+    (https://leetcode.com/problems/minimum-distance-between-bst-nodes/)
+
+
+    void traverseInorder(TreeNode* root, vector<int> &arr){
+
+
+        if(root == NULL){
+            return ;
+        }
+        traverseInorder(root->left, arr);
+        arr.push_back(root->val);
+        traverseInorder(root->right, arr);
+    }
+
+
+
+    int minDiffInBST(TreeNode* root) {
+        vector<int> arr;
+        traverseInorder(root, arr);
+
+        int i = 0;
+        int j = i + 1;
+        int ans = INT_MAX;
+        while(j < arr.size()){
+            ans = min(ans, arr[j] - arr[i]);
+            i += 1;
+            j += 1;
+        }
+        return ans;
+    }
+*/
