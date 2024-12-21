@@ -174,7 +174,7 @@
 */
 
 /*
-    1038. Binary Search Tree to Greater Sum Tree
+    1038. Binary Search Tree to Greater Sum Tree (Same as LC. 538)
     (https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/description/)
 
     void getSum(TreeNode* root, TreeNode* currNode, int &ans){
@@ -232,6 +232,35 @@
 
 
         return root;
+
+    }
+
+
+    Method 2 (same question 538 and 1038) {BEST APPROACH }
+    538. Convert BST to Greater Tree
+    (https://leetcode.com/problems/convert-bst-to-greater-tree/description/)
+
+    void totalSum(TreeNode* root, int &sum){
+        if(root == NULL){
+            return ;
+        }
+
+        totalSum(root->left, sum);
+        sum += root->val;
+        totalSum(root->right, sum);
+
+    }
+
+    void inorderTraversal(TreeNode* root, int &maxSum){
+        if(root == NULL){
+            return ;
+        }
+
+        inorderTraversal(root->left, maxSum);
+        int temp = root->val;
+        root->val = maxSum;
+        maxSum = maxSum - temp ;
+        inorderTraversal(root->right, maxSum);
 
     }
 */
