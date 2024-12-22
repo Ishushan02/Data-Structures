@@ -84,3 +84,111 @@ public:
     
 };
 */
+
+
+/*
+
+    Other Application of BST Iterator
+    Two Sum can be done by storing BST elements into vectors and then apply two sum on it.
+
+    But the below method itterates over froward and backward of elements and we can apply two sum directly
+
+    653. Two Sum IV - Input is a BST
+    (https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/)
+
+
+
+class BSTIterator{
+    public:
+    stack<TreeNode*> forwardStack;
+    stack<TreeNode*> backwardStack;
+
+    void storeLeftNodes(TreeNode* root){
+        while(root){
+            forwardStack.push(root);
+            root = root->left;
+        }
+    } 
+
+    void storeRightNodes(TreeNode* root){
+        while(root){
+            backwardStack.push(root);
+            root = root->right;
+        }
+    }
+
+    bool hasnextElem(){
+        if(forwardStack.empty()){
+            return false;
+        }
+        return true;
+    }
+
+    bool hasprevElem(){
+        if(backwardStack.empty()){
+            return false;
+        }
+        return true;
+    }
+
+    int nextElement(){
+        TreeNode* topNode = forwardStack.top();
+        forwardStack.pop();
+        if(topNode->right){
+            storeLeftNodes(topNode->right);
+        }
+        return topNode->val;
+    }
+
+    int prevElement(){
+        TreeNode* topNode = backwardStack.top();
+        backwardStack.pop();
+        if(topNode->left){
+            storeRightNodes(topNode->left);
+        }
+        return topNode->val;
+    }
+
+    BSTIterator(TreeNode* root){
+        storeLeftNodes(root);
+        storeRightNodes(root);
+        
+    }
+
+    
+};
+
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        if(root == NULL){
+            return false;
+        }
+        
+        BSTIterator bstiter(root);
+
+        int front = bstiter.nextElement(); // start element of BST
+        int back = bstiter.prevElement(); // end element of BST
+
+        while(front < back){
+            int sum = front + back;
+            cout << front << " - " << back << endl;
+            if(sum == k){
+                return true;
+            }else if(sum < k ){
+                front = bstiter.nextElement();
+            }else{
+                back = bstiter.prevElement();
+            }
+           
+
+        }
+
+        
+        
+        // cout << front << "--" << back <<endl;
+        return false;
+    }
+    };
+
+*/
