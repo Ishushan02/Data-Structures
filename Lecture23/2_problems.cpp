@@ -785,22 +785,10 @@
         if(root == NULL){
             return ;
         }
-
-        
         
         getMin(root->left, ans);
-        if(root->left){
-            cout << root->val << "--" << root->left->val << endl;
-            ans = min(ans, root->val - root->left->val);
-        }
         getleftPred(root, ans);
         getrightPred(root, ans);
-
-        if(root->right){
-            cout << root->val << "--" << root->right->val << endl;
-            ans = min(ans, root->right->val - root->val);
-        }
-
         getMin(root->right, ans);
         
     }
