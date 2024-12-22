@@ -388,3 +388,32 @@ public:
 
     }
 */
+
+
+/*
+
+    Get Successor of any Node in BST (the just bigger Node )
+
+    void inOrder(TreeNode* root, int &elem, int &succ){
+        if(root == NULL){
+            return ;
+        }
+
+        inOrder(root->right, arr, elem, succ);
+        if(root->val == elem){
+            cout << succ << " Successor of " << elem << endl;
+        }
+        succ = root->val;
+        inOrder(root->left, arr, elem, succ);
+        
+    }
+
+    int preorderTraversal(TreeNode* root) {
+        
+        int elem = 7;
+        int succ = 0;
+        inOrder(root, elem, succ);
+
+        return arr;
+    }
+*/
