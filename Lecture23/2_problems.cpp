@@ -752,4 +752,64 @@
         }
         return ans;
     }
+
+
+    Method 2 (Inplace Method, without using extra space, Good Approach)
+
+    void getleftPred(TreeNode* root, int &ans){
+        if(root->left){
+
+            TreeNode* curr = root->left;
+
+            while(curr->right){
+                curr = curr->right;
+            }
+            ans = min(ans, root->val - curr->val);
+        }
+    }
+
+    void getrightPred(TreeNode* root, int &ans){
+        if(root->right){
+
+            TreeNode* curr = root->right;
+
+            while(curr->left){
+                curr = curr->left;
+            }
+            ans = min(ans, curr->val - root->val);
+        }
+    }
+
+    void getMin(TreeNode* root, int &ans){
+
+        if(root == NULL){
+            return ;
+        }
+
+        
+        
+        getMin(root->left, ans);
+        if(root->left){
+            cout << root->val << "--" << root->left->val << endl;
+            ans = min(ans, root->val - root->left->val);
+        }
+        getleftPred(root, ans);
+        getrightPred(root, ans);
+
+        if(root->right){
+            cout << root->val << "--" << root->right->val << endl;
+            ans = min(ans, root->right->val - root->val);
+        }
+
+        getMin(root->right, ans);
+        
+    }
+
+    int minDiffInBST(TreeNode* root) {
+        int ans = INT_MAX;
+
+        getMin(root, ans);
+
+        return ans;
+    }
 */
