@@ -198,6 +198,46 @@ public:
     99. Recover Binary Search Tree
     (https://leetcode.com/problems/recover-binary-search-tree/description/)
 
+
+    Method 1 (Good Approach)
+    class Solution {
+    public:
+    TreeNode* frontviolation = NULL;
+    TreeNode* backviolation = NULL;
+    TreeNode* prev = NULL;
+
+    void getvoilateNodes(TreeNode* root){
+        if(root == NULL){
+            return ;
+        }
+
+        getvoilateNodes(root->left);
+        // compute
+
+        if(prev != NULL && prev->val > root->val){
+
+            if(frontviolation == NULL){
+                frontviolation = prev;
+            }
+            backviolation = root;
+
+        }
+        prev = root;
+        getvoilateNodes(root->right);
+    }
+
+
+    void recoverTree(TreeNode* root) {
+        
+        getvoilateNodes(root);
+        if(frontviolation && backviolation){
+            swap(backviolation->val, frontviolation->val);
+        }
+    }
+    };
+
+
+    Method 2 (Just to show Application of Iterator)
     Application 2 of BSTIterator
 
     class BSTIterator{
