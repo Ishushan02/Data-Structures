@@ -192,3 +192,128 @@ public:
     };
 
 */
+
+
+/*
+    99. Recover Binary Search Tree
+    (https://leetcode.com/problems/recover-binary-search-tree/description/)
+
+    Application 2 of BSTIterator
+
+    class BSTIterator{
+    public:
+    stack<TreeNode*> forwardStack;
+    stack<TreeNode*> backwardStack;
+
+    void storeLeftNodes(TreeNode* root){
+        while(root){
+            forwardStack.push(root);
+            root = root->left;
+        }
+    } 
+
+    void storeRightNodes(TreeNode* root){
+        while(root){
+            backwardStack.push(root);
+            root = root->right;
+        }
+    }
+
+    bool hasnextElem(){
+        if(forwardStack.empty()){
+            return false;
+        }
+        return true;
+    }
+
+    bool hasprevElem(){
+        if(backwardStack.empty()){
+            return false;
+        }
+        return true;
+    }
+
+    int nextElement(){
+        TreeNode* topNode = forwardStack.top();
+        forwardStack.pop();
+        if(topNode->right){
+            storeLeftNodes(topNode->right);
+        }
+        return topNode->val;
+    }
+
+    int prevElement(){
+        TreeNode* topNode = backwardStack.top();
+        backwardStack.pop();
+        if(topNode->left){
+            storeRightNodes(topNode->left);
+        }
+        return topNode->val;
+    }
+
+    BSTIterator(TreeNode* root){
+        storeLeftNodes(root);
+        storeRightNodes(root);
+        
+    }
+
+    
+};
+
+class Solution {
+public:
+
+    TreeNode* getNodes(TreeNode* root, int elem){
+        if(root == NULL){
+            return NULL;
+        }
+
+        if(root->val == elem){
+            return root;
+        }
+
+        TreeNode* lNode = getNodes(root->left, elem);
+        TreeNode* rNode = getNodes(root->right, elem);
+
+        if(rNode == NULL && lNode == NULL){
+            return NULL;
+        }else if(rNode != NULL && lNode == NULL){
+            return rNode;
+        }else if(rNode == NULL && lNode != NULL){
+            return lNode;
+        }
+
+        return root;
+    }
+
+    void recoverTree(TreeNode* root) {
+        
+        BSTIterator itr(root);
+
+        int start = itr.nextElement();
+        int end = itr.prevElement();
+        int prevStart = start;
+        int prevend = end;
+
+        while(start){
+            prevStart = start;
+            start = itr.nextElement();
+            if(prevStart > start){
+                break;
+            }
+        }
+        while(end){
+            prevend = end;
+            end = itr.prevElement();
+            if(end > prevend){
+                break;
+            }
+        }
+        TreeNode* e1 = getNodes(root, prevStart);
+        TreeNode* e2 = getNodes(root, prevend);
+        swap(e1->val, e2->val);
+
+        
+    }
+};
+*/
