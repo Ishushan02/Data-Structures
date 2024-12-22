@@ -800,4 +800,30 @@
 
         return ans;
     }
+
+    Method 3 (The easiest, maintain the previous term in Inorder traversal)
+
+    void getMin(TreeNode* root, int &ans, TreeNode* &prev){
+
+        if(root == NULL){
+            return ;
+        }
+
+        getMin(root->left, ans, prev);
+        if(prev){
+            ans = min(ans, root->val - prev->val);
+        }
+        prev = root;
+        getMin(root->right, ans, prev);
+        
+    }
+
+    int minDiffInBST(TreeNode* root) {
+        int ans = INT_MAX;
+        TreeNode* prev = NULL;
+
+        getMin(root, ans, prev);
+
+        return ans;
+    }
 */
