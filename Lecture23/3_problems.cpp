@@ -357,3 +357,34 @@ public:
     }
 };
 */
+
+
+/*
+
+    Get Predecessor of any Node in BST (the just smaller Node )
+
+    void inOrder(TreeNode* root, int &elem, int &prev){
+        if(root == NULL){
+            return ;
+        }
+
+        
+        inOrder(root->left, elem, prev);
+        if(root->val == elem){
+            cout << prev << " Predecessor" << endl;
+        }
+        prev = root->val;
+        inOrder(root->right, elem, prev);
+        
+    }
+
+    int preorderTraversal(TreeNode* root) {
+        
+        int elem = 4;
+        int pred = 0;
+        inOrder(root, elem, pred);
+
+        retur pred;
+
+    }
+*/
