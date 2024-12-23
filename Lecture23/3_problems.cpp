@@ -701,6 +701,8 @@ float findMedian(struct Node *root)
     938. Range Sum of BST
     (https://leetcode.com/problems/range-sum-of-bst/description/)
 
+    Method 1 O(n)
+
     void traverseAccordingly(TreeNode* node, int low, int high, int &sum){
         if(node == NULL){
             return ;
@@ -710,6 +712,36 @@ float findMedian(struct Node *root)
         }
         traverseAccordingly(node->left, low, high, sum);
         traverseAccordingly(node->right, low, high, sum);
+
+    }
+
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        int sum = 0;
+
+        traverseAccordingly(root, low, high, sum);
+
+        return sum;
+    }
+
+    Method 2 O(logn) Used BST Property
+    void traverseAccordingly(TreeNode* node, int low, int high, int &sum){
+        if(node == NULL){
+            return ;
+        }
+        if(low <= node->val && node->val <= high){
+            sum += node->val;
+            traverseAccordingly(node->left, low, high, sum);
+            traverseAccordingly(node->right, low, high, sum);
+        }
+
+        if(node->val > high){
+            traverseAccordingly(node->left, low, high, sum);
+        }
+        else if(node->val < low){
+            traverseAccordingly(node->right, low, high, sum);
+        }
+        
+        
 
     }
 
