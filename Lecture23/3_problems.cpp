@@ -666,3 +666,33 @@ float findMedian(struct Node *root)
 }
 
 */
+
+/*
+
+    BST with Dead End
+    (https://www.geeksforgeeks.org/problems/check-whether-bst-contains-dead-end/1)
+
+    bool checkrange(Node* root, int min, int max){
+        if(root == NULL){
+            return false;
+        }
+        
+        // cout << root->data << ": Min " << min << " Max: "<< max << endl;
+        if(root->left == NULL && root->right == NULL && ((min + 1 == root->data && max -1 == root->data) ||abs(max - min) == 1 || abs(max - min) == 0)){
+            
+            return true;
+        }
+        
+        bool lans = checkrange(root->left, min, root->data);
+        bool rans = checkrange(root->right, root->data, max);
+        
+        return lans || rans;
+    }
+  
+    bool isDeadEnd(Node *root)
+    {
+        //Your code here
+        
+        return checkrange(root, 1, INT_MAX);
+    }
+*/
