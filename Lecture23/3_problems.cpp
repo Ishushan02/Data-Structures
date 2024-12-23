@@ -501,4 +501,57 @@ public:
     Method 2
 
     Store in Vector and do 2 pointer Approach (but it takes extra O(n) space )
+
+
+    Method 3 (Best Method)
+    Iterate pointers simultaneously on both the nodes (same like two pointer approach)
+
+    int countPairs(Node* root1, Node* root2, int x)
+    {
+        
+        Node* a = root1;
+        Node* b = root2;
+        int ans = 0;
+        stack<Node*> s1;
+        stack<Node*> s2;
+        
+        while(true){
+            
+            while(a){
+                s1.push(a);
+                a = a->left;
+            }
+            
+            while(b){
+                s2.push(b);
+                b = b->right;
+            }
+            
+            if(s1.empty() || s2.empty()){
+                break;
+            }
+            
+            Node* s1top = s1.top();
+            Node* s2top = s2.top();
+            int sum = s1top->data + s2top->data;
+            
+            if(sum ==x){
+                ans += 1;
+                s1.pop();
+                s2.pop();
+                a = s1top->right;
+                b = s2top->left;
+            }else if(sum > x){
+                s2.pop();
+                b = s2top->left;
+            }else{
+                s1.pop();
+                a = s1top->right;
+            }
+        }
+        
+        return ans;
+ 
+    }
+
 */
