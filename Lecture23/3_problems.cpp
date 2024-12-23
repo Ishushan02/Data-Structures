@@ -498,4 +498,7 @@ public:
         return count;
     }
 
+    Method 2
+
+    Store in Vector and do 2 pointer Approach (but it takes extra O(n) space )
 */
