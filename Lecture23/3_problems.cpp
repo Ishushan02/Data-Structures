@@ -451,3 +451,51 @@ public:
         return root;
     })
 */
+
+/*
+
+    Count Pair from 2 BST whose Sum is X (OR) Brothers from DIfferent Root
+
+    (https://www.geeksforgeeks.org/problems/brothers-from-different-root/1)
+
+    bool searchNode(Node* root, int elem){
+        if(root == NULL){
+            return false;
+        }
+        
+        if(root->data == elem){
+            return true;
+        }else if(root->data < elem){
+            return searchNode(root->right, elem);
+        }else{
+            return searchNode(root->left, elem);
+        }
+        
+        return false;
+    }
+    
+    void traverse(Node* root1, Node* root2, int x, int &count){
+        if(root1 == NULL){
+            return ;
+        }
+        traverse(root1->left, root2, x, count);
+
+        
+        int var = x - root1->data;
+        
+        if(searchNode(root2, var)){
+            // cout << root1->data << " - " << var << endl;
+            count += 1;
+        }
+        traverse(root1->right, root2, x, count);
+        
+    }
+
+    int countPairs(Node* root1, Node* root2, int x)
+    {   
+        int count = 0;
+        traverse(root1, root2, x, count);
+        return count;
+    }
+
+*/
