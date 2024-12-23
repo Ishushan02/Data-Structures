@@ -555,3 +555,58 @@ public:
     }
 
 */
+
+/*
+    1382. Balance a Binary Search Tree
+    (https://leetcode.com/problems/balance-a-binary-search-tree/description/)
+
+    Method 1
+    void StoreNodes(TreeNode* root, vector<int>& arr){
+        if(root == NULL){
+            return;
+        }
+
+        StoreNodes(root->left, arr);
+        arr.push_back(root->val);
+        StoreNodes(root->right, arr);
+    }
+
+    void buildTree(TreeNode* &root, int start, int end, vector<int> &arr){
+        cout << start << " , " << end << endl;
+        if(start > end || end < start){
+            return ;
+        }
+
+        int mid = (start + end)/2;
+        TreeNode* newNode = new TreeNode(arr[mid]);
+        cout << arr[mid] << endl;
+
+        if(root == NULL){
+            root = newNode;
+        }else{
+            if(newNode->val < root->val){
+                root->left = newNode;
+            }else{
+                root->right = newNode;
+            }
+        }
+
+        buildTree(newNode, start, mid - 1, arr);
+        buildTree(newNode, mid + 1, end, arr);
+
+        // return newNode;
+
+    }
+
+    TreeNode* balanceBST(TreeNode* root) {
+        
+        vector<int> arr;
+        StoreNodes(root, arr);
+        TreeNode* rootNode = NULL;
+        buildTree(rootNode, 0, arr.size() - 1, arr);
+
+        return rootNode;
+
+    }
+
+*/
