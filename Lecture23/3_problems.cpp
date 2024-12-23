@@ -609,4 +609,23 @@ public:
 
     }
 
+
+    //--------------------------------------------------------------------------
+    2nd method to Build Binary Search Tree
+
+    TreeNode* buildTree2(int start, int end, vector<int> &arr){
+        
+        if(start > end ){
+            return NULL;
+        }
+
+        int mid = (start + end)/2;
+        TreeNode* root = new TreeNode(arr[mid]);
+        root->left = buildTree2(start, mid - 1, arr);
+        root->right = buildTree2(mid + 1, end, arr);
+        
+        return root;
+
+    }
+
 */
