@@ -417,3 +417,37 @@ public:
         return arr;
     }
 */
+
+
+/*
+
+    (DO IT AGAIN AND AGAIN, YOU COULDN"T COMPLETE THIS SIMPLE QUESTION IN ANY METHOD)
+
+    1008. Construct Binary Search Tree from Preorder Traversal
+    (https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/description/)
+
+
+    (TreeNode* buildBST(TreeNode* root, int &index, int min, int max, vector<int>& preorder){
+        if(index >= preorder.size()){
+            return NULL;
+        }
+
+        TreeNode* newNode = NULL;
+        if(preorder[index] > min && preorder[index] < max){
+            newNode = new TreeNode(preorder[index]);
+            index = index + 1;
+            newNode->left = buildBST(root, index, min, newNode->val, preorder);
+            newNode->right = buildBST(root, index, newNode->val, max, preorder);
+        }
+        
+        return newNode;
+
+    }
+
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        TreeNode* root = NULL;
+        int index = 0;
+        root = buildBST(root, index, INT_MIN, INT_MAX, preorder);
+        return root;
+    })
+*/
