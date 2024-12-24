@@ -754,3 +754,43 @@ float findMedian(struct Node *root)
     }
 
 */
+
+
+/*
+    (https://www.geeksforgeeks.org/flatten-a-binary-tree-into-linked-list/)
+    FLAT BST TO SORTED LINKED LIST ( No QUestion but article)
+
+    void flatBST(TreeNode* root, TreeNode* &ll, TreeNode* &startLL){
+        if(root == NULL){
+            return ;
+        }
+
+        flatBST(root->left, ll, startLL);
+        if(ll == NULL){
+            ll = root;
+            startLL = ll;
+        }else{
+            ll->right = root;
+            ll = ll->right;
+
+        }
+        flatBST(root->right, ll, startLL);
+
+    }
+
+    void printll(TreeNode* &ll){
+        if(ll == NULL){
+            return ;
+        }
+        cout << ll->val << " ->";
+        printll(ll->right);
+    }
+
+    void flatten(TreeNode* root){
+        TreeNode* ll = NULL;
+        TreeNode* startll = NULL;
+
+        flatBST(root,ll, startll);
+        printll(startll);
+        }
+*/
