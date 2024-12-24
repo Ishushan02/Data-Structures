@@ -794,3 +794,72 @@ float findMedian(struct Node *root)
         printll(startll);
         }
 */
+
+/*
+    Merge two BST 's
+    (https://www.geeksforgeeks.org/problems/merge-two-bst-s/1)
+
+    vector<int> merge(Node *root1, Node *root2) {
+        // Your code here
+        
+        vector<int> ans;
+        stack<Node*> s1;
+        stack<Node*> s2;
+        
+        Node* a = root1;
+        Node* b = root2;
+        
+        
+        
+        
+        while(true){
+            while(a){
+                s1.push(a);
+                a = a->left;
+            }
+            while(b){
+                s2.push(b);
+                b = b->left;
+            }
+            
+            if(s1.empty() && s2.empty()){
+                break;
+            }else if(s1.empty()){
+                Node* btop = s2.top();
+                ans.push_back(btop->data);
+                s2.pop();
+                b = btop->right;
+            }else if(s2.empty()){
+                Node* atop = s1.top();
+                ans.push_back(atop->data);
+                s1.pop();
+                a = atop->right;
+                
+            }else{
+            
+                Node* atop = s1.top();
+                Node* btop = s2.top();
+                
+                if(atop->data == btop->data){
+                    ans.push_back(atop->data);
+                    ans.push_back(btop->data);
+                    s1.pop();
+                    s2.pop();
+                    a = atop->right;
+                    b = btop->right;
+                }else if(atop->data < btop->data){
+                    ans.push_back(atop->data);
+                    s1.pop();
+                    a = atop->right;
+                }else{
+                    ans.push_back(btop->data);
+                    s2.pop();
+                    b = btop->right;
+                }
+            
+            }
+        }
+        
+        return ans;
+    }
+*/
