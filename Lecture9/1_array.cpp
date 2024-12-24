@@ -251,7 +251,74 @@ int main()
 /*
 
 ROTI PARATHA Problem (https://www.spoj.com/problems/PRATA/)
-IMP Question
+VERY VERY IMP Question
+
+
+LINEAR MEthod (Brute Force Method)
+
+
+int cookParathas(int time, int arr[]){
+  int totparathas = 0;
+  for(int i = 0;  i< 4; i++){
+        int R = arr[i];
+        int starttime = 1;
+        int totaltime = 0;
+        while (true)
+        {
+            if (totaltime + starttime * R <= time)
+            {
+
+                totaltime += starttime * R;
+                starttime++;
+                totparathas++;
+            }
+            else
+            {
+                // exceeded the minutes
+                break;
+            }
+        }
+        cout << arr[i] << " -> " << totparathas << endl;
+        
+        
+    }
+    
+    return totparathas ;
+}
+
+int main() 
+{
+    int par = 10;
+    int arr[] = {1, 2, 3, 4};
+    
+    int requiredPar = 10;
+    
+    
+    // cout << "Tot Parathas: " << totparathas << endl;
+    
+    int parathasCooked = 0;
+    for(int t = 1; t < 1000; t++){
+        
+        parathasCooked = cookParathas(t, arr);
+        cout << " at t == " << t << " minutes " << parathasCooked << endl;
+        if(parathasCooked >= requiredPar){
+          cout << " Time Required is : " << t << endl;
+          break;
+        }
+    }
+    
+    
+    
+    
+    return 0;
+}
+
+
+
+
+
+BS IMPLEMENTATION
+
 
 
 #include <iostream>
