@@ -196,3 +196,14 @@ int main(){
     return 0;
 
 }
+
+
+/*
+TO USE Heapify in C++
+
+#include<queue>
+priority_queue<int> maxHeap ; // maxHeap
+
+priority_queu<int, vector<int>, greater<int>> minHeap; // min Heap Declaration
+
+*/
