@@ -286,3 +286,35 @@
         return ans;
     }
 */
+
+
+/*
+    958. Check Completeness of a Binary Tree
+    (https://leetcode.com/problems/check-completeness-of-a-binary-tree/description/)
+
+    bool isCompleteTree(TreeNode* root) {
+        
+        // same logic of we got Null previously after that if element is present then it is not CBT
+        queue<TreeNode* > que;
+        que.push(root);
+        bool frontNull = false;
+        while(!que.empty()){
+
+            TreeNode* frontelem = que.front();
+            que.pop();
+            if(frontelem == NULL){
+                frontNull = true;
+            }else{
+
+                if(frontNull == true){
+                    return false;
+                }else{
+                    que.push(frontelem->left);
+                    que.push(frontelem->right);
+                }
+            }
+        }
+
+        return true;
+    }
+*/
