@@ -1,5 +1,7 @@
 #include<iostream>
-
+#include <queue>
+#include <vector>
+#include <functional>
 using namespace std;
 
 /*
@@ -159,6 +161,26 @@ void heapSort(int arr[], int n){
     return;
 }
 
+
+
+// Function to calculate the sum of digits of a number
+int sum_of_digits(int num) {
+    int sum = 0;
+    while (num > 0) {
+        sum += num % 10;
+        num /= 10;
+    }
+    return sum;
+}
+
+// Custom comparator for the priority queue
+struct CompareSumOfDigits {
+    bool operator()(int a, int b) {
+        // Compare the sum of digits
+        return sum_of_digits(a) < sum_of_digits(b);
+    }
+};
+
 int main(){
 
     Heap h;
@@ -192,6 +214,24 @@ int main(){
         cout << arr[i] << " ";
     }
     cout << endl;
+
+
+    cout << "Custom Comparator: --------------------------------------------------- " << endl;
+    // Define the priority queue with the custom comparator
+    std::priority_queue<int, std::vector<int>, CompareSumOfDigits> pq;
+
+    // Push some numbers into the priority queue
+    pq.push(12);  // Sum of digits = 1 + 2 = 3
+    pq.push(34);  // Sum of digits = 3 + 4 = 7
+    pq.push(5);   // Sum of digits = 5
+    pq.push(76);  // Sum of digits = 7 + 6 = 13
+
+    // Pop elements from the priority queue and print them
+    while (!pq.empty()) {
+        int top = pq.top();
+        pq.pop();
+        std::cout << top << " (Sum of digits: " << sum_of_digits(top) << ")\n";
+    }
 
     return 0;
 
