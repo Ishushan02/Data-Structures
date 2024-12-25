@@ -76,3 +76,39 @@
         return true;
     }
 */
+
+/*
+    Minimum Cost of ropes
+    (https://www.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1)
+
+        int minCost(vector<int>& arr) {
+        // code here
+        
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+        
+        for(int i = 0; i< arr.size(); i++){
+            minHeap.push(arr[i]);
+        }
+        
+        int totalCost = 0;
+        
+        while(!minHeap.empty()){
+            // cout << "TotalCost: " <<totalCost << endl;
+            if(minHeap.size() > 1){
+                int n1 = minHeap.top();
+                minHeap.pop();
+                int n2 = minHeap.top();
+                minHeap.pop();
+                totalCost += n1 + n2;
+                // cout << n1 + n2 << endl;
+                minHeap.push(n1 + n2);
+            }else{
+                // int n1 = minHeap.top();
+                minHeap.pop();
+                // totalCost += n1 ;
+            }
+        }
+        return totalCost;
+    }
+
+*/
