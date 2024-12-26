@@ -181,3 +181,60 @@ class Solution
     }
 };
 */
+
+/*
+    // similar Question as above example
+
+    23. Merge k Sorted Lists
+    (https://leetcode.com/problems/merge-k-sorted-lists/description/)
+
+    struct comparator{
+        bool operator()(ListNode* a, ListNode* b){
+            return a->val > b->val;
+        }
+    };
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
+        priority_queue<ListNode*, vector<ListNode*>, comparator> minHeap;
+        ListNode* ansHead = NULL;
+        ListNode* ansTail = NULL;
+        if(lists.size() == 0){
+            return ansHead;
+        }
+
+        for(int i = 0; i < lists.size(); i++){
+            ListNode* temp = lists[i];
+            if(temp != NULL){
+                minHeap.push(temp);
+                // cout << temp->val << endl;
+            }
+        }
+
+        while(!minHeap.empty()){
+
+            ListNode* front = minHeap.top();
+            minHeap.pop();
+
+            cout << front->val << " ";
+            
+            if(ansHead == NULL && ansTail == NULL){
+                ansHead = front;
+                ansTail = front;
+            }else{
+                ansTail->next = front;
+                ansTail = front;
+            }
+            
+
+            if(front->next){
+                ListNode* newNode = front->next;
+                minHeap.push(newNode);
+            }
+        }
+
+        return ansHead;
+        
+    }
+
+*/
