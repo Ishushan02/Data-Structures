@@ -112,3 +112,72 @@
     }
 
 */
+
+/*
+    Merge k Sorted Arrays (Very Very Good Question, Standard Question - Merge K sorted pattern)
+    (https://www.geeksforgeeks.org/problems/merge-k-sorted-arrays/1)
+
+    class Info{
+    public:
+    int data;
+    int rowIdx;
+    int colIdx;
+    
+    Info(int a, int b, int c){
+        data = a;
+        rowIdx = b;
+        colIdx = c;
+    }
+};
+
+class Solution
+{
+    public:
+    
+    struct comparator{
+      bool operator()(Info* a, Info* b){
+          return a->data > b->data; // always think opposite(min Heap and max Heap)
+      }  
+    };
+    
+    //Function to merge k sorted arrays.
+    vector<int> mergeKArrays(vector<vector<int>> arr, int K)
+    {
+        //code here
+        priority_queue<Info*, vector<Info*>, comparator> minHeap;
+        vector<int> ans;
+        // insert k elements
+        
+        for(int row = 0; row < K; row++){
+            // Info* temp;
+            Info* temp = new Info(arr[row][0], row, 0);
+            // temp->rowIdx = row;
+            // temp->colIdx = 0;
+            minHeap.push(temp);
+        }
+        
+        // Now do the same process of like level order
+        int col = arr[0].size();
+        int row = arr.size();
+        while(!minHeap.empty()){
+            Info* front = minHeap.top();
+            minHeap.pop();
+            
+            int currRow = front->rowIdx;
+            int currCol = front->colIdx;
+            ans.push_back(front->data);
+            
+            if(currCol + 1 < col){
+                Info* newElem = new Info(arr[currRow][currCol+1], currRow, currCol+1);
+                minHeap.push(newElem);
+            }
+        }
+        
+        return ans;
+        
+        
+        
+        
+    }
+};
+*/
