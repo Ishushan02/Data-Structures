@@ -238,3 +238,67 @@ class Solution
     }
 
 */
+
+
+/*
+    // similar question based on Top K Patterns
+
+    632. Smallest Range Covering Elements from K Lists
+    (https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/description/)
+
+    struct comparator{
+        bool operator()(Info* a, Info*b){
+            return a->val > b->val;
+        }
+    };
+
+    vector<int> smallestRange(vector<vector<int>>& nums) {
+        
+        priority_queue<Info*, vector<Info*>, comparator> minHeap;
+        int minRange = INT_MAX;
+        int maxRange = INT_MIN;
+        
+        // get k elements
+        for(int i = 0; i<nums.size(); i++){
+            Info* temp = new Info(nums[i][0], i, 0);
+            minHeap.push(temp);
+            minRange = min(minRange, nums[i][0]);
+            maxRange = max(maxRange, nums[i][0]);
+
+        }
+        
+        int ansStart = minRange;
+        int ansEnd = maxRange;
+        while(!minHeap.empty()){
+            Info* front = minHeap.top();
+            minHeap.pop();
+
+            // this will be min elem in that window
+            minRange = front->val;
+
+            // cout << minRange << " -> " << maxRange << endl;
+            if((maxRange - minRange) < (ansEnd - ansStart)){
+                ansEnd = maxRange;
+                ansStart = minRange;
+            }
+
+            
+                                // col dim of that data
+            if(front->col + 1 < nums[front->row].size()){
+                Info* temp = new Info(nums[front->row][front->col + 1], front->row, front->col + 1);
+                minHeap.push(temp);
+                maxRange = max(nums[front->row][front->col + 1], maxRange);
+            }else{
+                // because that row won't be common to the other rows
+                break;
+            }
+
+            
+        }
+
+        vector<int> ans;
+        ans.push_back(ansStart);
+        ans.push_back(ansEnd);
+        return ans;
+    }
+*/
