@@ -62,6 +62,34 @@ int main()
 */
 
 /*
+    189. Rotate Array
+    (https://leetcode.com/problems/rotate-array/)
+
+    void reverse(vector<int> & nums, int start, int end){
+
+        while(start <= end){
+            swap(nums[start], nums[end]);
+            start++;
+            end--;
+        }
+    }
+
+    void rotate(vector<int>& nums, int k) {
+        if(nums.size() < k){
+            k = k % nums.size();
+            // for smaller arr size elements
+        }
+        reverse(nums, 0, nums.size()-1);
+        reverse(nums, 0, k-1);
+        reverse(nums, k, nums.size()-1);
+        
+    }
+
+*/
+
+
+
+/*
 Rotate An Array by any index
 
 Array - [1, 2, 3, 4, 5, 6, 7]

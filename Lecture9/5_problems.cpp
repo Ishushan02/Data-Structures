@@ -35,7 +35,7 @@ bool hasArrayTwoCandidates(int arr[], int n, int x)
 */
 
 /*
-Pivot Point - https://leetcode.com/problems/find-pivot-index/submissions/1266780669/
+Pivot Point - https://leetcode.com/problems/find-pivot-index/description/
 
 int pivotIndex(vector<int>& nums) {
 
@@ -62,24 +62,49 @@ int pivotIndex(vector<int>& nums) {
 /*
 // Remove Duplicates from Sorted Array
 
-// https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/
+// https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
 
-int removeDuplicates(vector<int>& nums) {
-        int prev = nums[0];
-        int k = 1;
-        vector<int> expectedNums ;
-        expectedNums.push_back(prev);
-        for(int i = 1;i<nums.size();i++){
-            if (prev != nums[i]){
-                k+=1;
-                prev = nums[i];
-                expectedNums.push_back(prev);
+Method 1. (Best)
+    int removeDuplicates(vector<int>& arr) {
+        
+        int prev = arr[0];
+        int i = 0;
+        int count = 0;
+        int j = i + 1;
+
+        while(j < arr.size()){
+
+            if(arr[i] == arr[j]){
+                j++;
+            }else{
+                count += 1;
+                arr[i+1]=arr[j];
+                i = i+1;
+                j = j + 1;
             }
         }
-        cout<<k;
-        nums = expectedNums;
-        return k;
+
+
+        return count+1;
     }
+
+Method 2, (Okay Method not much efficient)
+    int removeDuplicates(vector<int>& nums) {
+            int prev = nums[0];
+            int k = 1;
+            vector<int> expectedNums ;
+            expectedNums.push_back(prev);
+            for(int i = 1;i<nums.size();i++){
+                if (prev != nums[i]){
+                    k+=1;
+                    prev = nums[i];
+                    expectedNums.push_back(prev);
+                }
+            }
+            cout<<k;
+            nums = expectedNums;
+            return k;
+        }
 
 */
 
