@@ -114,7 +114,7 @@ class Heap{
 };
 
 
-void heapify(int arr[], int size, int idx){ // heapifying idxthe Node
+void heapify(int arr[], int size, int idx){ // heapifying the idx Node
 
     // assume idx Node is the largest
     int largest = idx;
@@ -247,5 +247,65 @@ TO USE Heapify in C++
 priority_queue<int> maxHeap ; // maxHeap
 
 priority_queu<int, vector<int>, greater<int>> minHeap; // min Heap Declaration
+
+*/
+
+
+
+/*
+
+    Heap Sort
+    (https://www.geeksforgeeks.org/problems/heap-sort/0)
+
+    void heapify(vector<int> &arr, int index, int n){
+        int largest = index;
+        int lidx = 2*index + 1;
+        int ridx = 2*index + 2;
+        
+        if(lidx < n && arr[lidx] > arr[largest]){
+            largest = lidx;
+            // swap(arr[lidx], arr[largest]);
+        }
+        
+        if(ridx < n && arr[ridx] > arr[largest]){
+            largest = ridx;
+            // swap(arr[ridx], arr[largest]);
+        }
+        
+        if(largest != index){
+            
+            // cout << "here "<< endl;
+            swap(arr[largest], arr[index]);
+            heapify(arr, largest, n);
+        }
+    }
+    
+    void buildHeap(vector<int> &arr, int n){
+        
+        for(int i = n/2; i >= 0; i--){
+            heapify(arr, i, n);
+            
+        }
+        
+    }
+    
+    void heapSort(vector<int>& arr) {
+        // code here
+        int n = arr.size()-1;
+        buildHeap(arr, arr.size());
+        
+        for(int np = n; np > 0; np--){
+            swap(arr[0], arr[np]);
+            buildHeap(arr, np);
+        }
+        
+        // for(auto val:arr){
+        //     cout << val << " ";
+        // }
+        // cout << endl;
+        
+        
+        
+    }
 
 */
