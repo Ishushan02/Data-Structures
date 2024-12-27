@@ -302,3 +302,71 @@ class Solution
         return ans;
     }
 */
+
+
+/*  
+    // Very Very Very Good Question, intution is aise mid eleme nikalne ke liye left mai MaxHeap and right mai MinHeap laga dena
+    // pura logic isupon insertion.. so check that out
+
+    295. Find Median from Data Stream
+    (https://leetcode.com/problems/find-median-from-data-stream/)
+
+
+    class MedianFinder {
+public:
+    priority_queue<int> maxHeap;
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+    double median = 0;
+    MedianFinder() {
+        
+    }
+    // left is maxheap && right is minHeap
+    void addNum(int num){
+        if(maxHeap.size() == minHeap.size()){
+            if(num > median){
+                // insert in right(minHeap), then minheap will have extra elem which will be median
+                minHeap.push(num);
+                median = minHeap.top();
+            }else{
+                maxHeap.push(num);
+                median = maxHeap.top();
+            }
+        }else if(maxHeap.size() == minHeap.size() + 1){ // maxHeap is greater by 1
+            if(num > median){
+                
+                minHeap.push(num);
+                median = (maxHeap.top() + minHeap.top())/ 2.0;
+            }else{
+                int top = maxHeap.top();
+                minHeap.push(top);
+                maxHeap.pop();
+                maxHeap.push(num);
+                median = (maxHeap.top() + minHeap.top())/ 2.0;
+            }
+
+        }else if(minHeap.size() == maxHeap.size() + 1){
+            if(num > median){
+    // we have to insert in (right)minHeap, but first overload minHeap top elem(as MaxHeap size is larger) to maxHeap
+                int top = minHeap.top();
+                maxHeap.push(top);
+                minHeap.pop();
+                minHeap.push(num);
+                median = (maxHeap.top() + minHeap.top())/ 2.0;
+            }else{
+                maxHeap.push(num);
+                median = (maxHeap.top() + minHeap.top())/ 2.0;
+            }
+
+        }
+    }
+
+
+   
+    
+    double findMedian() {
+        return median;
+        
+    }
+};
+
+*/
