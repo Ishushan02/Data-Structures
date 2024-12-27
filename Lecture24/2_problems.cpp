@@ -308,6 +308,8 @@ class Solution
     // Very Very Very Good Question, intution is aise mid eleme nikalne ke liye left mai MaxHeap and right mai MinHeap laga dena
     // pura logic isupon insertion.. so check that out
 
+    // if incoming number > median.. push it on the right(minHeap) else push it on lef(maxHeap)
+
     295. Find Median from Data Stream
     (https://leetcode.com/problems/find-median-from-data-stream/)
 

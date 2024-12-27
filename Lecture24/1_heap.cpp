@@ -8,6 +8,8 @@ using namespace std;
 
     It is a complete Binary Tree(Every level is completely filled except the last level)
     Nodes always lean towards the left
+    - Manage Dynamc Memory allocation
+    - It is a contiguous Memory Allocation, also it is fast memory allocation 
 
     - Max Heap {Parent is bigger than the child}
     - Mean Heap {Parent is smaller than the child}
