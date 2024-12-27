@@ -109,10 +109,9 @@ Method 2, (Okay Method not much efficient)
 */
 
 /*
-MAXIMUM CONTIGUOUS SUB ARRAY
 
-https://leetcode.com/problems/maximum-average-subarray-i/submissions/1267111877/
-
+643. Maximum Average Subarray I
+(https://leetcode.com/problems/maximum-average-subarray-i/description/)
 
 double findMaxAverage(vector<int>& nums, int k) {
         int MAX = nums[0];
@@ -139,6 +138,33 @@ double findMaxAverage(vector<int>& nums, int k) {
         double res = max_sum/(double)k;
         return res;
 
+    }
+
+    Method 2
+    
+    double findMaxAverage(vector<int>& arr, int k) {
+        if(arr.size() == 1){
+            return arr[0];
+        }
+        int count = 1;
+        int i = 0;
+        int j = 0;
+
+        double sum = 0;
+        double ans = INT_MIN;
+        while(j < arr.size()){
+            sum += arr[j];
+            if(j-i+1 == k){
+                ans = max(sum/k, ans);
+                sum = sum - arr[i];
+                i = i + 1;
+                j = j + 1;
+            }else{
+                j += 1;
+            }
+        }
+
+        return ans;
     }
 */
 
