@@ -367,6 +367,46 @@ using namespace std;
 */
 
 /*
+    437. Path Sum III
+    (https://leetcode.com/problems/path-sum-iii/description/)
+
+    void eachNodePathSum(TreeNode* root, long long int tempSum, int targetSum, int &count){
+        if(root == NULL){
+            return;
+        }
+
+        if(tempSum + root->val == targetSum){
+            count = count + 1;
+        }
+        eachNodePathSum(root->left, root->val + tempSum, targetSum, count);
+        eachNodePathSum(root->right, root->val + tempSum, targetSum, count);
+
+
+    }
+
+
+    void traverse(TreeNode* root, int targetSum, int &count){
+        if(root == NULL){
+            return ;
+        }
+
+        long long int temp = 0;
+        eachNodePathSum(root, temp,targetSum, count);
+        traverse(root->left, targetSum, count);
+        traverse(root->right, targetSum, count);
+
+    }
+
+    int pathSum(TreeNode* root, int targetSum) {
+
+        int count = 0;
+        traverse(root, targetSum, count);
+        return count;
+    }
+
+*/
+
+/*
     CONSTRUCT Tree FROM PREORDER AND POST ORDER TRAVERSAL (VVVVVIIIIIII Question)
 
     Method 1 O(n2) {going on each node * searching for index in inorder Index}
