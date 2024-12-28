@@ -49,3 +49,37 @@
         }
     };
 */
+
+/*
+    1753. Maximum Score From Removing Stones
+    (https://leetcode.com/problems/maximum-score-from-removing-stones/description/)
+
+    int maximumScore(int a, int b, int c) {
+        priority_queue<int> que;
+
+        que.push(a);
+        que.push(b);
+        que.push(c);
+
+        int ans = 0;
+
+        while(true && que.size() > 1){
+            int a = que.top();
+            que.pop();
+            int b = que.top();
+            que.pop();
+            a = a - 1;
+            b = b - 1;
+            ans += 1;
+            if(a != 0){
+                que.push(a);
+            }
+            if(b != 0){
+                que.push(b);
+            }
+            
+        }
+
+        return ans;
+    }
+*/
