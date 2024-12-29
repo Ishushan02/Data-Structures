@@ -94,3 +94,41 @@
     621. Task Scheduler
     (https://leetcode.com/problems/task-scheduler/description/)
 */
+
+/*
+    Merge two binary Max heaps
+    (https://www.geeksforgeeks.org/problems/merge-two-binary-max-heap0144/0)
+
+    vector<int> mergeHeaps(vector<int> &a, vector<int> &b, int n, int m) {
+        // your code here
+        int i = 0;
+        int j = 0;
+        vector<int> ans;
+        while(i < a.size() && j < b.size()){
+            if(a[i] > b[j]){
+                ans.push_back(a[i]);
+                i++;
+            }else if(b[j] > a[i]){
+                ans.push_back(b[j]);
+                j++;
+            }else{
+                ans.push_back(a[i]);
+                ans.push_back(b[j]);
+                i++;
+                j++;
+            }
+        }
+        
+        while(i < a.size()){
+            ans.push_back(a[i]);
+            i++;
+        }
+        
+        while(j < b.size()){
+            ans.push_back(b[j]);
+            j++;
+        }
+        
+        return ans;
+    }
+*/
