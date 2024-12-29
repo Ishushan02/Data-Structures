@@ -132,3 +132,61 @@
         return ans;
     }
 */
+
+
+/*
+    973. K Closest Points to Origin
+    (https://leetcode.com/problems/k-closest-points-to-origin/description/)
+
+    class Info{
+        public:
+        vector<int> point;
+        double dist;
+
+        Info(vector<int> &a, double b){
+            point = a;
+            dist = b;
+        }
+    };
+
+    class Solution {
+    public:
+
+        struct cmp{
+            bool operator()(Info* a, Info* b){
+                return a->dist > b->dist;
+            }
+        };
+        
+        double getDistance(vector<int> &each_point){
+            int x = each_point[0];
+            int y = each_point[1];
+
+            return sqrt(pow(x, 2) + pow(y, 2));
+        }
+
+        vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+            
+            vector<vector<int>> ans;
+            priority_queue<Info*, vector<Info*>, cmp> minHeap;
+
+            for (int i = 0; i<points.size(); i++ ){
+                
+                vector<int> each_point = points[i];
+                double dist = getDistance(each_point);
+                Info* temp = new Info(each_point, dist);
+                minHeap.push(temp);
+            }
+
+
+            while(k){
+                Info* top = minHeap.top();
+                minHeap.pop();
+                ans.push_back(top->point);
+                k--;
+            }
+
+            return ans;
+        }
+    };
+*/
