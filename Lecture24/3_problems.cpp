@@ -190,3 +190,93 @@
         }
     };
 */
+
+/*
+    
+    1878. Get Biggest Three Rhombus Sums in a Grid
+    (https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/)
+
+*/
+
+
+/*
+    2163. Minimum Difference in Sums After Removal of Elements (VVV Good Question)
+    (https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/description/)
+
+    long long minimumDifference(vector<int>& nums) {
+        // Mehod 1. get n, and get all subsequence, and find min (TLE)
+
+        long long ans = LONG_MAX;
+        int n = nums.size()/3;
+        priority_queue<long long> maxHeap;
+        priority_queue<long long, vector<long long >, greater<long long >> minHeap;
+        int size = nums.size();
+        vector<long long> minSum(nums.size(), -1);
+        vector<long long> maxSum(nums.size(), -1);
+
+        long long sum = 0;
+        for(int i = 0; i< size; i++){
+            sum = sum + nums[i];
+            if(i + 1 >= n){ // more than n elements
+                int size = maxHeap.size();
+                if(size < n){
+                    maxHeap.push(nums[i]);
+                }else{ // equal or greater
+                    int top = maxHeap.top();
+                    if(top > nums[i]){
+                        sum = sum - top;
+                        maxHeap.pop();
+                        maxHeap.push(nums[i]);
+                    }else{
+                        sum = sum - nums[i];
+                    }
+                    
+                }
+                minSum[i] = sum;
+                // minSum[i] = sum;
+            }else{
+                maxHeap.push(nums[i]);
+            }
+        }
+
+        sum = 0;
+        for(int i = size-1; i >= 0; i--){
+            sum = sum + nums[i];
+            if(size - i >= n){ // more than n elements
+                int size = minHeap.size();
+                if(size < n){
+                    minHeap.push(nums[i]);
+                }else{ // equal or greater
+                    int top = minHeap.top();
+                    if(top < nums[i]){
+                        sum = sum - top;
+                        minHeap.pop();
+                        minHeap.push(nums[i]);
+                    }else{
+                        sum = sum - nums[i];
+                    }
+                    
+                }
+                maxSum[i] = sum;
+                // minSum[i] = sum;
+            }else{
+                minHeap.push(nums[i]);
+            }
+        }
+
+        // getMin Difference
+        int i = 0; 
+        int j = i + 1;
+
+        while(i < size && j < size){
+            if(minSum[i] != -1 && maxSum[j] != -1){
+                ans = min(ans, minSum[i] - maxSum[j]);
+            }
+
+            i = i + 1;
+            j = j + 1;
+        }
+
+        return ans;
+    }
+*/
