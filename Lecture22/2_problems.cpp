@@ -562,8 +562,7 @@ using namespace std;
     (https://www.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1)
 
 
-    void getLeftNodes(Node* root, vector<int> &arr, int val){
-        
+    void getleft(Node* root, vector<int> &leftNode){
         if(root == NULL){
             return ;
         }
@@ -571,74 +570,62 @@ using namespace std;
         if(root->left == NULL && root->right == NULL){
             return ;
         }
-        // cout << root->data << endl;
-        if(root->data != val){
-            arr.push_back(root->data);
-        }
+        
+        leftNode.push_back(root->data);
         
         if(root->left){
-            getLeftNodes(root->left, arr, val);
+            getleft(root->left, leftNode);
         }else{
-            getLeftNodes(root->right, arr, val);
+            getleft(root->right, leftNode);
         }
         
-    
+        
     }
     
-    void getRightNodes(Node* root, vector<int> &arr, int val){
+    void getright(Node* root, vector<int> &rightNode){
         if(root == NULL){
             return ;
         }
-        // cout << root->data << endl;
+        
         if(root->left == NULL && root->right == NULL){
             return ;
         }
         
         if(root->right){
-            getRightNodes(root->right, arr, val);
+            getright(root->right, rightNode);
         }else{
-            getRightNodes(root->left, arr, val);
+            getright(root->left, rightNode);
         }
         
-        if(root->data != val){
-            arr.push_back(root->data); // it should be reversed right
-        }
-        
-    
+        rightNode.push_back(root->data); // to reverse it
     }
     
-    void getLeafNodes(Node* root, vector<int> &arr, int val){
+    void getleaf(Node* root, vector<int> &leafNode, int val){
         if(root == NULL){
             return ;
         }
+        
         if(root->left == NULL && root->right == NULL && root->data != val){
-            // cout << root->data << endl;
-            
-            arr.push_back(root->data);
+            leafNode.push_back(root->data);
         }
         
-        getLeafNodes(root->left, arr, val);
-        getLeafNodes(root->right, arr, val);
+        getleaf(root->left, leafNode, val);
+        getleaf(root->right, leafNode, val);
         
-    
     }
   
     vector<int> boundaryTraversal(Node *root) {
         // code here
         vector<int> ans;
-        
-        if(root == NULL){
-            return ans;
-        }
-        
-        
-        
         ans.push_back(root->data);
-        getLeftNodes(root->left, ans, root->data);
-        getLeafNodes(root, ans, root->data);
-        getRightNodes(root->right, ans, root->data);
+        getleft(root->left, ans);
+        getleaf(root, ans, root->data); // as root is goin, check it
+        getright(root->right, ans);
+        
+    
         
         return ans;
+        
     }
 
 */
