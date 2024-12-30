@@ -667,6 +667,40 @@ using namespace std;
         return ans;
     }
 
+    Method 2.
+
+    unordered_map<int, bool> heightMap;
+        vector<int> ans;
+        if(root == NULL){
+            return ans;
+        }
+        
+        queue<pair<Node*, int>> que;
+        que.push({root, 0});
+        while(!que.empty()){
+            pair<Node*, int> frontVal = que.front();
+            int h = frontVal.second;
+            Node* val = frontVal.first;
+            que.pop();
+            // cout << val->data << " - "<< h << endl;
+            if(heightMap.find(h) == heightMap.end()){
+                heightMap[h] = true;
+                ans.push_back(val->data);
+            }
+            h = h + 1;
+            
+            if(val->left){
+                que.push({val->left, h});
+            }
+            
+            if(val->right){
+                que.push({val->right, h});
+            }
+            
+        }
+        
+        return ans;
+
 */
 
 /*
