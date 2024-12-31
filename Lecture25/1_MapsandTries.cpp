@@ -19,6 +19,20 @@ Maps -
         value is stored.
 
     map.find(key)
+
+    - Linear Probing
+    - Quadratic Probing
+    - Collision wala {}
+    - Load Factor {If load Factor is < 0.7, then it is said that we are using efficient Hash Function}
+    - 
     
+
+*/
+
+
+/*
+    
+    30. Substring with Concatenation of All Words
+    (https://leetcode.com/problems/substring-with-concatenation-of-all-words/)
 
 */
