@@ -196,6 +196,118 @@
     1878. Get Biggest Three Rhombus Sums in a Grid
     (https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/)
 
+    bool checkBoundary(int m, int n, int i, int j, int a, int b, int c, int d, int e, int f){
+        if(i < 0 || i >= m || j < 0 || j >= n || a < 0 || a >= m || b < 0 || b >= n || c < 0 || c >= m || d < 0 || d >= n || e < 0 || e >= m || f < 0 || f >= n ){
+            return false;
+        }
+        return true;
+    }
+
+    void getSum(int &m, int &n, int &currX, int &currY, set<int> &s1, vector<vector<int>>& grid, int unit){
+
+        int upX = currX - unit;
+        int upY = currY;
+        int leftX = currX;
+        int leftY = currY - unit;
+        int downX = currX + unit;
+        int downY = currY;
+        int rightX = currX;
+        int rightY = currY + unit;
+        int sum = 0;
+        if(checkBoundary(m, n, upX, upY, leftX, leftY, downX, downY, rightX, rightY)){
+            // cout << currX << " , " << currY << endl;
+            int tempX = upX;
+            int tempY = upY;
+            // all points from up to left
+            while(tempX < leftX && tempY > leftY ){
+                // cout << grid[tempX][tempY] << " ";
+                sum = sum + grid[tempX][tempY];
+                tempX = tempX + 1;
+                tempY = tempY - 1;
+            }
+            // cout << endl;
+
+
+            // all points from left to bottom
+            tempX = leftX;
+            tempY = leftY;
+            while(tempX < downX && tempY < downY ){
+                // cout << endl << grid[tempX][tempY] << " ";
+                sum = sum + grid[tempX][tempY];
+                tempX = tempX + 1;
+                tempY = tempY + 1;
+            }
+            // cout << endl;
+
+
+            // all points from bottom to right
+            tempX = downX;
+            tempY = downY;
+            while(tempX > rightX && tempY < rightY ){
+                // cout<< endl << grid[tempX][tempY] << " ";
+                sum = sum + grid[tempX][tempY];
+                tempX = tempX - 1;
+                tempY = tempY + 1;
+            }
+            // cout << endl;
+
+
+            // all points from right to top
+            tempX = rightX;
+            tempY = rightY;
+            while(tempX > upX && tempY > upY ){
+                // cout << endl << grid[tempX][tempY] << " ";
+                sum = sum + grid[tempX][tempY];
+                tempX = tempX - 1;
+                tempY = tempY - 1;
+            }
+            // cout << endl;
+
+
+            // cout << currX << " , " << currY << " : "<< sum << endl;
+            s1.insert(sum);
+            getSum(m, n, currX, currY, s1, grid, unit + 1);
+
+        }else{
+            return ;
+        }
+
+
+    }
+
+    vector<int> getBiggestThree(vector<vector<int>>& grid) {
+        
+        vector<int> ans;
+        int m = grid.size();
+        int n = grid[0].size();
+        priority_queue<int> maxHeap;
+        set<int> s1;
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                s1.insert(grid[i][j]);
+                getSum(m, n, i, j, s1, grid, 1);
+            }
+        }
+
+        int i = 0;
+
+        for (auto i : s1){
+            maxHeap.push(i);
+        }
+
+
+        while(!maxHeap.empty() && i < 3){
+            ans.push_back(maxHeap.top());
+            maxHeap.pop();
+            i++;
+        }
+
+
+        return ans;
+        
+    }
+
 */
 
 
