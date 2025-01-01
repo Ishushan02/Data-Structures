@@ -30,7 +30,7 @@ Maps -
     - 
     
 
-    Trie 
+Trie - {It is also said as Prefix Tree} 
     It is a Multiway Tree Data Structure
         - stores mostly char
         - It is used to store strings
