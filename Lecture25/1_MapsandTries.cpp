@@ -27,7 +27,53 @@ Maps -
     - 
     
 
+    Trie 
+    It is a Multiway Tree Data Structure
+        - stores mostly char
+        - It is used to store strings
+        - child map<int, trieNode* >
+        - bool terminal
 */
+
+
+class Trie{
+
+    public:
+    char value;
+    unordered_map<int, Trie*> child;
+    bool isTreminal = false;
+
+    Trie(char charval){
+        value = charval;
+        isTreminal = false;
+    }
+
+    void insert(Trie* root, string word){
+        // base case
+        if(word.length() == 0){
+            root->isTreminal = true;
+            return ;
+        }
+
+        // insert char
+        char ch = word[0];
+        Trie* newNode;
+
+        // if char is present, link it
+        if(root->child.count(ch) == 1){
+            newNode = root->child[ch];
+        }else{
+            // create one and link it
+            newNode = new Trie(ch);
+            root->child[ch] = newNode;
+        }
+
+        insert(newNode, word.substr(1));
+
+
+    }
+};
+
 
 
 /*
@@ -84,3 +130,5 @@ Maps -
     }
 
 */
+
+
