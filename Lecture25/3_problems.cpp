@@ -69,5 +69,27 @@
         }
         return front;
     }
+
+*/
+
+/*
+    Sum equals to Sum
+    (https://www.geeksforgeeks.org/problems/sum-equals-to-sum4006/1)
+
+    bool findPairs(vector<int>& arr) {
+        // code here.
+        
+        unordered_map<int, int> mapVal;
+        for(int i = 0; i < arr.size(); i++){
+            for(int j = i + 1; j < arr.size(); j++){
+                mapVal[arr[i] + arr[j]]++;
+                
+                if(mapVal[arr[i] + arr[j]] > 1){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     
 */
