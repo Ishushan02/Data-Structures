@@ -300,3 +300,88 @@ We can do get suggestions from given prefix string.
     }
     
 */
+
+/*
+    211. Design Add and Search Words Data Structure
+    (https://leetcode.com/problems/design-add-and-search-words-data-structure/description/)
+
+class TrieNode{
+    public:
+        char data;
+        unordered_map<char, TrieNode*> childNode;
+        bool isTerminal;
+
+        TrieNode(char val){
+            data = val;
+            isTerminal = false;
+        }
+
+        void insert(TrieNode* root, string word) {
+            if(word.length() == 0){
+                root->isTerminal = true;
+                return ;
+            }
+
+            TrieNode* child;
+            char ch = word[0];
+            if(ch != '.'){
+                if(root->childNode.find(ch) != root->childNode.end()){
+                    child = root->childNode[ch];
+                }else{
+                    child = new TrieNode(ch);
+                    root->childNode[ch] = child;
+                }
+            }
+            insert(child, word.substr(1));
+
+        }
+
+        bool search(TrieNode* root, string word) {
+            if(word.length() == 0){
+                return root->isTerminal;
+            }
+
+            char ch = word[0];
+            // cout << "Word: "<< word << endl;
+            TrieNode* child;
+            bool matchA = false;
+            if(ch != '.'){
+                if(root->childNode.find(ch) != root->childNode.end()){
+                    child = root->childNode[ch];
+                }else{
+                    return false;
+                }
+                matchA = search(child, word.substr(1));
+            }else{
+                // for all nodes whenever . comes
+                for(auto &[str, node]:root->childNode){
+                    // cout << str << endl;
+                    matchA = matchA || search(node, word.substr(1));
+                }
+                
+            }
+            return matchA;
+        }
+
+};
+
+
+
+class WordDictionary {
+public:
+
+    TrieNode* root;
+
+    WordDictionary() {
+        root = new TrieNode('-');
+    }
+    
+    void addWord(string word) {
+        root->insert(root, word);
+    }
+    
+    bool search(string word) {
+        return root->search(root, word);
+    }
+};
+*/

@@ -13,6 +13,9 @@
         cout << key << " , " << val << endl;
     }
 
+    // without address also it will work fine with copy of key and val in the variable
+    // but then with address it's copy won't be created
+    // and directed there address are accessed
 
 */
 
