@@ -274,3 +274,29 @@ public:
 We can do get suggestions from given prefix string.
 
 */
+
+/*
+    187. Repeated DNA Sequences
+    (https://leetcode.com/problems/repeated-dna-sequences/description/)
+
+    vector<string> findRepeatedDnaSequences(string s) {
+        unordered_map<string, int> freqMap;
+
+        for(int i = 0; i + 10 <= s.length(); i++){
+            string st = s.substr(i, 10);
+            freqMap[st]++;
+        }
+
+        vector<string> ans;
+
+        for(auto val:freqMap){
+            // cout << 
+            if(val.second > 1){
+                ans.push_back(val.first);
+            }
+        }
+
+        return ans;
+    }
+    
+*/
