@@ -302,7 +302,7 @@ We can do get suggestions from given prefix string.
 */
 
 /*
-    211. Design Add and Search Words Data Structure
+    211. Design Add and Search Words Data Structure (It is really Good question, search modification)
     (https://leetcode.com/problems/design-add-and-search-words-data-structure/description/)
 
 class TrieNode{
@@ -384,4 +384,92 @@ public:
         return root->search(root, word);
     }
 };
+*/
+
+
+/*
+    676. Implement Magic Dictionary (It is really Good question, search modification)
+    (https://leetcode.com/problems/implement-magic-dictionary/description/)
+
+class Trie{
+    public:
+    char data;
+    bool isTerminal;
+    map<char, Trie*> childNode;
+
+    Trie(char ch){
+        data = ch;
+        isTerminal = false;
+    }
+    
+    void insert(Trie* root, string word){
+        if(word.length() == 0){
+            root->isTerminal = true;
+            return ;
+        }
+
+        Trie* child;
+        char ch = word[0];
+
+        if(root->childNode.find(ch) != root->childNode.end()){
+            child = root->childNode[ch];
+        }else{
+            child = new Trie(ch);
+            root->childNode[ch] = child;
+        }
+        insert(child, word.substr(1));
+    }
+
+    bool search(Trie* root, string word, bool mismatch = false){
+        if(word.length() == 0){
+            return mismatch && root->isTerminal;
+        }
+
+        Trie* child;
+        char ch = word[0];
+        if(root->childNode.find(ch) != root->childNode.end()){
+            child = root->childNode[ch];
+            if(search(child, word.substr(1), mismatch)){
+                return true;
+            }
+        }
+
+        // mismatched
+        // cout << word << endl;
+        if(mismatch == false){
+            for(auto &[key, node]:root->childNode){
+                child = root->childNode[key];
+                // ans = search(child, word.substr(1), diffCount);
+                mismatch = true;
+                if(ch != key && search(child, word.substr(1), mismatch)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+
+
+
+class MagicDictionary {
+public:
+    Trie* root;
+    MagicDictionary() {
+        root = new Trie('-');
+    }
+    
+    void buildDict(vector<string> dictionary) {
+        for(auto each_str:dictionary){
+            root->insert(root, each_str);
+        }
+    }
+    
+    bool search(string searchWord) {
+        bool mismatch = false;
+        return root->search(root, searchWord, mismatch);
+    }
+};
+
 */
