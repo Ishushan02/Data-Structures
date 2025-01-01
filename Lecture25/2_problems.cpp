@@ -473,3 +473,110 @@ public:
 };
 
 */
+
+/*
+    1268. Search Suggestions System
+    (https://leetcode.com/problems/search-suggestions-system/description/)
+
+class TrieNode{
+    public:
+        char data;
+        unordered_map<char, TrieNode*> childNode;
+        string endword;
+        bool isTerminal;
+
+        TrieNode(char val){
+            data = val;
+            isTerminal = false;
+        }
+
+        void insert(TrieNode* root, string word, string &original) {
+            if(word.length() == 0){
+                root->isTerminal = true;
+                root->endword = original; // storing corresponding words in terminal
+                return ;
+            }
+
+            TrieNode* child;
+            char ch = word[0];
+            if(root->childNode.find(ch) != root->childNode.end()){
+                child = root->childNode[ch];
+            }else{
+                child = new TrieNode(ch);
+                root->childNode[ch] = child;
+            }
+            insert(child, word.substr(1), original);
+
+        }
+
+        void getStrings(TrieNode* root, vector<string> &allstring){
+            if(root == NULL){
+                return ;
+            }
+
+            if(root->isTerminal == true){
+                allstring.push_back(root->endword);
+            }
+
+            for(auto &[key, node]:root->childNode){
+                getStrings(node, allstring);
+            }
+
+        }
+
+        TrieNode* searchPrefixNode(TrieNode* root, string prefix){
+            if(prefix.length() == 0){
+                return root;
+            }
+
+            TrieNode* child;
+            char ch = prefix[0];
+            if(root->childNode.find(ch) != root->childNode.end()){
+                child = root->childNode[ch];
+                return searchPrefixNode(child, prefix.substr(1));
+            }
+
+            return NULL;
+        }
+        
+
+
+};
+
+
+
+class Solution {
+public:
+    vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {
+        
+        vector<vector<string>> ans;
+        int n = searchWord.length();
+        TrieNode* root = new TrieNode('-');
+
+        for(auto val:products){ 
+            root->insert(root, val, val);
+        }
+
+
+        string prefix = "";
+        for(int i = 0; i < searchWord.length(); i++){
+            // cout << searchWord.substr(0, i+1) << endl;
+            prefix = prefix + searchWord[i];
+            TrieNode* prefixNode = root->searchPrefixNode(root, prefix);
+            vector<string> values;
+            root->getStrings(prefixNode, values);
+            sort(values.begin(), values.end());
+            
+            if(values.size()> 3){
+                values.erase(values.begin() + 3, values.end());
+            }
+        
+            ans.push_back(values);
+
+        }
+
+        return ans;
+    }
+};
+
+*/
