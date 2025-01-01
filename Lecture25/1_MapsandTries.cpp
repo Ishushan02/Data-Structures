@@ -39,16 +39,17 @@ Maps -
 class Trie{
 
     public:
-    char value;
-    unordered_map<int, Trie*> child;
-    bool isTreminal = false;
+        char value;
+        unordered_map<int, Trie*> child;
+        bool isTreminal;
 
     Trie(char charval){
         value = charval;
         isTreminal = false;
     }
+};
 
-    void insert(Trie* root, string word){
+void insert(Trie* root, string word){
         // base case
         if(word.length() == 0){
             root->isTreminal = true;
@@ -72,6 +73,45 @@ class Trie{
 
 
     }
-};
+
+bool search(Trie* root, string word){
+    if(word.length() == 0){// last character in root
+        if(root->isTreminal == true){ // last word is terminal Node
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    char ch = word[0];
+    Trie* child;
+
+    if(root->child.find(ch) != root->child.end()){
+        // present;
+        child = root->child[ch];
+    }else{
+        // not present
+        return false;
+    }
+
+    return search(child, word.substr(1));
+
+}
 
 
+int main(){
+
+    Trie* root = new Trie('-');
+
+    insert(root, "ishan");
+    insert(root, "ishu");
+    insert(root, "ishananand");
+    insert(root, "iloveyou");
+
+    cout << search(root, "ishan") << endl;
+    cout << search(root, "ish") << endl;
+    cout << search(root, "ishu") << endl;
+    cout << search(root, "ishunan") << endl;
+    cout << search(root, "ishunanand") << endl;
+
+}
