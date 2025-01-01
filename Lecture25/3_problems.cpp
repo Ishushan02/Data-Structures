@@ -35,3 +35,39 @@
     }
 
 */
+
+/*
+    Union of Two Linked Lists
+    (https://www.geeksforgeeks.org/problems/union-of-two-linked-list/1)
+
+    struct Node* makeUnion(struct Node* head1, struct Node* head2) {
+        // code here
+        map<int, int> valMap;
+        
+        while(head1){
+            valMap[head1->data]++;
+            head1 = head1->next;
+        }
+        
+        while(head2){
+            valMap[head2->data]++;
+            head2 = head2->next;
+        }
+        
+        Node* front = NULL;
+        Node* back = NULL;
+        for(auto val:valMap){
+            Node* newNode = new Node(val.first);
+            if(front == NULL){
+                front = newNode;
+                back = newNode;
+            }else{
+                back->next = newNode;
+                back = back->next;
+            }
+            
+        }
+        return front;
+    }
+    
+*/
