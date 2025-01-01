@@ -475,7 +475,7 @@ public:
 */
 
 /*
-    1268. Search Suggestions System
+    1268. Search Suggestions System (Good Question logic is k=store the entire word in terminal Node)
     (https://leetcode.com/problems/search-suggestions-system/description/)
 
 class TrieNode{
