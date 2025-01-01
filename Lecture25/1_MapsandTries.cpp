@@ -3,6 +3,18 @@
 #include <string>
 #include <unordered_map>
 
+/*
+
+    NEW METHOD OF LOPPING MAP
+
+    unordered_map<string, int> myMap;
+
+    for(auto &[key, val]:myMap){
+        cout << key << " , " << val << endl;
+    }
+
+
+*/
 
 using namespace std;
 /*
