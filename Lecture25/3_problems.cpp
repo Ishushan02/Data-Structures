@@ -119,3 +119,41 @@
         return ans;
     }
 */
+
+
+/*
+    Largest subarray of 0's and 1's (Similar Problem as Above), Good QUestion
+    (https://www.geeksforgeeks.org/problems/largest-subarray-of-0s-and-1s/1)
+
+    int maxLen(vector<int> &arr) {
+        // Your code here
+        unordered_map<int, int> mapVal;
+        
+    // replace all 0 term with -1, now it is same as max subarray with sum 0
+    
+        int sum = 0;
+        int maxSum = 0;
+        
+        for(int i = 0; i < arr.size(); i++){
+            if(arr[i] == 0){
+                sum += -1;
+            }else{
+                sum +=  1;
+            }
+            
+            
+            if(sum == 0){
+                maxSum = max(maxSum, i + 1);
+            }else if(mapVal.find(sum) == mapVal.end()){
+                mapVal[sum] = i;
+            }else{
+                maxSum = max(maxSum, i - mapVal[sum]);
+            }
+        }
+        
+        return maxSum;
+        
+    }
+
+
+*/
