@@ -91,5 +91,31 @@
         }
         return false;
     }
-    
+
+*/
+
+
+/*
+    Largest subarray with 0 sum (Good QUestion, DO it Again)
+    (https://www.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1)
+
+    int maxLen(vector<int>& arr) {
+        // code here
+        unordered_map<int, int> leftSum;
+        int ans = 0;
+        int sum = 0;
+        
+        for(int i = 0; i <arr.size(); i++){
+            sum += arr[i];
+            
+            if(sum == 0){
+                ans = max(ans, i+1);
+            }else if(leftSum.find(sum) == leftSum.end()){
+                leftSum[sum] = i;
+            }else{
+                ans = max(ans, i - leftSum[sum]);
+            }
+        }
+        return ans;
+    }
 */
