@@ -147,3 +147,124 @@ class TrieNode{
     };
 
 */
+
+
+
+/*
+
+    14. Longest Common Prefix (2nd Method, we already did it by strings, now doing it by Trie)
+    (https://leetcode.com/problems/longest-common-prefix/description/)
+
+class TrieNode{
+    public:
+        char data;
+        unordered_map<char, TrieNode*> childNode;
+        bool isTerminal;
+
+        TrieNode(char val){
+            data = val;
+            isTerminal = false;
+        }
+
+        void insert(TrieNode* root, string word) {
+            if(word.length() == 0){
+                root->isTerminal = true;
+                return ;
+            }
+
+            TrieNode* child;
+            char ch = word[0];
+            if(root->childNode.find(ch) != root->childNode.end()){
+                child = root->childNode[ch];
+            }else{
+                child = new TrieNode(ch);
+                root->childNode[ch] = child;
+            }
+            insert(child, word.substr(1));
+
+        }
+
+        bool search(TrieNode* root, string word) {
+            if(word.length() == 0){
+                return root->isTerminal;
+            }
+
+            char ch = word[0];
+            TrieNode* child;
+
+            if(root->childNode.find(ch) != root->childNode.end()){
+                child = root->childNode[ch];
+            }else{
+                return false;
+            }
+            return search(child, word.substr(1));
+        }
+
+        bool startsWith(TrieNode* root, string prefix) {
+            if(prefix.length() == 0){
+                return true;
+            }
+
+            char ch = prefix[0];
+            TrieNode* child;
+
+            cout << ch << endl;
+
+            if(root->childNode.find(ch) != root->childNode.end()){
+                child = root->childNode[ch];
+            }else{
+                return false;
+            }
+            return startsWith(child, prefix.substr(1));
+        }
+        
+        // if it has single child include it, in ans or else that's not common
+            //          root
+            //          /
+            //         F
+            //        /
+            //        L
+            //    /   \   \
+            //  WER. OW.  IGHT. 
+        
+};
+
+
+
+class Solution {
+public:
+
+    void longestCommon(TrieNode* root, string &ans){
+        if(root->isTerminal){
+            return ;
+        }
+        
+        if(root->childNode.size() == 1){
+            auto val = root->childNode.begin()->first;
+            ans += val;
+            cout << val << endl;
+            root = root->childNode[val];
+            longestCommon(root, ans);
+        }else{
+            return ;
+        }
+
+        
+
+    }
+
+    string longestCommonPrefix(vector<string>& strs) {
+        
+        TrieNode* root = new TrieNode('-');
+
+        for(auto val:strs){
+            root->insert(root, val);
+        }
+        string ans ;
+        longestCommon(root, ans);
+
+        return ans;
+
+    }
+};
+*/
