@@ -268,3 +268,9 @@ public:
     }
 };
 */
+
+/*
+
+We can do get suggestions from given prefix string.
+
+*/
