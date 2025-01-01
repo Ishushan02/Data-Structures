@@ -1,5 +1,8 @@
 #include<iostream>
 #include<map>
+#include <string>
+#include <unordered_map>
+
 
 using namespace std;
 /*
@@ -33,6 +36,9 @@ Maps -
         - It is used to store strings
         - child map<int, trieNode* >
         - bool terminal
+     - Search in Trie O(len of word for search)
+     - Insert in Trie O(len of word for search)
+
 */
 
 
@@ -40,7 +46,7 @@ class Trie{
 
     public:
         char value;
-        unordered_map<int, Trie*> child;
+        unordered_map<char, Trie*> child;
         bool isTreminal;
 
     Trie(char charval){
@@ -99,6 +105,47 @@ bool search(Trie* root, string word){
 }
 
 
+/*
+    To delete, if we mark the terminal node of that word to be False, then it will be same 
+    as the word in not present in the Trie, so deleting the trie is like just marking the terminal 
+    node as false.
+
+    We should not delete the entire Node, as deleting the entire node it will not only effect 
+    the current Node it will effect all the related nodes. So don;t delete all the nodes, just
+    mark the terminal node as false.
+
+*/
+
+
+void deleteNode(Trie* root, string word){
+    // base case
+    if(word.length() == 0){
+        // end case
+        if(root->isTreminal == true){
+            root->isTreminal = false;
+            return ;
+        }else{
+            // nothing to delete as that word won't be present
+            return ;
+        }
+    }
+
+    char ch = word[0];
+    Trie* childNode;
+
+    if(root->child.find(ch) != root->child.end()){
+        childNode = root->child[ch];
+    }else{
+        // the char is not present so nothing to delete
+        return ;
+
+    }
+
+    deleteNode(childNode, word.substr(1));
+
+}
+
+
 int main(){
 
     Trie* root = new Trie('-');
@@ -113,5 +160,10 @@ int main(){
     cout << search(root, "ishu") << endl;
     cout << search(root, "ishunan") << endl;
     cout << search(root, "ishunanand") << endl;
+
+    deleteNode(root, "ishan");
+    cout << "Deleted ishan: " << endl;
+    cout << search(root, "ishan") << endl;
+    insert(root, "ishan");
 
 }
