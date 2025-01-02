@@ -370,3 +370,48 @@ public:
     The above procedure is well and good, so you can stick to that instead of Trie.
 
 */
+
+/*
+    336. Palindrome Pairs
+    (https://leetcode.com/problems/palindrome-pairs/description/)
+
+    Method 1.
+    bool isPalindrome(string &word){
+        int i = 0;
+        int j = word.length() -1;
+
+        while(i <= j){
+            if(word[i] == word[j]){
+                i++;
+                j--;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+    vector<vector<int>> palindromePairs(vector<string>& words) {
+        
+        vector<vector<int>> ans;
+
+        // string word = "abcdvcxdcba";
+        for(int i = 0; i < words.size();i++){
+            vector<int> tempAns;
+            for(int j = 0 ; j<words.size(); j++){
+                if(i != j){
+                    string word = words[i] + words[j];
+                    if(isPalindrome(word)){
+                        cout << words[i] << " , " << words[j] << endl;
+                        tempAns.push_back(i);
+                        tempAns.push_back(j);
+                        ans.push_back(tempAns);
+                        tempAns.clear();
+                    }
+                    
+                }
+            }
+        }
+        return ans;
+    }
+*/
