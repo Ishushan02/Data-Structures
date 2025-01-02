@@ -372,10 +372,13 @@ public:
 */
 
 /*
+
+    (The below Solution is yours, see the solution in video again in Trie Week and solve it.)
+
     336. Palindrome Pairs
     (https://leetcode.com/problems/palindrome-pairs/description/)
 
-    Method 1.
+    Method 1. (TLE)
     bool isPalindrome(string &word){
         int i = 0;
         int j = word.length() -1;
