@@ -303,3 +303,64 @@ public:
     }
 
 */
+
+/*
+    1023. Camelcase Matching
+    (https://leetcode.com/problems/camelcase-matching/description/ )
+
+     bool patternMatch(string &query, string &pattern){
+        int i = 0;
+        int j = 0;
+        cout << query << " -> " << pattern << endl;
+        while(i < query.length()){
+            cout << "i: "<< i << " , " <<query[i] << " , " << " j: " << j << " , " << pattern[j] << endl;
+            if(j >= pattern.length() && query[i] >= 'A' && query[i] <= 'Z'){
+                return false;
+            }else if(query[i] >= 'A' && query[i] <= 'Z' && pattern[j] >= 'A' && pattern[j] <= 'Z'){
+                if(query[i] == pattern[j]){
+                    i++;
+                    j++;
+                }else{
+                    return false;
+                }
+            }else if(pattern[j] >= 'a' && pattern[j] <= 'z' && query[i] >= 'a' && query[i] <= 'z'){
+                if(query[i] == pattern[j]){
+                    i++;
+                    j++;
+                }else{
+                    i++;
+                }
+            }else if( pattern[j] >= 'A' && pattern[j] <= 'Z' && query[i] >= 'a' && query[i] <= 'z'){
+                i++;
+            }else{
+                i++;
+                // return false;
+                // cout << query[i] << " " << pattern[j] << endl;
+            }
+
+
+        }
+
+        if(j >= pattern.length() ){
+            return true;
+        }
+
+        return false;
+
+
+    }
+
+    vector<bool> camelMatch(vector<string>& queries, string pattern) {
+        
+        vector<bool> ans;
+        for(auto each_query: queries){
+            bool tempAns = patternMatch(each_query, pattern);
+            cout << each_query << " -> " << tempAns << endl;
+            ans.push_back(tempAns);
+        }
+
+        return ans;
+
+        
+    }
+*/
