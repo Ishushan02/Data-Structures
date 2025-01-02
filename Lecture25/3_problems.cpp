@@ -263,3 +263,43 @@ public:
 
 
 */
+
+/*
+    692. Top K Frequent Words {Remeber Top K based questions for Heap(Priority Queue)}
+    (https://leetcode.com/problems/top-k-frequent-words/description/)
+
+    struct comp{
+        bool operator()(pair<string, int>& A, pair<string, int>& B){
+            if(A.second == B.second){
+                return A.first > B.first;
+            }
+            return A.second < B.second;
+        }
+    };
+
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        unordered_map<string, int> wordFreq;
+        vector<string> ans;
+        
+        for(auto val:words){
+            wordFreq[val]++;
+        }
+
+        priority_queue<pair<string, int>, vector<pair<string, int>>, comp> que;
+
+        for(auto &[key, val]:wordFreq){
+            que.push({key, val});
+        }
+
+        while(!que.empty() && k > 0){
+            pair<string, int> temp = que.top();
+            // cout << temp.first << ", " << temp.second << endl;
+            ans.push_back(temp.first);
+            que.pop();
+            k--;
+        }
+        // sort(ans.begin(), ans.end());
+        return ans;
+    }
+
+*/
