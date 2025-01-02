@@ -363,4 +363,10 @@ public:
 
         
     }
+
+    We can do the above question also using trie, but even in that we have to do patten matching, 
+    just think of the procedure {Hint: insert pattern in trie.. and then check current query with pattern in trie. }
+
+    The above procedure is well and good, so you can stick to that instead of Trie.
+
 */
