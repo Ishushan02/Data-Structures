@@ -157,3 +157,109 @@
 
 
 */
+
+
+/*
+    648. Replace Words
+    (https://leetcode.com/problems/replace-words/description/)
+
+
+class TrieNode{
+    public:
+        char data;
+        unordered_map<char, TrieNode*> childNode;
+        string endword;
+        bool isTerminal;
+
+        TrieNode(char val){
+            data = val;
+            isTerminal = false;
+        }
+
+        void insert(TrieNode* root, string word, string &original) {
+            if(word.length() == 0){
+                root->isTerminal = true;
+                root->endword = original; // storing corresponding words in terminal
+                return ;
+            }
+
+            TrieNode* child;
+            char ch = word[0];
+            if(root->childNode.find(ch) != root->childNode.end()){
+                child = root->childNode[ch];
+            }else{
+                child = new TrieNode(ch);
+                root->childNode[ch] = child;
+            }
+            insert(child, word.substr(1), original);
+
+        }
+
+
+        bool searchPrefixNode(TrieNode* root, string prefix, string &dictWord){
+            if(root->isTerminal){
+                dictWord = root->endword;
+                return true;
+            }
+
+            TrieNode* child;
+            char ch = prefix[0];
+            if(root->childNode.find(ch) != root->childNode.end()){
+                child = root->childNode[ch];
+            }else{
+                return false;
+            }
+
+            return searchPrefixNode(child, prefix.substr(1), dictWord);
+        }
+        
+
+
+};
+
+
+class Solution {
+public:
+    string replaceWords(vector<string>& dictionary, string sentence) {
+        
+        TrieNode* root = new TrieNode('-');
+        for(auto each_word:dictionary){
+            root->insert(root, each_word, each_word);
+        }
+
+        string prefix = "";
+        string ans = "";
+        for(int i = 0; i < sentence.length(); i++){
+            if(sentence[i] == ' '){
+                cout << prefix << endl;
+                string replaceword = "";
+                bool present = root->searchPrefixNode(root, prefix, replaceword);
+                if(present){
+                    ans += replaceword;
+                }else{
+                    ans += prefix;
+                }
+                ans = ans + " ";
+                prefix = "";
+            }else{
+                prefix = prefix + sentence[i];
+            }
+            
+
+        }
+
+        // for last word
+        string replaceword = "";
+        bool present = root->searchPrefixNode(root, prefix, replaceword);
+        if(present){
+            ans += replaceword;
+        }else{
+            ans += prefix;
+        }
+
+        return ans;
+    }
+};
+
+
+*/
