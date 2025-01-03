@@ -75,3 +75,39 @@ public:
     }
 
 */
+
+
+/*  
+    Encode and Decode Strings
+    (https://www.geeksforgeeks.org/problems/encode-and-decode-strings/1)
+
+    class Solution {
+  public:
+    string encode(vector<string>& s) {
+        // code here
+        string ans;
+        
+        for(auto val:s){
+            ans += val;
+            ans += " ";
+        }
+        return ans;
+    }
+
+    vector<string> decode(string& s) {
+        // code here
+        vector<string> ans;
+        string prefix = "";
+        for(auto val:s){
+            if(val == ' '){
+                ans.push_back(prefix);
+                prefix = "";
+            }else{
+                prefix += val;
+            }
+        }
+        return ans;
+    }
+};
+
+*/

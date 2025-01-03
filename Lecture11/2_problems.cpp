@@ -89,7 +89,7 @@ Rotate a Matrix
  1. Transpose
  2. Reverse each Row
 
-//  https://leetcode.com/problems/rotate-image/submissions/1270482576/
+//  https://leetcode.com/problems/rotate-image/
 
 void rotate(vector<vector<int>>& matrix) {
 
