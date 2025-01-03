@@ -3,6 +3,106 @@
 using namespace std;
 
 /*
+
+    33. Search in Rotated Sorted Array
+    (https://leetcode.com/problems/search-in-rotated-sorted-array/description/)
+
+    int getIndex(vector<int>& nums, int target){
+        int start = 0; 
+        int end = nums.size() -1;
+
+        int mid = (start + end) / 2;
+
+        while(start < end){
+            if(nums[mid] >= nums[0]){
+                start = mid + 1;
+            }else{
+                end = mid;
+            }
+            mid = (start + end) / 2;
+        }
+        
+        return start;
+    }
+
+    int binarySearchIncr(vector<int>& nums, int target, int start, int end){
+        int mid = (start + end)/ 2 ;    
+        cout << "Mid: "<< mid << " , "<< start << ", " << end << " , " << nums[mid] << endl;
+
+        while(start <= end){
+            if(nums[mid] == target){
+                return mid;
+            }else if(nums[mid] > target){
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start + end) / 2;
+        }
+
+        return -1;
+    }
+
+    int binarySearchDecr(vector<int>& nums, int target, int start, int end){
+        int mid = (start + end)/ 2 ;    
+        cout << "Mid: "<< mid << " , "<< start << ", " << end << " , " << nums[mid] << endl;
+
+        while(start <= end){
+            if(nums[mid] == target){
+                return mid;
+            }else if(nums[mid] < target){
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start + end) / 2;
+        }
+
+        return -1;
+    }
+
+    int search(vector<int>& nums, int target) {
+        
+        int pivotIndex = getIndex(nums, target);
+
+        cout << pivotIndex << endl;
+
+        if(target == nums[pivotIndex]){
+            return pivotIndex;
+        }
+
+        if(pivotIndex == 0){
+            // either incre
+            int ans1 = binarySearchIncr(nums, target, 0, nums.size()-1);
+            if(ans1 != -1){
+                return ans1;
+            }
+            // or decr
+            int ans2 = binarySearchDecr(nums, target, 0, nums.size()-1);
+            if(ans2 != -1){
+                return ans2;
+            }
+        }else{
+            int ans1 = binarySearchIncr(nums, target, 0, pivotIndex-1);
+            if(ans1 != -1){
+                return ans1;
+            }
+            int ans2 = binarySearchIncr(nums, target, pivotIndex, nums.size()-1);
+            if(ans2 != -1){
+                return ans2;
+            }
+        }
+
+        return -1;
+    }
+
+
+*/
+
+
+
+
+/*
 Find the Pivot element in a given array
 - Here pivot means the lower or higher end of a mountain question
 
@@ -67,6 +167,7 @@ int main()
 */
 
 /*
+(https://leetcode.com/problems/search-in-rotated-sorted-array/)
 Search in Rotated Sorted Array - (https://www.codingninjas.com/studio/problems/search-in-rotated-sorted-array_1082554?interviewProblemRedirection=true&leftPanelTabValue=PROBLEM)
 Good Question
 
@@ -90,7 +191,7 @@ int pivot(vector<int> arr, int n){
     }
     return start;
 
-}
+}   
 
 int bs(vector<int> arr, int start,int end,int key){
     end = end-1;
