@@ -157,6 +157,7 @@ public:
 
 /*
 Find Pivot Index of an array - Leetcode 724
+(https://leetcode.com/problems/find-pivot-index/description/)
 Q -> an index i it's where left sum is equal to right sum
 Ans -> [1, 7, 3, 6, 5, 6] --> O/P - 3(index)
 
