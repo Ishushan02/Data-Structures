@@ -111,3 +111,33 @@ public:
 };
 
 */
+
+/*
+    90. Subsets II
+    (https://leetcode.com/problems/subsets-ii/)
+    
+    void getSubset(vector<int>& nums, int index, vector<int> tempAns, vector<vector<int>> &res ){
+        if(index >= nums.size()){
+            if(find(res.begin(), res.end(), tempAns) == res.end()){
+                res.push_back(tempAns);
+            }
+            return ;
+        }
+
+        tempAns.push_back(nums[index]);
+        getSubset(nums, index + 1, tempAns, res);
+        tempAns.pop_back();
+
+        getSubset(nums, index + 1, tempAns, res);
+
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+        vector<int> tempAns;
+        getSubset(nums, 0, tempAns, res);
+
+        return res;
+    }
+*/
