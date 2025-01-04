@@ -6,7 +6,7 @@ using namespace std;
 
 /*
 Book Allocation Problem
-(https://www.codingninjas.com/studio/problems/allocate-books_1090540?interviewProblemRedirection=true&leftPanelTabValue=PROBLEM)
+(https://www.naukri.com/code360/problems/allocate-books_1090540?interviewProblemRedirection=true&leftPanelTabValue=PROBLEM)
 
 Question -
 - given an arr where ith element represent number of pages (n size of array)
@@ -90,7 +90,7 @@ int findPages(vector<int>& arr, int n, int m) {
 
 /*
 Painters Partition Problem
-(https://www.codingninjas.com/studio/problems/painter-s-partition-problem_1089557?interviewProblemRedirection=true&leftPanelTabValue=SUBMISSION)
+(https://www.naukri.com/code360/problems/painter-s-partition-problem_1089557?interviewProblemRedirection=true&leftPanelTabValue=PROBLEM)
 
 - Same Logic
 
@@ -155,7 +155,7 @@ int findLargestMinDistance(vector<int> &boards, int k)
 /*
 
 Aggresive Cows -
-(https://www.codingninjas.com/studio/problems/aggressive-cows_1082559?interviewProblemRedirection=true&leftPanelTabValue=SUBMISSION)
+(https://www.naukri.com/code360/problems/aggressive-cows_1082559?interviewProblemRedirection=true&leftPanelTabValue=PROBLEM)
 
 -Similar Logic (as above both)
 

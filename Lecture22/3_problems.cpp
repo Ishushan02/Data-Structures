@@ -418,7 +418,7 @@ using namespace std;
 /*
 
     968. Binary Tree Cameras
-    (https://leetcode.com/problems/binary-tree-cameras/submissions/1480616371/)
+    (https://leetcode.com/problems/binary-tree-cameras/)
 
     // 2 Installed, 1 Covered, 0 not covered, TRaverse from Bottom to Top(Post Order)
     // 1  (cov) and 1 (cov) -> ret 0 curr not covered
