@@ -5,41 +5,71 @@ using namespace std;
 /*
 Leetcode 35 - (https://leetcode.com/problems/search-insert-position/)
 
-
-int main()
-{
-    int start = 0;
-    int nums[2] = {1, 3};
-    int end = 2 - 1;
-    int target = 2;
-    int mid = (start + end) / 2;
-    int ans = 0;
-    while (start <= end)
+Method 1.
+    int main()
     {
-        if (target > nums[mid])
+        int start = 0;
+        int nums[2] = {1, 3};
+        int end = 2 - 1;
+        int target = 2;
+        int mid = (start + end) / 2;
+        int ans = 0;
+        while (start <= end)
         {
-            start = mid + 1;
-            ans = mid + 1;
-            cout << "T>mid " << ans << nums[mid] << endl;
+            if (target > nums[mid])
+            {
+                start = mid + 1;
+                ans = mid + 1;
+                cout << "T>mid " << ans << nums[mid] << endl;
+            }
+            else if (target < nums[mid])
+            {
+                end = mid - 1;
+                ans = mid;
+                cout << "T<mid " << ans << nums[mid] << endl;
+            }
+            else
+            {
+                ans = mid;
+                break;
+                cout << "T=mid " << ans << nums[mid] << endl;
+            }
+            mid = (start + end) / 2;
         }
-        else if (target < nums[mid])
-        {
-            end = mid - 1;
-            ans = mid;
-            cout << "T<mid " << ans << nums[mid] << endl;
-        }
-        else
-        {
-            ans = mid;
-            break;
-            cout << "T=mid " << ans << nums[mid] << endl;
-        }
-        mid = (start + end) / 2;
+
+        cout << "Ans " << ans << endl;
+        return ans;
     }
 
-    cout << "Ans " << ans << endl;
-    return ans;
-}
+
+    Method 2
+    int searchInsert(vector<int>& nums, int target) {
+        
+
+        int start = 0;
+        int end = nums.size() - 1;
+        int mid = (start + end)/2;
+
+        while(start <= end){
+
+            if(nums[mid] == target){
+                return mid;
+            }else if(target > nums[mid]){
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+
+            mid = (start + end)/2;
+
+        }
+
+        if(nums[0] > target){
+            return mid;
+        }
+
+        return mid + 1;
+    }
 */
 
 /*
