@@ -167,7 +167,7 @@ int main()
 */
 
 /*
-(https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
 Search in Rotated Sorted Array - (https://www.codingninjas.com/studio/problems/search-in-rotated-sorted-array_1082554?interviewProblemRedirection=true&leftPanelTabValue=PROBLEM)
 Good Question
 

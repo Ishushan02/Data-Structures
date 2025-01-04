@@ -43,7 +43,7 @@ int main()
 */
 
 /*
-Leetcode  - Arrange Coins (https://leetcode.com/problems/arranging-coins/submissions/1122407491/)
+Leetcode  - Arrange Coins (https://leetcode.com/problems/arranging-coins/description/)
 
 Proceduere
 
@@ -78,6 +78,30 @@ public:
 
         return ans;
 
+    }
+};
+
+
+Method 2. O(n)
+
+class Solution {
+public:
+    int arrangeCoins(int n) {
+        
+        long long totalelem = 0;
+
+        long long i = 1;
+        while(totalelem <= n){
+            totalelem = i * (i + 1) / 2 ;
+            if(totalelem > n){
+                break;
+            }
+            i += 1;
+        }
+
+        // cout << i << " , " << totalelem << endl;
+
+        return i - 1;
     }
 };
 
