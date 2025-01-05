@@ -154,6 +154,13 @@ int findLargestMinDistance(vector<int> &boards, int k)
 
 /*
 
+    The main logic is that we have cows, and have to place at minimum distance such that they don't fight.. now in that min
+    distance we have to find the maximum one possible. 
+
+    so let's say we have cow1, and cow2.. do they don't fight at  1, 5 pos distance..
+    then we check do they not fight at 1, 4 ..  and so on, similarily we keep checking
+    it's status and return the max distance where all the cow can be placed with min dist b/w them
+
 Aggresive Cows -
 (https://www.naukri.com/code360/problems/aggressive-cows_1082559?interviewProblemRedirection=true&leftPanelTabValue=PROBLEM)
 
