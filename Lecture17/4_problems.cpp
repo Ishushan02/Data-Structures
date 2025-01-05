@@ -244,3 +244,34 @@ METHOD 2 (ACCEPTED)
     }
 
 */
+
+
+/*
+    115. Distinct Subsequences (Memory Limit Exceeded)
+    (https://leetcode.com/problems/distinct-subsequences/description/)
+
+    void getSubseq(string &s, string &temp, string &t, int &ans, int index){
+        if(index >= s.length()){
+            if(temp == t){
+                ans += 1;
+                // cout << temp << " " ;
+            }
+            return ;
+        }
+
+        temp = temp + s[index];
+        getSubseq(s, temp, t, ans, index + 1);
+        temp.pop_back();
+        getSubseq(s, temp, t, ans, index + 1);
+
+    }
+
+    int numDistinct(string s, string t) {
+        string temp = "";
+        int ans = 0;
+        getSubseq(s, temp, t, ans, 0);
+
+        return ans;
+    }
+
+*/
