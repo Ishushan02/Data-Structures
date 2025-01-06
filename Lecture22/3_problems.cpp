@@ -496,52 +496,44 @@ using namespace std;
     (https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/)
 
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        
-        queue<pair<TreeNode*, int>> que;
-        vector<vector<int>> ans;
-        map<int, vector<int>> values;
-
+        vector<vector<int>> res;
         if(root == NULL){
-            return ans;
+            return res;
         }
 
-
-        que.push(make_pair(root, 0));
+        queue<TreeNode*> que;
+        que.push(root);
 
         while(!que.empty()){
 
-            pair<TreeNode*, int> frontElem = que.front();
-            TreeNode* node = frontElem.first;
-            int height = frontElem.second;
-            values[height].push_back(node->val);
-            que.pop();
-
-            if(node->left){
-                que.push(make_pair(node->left, height + 1));
+            int size = que.size();
+            vector<int> tempAns;
+            for(int i = 0; i < size; i++){
+                TreeNode* curr = que.front();
+                tempAns.push_back(curr->val);
+                if(curr->left){
+                    que.push(curr->left);
+                }
+                if(curr->right){
+                    que.push(curr->right);
+                }
+                
+                que.pop();
             }
-            if(node->right){
-                que.push(make_pair(node->right, height + 1));
-            }
-            
+            res.push_back(tempAns);
         }
 
-        bool reverseVal = false;
-        for(auto val:values){
-            
-            vector<int> arr = val.second;
-            if(reverseVal){
-                reverse(arr.begin(), arr.end());
-                ans.push_back(arr);
-                reverseVal = false;
+        bool rev = false;
+        for(auto &value:res){
+            if(rev){
+                reverse(value.begin(), value.end());
+                rev = false;
             }else{
-                ans.push_back(arr);
-                reverseVal = true;
+                rev = true;
             }
-            
         }
 
-        return ans;
-
+        return res;
     }
 */
 
