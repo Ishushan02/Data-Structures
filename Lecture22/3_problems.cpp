@@ -655,6 +655,15 @@ using namespace std;
 */
 
 /*
+    MULTISET - 
+    a multiset is a container from the Standard Template Library (STL) 
+    that stores elements in a sorted order, similar to a set, but unlike a set, 
+    it allows duplicate elements. This means that multiple instances of the 
+    same element can exist in a multiset.
+
+    {Do it Again -- }
+
+
     987. Vertical Order Traversal of a Binary Tree (NEW CONCEPT: multiset)
     (https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/)
 
