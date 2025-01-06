@@ -107,7 +107,7 @@ public:
 /*
 IMP Question
 
-Leetcode 1482 (https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/submissions/1302069667/)
+Leetcode 1482 (https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/)
 
 
 class Solution {
