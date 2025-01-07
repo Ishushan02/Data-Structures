@@ -56,6 +56,28 @@ Trie - {It is also said as Prefix Tree}
 
 */
 
+/*
+    // Comparator Example in MAP
+
+    struct MyComparator {
+        bool operator()(const int a, const int b) const{
+            return a > b; // Reverse the order
+        }
+    };
+    
+    void main(vector<int>& nums) {
+        
+        map<int, int, MyComparator> numsMap;
+
+        for(auto &[key, val]:numsMap){
+            cout << val << endl;
+        }
+
+
+    }
+
+
+*/
 
 class Trie{
 
@@ -182,3 +204,4 @@ int main(){
     insert(root, "ishan");
 
 }
+

@@ -176,7 +176,7 @@ public:
 
 /*
 
-K-diff Pairs (https://leetcode.com/problems/k-diff-pairs-in-an-array/submissions/1302803731/)
+K-diff Pairs (https://leetcode.com/problems/k-diff-pairs-in-an-array/description/)
 
 class Solution {
 public:
