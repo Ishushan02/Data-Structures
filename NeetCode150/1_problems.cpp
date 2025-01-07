@@ -169,3 +169,36 @@ public:
 
 
 */
+
+/*
+    1448. Count Good Nodes in Binary Tree
+    (https://leetcode.com/problems/count-good-nodes-in-binary-tree/description/)
+
+    void getMax(TreeNode* root, int currMax, int &count){
+        if(root == NULL){
+            return;
+        }
+
+        cout << root->val << " , " << currMax << " , " << count << endl;
+        if(root->val >= currMax){
+            count += 1;
+            currMax = root->val;
+        }
+
+        getMax(root->left, currMax, count);
+        getMax(root->right, currMax, count);
+
+    }
+
+    int goodNodes(TreeNode* root) {
+
+        if(root == NULL){
+            return 0;
+        }
+        int count = 0;
+        getMax(root, root->val, count);
+
+        return count;
+    }
+
+*/
