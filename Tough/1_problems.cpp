@@ -66,3 +66,34 @@
     }
 
 */
+
+/*
+    658. Find K Closest Elements
+    (https://leetcode.com/problems/find-k-closest-elements/description/)
+
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        
+        vector<int> ans;
+        int start = 0; 
+        int end = arr.size()-1;
+        while(end - start >= k){
+            int lowdiff = x - arr[start];
+            int highdiff = arr[end] - x;
+            
+            if(lowdiff > highdiff){
+                start = start + 1;
+            }else{
+                end = end - 1;
+            }
+        }
+
+        for(int i = start; i <= end; i++){
+            ans.push_back(arr[i]);
+        }
+
+        return ans;
+        
+    }
+
+    
+*/
