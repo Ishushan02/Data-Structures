@@ -222,5 +222,39 @@ public:
 
         return digits;
     }
+
+*/
+
+/*  
+    50. Pow(x, n)
+    (https://leetcode.com/problems/powx-n/description/)
+
+    double powFn(double x, long long int n){
+        
+        double ans = 1;
+        while(n > 0){
+
+            if (n & 1) {// odd
+                ans = ans * x ;
+            }
+
+            x = x * x ;
+            n = n >> 1; // b/2
+        }
+        return ans;
+
+    }
+
+    double myPow(double x, long long int n) {
+        double ans = 0;
+        if(n < 0){
+            ans = powFn(x, abs(n));
+            ans = 1 / ans;
+        }else{
+            ans = powFn(x, n);
+        }
+        
+        return ans;
+    }
     
 */
