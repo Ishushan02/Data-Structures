@@ -1,6 +1,12 @@
 
 /*
 
+    THe idea is we travel from currNode, get it's predecessor of left part and link it with currNode
+    to the right of predecessor.
+    continue it till your left get null
+    one thing to note is make sure you don't visit currNode again so you also have to delete it, if it's recursively
+    being called 
+
     Morris Traversal :- Google Interview Question
 
     It is sama as to that of Inorder Traversal, but the difference is in Space Complexity
@@ -30,10 +36,10 @@
 
                 if(predecessor->right == NULL){
                     predecessor->right = currNode;
-                    currNode = currNode->left;
-                }else{
-                    predecessor->right = NULL;
-                    ans.push_back(currNode->val);
+                    currNode = currNode->left; 
+                }else{                               // Means we have currNode in predcessors right
+                    predecessor->right = NULL;       // deleting the currNode as it's being recursively called again
+                    ans.push_back(currNode->val);    // so we are delelting that extra link which we created to currNode
                     currNode = currNode->right;
                 }
 
