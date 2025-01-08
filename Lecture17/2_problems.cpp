@@ -192,7 +192,37 @@ This is extremly important type2 of include/exclude Recursion type
 213. House Robber II
 (https://leetcode.com/problems/house-robber-ii/description/)
 
-void MaxSum(vector<int> &nums, int currentIndex, int endIndex, int &maxSum, int sum){
+
+Method 1. (Better Formatting )
+
+    void traverseHouses(vector<int>& nums, int tempSum, int startIndex, int endIndex, int &maxSum){
+        if(startIndex > endIndex){
+            maxSum = max(maxSum, tempSum);
+            return;
+        }
+
+        traverseHouses(nums, tempSum + nums[startIndex], startIndex + 2, endIndex, maxSum);
+        traverseHouses(nums, tempSum, startIndex + 1, endIndex, maxSum);
+
+
+    }
+
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+
+        if(n == 1){
+            return nums[0];
+        }
+        int maxSum = 0;
+        traverseHouses(nums, 0, 0, n-2, maxSum);
+        traverseHouses(nums, 0, 1, n-1, maxSum);
+
+        return maxSum;
+    }
+
+Method 2 (previous one)
+    
+    void MaxSum(vector<int> &nums, int currentIndex, int endIndex, int &maxSum, int sum){
         if(currentIndex >= endIndex + 1){
             maxSum = max(sum, maxSum);
             return ;
