@@ -302,3 +302,21 @@ public:
     }
     
 */
+
+/*
+    217. Contains Duplicate
+    (https://leetcode.com/problems/contains-duplicate/description/)
+
+    unordered_map<int, int> valMap;
+
+        for(auto val:nums){
+            valMap[val]++;
+
+            if(valMap[val]>1){
+                return true;
+            }
+        }
+    
+        return false;
+        
+*/
