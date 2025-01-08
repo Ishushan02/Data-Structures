@@ -97,3 +97,59 @@
 
     
 */
+
+/*
+    Allocate Minimum Pages
+    (https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1)
+
+    bool ifPossible(vector<int> arr, int k, int pages){
+        int studentCount = 1;
+        int tempPages = 0;
+        
+        for(int i = 0; i<arr.size(); i++){
+            if(arr[i] > pages){
+                return false;
+            }
+            if(arr[i] + tempPages > pages){
+                studentCount++;
+                tempPages= arr[i];
+                if(studentCount > k){
+                    return false;
+                }
+            }else{
+                tempPages += arr[i];
+            }
+        }
+        
+        return true;
+    }
+  
+    int findPages(vector<int> &arr, int k) {
+        // code here
+        int start = 0;
+        int end = 0;
+        if(k > arr.size()){
+            return -1;
+        }
+        
+        for(int i = 0; i < arr.size(); i++){
+            end += arr[i];
+        }
+        
+        int mid = (start + end)/2;
+        int ans = -1;
+        
+        while(start <= end){
+            if(ifPossible(arr, k, mid)){
+                ans = mid;
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start + end)/2;
+        }
+        
+        return ans;
+    }
+    
+*/
