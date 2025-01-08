@@ -113,7 +113,7 @@ int main()
 
 /*
 
-Important QUestion
+Important QUestion (DP)
 
 Include Exclude Pattern Simple but yet tricky
 
@@ -153,33 +153,27 @@ This is extremly important type2 of include/exclude Recursion type
 322. Coin Change
 (https://leetcode.com/problems/coin-change/submissions/1336146341/)
 
-int Coins(vector<int>& coins, int amount){
+    void allPossibilities(vector<int>& coins, int tempAmount, int steps, int &ans){
+    
 
-        if(amount == 0){
-            return 0;
+        if(tempAmount == 0){
+            ans = min(ans, steps);
+            return ;
         }
 
-        int ans = INT_MAX;
-        for(int i = 0; i < coins.size();i++){
-            int coin = coins[i];
+        for(int i = 0; i < coins.size(); i++){
 
-            if (coin <= amount){
-                int recursionAns = Coins(coins, amount - coin);
-
-                if (recursionAns != INT_MAX){
-                    ans = min(ans, 1+recursionAns);
-                }
+            if(tempAmount >= coins[i]){
+                allPossibilities(coins, tempAmount - coins[i], steps+1, ans);
 
             }
+
         }
-
-
-        return ans;
-
     }
 
     int coinChange(vector<int>& coins, int amount) {
-        int ans = Coins(coins, amount);
+        int ans = INT_MAX;
+        allPossibilities(coins, amount, 0, ans);
 
         if(ans == INT_MAX){
             return -1;
