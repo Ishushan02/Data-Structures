@@ -151,5 +151,54 @@
         
         return ans;
     }
+
+*/
+
+/*
+
+    Aggressive Cows
+    (https://www.geeksforgeeks.org/problems/aggressive-cows/0)
+
+    (bool ifPossible(vector<int> &stalls, int k, int dist){
+        int pos = stalls[0];
+        int count = 1;
+
+        for(int i = 1;i < stalls.size() ; i++){
+            if (stalls[i]-pos >= dist){
+                pos = stalls[i];
+                count++;
+            }
+            if (count==k){
+                return true;
+            }
+        }
+
+        return false;
+    }
     
+    int aggressiveCows(vector<int> &stalls, int k) {
+
+        // Write your code here
+        sort(stalls.begin(), stalls.end());
+        int start = 0;
+        int end = stalls[stalls.size() -1] - stalls[0];
+        
+        int mid = (start + end)/2;
+        
+        int ans = -1;
+        while(start <= end){
+            
+            if(ifPossible(stalls, k, mid)){
+                ans = mid;
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
+        }
+        
+        return ans;
+        
+        
+    })
 */
