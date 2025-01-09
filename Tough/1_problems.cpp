@@ -242,6 +242,58 @@
 */
 
 /*
+------------------------------------------------------------------------------------------------------------
+Dry Run 
+    - The concept is based on (last 2 colors to be same and last 2 colors to be different)
+
+for n ==1 (R)-->  R
+
+for n == 2, k = 3 (R, G, B)
+
+    Same Patterns -> RR, GG, BB                      - total K * (n -1) ways
+    Diff Patterns -> RG, RB, BR, BG, GR, GB          - total k * (k -1) ways
+
+    Tota Patterns -> 3 + 6 = 9
+
+for n == 3, k = 3 (R, G, B)
+    
+    Same Patterns - > Take all diff patterns of top and add same to it
+                        RGG, RBB, BRR, BGG, GRR, GBB                    - total prev only diff ways
+
+    Diff Patterns -> Take total patterns of prev and add diff col in it
+                        RRG, RRB, GGR, GGB, BBR, BBG, RGR, RGB, RBG, RBR, BRG, BRB, BGR, BGB, GRB, GRG, GBG, GBR
+                                                                        - total prev all comb * (K - 1) 
+
+    Tota Patterns -> 6 + 9 * 2 = 24   -> K * 1 + prev * (k - 1)
+
+
+for n == 4 k = 3 (R, G, B)
+
+    Same Pattern
+        (from above)      RRG, RRB, GGR, GGB, BBR, BBG, RGR, RGB, RBG, RBR, BRG, BRB, BGR, BGB, GRB, GRG, GBG, GBR
+    add same color ot it  RRGG, RRBB, GGRR, .............. GBRR        
+                        - total prev only diff ways (18)
+
+    Diff Pattern 
+            total prev all comb *  k - 1 -> 24 * 2 = 48
+
+    Total Patterns -> 24 * 2 + 18
+
+
+
+
+Hence for n = 1 -> total k ways
+      for n = 2 -> total k - 1 ways
+
+      for n  = 3
+                same = total(n-2) ways * (k-1) ways
+                diff = total(n-1) ways * (k -1) ways
+            total :=  k-1 * totalof(n-2) + k - 1 * totalof(n-1)
+
+------------------------------------------------------------------------------------------------------------
+
+
+
     Disarrangement of balls {Focus On Logic }
     (https://www.geeksforgeeks.org/problems/dearrangement-of-balls0918/1)
 
