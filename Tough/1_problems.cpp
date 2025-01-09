@@ -291,10 +291,29 @@ Hence for n = 1 -> total k ways
             total :=  k-1 * totalof(n-2) + k - 1 * totalof(n-1)
 
 ------------------------------------------------------------------------------------------------------------
+    int countWays(int n, int k) {
+        // code here
+        if(n == 1){
+            return k;
+        }
+        
+        if(n == 2){
+            return k + (k * (k - 1));
+        }
+        
+        int same = (k - 1) * countWays(n -2, k);
+        int diff = (k -1) * countWays(n- 1, k);
+        
+        return same + diff;
+    }
+    
+*/
 
 
 
-    Disarrangement of balls {Focus On Logic }
+/*
+
+  Disarrangement of balls {Focus On Logic }
     (https://www.geeksforgeeks.org/problems/dearrangement-of-balls0918/1)
 
     int allDearrangements(int n)
@@ -310,4 +329,5 @@ Hence for n = 1 -> total k ways
     int countDer(int n) {
         return allDearrangements(n);
     }
+
 */

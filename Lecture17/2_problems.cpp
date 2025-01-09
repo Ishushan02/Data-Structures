@@ -330,6 +330,7 @@ for n == 3, k = 3 (R, G, B)
                                                                         - total prev all comb * (K - 1) 
 
     Tota Patterns -> 6 + 9 * 2 = 24   -> K * 1 + prev * (k - 1)
+                    -> k + k * (k - 1)
 
 
 for n == 4 k = 3 (R, G, B)
@@ -355,7 +356,7 @@ Hence for n = 1 -> total k ways
                 diff = total(n-1) ways * (k -1) ways
             total :=  k-1 * totalof(n-2) + k - 1 * totalof(n-1)
 
-------------------------------------------------------------------------------------------------------------
+
 
 
 
