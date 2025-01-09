@@ -240,3 +240,22 @@
 
     }
 */
+
+/*
+    Disarrangement of balls {Focus On Logic }
+    (https://www.geeksforgeeks.org/problems/dearrangement-of-balls0918/1)
+
+    int allDearrangements(int n)
+    {
+        if (n == 1)
+            return 0;
+        if (n == 2)
+            return 1;
+    
+        return (n - 1) * (allDearrangements(n - 2) + allDearrangements(n - 1));
+    }
+
+    int countDer(int n) {
+        return allDearrangements(n);
+    }
+*/
