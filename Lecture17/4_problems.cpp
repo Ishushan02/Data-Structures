@@ -281,3 +281,36 @@ METHOD 2 (ACCEPTED)
     (https://leetcode.com/problems/target-sum/description/)
     
 */
+
+
+/*
+    567. Permutation in String
+    (https://leetcode.com/problems/permutation-in-string/description/)
+
+    bool getPerm(string s1, int index, string s2){
+        if(index >= s1.length()){
+            cout << s1 << endl;
+            if (s2.find(s1) != std::string::npos) {
+                return true; 
+            }
+            return false;
+        }
+
+        for(int i = index; i < s1.length(); i++){
+            swap(s1[i], s1[index]);
+            bool tempAns = getPerm(s1, index + 1, s2);
+            if(tempAns){
+                return true;
+            }
+            swap(s1[i], s1[index]);
+
+        }
+
+        return false;
+    }
+
+    bool checkInclusion(string s1, string s2) {
+        return getPerm(s1, 0, s2);
+    }
+
+*/
