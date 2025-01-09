@@ -306,13 +306,21 @@ Hence for n = 1 -> total k ways
         
         return same + diff;
     }
-    
+
 */
 
 
 
 /*
+    (take 1 and i elements)
+        - swap i and 1 fix thos --> now total we have n - 2 ways
+        - now fix only 1 at poisition i -> now we have n - 1 ways
 
+        - in total - we have (n-1) elements left to be swapped 
+
+        - so (n - 1) * (totways(n-2) + totways(n-1))
+
+        
   Disarrangement of balls {Focus On Logic }
     (https://www.geeksforgeeks.org/problems/dearrangement-of-balls0918/1)
 
