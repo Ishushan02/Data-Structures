@@ -202,3 +202,41 @@
         
     })
 */
+
+/*
+    // Proceure is
+    // - starting root is currNode
+    //     currNode
+    //         - get predecessor of root Node
+    //         - shift all currNode's left elements to right of predecessor
+    //         - shift currNode's left element to currNode's right
+    //         - nullify currNode's left branch
+    //     - currNode -> currNode->right shift right
+
+    
+    114. Flatten Binary Tree to Linked List
+    (https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/)
+
+    void flatten(TreeNode* root) {
+        if(root == NULL){
+            return ;
+        }
+        TreeNode* currNode = root;
+
+        while(currNode){
+            if(currNode->left){
+                TreeNode* pred = currNode->left;
+
+                while(pred->right){
+                    pred = pred->right;
+                }
+
+                pred->right = currNode->right;
+                currNode->right = currNode->left;
+                currNode->left = nullptr;
+            }
+            currNode = currNode->right;
+        }
+
+    }
+*/

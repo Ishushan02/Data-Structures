@@ -56,6 +56,16 @@
     114. Flatten Binary Tree to Linked List (Think Like Morris Traversal)
     (https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/)
 
+    // Proceure is
+    // - starting root is currNode
+    //     currNode
+    //         - get predecessor of root Node
+    //         - shift all currNode's left elements to right of predecessor
+    //         - shift currNode's left element to currNode's right
+    //         - nullify currNode's left branch
+    //     - currNode -> currNode->right shift right
+
+
     void flatten(TreeNode* root) {
         
         if(root == NULL){
