@@ -231,3 +231,38 @@
 
 
 */
+
+/*
+    155. Min Stack
+    (https://leetcode.com/problems/min-stack/description/)
+
+    class MinStack {
+public:
+
+    vector<int> stackVal;
+    int prevMin = INT_MAX;
+    
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+        stackVal.push_back(val);
+
+    }
+    
+    void pop() {
+        int popelem = stackVal[stackVal.size()-1];
+        stackVal.pop_back();
+    }
+    
+    int top() {
+        return stackVal[stackVal.size()-1];
+    }
+    
+    int getMin() {
+        int minelem = *min_element(stackVal.begin(), stackVal.end());
+        return minelem;
+    }
+    };
+*/
