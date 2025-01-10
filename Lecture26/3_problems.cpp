@@ -60,7 +60,7 @@ Knapsacks Problems
 
 
 /*
-    Painting the Fence
+    Painting the Fence (or LeetCode 276, - Premium)
     (https://www.geeksforgeeks.org/problems/painting-the-fence3727/1)
 
     int procedure(int n, long long int k, vector< int> &dpArr){
@@ -94,4 +94,50 @@ Knapsacks Problems
         return procedure(n, k, dpArr);
     }
 
+*/
+
+
+/*
+    416. Partition Equal Subset Sum
+    (https://leetcode.com/problems/partition-equal-subset-sum/description/)
+
+    bool checkSum(vector<int>& nums, int tempVal, int index, vector<vector<int>> &dpArr){
+        if(index >= nums.size() || tempVal < 0){
+            return false;
+        }
+
+        if(tempVal == 0){
+            return true;
+        }
+
+        if(dpArr[index][tempVal] != -1){
+            return dpArr[index][tempVal];
+        }
+
+        bool includeans =  checkSum(nums, tempVal - nums[index], index + 1, dpArr);
+        bool excludeans =  checkSum(nums, tempVal, index + 1, dpArr) ;
+
+        dpArr[index][tempVal] = includeans || excludeans;
+
+        return dpArr[index][tempVal];
+    }
+
+    bool canPartition(vector<int>& nums) {
+        int sum = 0;
+        int n = nums.size();
+        
+        for(auto val:nums){
+            sum += val;
+        }
+
+        if(sum&1){
+            return false;
+        }
+
+        int target = sum / 2;
+        vector<vector<int>> dpArr(n+1, vector<int>(target+ 1, -1));
+
+        return checkSum(nums, target, 0, dpArr);
+    }
+    
 */
