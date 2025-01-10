@@ -242,6 +242,10 @@
 */
 
 /*
+
+    Painting the Fence (Practise Well it won't be done by intutive)
+    (https://www.geeksforgeeks.org/problems/painting-the-fence3727/1)
+
 ------------------------------------------------------------------------------------------------------------
 Dry Run 
     - The concept is based on (last 2 colors to be same and last 2 colors to be different)
@@ -291,6 +295,9 @@ Hence for n = 1 -> total k ways
             total :=  k-1 * totalof(n-2) + k - 1 * totalof(n-1)
 
 ------------------------------------------------------------------------------------------------------------
+
+
+
     int countWays(int n, int k) {
         // code here
         if(n == 1){
