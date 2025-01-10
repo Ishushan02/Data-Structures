@@ -378,3 +378,36 @@ Hence for n = 1 -> total k ways
         return getminOper(word1, word2, 0, 0);
     }
 */
+
+
+/*
+    221. Maximal Square
+    (https://leetcode.com/problems/maximal-square/)
+    
+    int traverseSqr(vector<vector<char>>& matrix, int i, int j, int &maxAns){
+        if(j >= matrix[0].size() || i >= matrix.size()){
+            return 0;
+        }
+
+        int rightans = traverseSqr(matrix, i, j+ 1, maxAns);
+        int downans = traverseSqr(matrix, i+1, j, maxAns);
+        int diagans = traverseSqr(matrix, i+1, j+ 1, maxAns);
+        if(matrix[i][j] == '1'){
+            
+            int tempAns = 1 + min(rightans, min(downans, diagans));
+            // cout << " i " << i << " j " << j << " TempAns: " << tempAns << " MAx: " << maxAns << endl;
+            maxAns = max(maxAns, tempAns);
+            return tempAns;
+        }else{
+            return 0;
+        }
+
+    }
+
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int maxAns = 0;
+        int temp = traverseSqr(matrix, 0, 0, maxAns);
+
+        return maxAns * maxAns;
+    }
+*/
