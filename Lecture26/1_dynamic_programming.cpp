@@ -81,7 +81,10 @@
     Approach 2. (Bottom Up, ->  Iterative Approach)
         - find out problem is 1D/2D/3D --> accordingly create DP Array 
         - Analyse Base Cases
-        - check parameter, Reverse it and Copy Paste Logic
+        - check parameter, Reverse it and Copy Paste Logic(from Recursion procedure)
+
+        Generally  in Bottom Up APproach what we do is we create base cases and based on this base cases 
+        we try to find the rest of the solutions
 
 
             int iterativeDP(int n){
@@ -105,6 +108,33 @@
                 if(n ==1){
                     return 1;
                 }
+                return iterativeDP(n);
+            }
+
+
+    Approach 3. Optmize if possible (If possible, not necessary we can optimize it further based on Problems)
+
+            int iterativeDP(int n){
+                
+                if(n == 0){
+                    return 0;
+                }
+                if(n == 1){
+                    return 1;
+                }
+                
+                int prev = 0;
+                int curr = 1;
+                for(int i = 2; i <= n; i++){
+                    int temp = prev + curr;
+                    prev = curr;
+                    curr = temp;
+                }
+
+                return curr;
+            }
+
+            int fib(int n) {
                 return iterativeDP(n);
             }
 
