@@ -320,7 +320,7 @@ Hence for n = 1 -> total k ways
 
         - so (n - 1) * (totways(n-2) + totways(n-1))
 
-        
+
   Disarrangement of balls {Focus On Logic }
     (https://www.geeksforgeeks.org/problems/dearrangement-of-balls0918/1)
 
@@ -338,4 +338,43 @@ Hence for n = 1 -> total k ways
         return allDearrangements(n);
     }
 
+*/
+
+
+/*  
+    72. Edit Distance
+    (https://leetcode.com/problems/edit-distance/description/)
+
+    int getminOper(string &word1, string &word2, int i, int j){
+        if(i >= word1.length()){
+            return word2.length()-j;
+        }
+
+        if(j >= word2.length()){
+            return word1.length()-i;
+        }
+
+        int ans = 0;
+        if(word1[i] == word2[j]){
+            ans = 0 + getminOper(word1, word2, i+1, j+1);
+        }else{
+
+            // insert
+            int insertop = 1 + getminOper(word1, word2, i , j + 1);
+
+            // delete
+            int deleteop = 1 + getminOper(word1, word2, i+ 1, j);
+
+            // replace
+            int replaceop = 1 + getminOper(word1, word2, i+1, j+1);
+
+            ans = min(insertop, min(deleteop, replaceop));
+        }
+
+        return ans;
+    }
+
+    int minDistance(string word1, string word2) {
+        return getminOper(word1, word2, 0, 0);
+    }
 */
