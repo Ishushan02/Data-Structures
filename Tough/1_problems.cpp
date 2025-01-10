@@ -290,9 +290,20 @@ Hence for n = 1 -> total k ways
       for n = 2 -> total k - 1 ways
 
       for n  = 3
-                same = total(n-2) ways * (k-1) ways
-                diff = total(n-1) ways * (k -1) ways
+                same = prev(n-2) ways * (k-1) ways
+                diff = prev(n-1) ways * (k -1) ways
             total :=  k-1 * totalof(n-2) + k - 1 * totalof(n-1)
+
+    K  = 3
+
+                        f(n=1) = 3 --> 1 ways
+                        f(n = 2) --> 3 + 6 -> 9 ways
+let's go by formula     f(n=3) := f(n-2) * (k -1) + f(n-1) * (k - 1) = (f(n=1) * k - 1) + (f(n=2) * k - 1)
+                                                                     = 3 * 2 + 9 * 2 = 24
+
+                        and so on ..
+
+
 
 ------------------------------------------------------------------------------------------------------------
 
@@ -308,8 +319,8 @@ Hence for n = 1 -> total k ways
             return k + (k * (k - 1));
         }
         
-        int same = (k - 1) * countWays(n -2, k);
-        int diff = (k -1) * countWays(n- 1, k);
+        int same = (k - 1) * countWays(n -2, k); 
+        int diff = (k -1) * countWays(n- 1, k);  
         
         return same + diff;
     }

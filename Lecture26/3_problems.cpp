@@ -57,3 +57,41 @@ Knapsacks Problems
            
     }
 */
+
+
+/*
+    Painting the Fence
+    (https://www.geeksforgeeks.org/problems/painting-the-fence3727/1)
+
+    int procedure(int n, long long int k, vector< int> &dpArr){
+
+    
+    if(n == 1){
+        return k;
+    }
+
+    if(n == 2){
+        return k + k * (k -1);
+    }
+
+    if(dpArr[n] != -1){
+        return dpArr[n];
+    }
+
+
+    int same = ((k - 1) * procedure(n-2, k, dpArr)) %1000000007;
+   int diff = ((k - 1) * procedure(n -1, k, dpArr)) %1000000007;
+
+    dpArr[n] = (same + diff)%1000000007 ;
+    return dpArr[n];
+
+    
+    }
+
+    int numberOfWays(int n, int k) {
+        // Write your code here.
+        vector< int> dpArr(n + 1, -1);
+        return procedure(n, k, dpArr);
+    }
+
+*/
