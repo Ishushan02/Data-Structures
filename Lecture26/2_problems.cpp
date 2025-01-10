@@ -67,3 +67,38 @@
 
 
 */
+
+
+/*
+    300. Longest Increasing Subsequence
+    (https://leetcode.com/problems/longest-increasing-subsequence/description/)
+
+    int getMaxRecursionSol(vector<int> &nums, int last, int index){
+        if(index >= nums.size()){
+            return 0;
+        }
+
+
+        int include = 0;
+        if(nums[index] > last){
+            include = 1 + getMaxRecursionSol(nums, nums[index], index + 1);
+        }
+
+        int exclude = 0 + getMaxRecursionSol(nums, last, index + 1);
+
+        int finalAns = max(include, exclude);
+
+        return finalAns;
+    }
+
+    int lengthOfLIS(vector<int>& nums){
+        int n = nums.size();
+        int lastelem = INT_MIN;
+        int lastidx = -1;
+        vector<vector<int>> dpArr(n + 2, vector<int>(n+1, -1));
+
+        // return getMax(nums, lastelem, 0);
+        return getMaxDPSol(nums, dpArr, lastidx, 0);
+    }
+
+*/
