@@ -279,6 +279,28 @@ METHOD 2 (ACCEPTED)
 /*  
     494. Target Sum
     (https://leetcode.com/problems/target-sum/description/)
+
+    void getSum(vector<int>& nums, int target, int tempSum,int index, int &count){
+        if(index >= nums.size()){
+            if(target == tempSum){
+                count += 1;
+            }
+            return ;
+        }
+
+
+        getSum(nums, target, tempSum + nums[index], index + 1, count);
+        getSum(nums, target, tempSum - nums[index], index + 1, count);
+
+
+    }
+
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int count = 0;
+        getSum(nums, target, 0, 0, count);
+
+        return count;
+    }
     
 */
 
