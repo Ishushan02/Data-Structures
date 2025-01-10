@@ -91,11 +91,46 @@
         return finalAns;
     }
 
+
+    // DP Solution
+    So, the logic is first, as 2 variables are changing, we have to create 2D Array
+    now the size of 2D array is n+2, n+1.. because initially in recursion procedure we had 
+    lastindex as -1 now as we are accessing and storing matrix we will shift the storage by 1.. hence dim is n+2
+
+    // logic is same and only change is that now we are playing with indices rather than values
+    // store the values of lastindex, index and in between if it is not -1 return that value 
+    // which means it's getting calculated again
+
+
+
+    int getMaxDPSol(vector<int> &nums, vector<vector<int>> &dpArr, int lastidx, int index){
+        if(index >= nums.size()){
+            return 0;
+        }
+
+        if(dpArr[lastidx+1][index] != -1){  // dp Step 3
+            return dpArr[lastidx+1][index];
+        }
+
+        int include = 0;
+        if(lastidx == -1 || nums[index] > nums[lastidx]){
+            include = 1 + getMaxDPSol(nums, dpArr, index, index+1);
+        }
+
+        int exclude = 0 + getMaxDPSol(nums, dpArr, lastidx, index+1);
+        
+        dpArr[lastidx+1][index] = max(include, exclude); // dp Step 2
+
+        return dpArr[lastidx+1][index];
+         
+
+    }
+
     int lengthOfLIS(vector<int>& nums){
         int n = nums.size();
         int lastelem = INT_MIN;
         int lastidx = -1;
-        vector<vector<int>> dpArr(n + 2, vector<int>(n+1, -1));
+        vector<vector<int>> dpArr(n + 2, vector<int>(n+1, -1)); // DPStep 1
 
         // return getMax(nums, lastelem, 0);
         return getMaxDPSol(nums, dpArr, lastidx, 0);
