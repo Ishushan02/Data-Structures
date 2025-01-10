@@ -137,3 +137,65 @@
     }
 
 */
+
+
+/*
+    322. Coin Change
+    (https://leetcode.com/problems/coin-change/)
+    // See the DP Solution
+
+    void allPossibilitiesRecursion(vector<int>& coins, int tempAmount, int steps, int &ans){
+
+        if(tempAmount == 0){
+            ans = min(ans, steps);
+            return ;
+        }
+
+        for(int i = 0; i < coins.size(); i++){
+            if(tempAmount >= coins[i]){
+                allPossibilitiesRecursion(coins, tempAmount - coins[i], steps+1, ans);
+            }
+        }
+    }
+
+    int allPossibilitiesDP(vector<int>& coins, int tempAmount, vector<int> &dpArr){
+
+        if(tempAmount == 0){
+            return 0;
+        }
+
+        if(dpArr[tempAmount] != -1){
+            return dpArr[tempAmount];
+        }
+
+        int minCoin = INT_MAX;
+        for(int i = 0; i < coins.size(); i++){
+            if(tempAmount >= coins[i]){
+                int totCoins = allPossibilitiesDP(coins, tempAmount - coins[i], dpArr);
+                if(totCoins != INT_MAX){
+                    minCoin = min(minCoin, 1 + totCoins);
+                }
+                
+            }
+        }
+        dpArr[tempAmount] = minCoin;
+        return dpArr[tempAmount];
+
+    }
+
+    int coinChange(vector<int>& coins, int amount) {
+        int ans = INT_MAX;
+        // allPossibilitiesRecursion(coins, amount, 0, ans);
+        int n = coins.size();
+
+        vector<int> dpArr(amount+1, -1);
+        
+        ans =  allPossibilitiesDP(coins, amount, dpArr);
+        if(ans == INT_MAX){
+            return -1;
+        }
+        return ans;
+        
+    }
+
+*/
