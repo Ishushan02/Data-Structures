@@ -8,6 +8,9 @@ PATTERN - MERGE INTERVALS
     375. Guess Number Higher or Lower II
     (https://leetcode.com/problems/guess-number-higher-or-lower-ii/description/)
 
+    SO, the idea is, get the maximum cost of getting wrong answer.. out of which return the minimum one which is 
+    the min of all max Costs.
+
     int computeCost(int start, int end){
         if(start >= end){
             return 0;
