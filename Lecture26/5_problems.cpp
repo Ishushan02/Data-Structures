@@ -1,0 +1,5 @@
+/*
+
+PATTERN - MERGE INTERVALS
+
+*/
