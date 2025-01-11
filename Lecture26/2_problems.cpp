@@ -70,6 +70,11 @@
 
 
 /*
+    (Very Very Important QUestion, and also the pattern)
+    Similar Patterns - {all subsequences when prev and curr elem absolute diff is 1,
+                        all subsequences when prev and curr elem absolute diff is k,
+                        }
+
     300. Longest Increasing Subsequence
     (https://leetcode.com/problems/longest-increasing-subsequence/description/)
 

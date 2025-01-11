@@ -17,6 +17,17 @@
     // but then with address it's copy won't be created
     // and directed there address are accessed
 
+
+
+    Comparator Function Syntax
+
+    struct comparator {
+        // you always forget const
+        bool operator()(vector<int> cuboidsA, vector<int> cuboidsB) const{
+            return cuboidsA[0] < cuboidsB[0];
+            }
+    };
+
 */
 
 using namespace std;
