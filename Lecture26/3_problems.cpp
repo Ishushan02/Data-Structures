@@ -139,5 +139,41 @@ Knapsacks Problems
 
         return checkSum(nums, target, 0, dpArr);
     }
+
+*/
+
+/*
+    1155. Number of Dice Rolls With Target Sum
+    (https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/description/)
+
+    int totalways(int n, int k, int target, vector<vector<long long int>> &dpArr){
+        if(n == 0 && target == 0){
+            return 1;
+        }
+        if(target < 0 || n < 0){
+            return 0;
+        }
+
+        if(dpArr[n][target] != -1){
+            return dpArr[n][target];
+        }
+        
+        long long int ways = 0;
+        for(int i = 1; i <= k; i++){
+            ways += totalways(n -1, k, target-i, dpArr);
+            ways = ways % 1000000007;
+        }
+
+        dpArr[n][target] = ways % 1000000007;
+        return dpArr[n][target];
+    }
+
+
+    int numRollsToTarget(int n, int k, int target) {
+
+        vector<vector<long long int>> dpArr(n+1, vector<long long int>(target+1, -1));
+        return totalways(n, k, target, dpArr);
+    }
     
+
 */
