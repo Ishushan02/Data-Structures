@@ -134,3 +134,70 @@
     }
 
 */
+
+
+/*  
+    354. Russian Doll Envelopes
+    (https://leetcode.com/problems/russian-doll-envelopes/description/)
+    // This is not solved check the assignment question to Solve it { using Binary Search }
+    
+    bool canfit(vector<int> & env1, vector<int> &env2){
+        if((env1[0] < env2[0]) && (env1[1] < env2[1])){
+            return true;
+        }
+
+        return false;
+    }
+
+    int maxCount(vector<vector<int>>& envelopes, int prevIdx, int index){
+        if(index >= envelopes.size()){
+            return 0;
+        }
+
+        int include = 0;
+        int exclude = 0;
+        if(prevIdx == -1 || canfit(envelopes[prevIdx], envelopes[index])){
+            include = 1 + maxCount(envelopes, index, index + 1);
+        }
+
+        exclude = 0 + maxCount(envelopes, prevIdx, index + 1);
+
+        int ans = max(include, exclude);
+
+        return ans;
+    }
+
+    int maxCountDP(vector<vector<int>>& envelopes, int prevIdx, int index, vector<vector<int>> &dpArr){
+        if(index >= envelopes.size()){
+            return 0;
+        }
+
+        int include = 0;
+        int exclude = 0;
+
+        if(dpArr[index][prevIdx+1] != -1){
+            return dpArr[index][prevIdx+1];
+        }
+
+        if(prevIdx == -1 || canfit(envelopes[prevIdx], envelopes[index])){
+            include = 1 + maxCountDP(envelopes, index, index + 1, dpArr);
+        }
+
+        exclude = 0 + maxCountDP(envelopes, prevIdx, index + 1, dpArr);
+
+        dpArr[index][prevIdx+1] = max(include, exclude);
+
+        return dpArr[index][prevIdx+1];
+    }
+
+    int maxEnvelopes(vector<vector<int>>& envelopes) {
+        int n = envelopes.size();
+        sort(envelopes.begin(), envelopes.end());
+        vector<vector<int>> dpArr(n + 1, vector<int>(n+1, -1));
+
+        // return maxCount(envelopes, -1, 0);
+        return maxCountDP(envelopes, -1, 0, dpArr);
+
+    }
+
+*/
