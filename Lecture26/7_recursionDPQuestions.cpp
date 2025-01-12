@@ -113,3 +113,51 @@
 
     // Do it using Bottom Up Approach
 */
+
+
+/*
+    416. Partition Equal Subset Sum
+    (https://leetcode.com/problems/partition-equal-subset-sum/description/)
+
+    bool ifPossilble(vector<int>& nums, int sum, int index, vector<vector<int>> &dpArr){
+        if(sum == 0){
+            return true;
+        }
+
+        if(index >= nums.size()){
+            return false;
+        }
+
+        if(dpArr[index][sum] !=  -1){
+            return dpArr[index][sum];
+        }
+
+        bool ans = false;
+        if(sum >= nums[index]){
+            ans = ans || ifPossilble(nums, sum-nums[index], index+1, dpArr);
+        }
+
+        ans = ans || ifPossilble(nums, sum, index+1, dpArr);
+
+        dpArr[index][sum] = ans;
+        return dpArr[index][sum];
+    }
+
+
+    bool canPartition(vector<int>& nums) {
+        int sum = 0;
+        int n = nums.size();
+
+        for(auto val:nums){
+            sum += val;
+        }
+
+        if(sum & 1){
+            return false;
+        }
+
+        sum = sum / 2;
+        vector<vector<int>> dpArr(n+1, vector<int>(sum + 1, -1));
+        return ifPossilble(nums, sum, 0, dpArr);
+    }
+*/
