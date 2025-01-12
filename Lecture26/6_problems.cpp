@@ -76,12 +76,7 @@
             return false;
         }
 
-        if(ans == true){
-            dpArr[i][j] = 1;
-        }else{
-            dpArr[i][j] = 0;
-        }
-        
+        dpArr[i][j] = ans; // true than it will store 1 and false then it will store 0
 
         return dpArr[i][j];
 
