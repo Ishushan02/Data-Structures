@@ -32,3 +32,36 @@
         return max(totalVal(nums, 0, n-2, dpArr), totalVal(nums, 1, n-1, dpArr));
     }
 */
+
+
+/*
+    Painting the Fence
+    (https://www.geeksforgeeks.org/problems/painting-the-fence3727/1)
+
+    int totalWays(int n, int k, vector<int> &dpArr){
+        if(n == 1){
+            return k;
+        }
+        
+        if(n ==2){
+            return k + (k * (k-1)) ;
+        }
+        
+        if(dpArr[n]!= -1){
+            return dpArr[n];
+        }
+        
+        int sameans = (k -1) * (totalWays(n -2, k, dpArr));
+        int diffans = (k -1) * (totalWays(n -1, k, dpArr));
+        
+        dpArr[n] = sameans + diffans;
+        return dpArr[n];
+    }
+    
+    int countWays(int n, int k) {
+        // code here
+        vector<int> dpArr(n+1, -1);
+        return totalWays(n, k, dpArr);
+    }
+    
+*/

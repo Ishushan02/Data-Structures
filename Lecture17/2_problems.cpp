@@ -306,8 +306,21 @@ int allDearrangements(int n)
 
 */
 
+
+
+
+
+
+
+
+
 /*
 ------------------------------------------------------------------------------------------------------------
+
+
+Painting the Fence (Practise Well it won't be done by intutive)
+(https://www.geeksforgeeks.org/problems/painting-the-fence3727/1)
+
 Dry Run 
     - The concept is based on (last 2 colors to be same and last 2 colors to be different)
 
@@ -359,9 +372,6 @@ Hence for n = 1 -> total k ways
 
 
 
-
-Painting the Fence (Practise Well it won't be done by intutive)
-(https://www.geeksforgeeks.org/problems/painting-the-fence3727/1)
 
 See the video Again, it's imp
 
