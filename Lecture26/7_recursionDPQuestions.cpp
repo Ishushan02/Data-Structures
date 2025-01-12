@@ -111,7 +111,7 @@
     221. Maximal Square
     (https://leetcode.com/problems/maximal-square/)
 
-    // Do it using Bottom Up Approach
+    // Do it using DP Bottom Up Approach - TLE
 */
 
 
@@ -167,7 +167,7 @@
     1981. Minimize the Difference Between Target and Chosen Elements
     (https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/)
 
-    // DO it unable to do it via DP Method (Top Down Approach)
+    // DO it unable to do it via DP Method (Top Down Approach - TLE)
 */
 
 
@@ -207,4 +207,13 @@
         return reachEnd(nums, 0, dpArr);
     }
     
+*/
+
+
+/*  
+    45. Jump Game II
+    (https://leetcode.com/problems/jump-game-ii/)
+
+    // DO it unable to do it via DP Method (Top Down Approach - TLE)
+
 */
