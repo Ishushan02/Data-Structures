@@ -63,5 +63,46 @@
         vector<int> dpArr(n+1, -1);
         return totalWays(n, k, dpArr);
     }
+
+*/
+
+/*
+    72. Edit Distance
+    (https://leetcode.com/problems/edit-distance/description/)
+
+    int getminOperation(string &word1, string &word2, int i, int j, vector<vector<int>> &dpArr){
+        if(i >= word1.length() && j >= word2.length()){
+            return 0;
+        }else if(i >= word1.length()){
+            return word2.length()-j;
+        }else if(j >= word2.length()){
+            return word1.length()-i;
+        }
+
+        if(dpArr[i][j]!= -1){
+            return dpArr[i][j];
+        }
+
+        int minOp = 0;
+        if(word1[i]==word2[j]){
+            minOp = 0 + getminOperation(word1, word2, i+1, j+1, dpArr);
+        }else{
+            int insop = 1 + getminOperation(word1, word2, i, j+1, dpArr);
+            int delop = 1 + getminOperation(word1, word2, i+1, j, dpArr);
+            int swaop = 1 + getminOperation(word1, word2, i+1, j+1, dpArr);
+
+            minOp = min(insop, min(delop, swaop));
+        }
+        dpArr[i][j] = minOp;
+        return dpArr[i][j];
+    }
+
+    int minDistance(string word1, string word2) {
+        int m = word1.length();
+        int n = word2.length();
+
+        vector<vector<int>> dpArr(m+1, vector<int>(n+1, -1));
+        return getminOperation(word1, word2, 0, 0, dpArr);
+    }
     
 */
