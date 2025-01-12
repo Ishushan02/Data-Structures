@@ -169,3 +169,42 @@
 
     // DO it unable to do it via DP Method (Top Down Approach)
 */
+
+
+/*
+    55. Jump Game
+    (https://leetcode.com/problems/jump-game/description/)
+
+    bool reachEnd(vector<int>& nums, int index, vector<int> &dpArr){
+        // cout << index << endl;
+        if(index == nums.size() -1){
+            return true;
+        }
+
+        if(index > nums.size()){
+            return false;
+        }
+
+        if(dpArr[index] != -1){
+            return 0;
+        }
+
+        bool tempAns = false; 
+        int maxStep = nums[index];
+        for(int i = 1; i <= maxStep; i++){
+            tempAns = tempAns || reachEnd(nums, index+i, dpArr);
+            if(tempAns){
+                dpArr[index] = true;
+                return true;
+            }
+        }
+        dpArr[index] = tempAns;
+        return dpArr[index];
+    }
+
+    bool canJump(vector<int>& nums) {
+        vector<int> dpArr(nums.size()+1, -1);
+        return reachEnd(nums, 0, dpArr);
+    }
+    
+*/
