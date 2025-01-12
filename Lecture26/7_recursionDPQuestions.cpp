@@ -104,5 +104,12 @@
         vector<vector<int>> dpArr(m+1, vector<int>(n+1, -1));
         return getminOperation(word1, word2, 0, 0, dpArr);
     }
-    
+
+*/
+
+/*
+    221. Maximal Square
+    (https://leetcode.com/problems/maximal-square/)
+
+    // Do it using Bottom Up Approach
 */
