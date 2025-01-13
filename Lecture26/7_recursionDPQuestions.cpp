@@ -346,3 +346,11 @@
     }
 
 */
+
+/*
+    516. Longest Palindromic Subsequence
+    (https://leetcode.com/problems/longest-palindromic-subsequence/description/)
+
+    Do it using other DP Method
+
+*/
