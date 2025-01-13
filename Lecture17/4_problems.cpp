@@ -247,7 +247,7 @@ METHOD 2 (ACCEPTED)
 
 /*
     115. Distinct Subsequences (Memory Limit Exceeded)
-    (https://leetcode.com/problems/distinct-subsequences/description/)
+    (https://leetcode.com/problexms/distinct-subsequences/description/)
 
     void getSubseq(string &s, string &temp, string &t, int &ans, int index){
         if(index >= s.length()){

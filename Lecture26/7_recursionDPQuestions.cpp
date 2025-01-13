@@ -280,3 +280,69 @@
     }
 
 */
+
+
+/*
+
+    Very VERY IMPORTANT Please focus on Procedure, little different then rest of them
+
+    115. Distinct Subsequences
+    (https://leetcode.com/problems/distinct-subsequences/description/)
+
+    int getSubseqCount(string& s, string& t, int i, int j){
+        
+        if(j >= t.length()){
+            return 1;
+        }
+        if(i >= s.length()){
+            return 0;
+        }
+
+        int maxCount = 0;
+        if(s[i] == t[j]){
+            int includeans = getSubseqCount(s, t, i+1, j+1);
+            int excludeans = getSubseqCount(s, t, i+1, j);
+            maxCount = max(maxCount, includeans + excludeans);
+        }else{
+            int tempCount = getSubseqCount(s, t, i+1, j);
+            maxCount = max(maxCount, tempCount);
+        }
+
+        return maxCount;
+    }
+
+    int getSubseqCountDP(string& s, string& t, int i, int j, vector<vector<int>> &dpArr){
+        
+        if(j >= t.length()){
+            return 1;
+        }
+        if(i >= s.length()){
+            return 0;
+        }
+
+        if(dpArr[i][j] != -1){
+            return dpArr[i][j];
+        }
+
+        int maxCount = 0;
+        if(s[i] == t[j]){
+            int includeans = getSubseqCountDP(s, t, i+1, j+1, dpArr);
+            int excludeans = getSubseqCountDP(s, t, i+1, j, dpArr);
+            maxCount = max(maxCount, includeans + excludeans);
+        }else{
+            int tempCount = getSubseqCountDP(s, t, i+1, j, dpArr);
+            maxCount = max(maxCount, tempCount);
+        }
+
+        dpArr[i][j] = maxCount;
+        return dpArr[i][j];
+    }
+
+    int numDistinct(string &s, string &t) {
+        string tempString ;
+        vector<vector<int>> dpArr(s.length()+1, vector<int>(t.length()+ 1, -1));
+        // return getSubseqCount(s, t, 0, 0);
+        return getSubseqCountDP(s, t, 0, 0, dpArr);
+    }
+
+*/
