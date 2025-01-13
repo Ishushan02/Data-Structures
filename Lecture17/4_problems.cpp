@@ -4,7 +4,6 @@
 using namespace std;
 
 /*
-
 Last Occurence of a Char
 
 We Can also  do this using strrchr() function of string
