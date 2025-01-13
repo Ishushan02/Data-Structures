@@ -188,6 +188,22 @@
 
     }
 
+    int totalWaysDPBottomUp(vector<int>& coins, int amount){
+        vector<int> dpArr(amount + 1, INT_MAX);
+        dpArr[0] = 0;
+
+        for(int i = 1; i <= amount; i++){
+            for(int j = 0; j < coins.size(); j++){
+                if(i >= coins[j] && dpArr[i-coins[j]] != INT_MAX ){
+                    // cout << "Amount: " << i << " current Coin "<< coins[j] << endl;
+                    dpArr[i] = min(dpArr[i], (1 + dpArr[i - coins[j]]));
+                }
+            }
+        }
+
+        return dpArr[amount];
+    }
+
     int coinChange(vector<int>& coins, int amount) {
         int ans = INT_MAX;
         // allPossibilitiesRecursion(coins, amount, 0, ans);
