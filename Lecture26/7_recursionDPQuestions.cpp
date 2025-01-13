@@ -217,3 +217,40 @@
     // DO it unable to do it via DP Method (Top Down Approach - TLE)
 
 */
+
+/*
+    120. Triangle
+    (https://leetcode.com/problems/triangle/description/)
+
+    int getMinPath(vector<vector<int>>& triangle, int row, int col, vector<vector<int>> &dpArr){
+        if(row >= triangle.size()){
+            return INT_MAX;;
+        }
+
+        if(dpArr[row][col]!= -1){
+            return dpArr[row][col];
+        }
+
+        int currelem = triangle[row][col];
+        int minSum = currelem;
+        int minelem = min(getMinPath(triangle, row + 1, col, dpArr), getMinPath(triangle, row + 1, col+1, dpArr));
+        if(minelem != INT_MAX){
+            minSum = minSum + minelem;
+        }
+
+        dpArr[row][col] = minSum;
+        return dpArr[row][col];
+       
+    }
+
+    int minimumTotal(vector<vector<int>>& triangle) {
+
+
+        int n = triangle.size();
+
+        vector<vector<int>> dpArr(n+1, vector<int>(n+1, -1));
+        return getMinPath(triangle, 0, 0, dpArr);
+    }
+
+    
+*/
