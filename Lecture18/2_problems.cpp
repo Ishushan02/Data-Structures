@@ -47,6 +47,63 @@ Do Inplace Merging, it's very Important
         return ans;
     }
 
+
+    Method 2 {Without Recursion}
+    
+    vector<string> allComb(string a, vector<string> &b){
+        int i = 0;
+        int j = 0;
+
+        vector<string> tempAns;
+
+        if(b.size() == 0 && a.length() == 0){
+            return tempAns;
+        }else if(b.size() == 0 && a.length() != 0){
+            for(auto c:a){
+                string s;
+                s += c;
+                tempAns.push_back(s);
+            }
+            return tempAns;
+        }else if(b.size() != 0 && a.length() == 0){
+            for(auto c:b){
+                tempAns.push_back(c);
+            }
+            return tempAns;
+        }
+
+        for(int i = 0; i < a.length(); i++){
+            string temp;
+            for(int j = 0; j < b.size(); j++){
+                tempAns.push_back(a[i] + b[j]);
+            }
+        }
+
+        return tempAns;
+    }
+
+    vector<string> letterCombinations(string &digits) {
+        unordered_map<int, string> dialpad{
+            {2, "abc"},
+            {3, "def"},
+            {4, "ghi"},
+            {5, "jkl"},
+            {6, "mno"},
+            {7, "pqrs"},
+            {8, "tuv"},
+            {9, "wxyz"}
+        };
+
+        vector<string> ans;
+        // prev ans
+        int n = digits.length();
+        for(int  i = n -1; i >= 0; i--){
+            int val = digits[i] - '0';
+            ans = allComb(dialpad[val], ans);
+        }
+        return ans;
+    }
+
 */
 
 /*
