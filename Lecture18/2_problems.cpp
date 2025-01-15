@@ -207,9 +207,31 @@ Do Inplace Merging, it's very Important
 
 /*
 
-Leetcode Question No. 240
+// The idea is check first and last element  and if target is inclusive of it, then apply BS on that element row
+    
+    // 240. Search a 2D Matrix II
+    // (https://leetcode.com/problems/search-a-2d-matrix-ii/)
+
+
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        for(int row = 0; row < m; row++){
+            if(target >= matrix[row][0] && target <= matrix[row][n-1]){
+                // Binary Search
+                if(find(matrix[row].begin(), matrix[row].end(), target) != matrix[row].end()){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
 */
+    
 
 /*
 
