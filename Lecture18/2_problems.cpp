@@ -49,7 +49,7 @@ Do Inplace Merging, it's very Important
 
 
     Method 2 {Without Recursion}
-    
+
     vector<string> allComb(string a, vector<string> &b){
         int i = 0;
         int j = 0;
@@ -107,9 +107,65 @@ Do Inplace Merging, it's very Important
 */
 
 /*
+    Do it (Very Important Question)
 
-1079. Letter Tile Possibilities
-Do it (Very Important Question)
+    1079. Letter Tile Possibilities
+    (https://leetcode.com/problems/letter-tile-possibilities/)
+
+    void getPrmutation(string &s, set<string> &arrVec, int index){
+        if(index >= s.length()){
+            arrVec.insert(s);
+            return ;
+        }
+
+
+        for(int i = index; i < s.length(); i++){
+            swap(s[index], s[i]);
+
+            getPrmutation(s, arrVec, index+1);
+            swap(s[index], s[i]);
+        }
+    }
+
+    void getSubs(string &s, string &temp, set<string> &arrVec, int index){
+        if(index >= s.length()){
+            if(temp != ""){
+                arrVec.insert(temp);
+            }
+            return ;
+        }
+
+        temp += s[index];
+        getSubs(s, temp, arrVec, index+1);
+        temp.pop_back();
+
+        getSubs(s, temp, arrVec, index+1);
+
+    }
+
+    int numTilePossibilities(string tiles) {
+        if(tiles.size() == 0){
+            return 0;
+        }
+        string temp;
+        set<string> arrVec;
+        getSubs(tiles, temp, arrVec, 0);
+
+        int ans = 0;
+        set<string> ansSet;
+        for(auto eachStr: arrVec){
+            if(eachStr.length() == 1){
+                ansSet.insert(eachStr);
+            }else{
+                set<string> tempSet;
+                getPrmutation(eachStr, tempSet, 0);
+                ansSet.insert(tempSet.begin(), tempSet.end());
+            }
+        }
+
+        return ansSet.size();
+    }
+        
 
 */
 
