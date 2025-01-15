@@ -172,6 +172,10 @@ Do Inplace Merging, it's very Important
 /*
 
 22. Generate Parentheses
+
+// The Idea is that we use the Subsequence pattern where in in Include part we add open paranthesis
+// and in the Exclude part we add the closed paranthesis.
+
 (https://leetcode.com/problems/generate-parentheses/description/)
 (Important Question )
 
