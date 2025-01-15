@@ -354,3 +354,46 @@
     Do it using other DP Method
 
 */
+
+
+/*
+    VVVIIIII Question
+
+    983. Minimum Cost For Tickets
+    (https://leetcode.com/problems/minimum-cost-for-tickets/description/)
+
+    int minDollars(vector<int>& days, vector<int>& costs, int idx, vector<int> &dpArr){
+
+        cout << idx << endl;
+        if(idx >= days.size()){
+            return 0;
+        }
+
+        if(dpArr[idx] != -1){
+            return dpArr[idx];
+        }
+
+        // 1 day pass
+        int ans1 = costs[0] + minDollars(days, costs, idx + 1, dpArr);
+
+        // 7 day pass
+        int i = idx;
+        for(i = idx; i < days.size() && days[i] < days[idx] + 7; i++);
+        int ans2 = costs[1] + minDollars(days, costs, i, dpArr);
+
+        i = idx;
+        for(i = idx; i < days.size() && days[i] < days[idx] + 30; i++);
+        int ans3 = costs[2] + minDollars(days, costs, i, dpArr);
+
+        dpArr[idx] =  min(ans1, min(ans2, ans3));
+        return dpArr[idx];
+    }
+
+    int mincostTickets(vector<int>& days, vector<int>& costs) {
+        
+        vector<int> dpArr(days.size() + 1, -1);
+        return minDollars(days, costs, 0, dpArr);
+    }
+
+
+ */
