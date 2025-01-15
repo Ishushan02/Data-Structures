@@ -397,3 +397,74 @@
 
 
  */
+
+/*
+    279. Perfect Squares
+    (https://leetcode.com/problems/perfect-squares/description/)
+
+
+    int totalMinNumbers(int n, int tempSum){
+        if(tempSum == n){
+            return 0;
+        }
+
+        int totPossib = INT_MAX;
+        for(int i = 1; i < n; i++){
+            int count  = 0;
+            int currSum = tempSum + pow(i, 2);
+            if(currSum <= n){
+                int temp = totalMinNumbers(n, currSum);
+                if(temp != INT_MAX){
+                    count = 1 + temp;
+                    totPossib = min(count, totPossib);
+                }
+            }
+
+    
+        }
+
+        return totPossib;
+    }
+
+    int totalMinNumbersDP(int n, int tempSum, vector<int> &dpArr){
+        if(tempSum == n){
+            return 0;
+        }
+
+        if(dpArr[tempSum] != -1){
+            return dpArr[tempSum];
+        }
+
+        int totPossib = INT_MAX;
+        for(int i = 1; i < n; i++){
+            int count  = 0;
+            int currSum = tempSum + pow(i, 2);
+            if(currSum <= n){
+                int temp = totalMinNumbersDP(n, currSum, dpArr);
+                if(temp != INT_MAX){
+                    count = 1 + temp;
+                    totPossib = min(count, totPossib);
+                }
+            }
+
+    
+        }
+        dpArr[tempSum] = totPossib;
+
+        return dpArr[tempSum];
+    }
+
+    int numSquares(int n) {
+        if(n == 1){
+            return 1;
+        }
+        int tempSum = 0;
+
+        vector<int> dpArr(n+1, -1);
+        // return totalMinNumbers(n, tempSum);
+        return totalMinNumbersDP(n, tempSum, dpArr);
+
+    }
+
+    
+*/
