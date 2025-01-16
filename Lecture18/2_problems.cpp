@@ -778,6 +778,8 @@ Count Inversions (VVIII)
                 temp.push_back(arr[i]);
                 i++;
             }else{
+                // because all elements in left arr after the curr ptr lstart
+                // element will be greater than the current right element
                 x += (mid - i + 1);
                 temp.push_back(arr[j]);
                 j++;
