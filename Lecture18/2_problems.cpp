@@ -445,7 +445,7 @@ Do Inplace Merging, it's very Important
 
 
 /*
-
+{Do it Again -- }
 473. Matchsticks to Square
 (https://leetcode.com/problems/matchsticks-to-square/description/)
 
@@ -827,6 +827,63 @@ Count Inversions (VVIII)
         
     }
     
+
+
+    Method 2. (DP Arr and Recursion)
+
+    void countInv(vector<int> &arr, int previdx, int curridx, map<pair<int, int>, bool> &storeVal, int &count){
+        if(curridx >= arr.size()){
+            return ;
+        }
+        
+        if(storeVal.find({previdx, curridx}) == storeVal.end()){
+            if(curridx > previdx && arr[previdx] > arr[curridx]){
+                storeVal[{previdx, curridx}] = true;
+                count += 1;
+            }
+        }
+        
+        countInv(arr, curridx, curridx+1, storeVal, count);
+        countInv(arr, previdx, curridx+1, storeVal, count);
+        
+    }
+    
+    int countInvDP(vector<int> &arr, int previdx, int curridx, map<pair<int, int>, bool> &storeVal, int &count, vector<vector<int>> &dpArr){
+        if(curridx >= arr.size()){
+            return 0;
+        }
+        
+        if(storeVal.find({previdx, curridx}) == storeVal.end()){
+            if(curridx > previdx && arr[previdx] > arr[curridx]){
+                storeVal[{previdx, curridx}] = true;
+                count += 1;
+            }
+        }
+        
+        if(dpArr[previdx][curridx] != -1){
+            return dpArr[previdx][curridx];
+        }
+        
+        int c1 = countInvDP(arr, curridx, curridx+1, storeVal, count, dpArr);
+        int c2 = countInvDP(arr, previdx, curridx+1, storeVal, count, dpArr);
+        
+        dpArr[previdx][curridx] = count;
+        return dpArr[previdx][curridx];
+        
+    }
+  
+    // Function to count inversions in the array.
+    int inversionCount(vector<int> &arr) {
+        // Your Code Here
+        map<pair<int, int>, bool> storeVal;
+        int count = 0;
+        int n = arr.size();
+        vector<vector<int>> dpArr(n+1, vector<int>(n+1, -1));
+        // countInv(arr, 0, 0, storeVal, count);
+        return countInvDP(arr, 0, 0, storeVal, count, dpArr);
+        
+        // return count;
+    }
     
 
 */
