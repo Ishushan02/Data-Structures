@@ -7,6 +7,8 @@ using namespace std;
 
 THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS .CPP NOTEBOOK
 
+{Try using Sorting to remove Duplicacy}
+
 */
 
 /*
@@ -163,6 +165,8 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
         for(int i = index; i< candidates.size(); i++){
 
             // not picking those elements in which prev iteration is already taken
+            // because we already have solution from prev element if it is same, 
+            // if we don't do it we will get repetetive Solution for same candidate
             if(i > index && candidates[i] == candidates[i-1]){
                 continue;
             }
