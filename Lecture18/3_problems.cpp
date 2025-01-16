@@ -228,6 +228,34 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
 
     // We can do the unique thing even using Set, but it will again take high time and space.
 
+    Method 2.(Solution 1 is better)
+
+    void allPerm(vector<int>& nums, vector<vector<int>> &sol, int index){
+
+        if(index >= nums.size()){
+            if(find(sol.begin(), sol.end(), nums) == sol.end()){
+                sol.push_back(nums);
+            }
+            return ;
+        }
+
+        for(int i = index; i < nums.size(); i++){
+
+            swap(nums[i], nums[index]);
+            allPerm(nums, sol, index + 1);
+            swap(nums[i], nums[index]);
+
+        }
+    }
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> sol;
+        sort(nums.begin(), nums.end());
+        allPerm(nums, sol, 0);
+
+        return sol;
+    }
+
 */
 
 /*
