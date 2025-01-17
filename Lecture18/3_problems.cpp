@@ -228,7 +228,7 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
 
     // We can do the unique thing even using Set, but it will again take high time and space.
 
-    Method 2.(Solution 1 is better)
+    Method 2.(Solution 1 is best)
 
     void allPerm(vector<int>& nums, vector<vector<int>> &sol, int index){
 
@@ -261,6 +261,9 @@ THE VERY IMPORTANT THING IS TO REMOVE THE DUPLICACY PLEASE FOCUS ON THAT IN THIS
 /*
 
 526. Beautiful Arrangement
+
+    Great QUestion Focus on it.
+
 (https://leetcode.com/problems/beautiful-arrangement/)
 
     Method 1 - TLE
