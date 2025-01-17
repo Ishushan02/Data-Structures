@@ -42,3 +42,95 @@
     }   
 
 */
+
+/*
+    712. Minimum ASCII Delete Sum for Two Strings
+    (https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/description/)
+
+    int getMinOperations(string s1, string s2, int i, int j){
+        if(i >= s1.length() && j >= s2.length()){
+            return 0;
+        }else if(i >= s1.length() && j != s2.length()){
+            int sum = 0;
+            for(int k = j; k < s2.length(); k++){
+                sum += int(s2[k]);
+            }
+            return sum;
+        }else if(i != s1.length() && j >= s2.length()){
+            int sum = 0;
+            for(int k = i; k < s1.length(); k++){
+                sum += int(s1[k]);
+            }
+            return sum;
+        }
+
+        int n1 = s1.length();
+        int n2 = s2.length();
+
+        int minCost = INT_MAX;
+        if(s1[i] == s2[j]){
+            minCost = 0 + getMinOperations(s1, s2, i + 1, j +1);
+        }else{
+            int cost1 = int(s1[i]) + getMinOperations(s1, s2, i + 1, j);
+            int cost2 =  int(s2[j]) + getMinOperations(s1, s2, i, j + 1);
+            int cost3 =  min(int(s1[i]) + getMinOperations(s1, s2, i + 1, j), int(s2[j]) + getMinOperations(s1, s2, i, j + 1));
+
+            minCost = min(minCost, min(cost1, min(cost2, cost3)));
+        }
+
+        return minCost;
+    }
+
+
+    int getMinOperationsDP(string &s1, string &s2, int i, int j, vector<vector<int>> &dpArr){
+        if(i >= s1.length() && j >= s2.length()){
+            return 0;
+        }else if(i >= s1.length() && j != s2.length()){
+            int sum = 0;
+            for(int k = j; k < s2.length(); k++){
+                sum += int(s2[k]);
+            }
+            return sum;
+        }else if(i != s1.length() && j >= s2.length()){
+            int sum = 0;
+            for(int k = i; k < s1.length(); k++){
+                sum += int(s1[k]);
+            }
+            return sum;
+        }
+
+        if(dpArr[i][j] != INT_MAX){
+            return dpArr[i][j];
+        }
+
+        int n1 = s1.length();
+        int n2 = s2.length();
+
+        int minCost = INT_MAX;
+        if(s1[i] == s2[j]){
+            minCost = 0 + getMinOperationsDP(s1, s2, i + 1, j +1, dpArr);
+        }else{
+            int cost1 = int(s1[i]) + getMinOperationsDP(s1, s2, i + 1, j, dpArr);
+            int cost2 =  int(s2[j]) + getMinOperationsDP(s1, s2, i, j + 1, dpArr);
+            int cost3 =  min(int(s1[i]) + getMinOperationsDP(s1, s2, i + 1, j, dpArr), int(s2[j]) + getMinOperationsDP(s1, s2, i, j + 1, dpArr));
+
+            minCost = min(minCost, min(cost1, min(cost2, cost3)));
+        }
+
+        dpArr[i][j] = minCost;
+
+        return minCost;
+    }
+
+    int minimumDeleteSum(string s1, string s2) {
+        
+        // return getMinOperations(s1, s2, 0, 0);
+        
+        vector<vector<int>> dpArr(s1.length(), vector<int>(s2.length(), INT_MAX));
+        return getMinOperationsDP(s1, s2, 0, 0, dpArr);
+
+        
+        // return 0;
+    }
+    
+*/
