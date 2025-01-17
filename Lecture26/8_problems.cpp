@@ -73,9 +73,7 @@
         }else{
             int cost1 = int(s1[i]) + getMinOperations(s1, s2, i + 1, j);
             int cost2 =  int(s2[j]) + getMinOperations(s1, s2, i, j + 1);
-            int cost3 =  min(int(s1[i]) + getMinOperations(s1, s2, i + 1, j), int(s2[j]) + getMinOperations(s1, s2, i, j + 1));
-
-            minCost = min(minCost, min(cost1, min(cost2, cost3)));
+            minCost = min(minCost, min(cost1, cost2));
         }
 
         return minCost;
@@ -112,9 +110,8 @@
         }else{
             int cost1 = int(s1[i]) + getMinOperationsDP(s1, s2, i + 1, j, dpArr);
             int cost2 =  int(s2[j]) + getMinOperationsDP(s1, s2, i, j + 1, dpArr);
-            int cost3 =  min(int(s1[i]) + getMinOperationsDP(s1, s2, i + 1, j, dpArr), int(s2[j]) + getMinOperationsDP(s1, s2, i, j + 1, dpArr));
 
-            minCost = min(minCost, min(cost1, min(cost2, cost3)));
+            minCost = min(minCost, min(cost1, cost2));
         }
 
         dpArr[i][j] = minCost;
@@ -132,5 +129,5 @@
         
         // return 0;
     }
-    
+
 */
