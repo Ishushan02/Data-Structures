@@ -175,3 +175,83 @@
         return ansStr;
     }
 */
+
+
+/*
+
+    THe question is bit tricky, see different examples, {So we have to make sure all examples are substructre of the word}
+
+    Ex: "catsanddog"  , ["cats","dog","sand","and","cat"]  -> False
+        "leetcode", ["leet", "code"] -> True
+        "abcd", ["a", "abc", "b", "cd"] -> True
+        "aaaaaaa", ["aaaa", "aaa"] -> True
+
+
+    139. Word Break
+    (https://leetcode.com/problems/word-break/)
+
+
+    bool check(string &partition, vector<string>& wordDict){
+        for(auto val:wordDict){
+            if(val == partition){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool allpossibility(string &s, vector<string>& wordDict, int idx){
+        if(idx >= s.length()){
+            return true;
+        }
+
+        string partition = "";
+        bool flag = false;
+        for(int i = idx; i < s.length(); i++){
+            partition += s[i];
+
+            if(check(partition, wordDict)){
+                flag = flag || allpossibility(s, wordDict, i+1);
+            }
+                
+        }
+
+        return flag;
+    }
+
+
+    bool allPossibilityDP(string &s, vector<string> &wordDict, int idx, vector<int> &dpArr){
+
+        if(idx >= s.length()){
+            return true;
+        }
+
+        if(dpArr[idx] != -1 ){
+            return dpArr[idx];
+        }
+
+        string partiotion = "";
+        bool flag = false;
+        for(int i = idx; i < s.length(); i++){
+
+            partiotion += s[i];
+
+            if(check(partiotion, wordDict)){
+                flag = flag || allPossibilityDP(s, wordDict, i + 1, dpArr) ;
+            }
+        }
+
+        dpArr[idx] = flag;
+
+        return flag;
+    }
+
+
+    bool wordBreak(string &s, vector<string>& wordDict) {
+        int idx = 0;
+        // return allpossibility(s, wordDict, 0);
+        vector<int> dpArr(s.length(), -1);
+        return allPossibilityDP(s, wordDict, 0, dpArr);
+    }
+
+*/
