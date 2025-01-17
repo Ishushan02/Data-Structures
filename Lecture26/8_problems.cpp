@@ -131,3 +131,47 @@
     }
 
 */
+
+
+/*  
+    5. Longest Palindromic Substring
+    (https://leetcode.com/problems/longest-palindromic-substring/description/)
+
+    string getPalindromicSubstr(string &s, int start, int end){
+        string temp;
+        while(start >= 0 && end < s.length() && s[start] == s[end]){
+                string substring = s.substr(start, end - start +1);
+                if(temp.length() < end - start + 1){
+                   temp = substring;
+                }
+                start--;
+                end++;
+            }
+        return temp;
+    }
+
+    string longestPalindrome(string s) {
+        
+
+        int i = 0;
+        string ansStr;
+        while(i < s.length()){
+            
+            // odd
+            string tempStr = getPalindromicSubstr(s, i, i);
+            if(ansStr.length() < tempStr.length()){
+                ansStr = tempStr;
+            }
+
+            //even
+            tempStr = getPalindromicSubstr(s, i, i + 1);
+            if(ansStr.length() < tempStr.length()){
+                ansStr = tempStr;
+            }     
+            i++;
+            
+        }
+
+        return ansStr;
+    }
+*/
