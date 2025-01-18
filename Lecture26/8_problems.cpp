@@ -255,3 +255,78 @@
     }
 
 */
+
+/*
+    877. Stone Game
+    (https://leetcode.com/problems/stone-game/description/)
+
+    // alice, bob
+    pair<int, int> selection(vector<int>& piles, int i, int j){
+        if(i >= j){
+            return {0, 0};
+        }
+
+        int aliceSum = 0;
+        if(piles[i] >= piles[j]){
+            aliceSum = piles[i] + selection(piles, i+1, j).first; 
+        }else{
+            aliceSum = piles[j] + selection(piles, i, j - 1).first; 
+        }
+
+        int bobSum = 0;
+        if(piles[i] < piles[j]){
+            bobSum = piles[i] + selection(piles, i+1, j).second; 
+        }else{
+            bobSum = piles[j] + selection(piles, i, j - 1).second; 
+        }
+
+        return {aliceSum, bobSum};
+
+    }
+
+    // alice, bob
+    pair<int, int> selectionDP(vector<int>& piles, int i, int j, map<pair<int, int>, pair<int, int>> &dpMap){
+        if(i >= j){
+            return {0, 0};
+        }
+
+        if(dpMap.find({i, j}) != dpMap.end()){
+            return dpMap[{i, j}];
+        }
+
+        int aliceSum = 0;
+        if(piles[i] >= piles[j]){
+            aliceSum = piles[i] + selectionDP(piles, i+1, j, dpMap).first; 
+        }else{
+            aliceSum = piles[j] + selectionDP(piles, i, j - 1, dpMap).first; 
+        }
+
+        int bobSum = 0;
+        if(piles[i] < piles[j]){
+            bobSum = piles[i] + selectionDP(piles, i+1, j, dpMap).second; 
+        }else{
+            bobSum = piles[j] + selectionDP(piles, i, j - 1, dpMap).second; 
+        }
+
+        dpMap[{i, j}] = {aliceSum, bobSum}; 
+
+        return dpMap[{i, j}];
+
+    }
+
+    bool stoneGame(vector<int>& piles) {
+        
+        int n = piles.size();
+        // vector<vector<int>> dpArr(n+1, vector<int>(n+1, -1));
+        map<pair<int, int>, pair<int, int>> dpMap;
+        // pair<int, int> valSum = selection(piles, 0, n-1);
+        
+        pair<int, int> valSum = selectionDP(piles, 0, n-1, dpMap);
+
+        if(valSum.first > valSum.second){
+            return true;
+        }
+        return false;
+    }
+
+*/
