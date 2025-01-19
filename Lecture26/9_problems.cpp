@@ -27,7 +27,7 @@
         return ans;
     }
 
-    
+
     unordered_map<int, vector<string>> dpArr;
     vector<string> matchPossibleWordsDP(string &s, unordered_map<string,bool> &wordMap, int idx){
 
@@ -71,4 +71,46 @@
         return matchPossibleWords(s, wordMap, 0);
     }
 
+*/
+
+
+/*
+    96. Unique Binary Search Trees
+    (https://leetcode.com/problems/unique-binary-search-trees/description/)
+
+    int allPossibilities(int n, vector<int> &dpArr){
+        if(n == 0 || n == 1){
+            return 1;
+        }
+        if(dpArr[n] != -1){
+            return dpArr[n];
+        }
+
+        int sum = 0;
+        for(int i = 1; i <= n; i++){
+
+            int leftPart  = i - 1; 
+            int rightPart = n - i;
+            int lans = allPossibilities(leftPart, dpArr);
+            int rans = allPossibilities(rightPart, dpArr);            
+            sum += (lans * rans);
+
+        }
+
+        dpArr[n] = sum;
+        return dpArr[n];
+
+    }
+
+    int numTrees(int n) {
+
+        if(n == 1){
+            return 1;
+        }
+
+        vector<int> dpArr(n + 1, -1);
+
+
+        return allPossibilities(n, dpArr);
+    }
 */
