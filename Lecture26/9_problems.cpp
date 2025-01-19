@@ -27,6 +27,39 @@
         return ans;
     }
 
+    
+    unordered_map<int, vector<string>> dpArr;
+    vector<string> matchPossibleWordsDP(string &s, unordered_map<string,bool> &wordMap, int idx){
+
+        if(idx == s.length()){
+            return {""};
+        }
+        vector<string> ans;
+
+        if(dpArr.find(idx) != dpArr.end()){
+            return dpArr[idx];
+        }
+        
+        string validword = "";
+        for(int i = idx; i < s.length(); i++){
+            validword += s[i];
+            if(wordMap.find(validword) != wordMap.end()){
+                vector<string> remainingWord = matchPossibleWordsDP(s, wordMap, i + 1);
+                for(auto each_word: remainingWord){
+                    string endPart;
+                    if(each_word.size() > 0){
+                        endPart = " " + each_word;
+                    }
+                    ans.push_back(validword + endPart);
+                }
+
+            }
+        }
+
+        dpArr[idx] = ans;
+        return dpArr[idx];
+    }
+
     vector<string> wordBreak(string s, vector<string>& wordDict) {
         
         unordered_map<string, bool> wordMap;
