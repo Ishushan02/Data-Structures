@@ -267,18 +267,16 @@
         }
 
         int aliceSum = 0;
-        if(piles[i] >= piles[j]){
-            aliceSum = piles[i] + selection(piles, i+1, j).first; 
-        }else{
-            aliceSum = piles[j] + selection(piles, i, j - 1).first; 
-        }
+        int aliceSumfirstpick = piles[i] + selection(piles, i+1, j).first; 
+        int aliceSumlastpick = piles[j] + selection(piles, i, j - 1).first; 
+        
+        aliceSum = max(aliceSumfirstpick, aliceSumlastpick);
 
         int bobSum = 0;
-        if(piles[i] < piles[j]){
-            bobSum = piles[i] + selection(piles, i+1, j).second; 
-        }else{
-            bobSum = piles[j] + selection(piles, i, j - 1).second; 
-        }
+        int bobSumfirstpick = piles[i] + selection(piles, i+1, j).second; 
+        int bobSumlastpick = piles[j] + selection(piles, i, j - 1).second; 
+
+        bobSum = max(bobSumfirstpick, bobSumlastpick);
 
         return {aliceSum, bobSum};
 
