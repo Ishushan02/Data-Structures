@@ -199,6 +199,13 @@
 
 /*
 
+    // at the current Node
+
+    is you rob current node the rob its root->left->left and root->left->right as well as
+                                        root->right->left and root->right->right
+    
+    if you don't rob current Node then rob root->left and root->right
+
     337. House Robber III
     (https://leetcode.com/problems/house-robber-iii/description/)
 
