@@ -195,3 +195,46 @@
 
     }
 */
+
+
+/*
+
+    337. House Robber III
+    (https://leetcode.com/problems/house-robber-iii/description/)
+
+    unordered_map<TreeNode*, int> dpArr;
+    int getSum(TreeNode* root){
+        if(root == NULL){
+            return 0;
+        }
+
+        if(dpArr.find(root) != dpArr.end()){
+            return dpArr[root];
+        }
+        
+        int robsum = root->val;
+        int dontrobsum = 0;
+        
+        // rob
+        if(root->left){
+            robsum += getSum(root->left->left) + getSum(root->left->right);
+        }
+        if(root->right){
+            robsum += getSum(root->right->left) + getSum(root->right->right);
+        }
+
+        // don't rob
+        dontrobsum = getSum(root->left) + getSum(root->right);
+        
+        dpArr[root] = max(robsum, dontrobsum);
+        
+        return dpArr[root];
+    }
+
+    
+    int rob(TreeNode* root) {
+        return getSum(root);
+       
+    }
+
+*/
