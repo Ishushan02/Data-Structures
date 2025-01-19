@@ -114,3 +114,84 @@
         return allPossibilities(n, dpArr);
     }
 */
+
+
+/*
+    95. Unique Binary Search Trees II
+    (https://leetcode.com/problems/unique-binary-search-trees-ii/description/)
+
+    vector<TreeNode*> allPossibleTrees(int start, int end){
+        if(start > end){
+            return {NULL};
+        }
+
+        if(end == start){
+            TreeNode* node = new TreeNode(start);
+            return {node};
+        }
+
+        vector<TreeNode*> allTree;
+        for(int i = start; i <= end; i++){
+
+            vector<TreeNode*> leftTrees = allPossibleTrees(start, i -1);
+            vector<TreeNode*> rightTrees = allPossibleTrees(i+1, end);
+            
+            for(int j = 0; j < leftTrees.size(); j++){      
+                for(int k = 0; k < rightTrees.size(); k++){
+                    TreeNode* currNode = new TreeNode(i);
+                    currNode->left = leftTrees[j];
+                    currNode->right = rightTrees[k];
+                    allTree.push_back(currNode);
+                }
+            }
+
+        }
+
+        return allTree;
+    }
+
+    vector<TreeNode*> allPossibleTreesDP(int start, int end, map<pair<int, int>, vector<TreeNode*>> &treeMap){
+        if(start > end){
+            return {NULL};
+        }
+
+        if(end == start){
+            TreeNode* node = new TreeNode(start);
+            return {node};
+        }
+
+        if(treeMap.find({start, end})!= treeMap.end()){
+            return treeMap[{start, end}];
+        }
+
+        vector<TreeNode*> allTree;
+        for(int i = start; i <= end; i++){
+
+            vector<TreeNode*> leftTrees = allPossibleTreesDP(start, i -1, treeMap);
+            vector<TreeNode*> rightTrees = allPossibleTreesDP(i+1, end, treeMap);
+            
+            for(int j = 0; j < leftTrees.size(); j++){      
+                for(int k = 0; k < rightTrees.size(); k++){
+                    TreeNode* currNode = new TreeNode(i);
+                    currNode->left = leftTrees[j];
+                    currNode->right = rightTrees[k];
+                    allTree.push_back(currNode);
+                }
+            }
+
+        }
+
+        treeMap[{start, end}] = allTree;
+
+        return treeMap[{start, end}];
+    }
+
+
+    vector<TreeNode*> generateTrees(int n) {
+        map<pair<int, int>, vector<TreeNode*>> treeMap;
+        // vector<TreeNode*> ansTrees =  allPossibleTrees(1, n);
+        vector<TreeNode*> ansTrees =  allPossibleTreesDP(1, n, treeMap);
+        return ansTrees;
+
+    }
+*/
