@@ -102,15 +102,35 @@
 
     }
 
+
+    // method 3
+    int solveIncExc(vector<int>& stones, int sum, int i){
+        if(i >= stones.size()){
+
+            // there are 2 possibilities here
+            // for include case return sum
+            // for excluded case return totalSum - sum
+            int incSum = sum;
+            int excSum = totalSum - sum;
+
+            return abs(incSum - excSum);
+
+
+    }
+
     int lastStoneWeightII(vector<int>& stones) {
         
         // vector<vector<int>> &dpArr()
 
         // return solveWeights(stones, 0, 0);
-        totalSum = accumulate(stones.begin(), stones.end(), 0);
-        vector<vector<int>> dpArr(stones.size()+1, vector<int>((2 * totalSum + 1), -1));
-        return solveWeightsDP(stones, 0, 0, dpArr);
 
+        // DP 
+        totalSum = accumulate(stones.begin(), stones.end(), 0);
+        // vector<vector<int>> dpArr(stones.size()+1, vector<int>((2 * totalSum + 1), -1));
+        // return solveWeightsDP(stones, 0, 0, dpArr);
+
+        return solveIncExc(stones, 0, 0); // can uptimize it using DP
+    
     }
 
 
