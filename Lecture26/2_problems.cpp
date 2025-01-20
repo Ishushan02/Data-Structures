@@ -183,8 +183,7 @@
                 
             }
         }
-        dpArr[tempAmount] = minCoin;
-        return dpArr[tempAmount];
+         return dpArr[tempAmount];
 
     }
 
