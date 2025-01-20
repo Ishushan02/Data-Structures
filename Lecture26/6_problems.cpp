@@ -91,3 +91,77 @@
         return stringMatchDP(s, p, 0, 0, dpArr);
     }
 */
+
+
+/*
+
+    10. Regular Expression Matching
+    (https://leetcode.com/problems/regular-expression-matching/)
+
+
+    bool regMatch(string &s, string &p, int i, int j){
+
+        if(i == s.length() && j == p.length()){
+            return true;
+        }
+        if(j == p.length()){
+            return false;
+        }
+
+
+        bool currentMatch = (i < s.length()) && (s[i] == p[j] || p[j] == '.');
+
+        if(j+1 < p.length() && p[j+1] == '*'){
+            // to make empty case skip next element
+            bool emptyCase = regMatch(s, p, i, j + 2);
+            bool preceddingCase = currentMatch && regMatch(s, p, i+1, j);
+            return emptyCase || preceddingCase;
+        }else if(currentMatch){
+            return regMatch(s, p, i + 1, j + 1);
+        }else{
+            return false;
+        }
+    }
+
+
+    bool regMatchDP(string &s, string &p, int i, int j, vector<vector<int>> &dpArr){
+
+        if(i == s.length() && j == p.length()){
+            return true;
+        }
+
+        if(j >= p.length()){
+            return false;
+        }
+
+        if(dpArr[i][j] != -1){
+            return dpArr[i][j];
+        }
+
+        bool matchCase = (i < s.length()) && ((s[i] == p[j]) || (p[j] == '.')) ;
+        bool ans = false ;
+        if(j + 1 < p.length() && p[j+1] == '*'){
+            bool emptyCase = regMatchDP(s, p, i, j+2, dpArr);
+            bool preceedingCase = matchCase && regMatchDP(s, p, i + 1, j, dpArr);
+
+            ans =  emptyCase || preceedingCase;
+        }else if(matchCase){
+            ans = regMatchDP(s, p, i + 1, j+1, dpArr);
+        }
+
+        dpArr[i][j] = ans;
+        
+        return dpArr[i][j];
+    }
+
+
+    bool isMatch(string s, string p) {
+        
+        vector<vector<int>> dpArr(s.length()+1, vector<int>(p.length()+1, -1));
+        // return regMatch(s, p, 0, 0);
+        return regMatchDP(s, p, 0, 0, dpArr);
+
+    }
+
+    
+*/
