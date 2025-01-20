@@ -2,6 +2,8 @@
     1046. Last Stone Weight
     (https://leetcode.com/problems/last-stone-weight/)
 
+
+
     int lastStoneWeight(vector<int>& stones) {
         
         while(stones.size()> 1){
@@ -34,6 +36,33 @@
 /*
     1049. Last Stone Weight II
     (https://leetcode.com/problems/last-stone-weight-ii/)
+
+    // The difference between top and this question is that in top we 
+    // have to pick only the 2 heaviest element whereas in this we can pick any element
+    // hence remember this chart
+
+        Ex: [2,7,4,1,8,1]
+
+                    2
+        subtr 2              add 2
+
+           7                    7
+    subtr 7   add 7     subtr 7   add 7
+    .......
+    ...
+
+    We cannot take if the sum is negative, hence we are returning INT_MAX at eddge case 
+    ans if sum>= 0 return that..
+
+    and at the end get the minimum of overall and return that as answer
+
+    while making dpArrary the column might varry from it's +ve sum to its -ve sum
+    hence we are summing it over and 2* sum + 1 ; 1 because we have to include 0
+
+    now while accessing the sum can be negative, so adding the totalSum to index to keep it positive and index 
+    doesn't go into negative.
+
+    -----------------------------------------------------------------------
 
     int solveWeights(vector<int>& stones, int sum, int i){
         if(i >= stones.size()){
@@ -84,5 +113,5 @@
 
     }
 
-    
+
 */
