@@ -29,3 +29,60 @@
     }
 
 */
+
+
+/*
+    1049. Last Stone Weight II
+    (https://leetcode.com/problems/last-stone-weight-ii/)
+
+    int solveWeights(vector<int>& stones, int sum, int i){
+        if(i >= stones.size()){
+
+            if(sum < 0){
+                return INT_MAX;
+            }
+
+            return sum;
+        }
+
+        int posSum = solveWeights(stones, sum + stones[i], i + 1);
+        int negSum = solveWeights(stones, sum - stones[i], i + 1);
+
+        return min(posSum, negSum);
+
+    }
+    
+    int totalSum = 0;
+    int solveWeightsDP(vector<int>& stones, int sum, int i, vector<vector<int>> &dpArr){
+        if(i >= stones.size()){
+            if(sum < 0){
+                return INT_MAX;
+            }
+            return sum;
+        }
+
+        if(dpArr[i][sum + totalSum] != -1){
+            return dpArr[i][sum + totalSum];
+        }
+
+        int posSum = solveWeightsDP(stones, sum + stones[i], i + 1, dpArr);
+        int negSum = solveWeightsDP(stones, sum - stones[i], i + 1, dpArr);
+
+        dpArr[i][sum + totalSum] = min(posSum, negSum);
+        return dpArr[i][sum + totalSum];
+
+    }
+
+    int lastStoneWeightII(vector<int>& stones) {
+        
+        // vector<vector<int>> &dpArr()
+
+        // return solveWeights(stones, 0, 0);
+        totalSum = accumulate(stones.begin(), stones.end(), 0);
+        vector<vector<int>> dpArr(stones.size()+1, vector<int>((2 * totalSum + 1), -1));
+        return solveWeightsDP(stones, 0, 0, dpArr);
+
+    }
+
+    
+*/
