@@ -263,6 +263,51 @@
         inorderTraversal(root->right, maxSum);
 
     }
+
+
+    Method 3 (Good Approach this as well)
+
+    void traverse(TreeNode* root, int &sum, unordered_map<TreeNode*, int> &valMap){
+        if(root == NULL){
+            return ;
+        }
+
+        traverse(root->right, sum, valMap);
+        if(valMap.find(root) == valMap.end()){
+            valMap[root] = root->val + sum;
+            sum = root->val + sum;
+        }
+        
+        traverse(root->left, sum, valMap);
+    }
+
+    void modifyVal(TreeNode* root, unordered_map<TreeNode*, int> &valMap){
+        if(root == NULL){
+            return;
+        }
+        
+        root->val = valMap[root];
+        modifyVal(root->left, valMap);
+        modifyVal(root->right, valMap);
+
+    }
+
+    TreeNode* bstToGst(TreeNode* root) {
+        
+        unordered_map<TreeNode*, int> valMap;
+        int sum = 0;
+        traverse(root, sum, valMap);
+
+        // for(auto &[key, val]:valMap){
+        //     cout << key->val << " : " << val << endl;
+        // }
+
+        modifyVal(root, valMap);
+
+        return root;
+    }
+
+    
 */
 
 /*

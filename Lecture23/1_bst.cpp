@@ -164,7 +164,8 @@ int main(){
     // delete Node 
     // deleteNode(root, 250);
     // deleteNode(root, 200);
-    deleteNode(root, 100);
+    Node* val = deleteNode(root, 50);
+    cout << val->data << endl;
     preOrder(root);
 
 }
