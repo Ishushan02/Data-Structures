@@ -247,6 +247,10 @@
 */
 
 /*
+
+    // See the bottom Up approach while solving on npen and paper
+    // add 1 on both sides for both bust calculation
+
     312. Burst Balloons
     (https://leetcode.com/problems/burst-balloons/)
 
