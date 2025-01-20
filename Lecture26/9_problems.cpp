@@ -245,3 +245,61 @@
     }
 
 */
+
+/*
+    312. Burst Balloons
+    (https://leetcode.com/problems/burst-balloons/)
+
+    int getMaxCoins(vector<int>& nums, int start, int end){
+
+        if(start > end){
+            return 0;
+        }
+
+        int totalCoins = 0;
+
+        for(int i = start; i <= end; i++){
+            int currentBurst = nums[start-1] * nums[i] * nums[end+1];
+            totalCoins = max(totalCoins, getMaxCoins(nums, start, i - 1) + currentBurst + getMaxCoins(nums, i+1, end));
+        }
+
+        return totalCoins;
+    }
+
+    int getMaxCoinsDP(vector<int>& nums, int start, int end, vector<vector<int>> &dpArr){
+
+        if(start > end){
+            return 0;
+        }
+
+        if(dpArr[start][end] != -1){
+            return dpArr[start][end];
+        }
+
+        int totalCoins = 0;
+
+        for(int i = start; i <= end; i++){
+            int currentBurst = nums[start-1] * nums[i] * nums[end+1];
+            totalCoins = max(totalCoins, getMaxCoinsDP(nums, start, i - 1, dpArr) + currentBurst + getMaxCoinsDP(nums, i+1, end, dpArr));
+        }
+
+        dpArr[start][end] = totalCoins;
+
+        return totalCoins;
+    }
+
+    int maxCoins(vector<int>& nums) {
+        
+        nums.insert(nums.begin(), 1);
+        nums.insert(nums.end(), 1);
+
+        int n = nums.size();
+        vector<vector<int>> dpArr(n+1, vector<int>(n+1, -1));
+        int start = 1;
+        int end = nums.size()-2;
+        // return getMaxCoins(nums, start, end);
+        return getMaxCoinsDP(nums, start, end, dpArr);
+
+
+    }
+*/
