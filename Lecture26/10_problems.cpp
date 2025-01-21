@@ -246,3 +246,86 @@
 
 
 */
+
+
+/*
+    474. Ones and Zeroes
+    (https://leetcode.com/problems/ones-and-zeroes/description/)
+
+
+    int getMaxSize(vector<pair<int, int>> &values, int m, int n, int idx){
+        if(idx >= values.size()){
+            return 0;
+        }
+
+
+        int zeros = values[idx].first;
+        int ones = values[idx].second;
+
+        int includeans = 0;
+        int excludeans = 0;
+        if(m - zeros >= 0 && n - ones >= 0){
+            includeans = 1 + getMaxSize(values, m - zeros, n - ones, idx + 1);
+        }
+        
+
+        excludeans = getMaxSize(values, m, n, idx + 1);
+
+        return max(includeans, excludeans);
+
+
+    }
+    
+
+    int getMaxSizeDP(vector<pair<int, int>> &values, int m, int n, int idx, vector<vector<vector<int>>> &dpArr){
+        if(idx >= values.size()){
+            return 0;
+        }
+
+        if(dpArr[m][n][idx] != -1){
+            return dpArr[m][n][idx];
+        }
+        
+        int zeros = values[idx].first;
+        int ones = values[idx].second;
+
+        int includeans = 0;
+        int excludeans = 0;
+        if(m - zeros >= 0 && n - ones >= 0){
+            includeans = 1 + getMaxSizeDP(values, m - zeros, n - ones, idx + 1, dpArr);
+        }
+        
+
+        excludeans = getMaxSizeDP(values, m, n, idx + 1, dpArr);
+
+        dpArr[m][n][idx] = max(includeans, excludeans);
+
+        return dpArr[m][n][idx];
+
+
+    }
+
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        
+        vector<pair<int, int>> values;
+
+        for(auto eachStr: strs){
+            int zeros = 0;
+            int ones = 0;
+            for(auto each_char: eachStr){
+                if(each_char == '0'){
+                    zeros += 1;
+                }else{
+                    ones += 1;
+                }
+            }
+            values.push_back({zeros, ones});
+        }
+
+        // return getMaxSize(values, m, n, 0);
+
+        vector<vector<vector<int>>> dpArr(m + 1, vector<vector<int>>(n + 1, vector<int>(strs.size()+1, -1)));
+        return getMaxSizeDP(values, m, n, 0, dpArr);
+
+    }
+*/
