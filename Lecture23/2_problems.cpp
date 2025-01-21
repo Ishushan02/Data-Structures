@@ -488,7 +488,7 @@
         int mid = (start + end)/2;
 
         TreeNode* root = new TreeNode(nums[mid]);
-        
+
         root->left = generateTree(nums, start, mid - 1);
         root->right = generateTree(nums, mid+1, end);
 
@@ -749,6 +749,7 @@
         int maxVal = INT_MIN;
     };
     int Maxsum = 0 ;
+    
     Info traverse(TreeNode* root){
         if (root == NULL){
             Info temp;

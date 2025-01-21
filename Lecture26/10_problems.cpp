@@ -135,3 +135,79 @@
 
 
 */
+
+
+/*
+
+    Great Question and almost easy ... first 3D DP Question --
+
+    97. Interleaving String
+    (https://leetcode.com/problems/interleaving-string/description/)
+
+    // The catch is if there are at a situation when both s1 and s2 character are same as s3 character
+    // then explore both the options in this
+    // 2nd catch is if k is greater than it's length which means that some of the s1 or s2 characters are unused
+    // 3rd catch is at the time when all the pointers are as same as it's length then only they have truly matched
+
+
+
+
+    bool compareCharacters(string &s1, string &s2, string &s3, int i, int j, int k){
+        if(i == s1.length() && j == s2.length() && k == s3.length()){
+            return true;
+        }
+
+        if(k >= s3.length()){
+            return false;
+        }
+
+        bool ans = false;
+        if(s1[i] == s3[k] && s2[j] == s3[k]){
+            ans = ans || compareCharacters(s1, s2, s3, i+1, j, k+1) || compareCharacters(s1, s2, s3, i, j+1, k+1);;
+        }else if(s1[i] == s3[k]){
+            ans = ans || compareCharacters(s1, s2, s3, i+1, j, k+1);
+        }else if(s2[j] == s3[k]){
+            ans = ans || compareCharacters(s1, s2, s3, i, j+1, k+1);
+        }
+
+        return ans;
+    }
+
+    bool compareCharactersDP(string &s1, string &s2, string &s3, int i, int j, int k, vector<vector<vector<int>>> &dpArr){
+        if(i == s1.length() && j == s2.length() && k == s3.length()){
+            return true;
+        }
+
+        if(k >= s3.length()){
+            // any of the other string isn't consumed completely
+            return false;
+        }
+
+        cout << i << " " << j << " " << k << endl;
+        if(dpArr[i][j][k] != -1){
+            return dpArr[i][j][k];
+        }
+
+        bool ans = false;
+        if(s1[i] == s3[k] && s2[j] == s3[k]){
+            ans = ans || compareCharactersDP(s1, s2, s3, i+1, j, k+1, dpArr) || compareCharactersDP(s1, s2, s3, i, j+1, k+1, dpArr);;
+        }else if(s1[i] == s3[k]){
+            ans = ans || compareCharactersDP(s1, s2, s3, i+1, j, k+1, dpArr);
+        }else if(s2[j] == s3[k]){
+            ans = ans || compareCharactersDP(s1, s2, s3, i, j+1, k+1, dpArr);
+        }
+
+        dpArr[i][j][k] = ans;
+        return dpArr[i][j][k];
+    }
+
+
+    bool isInterleave(string s1, string s2, string s3) {
+        vector<vector<vector<int>>> dpArr(s1.length() + 1, vector<vector<int>>(s2.length() + 1, vector<int>(s3.length() + 1, -1)));
+
+        // return compareCharacters(s1, s2, s3, 0, 0, 0);
+        return compareCharactersDP(s1, s2, s3, 0, 0, 0, dpArr);
+    }
+
+
+*/
