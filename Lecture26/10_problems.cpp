@@ -151,7 +151,7 @@
 
 
 
-
+    Time Complexity - > O(2 ^ N) for all positions there are 2 possibilities
     bool compareCharacters(string &s1, string &s2, string &s3, int i, int j, int k){
         if(i == s1.length() && j == s2.length() && k == s3.length()){
             return true;
@@ -173,6 +173,7 @@
         return ans;
     }
 
+    Time Complexity - > O(m * n * N)
     bool compareCharactersDP(string &s1, string &s2, string &s3, int i, int j, int k, vector<vector<vector<int>>> &dpArr){
         if(i == s1.length() && j == s2.length() && k == s3.length()){
             return true;
@@ -201,7 +202,7 @@
         return dpArr[i][j][k];
     }
 
-
+    // Time Complexity - > O(m * n )
     // Method 3 remove k, the logic is i + j will always be k.. simple thought
     bool compareCharactersDP1(string &s1, string &s2, string &s3, int i, int j, vector<vector<int>> &dpArr){
         if(i == s1.length() && j == s2.length() && i+j == s3.length()){
