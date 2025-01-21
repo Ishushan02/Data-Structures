@@ -249,6 +249,15 @@
 
 
 /*
+
+    // So, the idea is that first we store all ones and zeros early so that later on we don't get into complications.
+    // Ones they are stored, the max zeros can be m and maz ones can be n hence
+    // use include and exclude operation  wherein include and exclude only if m - zeros >= 0 and n - ones >= 0
+
+    // and get the max one..
+
+    // better draw the tree structure, it will be helpful.
+
     474. Ones and Zeroes
     (https://leetcode.com/problems/ones-and-zeroes/description/)
 
