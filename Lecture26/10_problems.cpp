@@ -202,11 +202,45 @@
     }
 
 
+    // Method 3 remove k, the logic is i + j will always be k.. simple thought
+    bool compareCharactersDP1(string &s1, string &s2, string &s3, int i, int j, vector<vector<int>> &dpArr){
+        if(i == s1.length() && j == s2.length() && i+j == s3.length()){
+            return true;
+        }
+
+        if(i+j >= s3.length()){
+            // any of the other string isn't consumed completely
+            return false;
+        }
+
+        // cout << i << " " << j << " " << k << endl;
+        if(dpArr[i][j] != -1){
+            return dpArr[i][j];
+        }
+
+        bool ans = false;
+        if(s1[i] == s3[i+j] && s2[j] == s3[i+j]){
+            ans = ans || compareCharactersDP1(s1, s2, s3, i+1, j, dpArr) || compareCharactersDP1(s1, s2, s3, i, j+1, dpArr);;
+        }else if(s1[i] == s3[i+j]){
+            ans = ans || compareCharactersDP1(s1, s2, s3, i+1, j, dpArr);
+        }else if(s2[j] == s3[i+j]){
+            ans = ans || compareCharactersDP1(s1, s2, s3, i, j+1, dpArr);
+        }
+
+        dpArr[i][j]= ans;
+        return dpArr[i][j];
+    }
+
+
     bool isInterleave(string s1, string s2, string s3) {
-        vector<vector<vector<int>>> dpArr(s1.length() + 1, vector<vector<int>>(s2.length() + 1, vector<int>(s3.length() + 1, -1)));
+        // vector<vector<vector<int>>> dpArr(s1.length() + 1, vector<vector<int>>(s2.length() + 1, vector<int>(s3.length() + 1, -1)));
 
         // return compareCharacters(s1, s2, s3, 0, 0, 0);
-        return compareCharactersDP(s1, s2, s3, 0, 0, 0, dpArr);
+        // return compareCharactersDP(s1, s2, s3, 0, 0, 0, dpArr);
+
+        vector<vector<int>> dpArr(s1.length() + 1, vector<int>(s2.length() + 1, -1));
+
+        return compareCharactersDP1(s1, s2, s3, 0, 0, dpArr);
     }
 
 
