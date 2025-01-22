@@ -95,7 +95,7 @@ int getsubstring(string s, int i, int j){
 
 /*
 2325. Decode the Message
-(https://leetcode.com/problems/decode-the-message/submissions/1316123973/)
+(https://leetcode.com/problems/decode-the-message/)
 
 
 class Solution {
@@ -336,7 +336,7 @@ public:
 
 /*
 
-917. Reverse Only Letters (https://leetcode.com/problems/reverse-only-letters/submissions/1319358227/)
+917. Reverse Only Letters (https://leetcode.com/problems/reverse-only-letters/submissions/)
 
 string reverseOnlyLetters(string s) {
 
@@ -355,6 +355,42 @@ string reverseOnlyLetters(string s) {
                 i++;
             }else if (!((s[j]>= 'a' && s[j] <= 'z') || (s[j]>= 'A' && s[j] <= 'Z'))){
                 j--;
+            }
+        }
+
+        return s;
+    }
+
+
+Method 2.
+    string reverse(string &s){
+        int i = 0;
+        int j = s.length() -1;
+
+        while(i < j){
+            swap(s[i], s[j]);
+            i++;
+            j--;
+        }
+        return s;
+    }
+
+    string reverseOnlyLetters(string s) {
+        string allchars;
+
+        for(auto val:s){
+            if(val >= 'a' && val <= 'z' || val >='A' && val <= 'Z'){
+                allchars += val;
+            }
+        }
+
+        allchars = reverse(allchars);
+        int j = 0;
+        for(int i = 0; i < s.length(); i++){
+            char val = s[i];
+            if(val >= 'a' && val <= 'z' || val >='A' && val <= 'Z'){
+                s[i] = allchars[j];
+                j++;
             }
         }
 
