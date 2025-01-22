@@ -81,6 +81,8 @@ using namespace std;
 
 /*
 
+// remember to_string(int), and stoi(string)  for C++
+
 179. Largest Number   https://leetcode.com/problems/largest-number/description/
 VVI Question
 
@@ -146,6 +148,37 @@ int numberOfBeams(vector<string>& bank) {
 
             }
         }
+        return ans;
+    }
+
+
+
+    Method 2
+
+    int numberOfBeams(vector<string>& bank) {
+        if(bank.size() ==1){
+            return 0;
+        }
+        vector<int> count1;
+
+        for(auto val:bank){
+            
+            int cnt = count(val.begin(), val.end(), '1');
+            if(cnt != 0){
+                count1.push_back(cnt);
+            }     
+        }
+
+        int i = 0;
+        int j = 1;
+        int ans = 0;
+
+        while(j < count1.size()){
+            ans += count1[i] * count1[j];
+            i++;
+            j++;
+        }
+        
         return ans;
     }
 

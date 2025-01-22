@@ -403,7 +403,7 @@ Method 2.
 
 /*
 14. Longest Common Prefix
-(https://leetcode.com/problems/longest-common-prefix/submissions/1319549171/)
+(https://leetcode.com/problems/longest-common-prefix/)
 
 string longestCommonPrefix(vector<string>& strs) {
         string ans = strs[0];
