@@ -218,5 +218,41 @@
         vector<vector<int>> dpArr(prices.size(), vector<int>(3, -1));
         return getMaxProfit(prices, fee, 0, true, dpArr);
     }
+
+*/
+
+/*
+    309. Best Time to Buy and Sell Stock with Cooldown
+    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
+
+    int getMaxProfit(vector<int>& prices, int i, int buy, vector<vector<int>> &dpArr){
+        if(i >= prices.size()){
+            return 0;
+        }
+
+        if(dpArr[i][buy] != -1){
+            return dpArr[i][buy];
+        }
+        int profit = 0;
+        if(buy){
+            int buyProfit = getMaxProfit(prices, i+1, 0, dpArr) - prices[i];
+            int stayProfit = getMaxProfit(prices, i+1, 1, dpArr);
+            profit = max(buyProfit, stayProfit);
+        }else{// only diff after selling add 1 extra days for buying as of cooldown day
+            int sellProfit = getMaxProfit(prices, i+2, 1, dpArr) + prices[i];
+            int stayProfit = getMaxProfit(prices, i+1, 0, dpArr);
+            profit = max(sellProfit, stayProfit);
+        }
+
+        dpArr[i][buy] = profit;
+        return dpArr[i][buy];
+    }
+
+    int maxProfit(vector<int>& prices) {
+        
+        vector<vector<int>> dpArr(prices.size(), vector<int>(3, -1));
+        return getMaxProfit(prices, 0, true, dpArr);
+    }
+
     
 */
