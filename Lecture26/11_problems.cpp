@@ -144,6 +144,10 @@
 
 
 /*
+
+    // only difference between top and current question is that here
+    // the buy and sell operation will take place 2 * k times(K Transactions)
+
     188. Best Time to Buy and Sell Stock IV
     (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/description/)
 
