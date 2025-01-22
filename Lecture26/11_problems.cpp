@@ -100,3 +100,44 @@
 
 
 */
+
+
+/*
+    123. Best Time to Buy and Sell Stock III
+    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/description/)
+
+    // if total transaction is 2 hence total buy and sell would be 4 so I added that condition
+    int getMaxProfit(vector<int>& prices, int i, int buy, int count, vector<vector<vector<int>>> &dpArr){
+        if(i >= prices.size()){
+            return 0;
+        }
+
+        if(dpArr[i][buy][count] != -1){
+            return dpArr[i][buy][count];
+        }
+        int profit = 0;
+        if(buy && count < 4){
+
+            int buyProfit = getMaxProfit(prices, i+1, 0, count+1, dpArr) - prices[i];
+            int keepProfit = getMaxProfit(prices, i+1, 1, count, dpArr);
+            profit = max(buyProfit, keepProfit);
+
+        }else if(buy == 0 && count < 4){
+
+            int sellProfit = getMaxProfit(prices, i+1, 1, count+1, dpArr) + prices[i];
+            int keepProfit = getMaxProfit(prices, i+1, 0, count, dpArr);
+            profit = max(sellProfit, keepProfit);
+
+        }
+        dpArr[i][buy][count] = profit;
+
+        return dpArr[i][buy][count];
+    }
+
+    int maxProfit(vector<int>& prices) {
+        
+        vector<vector<vector<int>>> dpArr(prices.size()+1, vector<vector<int>>(3, vector<int>(5, -1)));
+        return getMaxProfit(prices, 0, true, 0, dpArr);
+    }
+    
+*/
