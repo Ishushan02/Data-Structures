@@ -236,6 +236,44 @@ int findDuplicate(vector<int>& nums) {
 
 */
 
+
+/*
+    VVVVVIIIIIII Question {See the logic }
+    80. Remove Duplicates from Sorted Array II
+    (https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/)
+
+    int removeDuplicates(vector<int>& nums) {
+        
+        if(nums.size() ==1){
+            return 1;
+        }
+        int count = 1;
+        int j = 1; //replacing numbers
+        int i = 1; // moving element
+
+        while(i < nums.size()){
+
+            if(nums[i-1] == nums[i]){
+                count++;
+            }else{
+                count = 1;
+            }
+
+            if(count <=2){ // here it can be k also
+                nums[j] = nums[i];
+                j++;
+            }
+
+            i++;
+
+        }
+
+        return j;
+    }
+
+*/
+
+
 /*
 
 Some Very Important Questions Needs to be Done

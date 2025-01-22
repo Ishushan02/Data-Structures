@@ -222,6 +222,9 @@
 */
 
 /*
+
+    // only diff after selling add 1 extra days for buying as of cooldown day
+
     309. Best Time to Buy and Sell Stock with Cooldown
     (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
 
@@ -238,7 +241,7 @@
             int buyProfit = getMaxProfit(prices, i+1, 0, dpArr) - prices[i];
             int stayProfit = getMaxProfit(prices, i+1, 1, dpArr);
             profit = max(buyProfit, stayProfit);
-        }else{// only diff after selling add 1 extra days for buying as of cooldown day
+        }else{          
             int sellProfit = getMaxProfit(prices, i+2, 1, dpArr) + prices[i];
             int stayProfit = getMaxProfit(prices, i+1, 0, dpArr);
             profit = max(sellProfit, stayProfit);
@@ -254,5 +257,5 @@
         return getMaxProfit(prices, 0, true, dpArr);
     }
 
-    
+
 */
