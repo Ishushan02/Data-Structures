@@ -139,5 +139,45 @@
         vector<vector<vector<int>>> dpArr(prices.size()+1, vector<vector<int>>(3, vector<int>(5, -1)));
         return getMaxProfit(prices, 0, true, 0, dpArr);
     }
-    
+
+*/
+
+
+/*
+    188. Best Time to Buy and Sell Stock IV
+    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/description/)
+
+    int getMaxProfit(vector<int>& prices, int k, int i, int buy, int count, vector<vector<vector<int>>> &dpArr){
+        if(i >= prices.size()){
+            return 0;
+        }
+
+        if(dpArr[i][buy][count] != -1){
+            return dpArr[i][buy][count];
+        }
+        int profit = 0;
+        if(buy && count < k){
+
+            int buyProfit = getMaxProfit(prices, k, i+1, 0, count+1, dpArr) - prices[i];
+            int keepProfit = getMaxProfit(prices, k, i+1, 1, count, dpArr);
+            profit = max(buyProfit, keepProfit);
+
+        }else if(buy == 0 && count < k){
+
+            int sellProfit = getMaxProfit(prices, k, i+1, 1, count+1, dpArr) + prices[i];
+            int keepProfit = getMaxProfit(prices, k, i+1, 0, count, dpArr);
+            profit = max(sellProfit, keepProfit);
+
+        }
+        dpArr[i][buy][count] = profit;
+
+        return dpArr[i][buy][count];
+    }
+
+    int maxProfit(int k, vector<int>& prices) {
+        
+        vector<vector<vector<int>>> dpArr(prices.size()+1, vector<vector<int>>(3, vector<int>((2 * k)+1, -1)));
+        return getMaxProfit(prices, 2 * k, 0, true, 0, dpArr);
+    }
+
 */
