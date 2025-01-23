@@ -218,6 +218,10 @@ string justifyspaces(vector<string> words, int start, int end, int evenlyspaces,
 
 /*
 
+// A format to create total Binary numbers that's the main concept of this question, 
+// recursively how to create all Binary digits of length n
+// Simple trick   start include exclude method but only change is include 0 on left and include 1 on right
+
 1980. Find Unique Binary String
 (https://leetcode.com/problems/find-unique-binary-string/)
 
