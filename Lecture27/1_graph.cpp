@@ -95,3 +95,20 @@ int main(){
 
 
 }
+
+/*
+
+When implementing via Matrix - 
+        Time Complexity : O(n2)
+        Space Complexity : O(n2)
+
+When implementing via Adj list - 
+        Time Complexity : O(V + E)
+        Space Complexity : O(V + E)
+
+BFS and DFS
+        Time Complexity : O(V + E)
+        Space Complexity : O(V )
+
+
+*/
