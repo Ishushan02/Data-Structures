@@ -199,3 +199,39 @@ BFS and DFS
     }
 
 */
+
+
+/*
+
+    DFS of Graph
+    (https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1)
+
+    void dfsTraversal(vector<vector<int>>& adj, int node, vector<int> &ans, vector<int> &visited){
+        
+        for(auto each_node: adj[node]){
+            if(find(visited.begin(), visited.end(), each_node) == visited.end()){
+                ans.push_back(each_node);
+                visited.push_back(each_node);
+                dfsTraversal(adj, each_node, ans, visited);
+            }   
+        }
+        
+        
+        
+    }
+    
+    vector<int> dfsOfGraph(vector<vector<int>>& adj) {
+        // Code here
+        vector<int> ans;
+        vector<int> visited;
+        
+        visited.push_back(0);
+        ans.push_back(0);
+        
+        dfsTraversal(adj, 0, ans, visited);
+        return ans;
+        
+    }
+
+
+*/
