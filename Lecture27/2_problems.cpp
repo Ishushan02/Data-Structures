@@ -75,3 +75,49 @@ Cycle Detection:
         return false;
     }
 */
+
+/*
+    Cycle in a Directed Graph
+    (https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1)
+
+    bool dfsTraversal(vector<vector<int>>& adj, int &initialnode, int node, vector<int> &visited){
+        
+        for(auto each_node: adj[node]){
+            if(each_node == node){
+                return true; // self cycle
+            }
+            if(initialnode == each_node){
+                return true; // same to source Node
+            }
+            
+            if(find(visited.begin(), visited.end(), each_node) == visited.end()){
+                visited.push_back(each_node);
+                bool ans =  dfsTraversal(adj, initialnode, each_node, visited);
+                if(ans){
+                    return true;
+                }
+            }
+
+            
+            
+        }
+
+        return false;
+    }
+    
+    bool isCyclic(int V, vector<vector<int>> adj) {
+
+        for(int i = 0; i < V; i++){
+            
+                vector<int> visited;
+                visited.push_back(i);
+                if(dfsTraversal(adj, i, i, visited)){
+                    return true;
+                }
+
+        }
+        
+        return false;
+        
+    }
+*/
