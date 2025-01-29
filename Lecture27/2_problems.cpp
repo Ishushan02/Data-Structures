@@ -14,82 +14,64 @@ Cycle Detection:
     and is not the parent of current Node, hence we can conclude that Cycle Exist. {Just think that
     we are visitng a node again, which is not it's parent means that obviously cycle should be present
     there as it is being revisited. }
+
+    - DO this for each Node
 */
 
-class Graph{
-    public :
-        unordered_map<int, vector<int> > adjList;
 
-        void addEdge(int u, int v, bool direction){
-            // direction is 0 undirected, 
-            // direction is 2 directed
+/*
+    Undirected Graph Cycle
+    (https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1)
 
-            if(direction == 0){
-                adjList[u].push_back(v);
-                adjList[v].push_back(u);
-
-            }else{
-                adjList[u].push_back(v);
-            }
-
-        }
-
-        void printList(){
-            for(auto &[key, value]:adjList){
-                cout << key << " ";
-                for(auto each_val:value){
-                    cout << each_val << " ";
+    bool cyclePresent(vector<vector<int>>& adj, int src) {
+        // Code here
+        
+        // vector<int> ans;
+        int node = src;
+        vector<int> visited;
+        queue<int> que;
+        unordered_map<int, int> parent;
+        que.push(node);
+        visited.push_back(node);
+        parent[src] = -1;
+        
+        
+        while(!que.empty()){
+            int frontNode = que.front();
+            // cout << frontNode << " ";
+            // ans.push_back(frontNode);
+            
+            for(auto each_nodes: adj[frontNode]){
+                
+                if(find(visited.begin(), visited.end(), each_nodes) == visited.end() ){
+                    visited.push_back(each_nodes);
+                    que.push(each_nodes);
+                    parent[each_nodes] = frontNode;
+                    // cout << frontNode <<", "<< each_nodes << " " << parent[each_nodes] << endl;
+                    
+                }else if(find(visited.begin(), visited.end(), each_nodes) != visited.end() && each_nodes != parent[frontNode] ){
+                    // cout << "cycle: "<<frontNode <<", "<< each_nodes << " " << parent[each_nodes] << endl;
+                    return true;
                 }
-                cout<<endl;
             }
+            
+            que.pop();
+            
         }
-
-        bool containdCycleBFS(int currNode){
-            queue<int> que;
-            vector<int> visited;
-            unordered_map<int, int> parent;
-
-            que.push(currNode);
-            visited.push_back(currNode);
-
-            while(!que.empty()){
-                int frontNode = que.front();
-                vector<int> adjacentNodes = adjList[frontNode];
-
-                for(auto node:adjacentNodes){
-                    // cout << " Node: " << node << endl;
-                    if(find(visited.begin(), visited.end(), node) == visited.end()){
-                        visited.push_back(node);
-                        parent[node] = frontNode;
-                        que.push(node);
-                    }else if((find(visited.begin(), visited.end(), node) != visited.end()) && (parent[frontNode] != node)){
-                        // cout << "Here: "<< parent[frontNode] << endl;
-                        return true;
-                    }
-
-                }
-                que.pop();
-            }
-
-
-            return false;
-
-        }
-};
-
-
-int main(){
-
-
-    Graph gr;
-
-    gr.addEdge(0, 1, 0);
-    gr.addEdge(0, 2, 0);
-    gr.addEdge(1, 3, 0);
-    gr.addEdge(2, 3, 0);
-
-    // gr.printList();
+        
+        return false;
+    }
     
-    cout << gr.containdCycleBFS(0) << endl;
-
-}
+    bool isCycle(vector<vector<int>>& adj) {
+        // Code here
+        
+        for(int i = 0; i < adj.size(); i++){
+            
+            if(cyclePresent(adj, i)){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+*/
