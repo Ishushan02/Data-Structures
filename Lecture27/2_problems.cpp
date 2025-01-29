@@ -18,6 +18,12 @@ Cycle Detection:
     - DO this for each Node
 */
 
+/*
+    Do it
+    Find cycle in Directed and Undirected Graph using both BFS and DFS
+
+*/
+
 
 /*
     Undirected Graph Cycle
@@ -120,4 +126,14 @@ Cycle Detection:
         return false;
         
     }
+*/
+
+
+/*
+
+    VVVIIII Question : Amazon (Do it )
+
+    Find the Number Of Island's
+    Rotten Oranges/ Rotten Tomatoes
+
 */
