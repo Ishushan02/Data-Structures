@@ -163,6 +163,47 @@ Cycle Detection:
 */
 
 
+/*
+
+     Cycle in a Directed Graph using DFS
+    (https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1)
+
+    (bool dfs(vector<vector<int>> &adj, int src, vector<int> &visited){
+        visited[src] = 1;
+        
+        for(auto neighbour: adj[src]){
+            if(visited[neighbour] == 0){
+                if(dfs(adj, neighbour, visited)){
+                    return true;
+                }
+            }else{
+                return true;
+            }
+        }
+        visited[src] = 0;
+        // backtrack such that other nodes coming to it 
+        // have to be marked non visited
+        
+        return false;
+    }
+    
+    bool isCyclic(int V, vector<vector<int>> adj) {
+        // code here
+        vector<int> visited(V, 0);
+        
+        for(int i = 0; i < V; i++){
+            
+            if(visited[i] == 0){
+                if(dfs(adj, i, visited)){
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    })
+
+*/
 
 /*
 
