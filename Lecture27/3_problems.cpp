@@ -18,22 +18,64 @@
         // storing it here such that all goes in stacks it
         
     }
+
+
+  void topologicalSortBfs(vector<vector<int>>& adj, vector<int> &ans){
+       
+       vector<int> indegree(adj.size() ,0);
+       queue<int> que;
+       for(int i = 0; i < adj.size(); i++){
+           for(auto neighbour:adj[i]){
+               indegree[neighbour]++;
+           }
+       }
+       
+       for(int i = 0; i < adj.size(); i++){
+           if(indegree[i]==0){
+               que.push(i);
+           }
+       }
+       
+       while(!que.empty()){
+           
+           int frontNode = que.front();
+           que.pop();
+           ans.push_back(frontNode);
+           
+           for(auto neighbour: adj[frontNode]){
+               indegree[neighbour]--;
+               if(indegree[neighbour] == 0){
+                   que.push(neighbour);
+               }
+           }
+       }
+       
+       
+        
+    }
   
+    
+    
     // Function to return list containing vertices in Topological order.
     vector<int> topologicalSort(vector<vector<int>>& adj) {
         // Your code here
         
-        int startkey = 0;
-        unordered_map<int, bool> visited;
         vector<int> ans;
         
-        for(int i = 0; i < adj.size(); i++){
-            if(!visited[i]){
-                topologicalSortDfs(i, adj, visited, ans);
-            }
-        }
+        // unordered_map<int, bool> visited;
         
-        reverse(ans.begin(), ans.end());
+        
+        // for(int i = 0; i < adj.size(); i++){
+        //     if(!visited[i]){
+        //         // topologicalSortDfs(i, adj, visited, ans);
+        //         topologicalSortBfs(i, adj, visited, ans);
+        //     }
+        // }
+        
+        // reverse(ans.begin(), ans.end());
+        
+        
+        topologicalSortBfs(adj, ans);
         return ans;
     }
 
