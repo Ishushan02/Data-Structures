@@ -26,108 +26,53 @@ Cycle Detection:
 
 
 /*
-    Undirected Graph Cycle
+    Cycle in Undirected Graph using BFS
     (https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1)
 
-    bool cyclePresent(vector<vector<int>>& adj, int src) {
-        // Code here
+    bool bfsCycle(int sourceNode, vector<vector<int>>& adj){
         
-        // vector<int> ans;
-        int node = src;
-        vector<int> visited;
+        unordered_map<int, bool> visited;
         queue<int> que;
         unordered_map<int, int> parent;
-        que.push(node);
-        visited.push_back(node);
-        parent[src] = -1;
         
-        
+        que.push(sourceNode);
+        parent[sourceNode] = -1;
         while(!que.empty()){
-            int frontNode = que.front();
-            // cout << frontNode << " ";
-            // ans.push_back(frontNode);
             
-            for(auto each_nodes: adj[frontNode]){
+            int frontNode = que.front();
+            visited[frontNode] = true;
+            
+            for(auto neighbour:adj[frontNode]){
                 
-                if(find(visited.begin(), visited.end(), each_nodes) == visited.end() ){
-                    visited.push_back(each_nodes);
-                    que.push(each_nodes);
-                    parent[each_nodes] = frontNode;
-                    // cout << frontNode <<", "<< each_nodes << " " << parent[each_nodes] << endl;
-                    
-                }else if(find(visited.begin(), visited.end(), each_nodes) != visited.end() && each_nodes != parent[frontNode] ){
-                    // cout << "cycle: "<<frontNode <<", "<< each_nodes << " " << parent[each_nodes] << endl;
+                if(visited[neighbour]== 0){
+                    visited[neighbour] = true;
+                    parent[neighbour] = frontNode;
+                    que.push(neighbour);
+                }else if(neighbour != parent[frontNode]){
                     return true;
                 }
             }
             
             que.pop();
-            
         }
         
         return false;
     }
-    
+  
+    // Function to detect cycle in an undirected graph.
     bool isCycle(vector<vector<int>>& adj) {
         // Code here
         
         for(int i = 0; i < adj.size(); i++){
-            
-            if(cyclePresent(adj, i)){
+            if(bfsCycle(i, adj)){
                 return true;
             }
         }
-        
+
         return false;
     }
+
 */
-
-/*
-    Cycle in a Directed Graph
-    (https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1)
-
-    bool dfsTraversal(vector<vector<int>>& adj, int &initialnode, int node, vector<int> &visited){
-        
-        for(auto each_node: adj[node]){
-            if(each_node == node){
-                return true; // self cycle
-            }
-            if(initialnode == each_node){
-                return true; // same to source Node
-            }
-            
-            if(find(visited.begin(), visited.end(), each_node) == visited.end()){
-                visited.push_back(each_node);
-                bool ans =  dfsTraversal(adj, initialnode, each_node, visited);
-                if(ans){
-                    return true;
-                }
-            }
-
-            
-            
-        }
-
-        return false;
-    }
-    
-    bool isCyclic(int V, vector<vector<int>> adj) {
-
-        for(int i = 0; i < V; i++){
-            
-                vector<int> visited;
-                visited.push_back(i);
-                if(dfsTraversal(adj, i, i, visited)){
-                    return true;
-                }
-
-        }
-        
-        return false;
-        
-    }
-*/
-
 
 /*
 

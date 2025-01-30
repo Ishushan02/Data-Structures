@@ -3,6 +3,9 @@
 
     - Only on Directed Acyclic Graph
 
+    - Main Logic of BFS is put those nodes into queue which has indegree as 0
+    - Main Logic of DFS is backtracking, which we put elements after all oeprations
+
     (https://www.geeksforgeeks.org/problems/topological-sort/1)
 
     void topologicalSortDfs(int src, vector<vector<int>>& adj, unordered_map<int, bool> &visited, vector<int> &ans){
@@ -78,5 +81,12 @@
         topologicalSortBfs(adj, ans);
         return ans;
     }
+
+*/
+
+
+/*
+
+DO Cycle Detection Using Topological Sort 
 
 */
