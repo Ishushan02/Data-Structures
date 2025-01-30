@@ -289,3 +289,10 @@ Cycle Detection:
 
     }
 */
+
+/*
+
+    https://leetcode.com/problems/rotting-oranges/description/
+
+    // We can do this as well similarily
+*/
