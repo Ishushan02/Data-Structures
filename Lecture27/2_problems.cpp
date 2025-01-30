@@ -213,3 +213,79 @@ Cycle Detection:
     Rotten Oranges/ Rotten Tomatoes
 
 */
+
+/*
+    200. Number of Islands (Approach is Normal BFS)
+    (https://leetcode.com/problems/number-of-islands/)
+
+
+    void bfsTraversal(int m, int n, int i, int j, vector<vector<char>>& grid, map<pair<int, int>, bool > &visited){
+
+        queue<pair<int, int> > que;
+        que.push({i, j});
+
+        while(!que.empty()){
+
+            pair<int, int> front = que.front();
+
+            int currRow = front.first;
+            int currCol = front.second;
+
+            visited[{currRow, currCol}] = true;
+            
+            // bottom
+            if((currRow + 1 < m) && (grid[currRow+1][currCol] == '1') && (visited[{currRow+1, currCol}] == false)){
+                que.push({currRow+1, currCol});
+                visited[{currRow+1, currCol}] = true;
+            }
+
+            // top
+            if((currRow - 1 >= 0) && (grid[currRow-1][currCol] == '1') && (visited[{currRow-1, currCol}] == false)){
+                que.push({currRow-1, currCol});
+                visited[{currRow-1, currCol}] = true;
+            }
+            
+            //right
+            if((currCol + 1 < n) && (grid[currRow][currCol+1] == '1') && (visited[{currRow, currCol + 1}] == false)){
+                que.push({currRow, currCol+1});
+                visited[{currRow, currCol+1}] = true;
+            }
+
+            // left
+            if((currCol - 1 >= 0) && (grid[currRow][currCol-1] == '1') && (visited[{currRow, currCol-1}] == false)){
+                que.push({currRow, currCol-1});
+                visited[{currRow, currCol-1}] = true;
+            }
+
+            que.pop();
+            
+        }
+
+    }
+
+    int numIslands(vector<vector<char>>& grid) {
+        
+        int m = grid.size();
+        int n = grid[0].size();
+        map<pair<int, int>, bool > visited;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                visited[{i, j}] == false;      
+            }
+        }
+
+        int ans = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                // cout << grid[i][j] << " - " << visited[{i, j}] << endl;
+                if((grid[i][j] == '1') && (visited[{i, j}] == false)){
+                    ans += 1;
+                    bfsTraversal(m, n, i, j, grid, visited);
+                }
+            }
+        }
+
+        return ans;
+
+    }
+*/
