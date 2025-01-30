@@ -120,6 +120,49 @@ Cycle Detection:
     }
 */
 
+/*
+    Cycle in Undirected Graph using DFS
+    (https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1)
+
+
+    bool dfs(vector<vector<int>>& adj, unordered_map<int, int> &parent, int src, vector<int> &visited){
+        
+        visited[src] = 1;
+        for(auto neigh: adj[src]){
+            
+            if(!visited[neigh]){
+                parent[neigh] = src;
+                if(dfs(adj, parent, neigh, visited)){
+                    return true;
+                }
+            }else if(neigh != parent[src]){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    bool isCycle(vector<vector<int>>& adj) {
+        // Code here
+        unordered_map<int, int> parent;
+        vector<int> visited(adj.size(), 0);
+        parent[0] = -1;
+        
+        for(int i = 0; i < adj.size(); i++){
+            if(!visited[i]){
+                if(dfs(adj, parent, i, visited)){
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+
+*/
+
+
 
 /*
 
