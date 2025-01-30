@@ -75,6 +75,53 @@ Cycle Detection:
 */
 
 /*
+    Cycle in a Directed Graph using BFS (Topological Sort)
+    (https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1)
+
+    bool isCyclic(int V, vector<vector<int>> adj) {
+        // code here
+        vector<int> ans;
+        vector<int> indegree(V, 0);
+        for(int i = 0; i < V; i++){
+            for(auto neigh:adj[i]){
+                indegree[neigh]++;
+            }
+        }
+        
+        queue<int> que;
+        for(int i = 0; i < V; i++){
+            if(indegree[i] == 0){
+                que.push(i);
+            }
+        }
+        
+        // topological Sort
+        while(!que.empty()){
+            
+            int frontNode = que.front();
+            ans.push_back(frontNode);
+            que.pop();
+            
+            for(auto neigh:adj[frontNode]){
+                
+                indegree[neigh]--;
+                if(indegree[neigh] == 0){
+                    que.push(neigh);
+                }
+            }
+        }
+        
+        if(ans.size() == V){
+            return false;
+        }
+        
+        return true;
+        
+    }
+*/
+
+
+/*
 
     VVVIIII Question : Amazon (Do it )
 
