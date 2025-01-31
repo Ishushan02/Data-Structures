@@ -96,3 +96,59 @@ int main(){
     g.shortestPath(0, 3);
 
 }
+
+
+/*
+    (Shortest Path in Undirected)
+    (https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1)
+
+    vector<int> shortestPath(vector<vector<int>>& adj, int src) {
+        // code here
+        int vertices = adj.size();
+        unordered_map<int, int> parentNode;
+        unordered_map<int, bool> visited;
+        queue<int> que;
+        visited[src] = true;
+        parentNode[src] = -1;
+        que.push(src);
+        
+        while(!que.empty()){
+            
+            int frontNode = que.front();
+            que.pop();
+            
+            for(auto neighbour:adj[frontNode]){
+                if(visited[neighbour] == 0){
+                    visited[neighbour] = true;
+                    parentNode[neighbour] = frontNode;
+                    que.push(neighbour);
+                }
+            }
+        }
+        
+        vector<int> ans(vertices, 0);
+        
+        for(int i = 0; i < vertices; i++){
+            
+            
+            if(i == src){
+                ans[i] = 0;
+            }else if(parentNode.find(i) == parentNode.end()){
+                ans[i] = -1;
+            }else{
+                int tempDest = i;
+                int cost= 0;
+                while(tempDest != -1){
+                    cost += 1;
+                    tempDest = parentNode[tempDest];
+                }
+                ans[i] = cost-1;
+            }
+            
+        }
+        
+        return ans;
+        
+    }
+    
+*/
