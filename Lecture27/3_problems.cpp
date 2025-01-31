@@ -98,7 +98,7 @@ See previous all cycle detections using BFS and DFS
 
     // The main Logic is that, when we create graph and if there is a cycle which means that we won't be 
     // able to finish all the courses as each one of them will in depenedent on each other, whereas 
-    // if cycle doen't exist which means we will be able to complete the courses independently 
+    // if cycle doen't exist which means we will be able to complete the courses independently
 
 
     void topologicalBfs(int n, map<int, vector<int>> &adjList, vector<int> &ans){

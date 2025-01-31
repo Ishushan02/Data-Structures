@@ -150,5 +150,85 @@ int main(){
         return ans;
         
     }
+
+*/
+
+/*
+
+    Now to Find the Minimum distance from one of the Node to all the Nodes in the weighted Graph
+
+
+    - So let's say we have a Node
+    - From that source Node, get all the vertices connected to them
+    - get the minimum weighted edge and update the distance
+    - now traverse the next Node based on Topological sort
+    // (as this will make sure that the upcoming node doesn't have any dependency)
+
+    Good Logic
+
+    Same Question GFG is implemented below
+*/
+
+
+/*
+
+    Shortest path in Directed Acyclic Graph
+    (https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/0)
+
+    void dfs(int src, unordered_map<int, vector<pair<int, int>> >& adjList, vector<int> &visited, vector<int> &ans){
+        visited[src] = 1;
+        
+        
+        for(auto neigh:adjList[src]){
+            if(visited[neigh.first] == 0){
+                dfs(neigh.first, adjList, visited, ans);
+            }
+        }
+        
+        ans.push_back(src);
+    }
     
+  
+    vector<int> shortestPath(int V, int E, vector<vector<int>>& edges) {
+        // code here
+        
+        unordered_map<int, vector<pair<int, int> > > adjList;
+        
+        for(int i = 0; i < edges.size(); i++){
+            adjList[edges[i][0]].push_back({edges[i][1],edges[i][2]});
+        }
+        
+        vector<int> ans;
+        vector<int> visited(V, 0);
+        
+        dfs(0, adjList, visited, ans);
+        
+        reverse(ans.begin(), ans.end());
+        
+        vector<int> distAns(V, INT_MAX);
+        
+        
+        distAns[0] = 0;
+        
+        for(int i = 0; i < ans.size(); i++)
+        {
+            int node = ans[i];
+            
+            for(auto &nbrData : adjList[node]){
+                int nbr = nbrData.first ;
+                int wt = nbrData.second ;
+                if(distAns[node] + wt < distAns[nbr]){
+                    distAns[nbr] = distAns[node] + wt ;
+                }
+            }
+        }
+        for(auto &d : distAns)
+            if(d == INT_MAX)d = -1;
+        
+        
+    
+        
+        
+        return distAns;
+    }
 */
