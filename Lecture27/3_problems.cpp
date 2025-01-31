@@ -67,11 +67,10 @@
         
         // unordered_map<int, bool> visited;
         
-        
+        // Even for DFS you have to start from that vertex whose indegree is 0, remember this
         // for(int i = 0; i < adj.size(); i++){
         //     if(!visited[i]){
         //         // topologicalSortDfs(i, adj, visited, ans);
-        //         topologicalSortBfs(i, adj, visited, ans);
         //     }
         // }
         
