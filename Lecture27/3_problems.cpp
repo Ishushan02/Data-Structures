@@ -89,4 +89,71 @@
 
 Do Cycle Detection Using Topological Sort 
 
+See previous all cycle detections using BFS and DFS
+
+*/
+
+/*
+    207. Course Schedule
+    (https://leetcode.com/problems/course-schedule/description/)
+
+    // The main Logic is that, when we create graph and if there is a cycle which means that we won't be 
+    // able to finish all the courses as each one of them will in depenedent on each other, whereas 
+    // if cycle doen't exist which means we will be able to complete the courses independently 
+
+
+    void topologicalBfs(int n, map<int, vector<int>> &adjList, vector<int> &ans){
+
+        queue<int> que;
+        vector<int> indegree(n, 0);
+        for(int i = 0; i < n; i++){
+            for(auto val: adjList[i]){
+                indegree[val]++;
+            }
+        }
+    
+        for(int i = 0; i < n; i++){
+           if(indegree[i]==0){
+               que.push(i);
+           }
+        }
+
+        while(!que.empty()){
+            int frontNode = que.front();
+            ans.push_back(frontNode);
+
+            for(auto val:adjList[frontNode]){
+                indegree[val]--;
+
+                if(indegree[val] == 0){
+                    que.push(val);
+                }
+            }
+
+            que.pop();
+
+        }
+
+
+    }
+
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        map<int, vector<int>> adjList;
+
+        for(auto val:prerequisites){
+            adjList[val[1]].push_back(val[0]);
+        }
+
+        vector<int> ans;
+        
+
+        topologicalBfs(numCourses, adjList, ans);
+
+        if(ans.size() == numCourses){
+            return true;
+        }
+
+        return false;
+    }
+
 */
