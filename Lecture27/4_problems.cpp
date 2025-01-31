@@ -198,36 +198,38 @@ int main(){
             adjList[edges[i][0]].push_back({edges[i][1],edges[i][2]});
         }
         
-        vector<int> ans;
+        vector<int> topOrder;
         vector<int> visited(V, 0);
         
-        dfs(0, adjList, visited, ans);
+        dfs(0, adjList, visited, topOrder);
         
-        reverse(ans.begin(), ans.end());
-        
+        reverse(topOrder.begin(), topOrder.end());
+
         vector<int> distAns(V, INT_MAX);
         
+        int element = topOrder[0];
+        distAns[element] = 0;
         
-        distAns[0] = 0;
         
-        for(int i = 0; i < ans.size(); i++)
+        for(int i = 0; i < topOrder.size(); i++)
         {
-            int node = ans[i];
+            int node = topOrder[i];
             
-            for(auto &nbrData : adjList[node]){
-                int nbr = nbrData.first ;
-                int wt = nbrData.second ;
-                if(distAns[node] + wt < distAns[nbr]){
-                    distAns[nbr] = distAns[node] + wt ;
+            for(auto &neigh : adjList[node]){
+                
+                int neighbourNode = neigh.first ;
+                int wt = neigh.second ;
+                if(distAns[node] + wt < distAns[neighbourNode]){
+                    distAns[neighbourNode] = distAns[node] + wt;
                 }
             }
         }
-        for(auto &d : distAns)
-            if(d == INT_MAX)d = -1;
         
-        
-    
-        
+        for(auto &val:distAns){
+            if(val == INT_MAX){
+                val = -1;
+            }
+        }
         
         return distAns;
     }
