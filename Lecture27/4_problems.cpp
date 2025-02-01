@@ -271,3 +271,76 @@ int main(){
         return ans;
     }
 */
+
+
+/*  
+    Bellman-Ford
+    (https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1)
+
+        // The only change is that for negative nodes we run the 
+        // dijkstra's loop for V times and by any chances in between 
+        // the loop if the ans vector is not modified then that's the 
+        // shortest path from the source node or else even after V
+        // iterations the ans vector is modifying then there is a negative weight
+        // that is present in the graph
+
+
+    int isModified = false;
+    void bellmanFordItr(pair<int, int> src, unordered_map<int, vector<pair<int, int> > >& adjList, vector<int> &ans){
+        
+        queue< pair<int, int> > que;
+        
+        que.push(src);
+        
+        int count = 0;
+        while(!que.empty()){
+            if(count >= 10 * adjList.size()){
+                isModified = true;
+                return ;
+            }
+            pair<int, int> front = que.front();
+            que.pop();
+            
+            int node = front.second;
+            int wt = front.first;
+            
+            for(auto &neigh:adjList[node]){
+                int currnode = neigh.first;
+                int currwt = neigh.second;
+                if(wt + currwt < ans[currnode]){
+                    ans[currnode] = wt + currwt;
+                    que.push({ans[currnode], currnode});
+                }
+            }
+            count += 1;
+        }
+        
+        
+    }
+    
+    vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
+        // Code here
+        
+        unordered_map<int, vector<pair<int, int> > > adjList;
+        
+        for(int i = 0; i < edges.size(); i++){
+            adjList[edges[i][0]].push_back({edges[i][1],edges[i][2]});
+        }
+        
+        vector<int> ans(V, 100000000);
+        ans[src] = 0;
+        
+        for(int i = 0; i < V; i++){
+            // isModified = false;
+            bellmanFordItr({ans[src], src}, adjList, ans);
+            if(isModified == true){
+                return {-1};
+            }
+        }
+        
+       
+        return ans;
+        
+    }
+
+*/
