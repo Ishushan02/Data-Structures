@@ -277,13 +277,54 @@ int main(){
     Bellman-Ford
     (https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1)
 
+    // SO procedure is run the weight updation for V times, 
+    // If the weight doesn't have any negative cycle it will be staurated in V times updation
+    // else run it once again, if it still updates then we have a negative cycle 
+
+    Method 1. (This is better )
+    vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
+        // Code here
+        
+        vector<int> ans(V, 100000000);
+        ans[src] = 0;
+        
+        for(int i = 0; i < V; i++){
+            
+            for(auto neigh:edges){
+                int node = neigh[0];
+                int desNode = neigh[1];
+                int weight = neigh[2];
+                
+                if((ans[node] != 100000000) && (ans[node] + weight < ans[desNode])){
+                    ans[desNode] = ans[node] + weight;
+                }
+                
+            }
+        }
+        
+        // checking once again if this happens then we have negative cycle
+        for(auto neigh:edges){
+            int node = neigh[0];
+            int desNode = neigh[1];
+            int weight = neigh[2];
+            
+            if((ans[node] != 100000000) && ans[node] + weight < ans[desNode]){
+                return {-1};
+            }
+                
+        }
+        
+        return ans;
+        
+    }
+
+    Method 2. 
         // The only change is that for negative nodes we run the 
         // dijkstra's loop for V times and by any chances in between 
         // the loop if the ans vector is not modified then that's the 
         // shortest path from the source node or else even after V
         // iterations the ans vector is modifying then there is a negative weight
         // that is present in the graph
-
 
     int isModified = false;
     void bellmanFordItr(pair<int, int> src, unordered_map<int, vector<pair<int, int> > >& adjList, vector<int> &ans){
@@ -342,5 +383,14 @@ int main(){
         return ans;
         
     }
+
+*/
+
+
+/*
+
+    MSSP
+    Multiple source shortest Path
+    Floyd Warshall Algorithm
 
 */
