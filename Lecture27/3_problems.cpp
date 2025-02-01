@@ -40,7 +40,6 @@
        }
        
        while(!que.empty()){
-           
            int frontNode = que.front();
            que.pop();
            ans.push_back(frontNode);
@@ -51,7 +50,7 @@
                    que.push(neighbour);
                }
            }
-       }
+        }
        
        
         
@@ -218,4 +217,59 @@ See previous all cycle detections using BFS and DFS
         return ans;
     }
 
+*/
+
+
+/*
+
+    // The idea is that just as you run Indegree for Topological Sort, 
+    // execute outdegree the same way
+
+    802. Find Eventual Safe States
+    (https://leetcode.com/problems/find-eventual-safe-states/description/)
+
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        
+        queue<int> que;
+        // normal graph is an outdegree graph
+
+        vector<vector<int>> outdegreegraph(graph.size(), vector<int>());
+
+
+        for(int i = 0; i < graph.size(); i++){
+            for(auto neigh: graph[i]){
+                outdegreegraph[neigh].push_back(i);
+            }
+        }
+
+        vector<int> outDegree;
+
+        for(int i = 0; i < graph.size(); i++){
+            outDegree.push_back(graph[i].size());
+        }
+
+        for(int i = 0; i < outDegree.size(); i++){
+            if(outDegree[i] == 0){
+                que.push(i);
+            }
+        }
+        vector<int> ans;
+
+        while(!que.empty()){
+
+            int front = que.front();
+            ans.push_back(front);
+            que.pop();
+
+            for(auto neigh: outdegreegraph[front]){
+                outDegree[neigh]--;
+                if(outDegree[neigh] == 0){
+                    que.push(neigh);
+                }
+            }
+
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
 */
