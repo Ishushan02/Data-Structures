@@ -234,3 +234,40 @@ int main(){
         return distAns;
     }
 */
+
+
+/*
+    Dijkstra Algorithm
+    (https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1)
+
+    vector<int> dijkstra(vector<vector<pair<int, int>>> &adj, int src) {
+        // Code here
+        
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
+        vector<int> ans(adj.size(), INT_MAX);
+        
+        ans[src] = 0;
+        minHeap.push({0, src});
+        vector<int> visited(adj.size(), 0);
+        
+        while(!minHeap.empty()){
+            
+            pair<int, int> frontElem = minHeap.top();
+            minHeap.pop();
+            
+            int dist = frontElem.first;
+            int node = frontElem.second;
+            for(auto &neigh: adj[node]){
+                int elem = neigh.first;
+                int weight = neigh.second;
+                if(dist + weight < ans[elem]){
+                    ans[elem] = dist + weight;
+                    minHeap.push({ans[elem], elem});
+                }
+            }
+        }
+        
+        
+        return ans;
+    }
+*/
