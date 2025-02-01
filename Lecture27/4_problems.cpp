@@ -393,4 +393,52 @@ int main(){
     Multiple source shortest Path
     Floyd Warshall Algorithm
 
+    It's not that important but still see it once, what it is
+    (https://www.youtube.com/watch?v=oNI0rf2P9gE)
+
+    - We can use Dijkstra's ALgorithm for all Nodes, hence the TC: O(n3)
+
+    - We will solve this by DP
+
+     - let's say we have to find the min Distance from U to V,
+     - What you do is find the min distance from U to V through an intermediate Node..alignas
+
+     - U and V are all possible vertices of Graph also the Intermediate nodes are all possible vertices of Graph
+
+    Floyd Warshall
+    (https://www.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1)
+
+    void shortestDistance(vector<vector<int>>& mat) {
+        // Code here
+        
+        int n = mat.size();
+        for(int U = 0; U < n; U++){
+            for(int V = 0; V < n; V++){
+                if(mat[U][V] == -1){
+                    mat[U][V] = 1e8;
+                }
+            }
+        }
+        
+        
+        for(int intermediate = 0; intermediate < n; intermediate++){
+            
+            for(int U = 0; U < n; U++){
+                for(int V = 0; V < n; V++){
+                    if(mat[U][intermediate] + mat[intermediate][V] < mat[U][V]){
+                        mat[U][V] = mat[U][intermediate] + mat[intermediate][V];
+                    }
+                }
+            }
+        }
+        
+        for(int U = 0; U < n; U++){
+            for(int V = 0; V < n; V++){
+                if(mat[U][V] == 1e8){
+                    mat[U][V] = -1;
+                }
+            }
+        }
+    }
+
 */
