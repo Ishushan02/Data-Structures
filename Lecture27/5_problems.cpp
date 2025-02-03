@@ -192,6 +192,36 @@ Bridge in a Graph
     127. Word Ladder
     (https://leetcode.com/problems/word-ladder/description/)
 
+    So, the procedure is something like
+        start with begin word... and end with endWord .. and count the dist or words you got to reach there
+        let's write BFS
+        
+        create a set such that the words doesn't get repeated.. like 
+            hot->hat again it shouldnot be converted to hot.. hence once the word is found delete it
+            for this we use set
+        
+        add all wordList into Set
+
+
+        create a que{word, distance} of beginWord
+        delete beginWord from set
+
+        traverse along until que is empty.. 
+
+            get the fron elemt, dist and pop the que
+
+            check if front word is endword then return distance as we reached end word
+
+            else:
+                replace each character from 'a' to 'z' and check whether it is present in set or not
+                    if it is present append it to que with {word, front dist + 1}
+                    delete it from set as it's used
+                
+                // remeber while reverting change the original word to it's original value.
+    
+    
+
+
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         
         queue<pair<string, int>> que;
@@ -237,5 +267,5 @@ Bridge in a Graph
 
     }
 
-    
+
 */
