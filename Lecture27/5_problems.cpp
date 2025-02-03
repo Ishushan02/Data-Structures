@@ -1,5 +1,10 @@
 /*
 
+    THIS FILE IS VERY IMPORTANT .... DO IT AGAIN
+*/
+
+/*
+
     Kosa Raju Algorithm
     - To Find Strongly Connected Component
     A strongly Connected component is that in which if we start 
@@ -108,7 +113,7 @@ Bridge in a Graph
             - if neigh node is a parent of current node don't do anything as that will have lowest low point
             - else if neighbour node is not visited do dfs on it
                 - while backtracing update the lowest node
-                - then check if lowest calue of neigh is more than discovered node value which means that
+                - then check if lowest value of neigh is more than discovered node value which means that
                     that is the weak point, {just do and think}
             -  update the lowest node
     
@@ -181,4 +186,56 @@ Bridge in a Graph
 
 
 
+*/
+
+/*
+    127. Word Ladder
+    (https://leetcode.com/problems/word-ladder/description/)
+
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        
+        queue<pair<string, int>> que;
+        que.push({beginWord, 1});
+
+        unordered_set<string> stringSet(wordList.begin(), wordList.end());
+
+        // removing begin word as it's entered in the que
+        stringSet.erase(beginWord);
+
+        while(!que.empty()){
+
+            pair<string, int> top = que.front();
+            que.pop();
+            string currWord = top.first;
+            int dist = top.second;
+
+            if(currWord == endWord){
+                return dist;
+            }else{
+
+                for(int i = 0; i< currWord.length(); i++){
+                    char originalChar = currWord[i];
+
+                    // change it with all 26 characters
+                    for(char  each_char= 'a'; each_char <= 'z'; each_char++){
+                        currWord[i] = each_char;
+                        if(stringSet.find(currWord) != stringSet.end()){
+                            // string is present
+                            que.push({currWord, dist+1});
+                            stringSet.erase(currWord);
+                        }
+                    }
+
+                    //replace the original char
+                    currWord[i] = originalChar;
+                }
+            }
+
+        }
+
+        return 0;
+
+    }
+
+    
 */
