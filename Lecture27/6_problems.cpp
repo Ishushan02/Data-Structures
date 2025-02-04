@@ -36,5 +36,74 @@
         return count;
     }
 
+
+*/
+
+
+/*
+    994. Rotting Oranges
+    (https://leetcode.com/problems/rotting-oranges/description/)
+
+    int orangesRotting(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();        
+        queue<pair<int, int>> que;
+        vector<vector<int>> visited(m, vector<int>(n, 0));
+
+        int count = 0;
+        int freshOranges = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 2){
+                    visited[i][j] = 1;
+                    que.push({i, j});
+                }else if(grid[i][j] == 1){
+                    freshOranges += 1;
+                }
+            }
+        }
+
+        // the zero case
+        if(freshOranges == 0){
+            return 0;
+        }
+
+        while(!que.empty()){
+            int qsize = que.size();
+
+            for(int p = 0; p < qsize; p++){
+                pair<int, int> curr = que.front();
+                int i = curr.first;
+                int j = curr.second;
+                que.pop();
+                vector<int> dx = {0, 0, 1, -1};
+                vector<int> dy = {1, -1, 0, 0};
+
+                for(int k = 0; k < 4; k++){
+                    int x = dx[k] + i;
+                    int y = dy[k] + j;
+
+                    if(x >= 0 && x < m && y >= 0 && y < n && grid[x][y] != 2 &&  grid[x][y] != 0){
+                        grid[x][y] = 2;
+                        que.push({x, y});
+                    }
+
+                }
+            }
+            count += 1;
+
+
+        }
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 1){
+                    return -1;
+                }
+            }
+        }
+
+        return count-1;
+    }
     
 */
