@@ -86,6 +86,7 @@
                     if(x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1){
                         grid[x][y] = 2;
                         que.push({x, y});
+                        freshOranges--;
                     }
 
                 }
@@ -95,15 +96,11 @@
 
         }
 
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(grid[i][j] == 1){
-                    return -1;
-                }
-            }
+        if(freshOranges == 0){
+            return count - 1;
         }
 
-        return count-1;
+        return -1;
     }
 
 */
