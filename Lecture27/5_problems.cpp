@@ -219,7 +219,7 @@ Bridge in a Graph
                 
                 // remeber while reverting change the original word to it's original value.
     
-    
+
 
 
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
@@ -268,4 +268,86 @@ Bridge in a Graph
     }
 
 
+*/
+
+
+/*
+    1631. Path With Minimum Effort
+    (https://leetcode.com/problems/path-with-minimum-effort/description/)
+
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        
+        int row = heights.size();
+        int col = heights[0].size();
+        // absdiff, coordinates
+        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>> > minHeap;
+        vector<vector<int>> distance(row, vector<int>(col, INT_MAX));
+        
+        distance[0][0] = 0;
+        minHeap.push({0, {0, 0}});
+
+        while(!minHeap.empty()){
+
+            pair<int, pair<int, int>> values = minHeap.top();
+            int currWt = values.first;
+            int i = values.second.first;
+            int j = values.second.second;
+            minHeap.pop();
+
+            // traverse along neighbours
+
+            if(i == row -1 && j == col -1){
+                return distance[i][j];
+            }
+                // right
+                if(j+1 < col){
+                    int diff = abs(heights[i][j] - heights[i][j+1]);
+                    int newMaxDiff = max(currWt, diff);
+                    if(newMaxDiff < distance[i][j+1]){
+                        distance[i][j+1] = newMaxDiff;
+                        minHeap.push({distance[i][j+1], {i, j+1}});
+                    }
+                    
+                }
+
+                // left 
+                if(j - 1 >= 0){
+                    int diff = abs(heights[i][j] - heights[i][j-1]);
+                    int newMaxDiff = max(currWt, diff);
+                    if(newMaxDiff < distance[i][j-1]){
+                        distance[i][j-1] = newMaxDiff;
+                        minHeap.push({distance[i][j-1], {i, j-1}});
+                    }
+                }
+
+                // up 
+                if(i - 1 >= 0){
+                    int diff = abs(heights[i][j] - heights[i-1][j]);
+                    int newMaxDiff = max(currWt, diff);
+                    if(newMaxDiff < distance[i-1][j]){
+                        distance[i-1][j] = newMaxDiff;
+                        minHeap.push({distance[i-1][j], {i-1, j}});
+                    }
+                }
+                
+                // down
+                if(i + 1 < row){
+                    int diff = abs(heights[i][j] - heights[i+1][j]);
+                    int newMaxDiff = max(currWt, diff);
+                    if(newMaxDiff < distance[i+1][j]){
+                        distance[i+1][j] = newMaxDiff;
+                        minHeap.push({distance[i+1][j], {i+1, j}});
+                    }
+                
+            }
+
+            
+
+        }
+
+
+
+        return 0;
+    }
+    
 */
