@@ -104,3 +104,66 @@
     }
 
 */
+
+
+/*
+    Do it Again
+    (https://leetcode.com/problems/cheapest-flights-within-k-stops/)
+*/
+
+/*
+    2360. Longest Cycle in a Graph
+    (https://leetcode.com/problems/longest-cycle-in-a-graph/description/)
+
+
+    Method 1 Memory Limit Exceeded
+
+    void dfsTraversal(int node, int sourceNode, vector<vector<int>> &adjList, vector<int> visited, int edgeCount, int &ans){
+        visited[node] = 1;
+        
+
+        for(auto neigh:adjList[node]){
+            
+            if(neigh == sourceNode){
+                // cycle exist
+                ans = max(ans, edgeCount+1);
+                return ;
+            }
+            if(visited[neigh] == 0){
+                dfsTraversal(neigh, sourceNode, adjList, visited, edgeCount + 1, ans);
+            }
+
+            
+        }
+
+    }
+
+    int longestCycle(vector<int>& edges) {
+        int n = edges.size();
+        vector<vector<int>> adjList(n, vector<int>());
+
+        for(int i = 0; i < n; i++){
+            if(edges[i] != -1){
+                adjList[i].push_back(edges[i]);
+            }
+        }
+
+        // for(int i = 0; i < n; i++){
+        //     cout << i << " ";
+        //     for(auto neigh:adjList[i]){
+        //         cout << neigh << " ";
+        //     }cout << endl;
+        // }
+
+        vector<int> visited(n, 0);
+        int ans = -1;
+        for(int i = 0; i < n; i++){
+            if(visited[i] == 0){
+                dfsTraversal(i, i, adjList, visited, 0, ans);
+            }
+        }
+
+
+        return ans;
+    }
+*/
