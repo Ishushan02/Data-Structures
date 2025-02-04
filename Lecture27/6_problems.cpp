@@ -83,7 +83,7 @@
                     int x = dx[k] + i;
                     int y = dy[k] + j;
 
-                    if(x >= 0 && x < m && y >= 0 && y < n && grid[x][y] != 2 &&  grid[x][y] != 0){
+                    if(x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1){
                         grid[x][y] = 2;
                         que.push({x, y});
                     }
@@ -105,5 +105,5 @@
 
         return count-1;
     }
-    
+
 */
