@@ -272,6 +272,11 @@ Bridge in a Graph
 
 
 /*
+
+    // The main focus of the question is to understand that we have to find the maximum abs difference between heights
+    // and all in the minimum of all of that.
+    // Rest is simple BFS (or you acn say is Dijkstra's Algorithm.)
+
     1631. Path With Minimum Effort
     (https://leetcode.com/problems/path-with-minimum-effort/description/)
 
@@ -349,5 +354,5 @@ Bridge in a Graph
 
         return 0;
     }
-    
+
 */
