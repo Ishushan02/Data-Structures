@@ -166,4 +166,64 @@
 
         return ans;
     }
+
+
+    Method 2
+
+    // The main idea is that remember there will always be just 1 cycle that will be 
+    // present in the given question. 
+    // and rest is dfs Traversal
+
+    void dfsTraversal(int node, vector<int> &visited, vector<int> &dfsTracker, vector<int> &dist,
+        int nodelength, int &maxLength, vector<int>& edges){
+            // cout << node << endl;
+            if(node == -1){
+                return ;
+            }
+
+            visited[node] = 1;
+            dfsTracker[node] = 1;
+            dist[node] = nodelength;
+
+            int neigh = edges[node];
+
+            if(neigh != -1){
+                if(visited[neigh] == 0){
+                    dfsTraversal(neigh, visited, dfsTracker, dist, nodelength+1, maxLength, edges);
+                }else if(dfsTracker[neigh]){
+                    // there is cycle
+                    int ans = nodelength - dist[neigh] + 1;
+                    maxLength = max(ans, maxLength);
+                    // cout << ans << endl;
+                }
+            }
+
+        dfsTracker[node] = 0;
+
+    }
+
+    
+    int longestCycle(vector<int>& edges) {
+        
+        int n = edges.size();
+        vector<int> visited(n, 0);
+        vector<int> dfsTracker(n, 0);
+        vector<int> dist(n, 0);
+        int nodelength = 0;
+        int maxLength = INT_MIN;
+
+        for(int i = 0; i < edges.size(); i++){
+            if(visited[i]== 0){
+                dfsTraversal(i, visited, dfsTracker, dist, 0, maxLength, edges);
+                
+            }
+        }
+
+        if(maxLength == INT_MIN){
+            return -1;
+        }
+        return maxLength;
+    }
+
+
 */
