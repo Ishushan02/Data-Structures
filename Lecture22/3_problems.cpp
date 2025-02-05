@@ -501,6 +501,33 @@ using namespace std;
         return getCount(root, lh, rh, nodes);
 
     }
+
+
+
+    Method 2(Efficient Method) 
+    // think like while you are creating heap, the numbering of it.
+
+    int ans = 0;
+    void totalCount(TreeNode* root, int count){
+        if(root == NULL){
+            return ;
+        }
+       
+        if(root->left){
+            totalCount(root->left, 2 * count);
+        }
+
+        if(root->right){
+            totalCount(root->right, 2 * count + 1);
+        }
+        ans = max(ans, count);
+    }
+
+    int countNodes(TreeNode* root) {
+        
+        totalCount(root, 1);
+        return ans;
+    }
 */
 
 /*
