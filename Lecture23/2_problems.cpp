@@ -504,6 +504,10 @@
 */
 
 /*
+
+    // Once try using normal Preorder and like , root, root->left left recursive call and root->right right recursive call 
+    // this above I haven't succeded, try it once
+
     Binary Tree to DLL
     (https://www.geeksforgeeks.org/problems/binary-tree-to-dll/1)
 
