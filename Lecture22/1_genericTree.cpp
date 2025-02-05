@@ -30,7 +30,7 @@ using namespace std;
     - Morris Order Traversal (In Google Interview it's generally asked) {40, 20, 50, 10, 60, 30, 70}
       (Inorder Traversal without Recursion or Stack)
 
-    - Skew Tree all Nodes are only on the left part of the tree
+    - Skew Tree all Nodes are only on the left part of the tree or the right part of tree
 
 */
 

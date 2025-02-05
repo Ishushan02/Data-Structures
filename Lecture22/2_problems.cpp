@@ -102,7 +102,7 @@ using namespace std;
 
 /*
 
-    110. Balanced Binary Tree (Asked in Many IV Questions)
+    110. Balanced Binary Tree (Asked in Many Interview Questions)
     (https://leetcode.com/problems/balanced-binary-tree/) O(n2)
 
     int height(TreeNode* node){
@@ -407,7 +407,10 @@ using namespace std;
 */
 
 /*
-    CONSTRUCT Tree FROM PREORDER AND POST ORDER TRAVERSAL (VVVVVIIIIIII Question)
+    // In both the questions remember that you have to maintain the order of the recursive call, 
+    // based on which traversal you are getting help from
+
+    CONSTRUCT Tree FROM PREORDER AND INORDER TRAVERSAL (VVVVVIIIIIII Question)
 
     Method 1 O(n2) {going on each node * searching for index in inorder Index}
 
@@ -669,38 +672,28 @@ using namespace std;
 
     Method 2.
 
-    unordered_map<int, bool> heightMap;
-        vector<int> ans;
+    void leftView(Node* root, int height, vector<int> &ans){
         if(root == NULL){
-            return ans;
+            return ;
         }
         
-        queue<pair<Node*, int>> que;
-        que.push({root, 0});
-        while(!que.empty()){
-            pair<Node*, int> frontVal = que.front();
-            int h = frontVal.second;
-            Node* val = frontVal.first;
-            que.pop();
-            // cout << val->data << " - "<< h << endl;
-            if(heightMap.find(h) == heightMap.end()){
-                heightMap[h] = true;
-                ans.push_back(val->data);
-            }
-            h = h + 1;
-            
-            if(val->left){
-                que.push({val->left, h});
-            }
-            
-            if(val->right){
-                que.push({val->right, h});
-            }
-            
+        if(ans.size() == height){
+            ans.push_back(root->data);
         }
+        
+        leftView(root->left, height + 1, ans);
+        leftView(root->right, height + 1, ans);
+    }
+  
+    vector<int> leftView(Node *root) {
+        // code here
+        vector<int> ans;
+        leftView(root, 0, ans);
         
         return ans;
-
+    }
+    
+    
 */
 
 /*
