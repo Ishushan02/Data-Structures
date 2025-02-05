@@ -207,6 +207,8 @@
 */
 
 /*
+    // 2nd approach would be to do BFS, and count the levels, that's it.. similar to getting K distant nodes from a Node
+
     Burning Tree
     (https://www.geeksforgeeks.org/problems/burning-tree/1)
 
