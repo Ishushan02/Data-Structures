@@ -352,6 +352,94 @@ using namespace std;
         // return ans;
     }
 
+
+
+    Method 2
+    (BFS MEthod -- Good Approach, think like graph)
+
+    void tranverseNodes(TreeNode* root, unordered_map<TreeNode*, TreeNode*> &connectedNodes){
+        if(root == NULL){
+            return ;
+        }
+
+        if(root->left){
+            connectedNodes[root->left] = root;
+        }
+
+        if(root->right){
+            connectedNodes[root->right] = root;
+        }
+
+        tranverseNodes(root->left, connectedNodes);
+        tranverseNodes(root->right, connectedNodes);
+
+    }
+
+    vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        
+        // cre
+        unordered_map<TreeNode*, TreeNode*> parentNodes;
+        tranverseNodes(root, parentNodes);
+
+        // vector<int> ans;
+
+        // we can do BFS on this starting from target Node
+        queue<TreeNode*> que;
+        unordered_map<TreeNode*, bool> visited;
+
+        que.push(target);
+        int level = 0;
+
+        if(k == 0){
+            return {target->val};
+        }
+
+        while(!que.empty()){
+            int size = que.size();
+
+            level += 1;
+            vector<int> ans;
+            // cout <<" level  "<< level <<" ";
+            for(int i = 0; i < size; i++){
+                TreeNode* frontNode = que.front();
+                que.pop();
+                    visited[frontNode] = 1;
+                
+                    // left child
+                    if(frontNode->left && visited[frontNode->left] == 0){
+                        visited[frontNode->left] = 1;
+                        que.push(frontNode->left);
+                        ans.push_back(frontNode->left->val);
+                    }
+                    // right child
+                    if(frontNode->right && visited[frontNode->right] == 0){
+                        visited[frontNode->right] = 1;
+                        que.push(frontNode->right);
+                        ans.push_back(frontNode->right->val);
+
+                    }
+
+                    // parent
+                    if(parentNodes.find(frontNode) != parentNodes.end() && visited[parentNodes[frontNode]] == 0){                       
+                        visited[parentNodes[frontNode]] =1;
+                        que.push(parentNodes[frontNode]);
+                        ans.push_back(parentNodes[frontNode]->val);
+
+                    }
+            
+            }
+
+            if(level == k){
+                return ans;
+            }
+        }
+
+        return {};
+
+
+    }
+
+
 */
 
 /*

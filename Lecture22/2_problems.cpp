@@ -790,7 +790,7 @@ using namespace std;
             minDist = min(minDist, dist);
             maxDist = max(maxDist, dist);
             
-            if(minDistmap.find(dist) == minDistmap.end()){
+            if(minDistmap[dist] == 0){
                 minDistmap[dist] = topNode;
             }
             
