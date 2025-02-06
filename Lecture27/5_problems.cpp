@@ -268,6 +268,93 @@ Bridge in a Graph
     }
 
 
+    Method 1 (My method, first create the graph and then calculate the distance)
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        
+        if(find(wordList.begin(), wordList.end(), endWord) == wordList.end()){
+            return 0;
+        }
+        unordered_map<string, vector<string>> stringMap;
+        unordered_map<string, bool> visited;
+
+        queue<string> que;
+
+        que.push(beginWord);
+
+        // creating the graph
+        while(!que.empty()){
+
+            string curr = que.front();
+            visited[curr] = true;
+            que.pop();
+            stringMap[curr] = {};
+            string temp = curr;
+            for(int i = 0; i < temp.length(); i++){
+                for(int ch = 'a'; ch <= 'z'; ch++){
+                    char prev = temp[i];
+                    temp[i] = ch;
+                    // cout << temp << endl;
+                    if(temp != endWord && find(wordList.begin(), wordList.end(), temp) != wordList.end() &&
+                       visited[temp] == false){
+                        que.push(temp);
+                        stringMap[curr].push_back(temp);
+                        
+                    }
+
+                    // for end word, as it was not creating correct map in actual above condition
+                    // and it should be there in the wordList
+                    if(temp == endWord && find(wordList.begin(), wordList.end(), temp) != wordList.end()){
+                        stringMap[curr].push_back(temp);
+                    }
+
+                    temp[i] = prev;
+                }
+            }
+        }
+
+        // seeing the graph
+        // for(auto &[key, val]:stringMap){
+        //     cout << key << " ";
+        //     for(auto each_str: val){
+        //         cout << each_str << " ";
+        //     }cout << endl;
+        // }
+
+        // Now you have graph, just do traversal
+
+        queue<pair<string, int>> queans;
+
+        queans.push({beginWord, 1});
+        unordered_map<string, bool> visit;
+        // visited = {};
+
+        while(!queans.empty()){
+
+            pair<string, int> queuetop = queans.front();
+            queans.pop();
+            string curr = queuetop.first;
+            int dist = queuetop.second;
+
+            visit[curr] = true;
+
+            if(curr == endWord){
+                return dist;
+            }else{
+                for(auto neigh:stringMap[curr]){
+                    if(visit[neigh] == false){
+                        queans.push({neigh, dist + 1});
+                    }
+                }
+            }
+        }
+
+        
+
+        return 0;
+
+    }
+
+
 */
 
 
