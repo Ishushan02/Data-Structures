@@ -270,7 +270,7 @@ Bridge in a Graph
 
     Method 1 (My method, first create the graph and then calculate the distance)
     // Important thing is WOrdSet ... it makes the search to O(1) using count hence it's useful
-    
+
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         
         
@@ -360,6 +360,15 @@ Bridge in a Graph
 
     }
 
+
+*/
+
+
+/*
+    126. Word Ladder II
+    (https://leetcode.com/problems/word-ladder-ii/description/)
+
+    // Try Doing both of them using Trie ..
 
 */
 

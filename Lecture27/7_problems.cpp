@@ -134,3 +134,70 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
     }
 
 */
+
+
+/*
+
+    Really Really Good Question
+
+    // We can also solve this by Normal recursion, but it will increase the Time COmplexity and the Memory
+    // limit to agrat extent.. hence we use BFS.
+
+    // See that as we increae the number of iteration in  queue, the total freq of prods will also increase
+    // hence whenever we get the product that will be the minimum count hence return it.
+
+    // Procedure is treat it like a graph problem
+    // take que<prod, count>, visited{}, 
+        // start with startelement;
+        // push it in queue{start, 0}, and also mark it visited
+
+        // loop untill que is empty
+        //     - num, count
+        //     pop()
+
+            // check if num is end -> return count if it is end
+
+            // multiply it with all the array elements treating it as neighbour elements
+            // {prod * newelem, count + 1}
+            // see if visited has it, or else push it in que
+
+   //  return -1;
+
+    Minimum Multiplications to reach End
+    (https://www.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/0)
+
+
+    int minimumMultiplications(vector<int>& arr, int start, int end) {
+        // code here
+        
+        unordered_map<int, int> visited;
+        queue<pair<int, int>> que;
+        
+        que.push({start, 0});
+        visited[start] = 0;
+        
+        while(!que.empty()){
+            
+            pair<int, int> curr = que.front();
+            que.pop();
+            int num = curr.first;
+            int count = curr.second;
+            
+            if(num == end){
+                return count;
+            }
+            
+            for(auto neigh: arr){
+                int prod = (num * neigh) % 100000;
+                int newCount = count + 1;
+                
+                if(visited.find(prod) == visited.end()){
+                    visited[prod] = newCount;
+                    que.push({prod, newCount});
+                }
+            }
+        }
+        
+        return -1;
+    }
+*/
