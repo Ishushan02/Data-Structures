@@ -225,6 +225,13 @@ See previous all cycle detections using BFS and DFS
     // The idea is that just as you run Indegree for Topological Sort, 
     // execute outdegree the same way
 
+    // first create all Outdegree Graph
+    // count the Outdegree Nodes, if outdegree is 0, store that in que
+
+    // BFS on queue element, append ans on once element is popped, each time you visite a neigh
+    // decrement the outdegree count of that neigh
+    // if outdegree count is 0 push that or else leave it
+
     802. Find Eventual Safe States
     (https://leetcode.com/problems/find-eventual-safe-states/description/)
 
