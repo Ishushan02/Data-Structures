@@ -269,13 +269,18 @@ Bridge in a Graph
 
 
     Method 1 (My method, first create the graph and then calculate the distance)
+    // Important thing is WOrdSet ... it makes the search to O(1) using count hence it's useful
+    
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         
-        if(find(wordList.begin(), wordList.end(), endWord) == wordList.end()){
-            return 0;
-        }
+        
         unordered_map<string, vector<string>> stringMap;
+        unordered_set<string> wordSet(wordList.begin(), wordList.end());
         unordered_map<string, bool> visited;
+
+        if(wordSet.count(endWord) == 0){
+            return 0;
+        }        
 
         queue<string> que;
 
@@ -290,25 +295,26 @@ Bridge in a Graph
             stringMap[curr] = {};
             string temp = curr;
             for(int i = 0; i < temp.length(); i++){
+                char prev = temp[i];
                 for(int ch = 'a'; ch <= 'z'; ch++){
-                    char prev = temp[i];
                     temp[i] = ch;
+
+                    if(ch == prev){
+                        continue; // skipping the same word
+                    }
                     // cout << temp << endl;
-                    if(temp != endWord && find(wordList.begin(), wordList.end(), temp) != wordList.end() &&
-                       visited[temp] == false){
+                    if(temp != endWord && wordSet.count(temp) > 0 && visited[temp] == false){
                         que.push(temp);
                         stringMap[curr].push_back(temp);
-                        
                     }
 
                     // for end word, as it was not creating correct map in actual above condition
                     // and it should be there in the wordList
-                    if(temp == endWord && find(wordList.begin(), wordList.end(), temp) != wordList.end()){
+                    if(temp == endWord && wordSet.count(temp) > 0){
                         stringMap[curr].push_back(temp);
-                    }
-
-                    temp[i] = prev;
+                    } 
                 }
+                temp[i] = prev;
             }
         }
 
