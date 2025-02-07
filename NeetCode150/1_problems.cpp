@@ -320,3 +320,49 @@ public:
         return false;
         
 */
+
+
+/*
+    695. Max Area of Island
+    (https://leetcode.com/problems/max-area-of-island/description/)
+
+    void dfs(int i, int j, int m, int n, vector<vector<int>> &visited, vector<vector<int>>& grid, int &ans){
+        visited[i][j] = 1;
+        ans += 1;
+
+        vector<int> dx = {0, 1, 0, -1};
+        vector<int> dy = {1, 0, -1, 0};
+
+        for(int k = 0; k < 4; k++){
+            int x = i + dx[k];
+            int y = j + dy[k];
+
+            if(x >= 0 && x < m && y >= 0 && y < n && visited[x][y] == 0 && grid[x][y] == 1){
+                dfs(x, y, m, n, visited, grid, ans);
+            }
+        }
+
+    }
+
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        
+        int m = grid.size();
+        int n = grid[0].size();
+
+        vector<vector<int>> visited(m, vector<int>(n, 0));
+
+        int maxAns = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(visited[i][j] == 0 && grid[i][j] == 1){
+                    int ans = 0;
+                    dfs(i, j, m, n, visited, grid, ans);
+                    maxAns = max(maxAns, ans);
+                }
+            }
+        }
+
+        return maxAns;
+
+    }
+*/
