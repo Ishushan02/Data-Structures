@@ -76,59 +76,115 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
 
 
 /*
-    // Don't run this in GFG because both Kruskals and Prism might give different Answers at times
     Kruskal's Algorithm Implementation
 
+    // See the Procedure
+    // create a parent vector and assign parents to itself
+    // create a rank vector and assign ranks to 0
+    // creat union function and find parent function
+    findParent()
+        - in this you have to find the parent of node U,
+        - also do the compression part of assgining the root value(parent)
+         directly to the node when found such that we don;t have to do the procedure again
+    
+    union(u, v)
+        - get parent of u and v
+        - if they have same rank make any 1 of them parent and increase rank of other
+        - if rank of u > rank of v
+            assign parent[v] = parent[u] 
+          else if  rank of v > rank of u
+            assign parent[u] = parent[v]
+
+
+
+    struct cmp {
+        // you always forget const
+        bool operator()(vector<int> &a, vector<int> &b) const{
+            return a[0] < b[0];
+        }
+    };
+  
+    // Function to find sum of weights of edges of the Minimum Spanning Tree.
+    
+    int findParent(vector<int> &parent, int node){
+        
+        if(parent[node] == node){
+            return node;
+        }
+        
+        // Not to check and find the parent multiple time
+        // I am just updating the parents
+        return parent[node] = findParent(parent, parent[node]);
+    
+    }
+    
+    void unionMat(int u, int v, vector<int> &parent, vector<int> &rank){
+        
+        u = findParent(parent, u);
+        v = findParent(parent, v);
+        
+        if(rank[u] < rank[v]){
+            parent[u] = parent[v];
+        }else if(rank[u] > rank[v]){
+            parent[v] = parent[u];
+        }else{
+            // ranks are equal make any og them parent
+            parent[u] = v;
+            rank[v]++;
+        }
+    }
+        
+    
+    
     int spanningTree(int V, vector<vector<int>> adj[]) {
         // code here
         
-        // {weight, {node1, node2}}
-        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>> > que;
+        // create parent and rank amtrix
+        vector<int> rank(V, 0);
+        vector<int> parent(V, 0);
+        
+        for(int i = 0; i < V; i++){
+            parent[i] = i;
+        }
+        
+        // create function findParent
+        // done
+        
+        // MST Operation creating a linear DS
+        // wt, node1, node 2
+       
+      vector<vector<int>> edges;
         
         for (int i = 0; i < V; i++) {
-            for (auto v : adj[i]) {
-                // adjList[i].push_back({v[1], v[0]});
-                que.push({v[1], {i, v[0]}});
-                // que.push({v[1], {v[0], i}});
-                // cout << v[0] << "," << v[1]  <<endl;
+            for (auto vt : adj[i]) {
+                
+                int v = vt[0];
+                int wt = vt[1];
+                // int wt = vt[2];
+                // cout << i << v << wt << endl;
+                edges.push_back({wt, i, v});
             }
         }
         
-        int visitedCount = 0;
-        vector<int> visited(V, 0);
-        int totalCost = 0;
+        // sorting based on weight
+        sort(edges.begin(), edges.end(), cmp());
         
-        while(visitedCount < V){
-            pair<int, pair<int, int>> topedge = que.top();
-            int wt = topedge.first;
-            int node1 = topedge.second.first;
-            int node2 = topedge.second.second;
+        int ans = 0;
+        for(int i = 0; i < edges.size(); i++){
             
-            if(visited[node1] == 1 && visited[node2] == 1){
-                que.pop();
-                continue;
-            }
-            totalCost += wt;
-            que.pop();
-            
-            // cout << node1 << ", "<< node2 <<" ->"  << wt << endl;
-            
-            if(visited[node1] == 0){
-                // cout << node1 << endl;
-                visitedCount++;
-                visited[node1] = 1;
+            int wt = edges[i][0];
+            int u = findParent(parent, edges[i][1]);
+            int v = findParent(parent, edges[i][2]);
+            if(u != v){
+                ans += wt;
+                unionMat(u, v, parent, rank);
             }
             
-            if(visited[node2] == 0){
-                // cout << node2 << endl;
-                visitedCount++;
-                visited[node2] = 1;
-            }
-
         }
         
-        return totalCost;
+        return ans;
         
+    }
         
         
     }
