@@ -201,3 +201,92 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
         return -1;
     }
 */
+
+
+/*
+    1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
+    (https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/)
+
+
+    // SO, the key idea is get all the distances from src Node, chunk out only those nodes which
+    // has atmost threshold.. get the count and return it. {Do it for all Nodes}
+
+    // Now, return the minimum count city.. and if there is a tie return the city with max key Val
+
+
+    map<int, int> reachableCity;
+
+    int getDistance(unordered_map<int, vector<pair<int, int>>> &graph, int src, int distanceThreshold){
+        vector<int> distance(graph.size(), 1e8);
+        
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > que;
+
+        distance[src] = 0;
+
+        que.push({0, src});
+
+        while(!que.empty()){
+            pair<int, int> data = que.top();
+            int dist = data.first;
+            int node = data.second;
+
+            que.pop();
+
+            for(auto neigh: graph[node]){
+                int wt = neigh.first;
+                int nd = neigh.second;
+                if(dist + wt < distance[nd]){
+                    distance[nd] = wt + dist;
+                    que.push({distance[nd], nd});
+                }
+            }
+
+        }
+        
+        int count = 0;
+        for(int i = 0; i< distance.size(); i++){
+            // cout << distance[i] << " ";
+            if(src != i && distance[i] <= distanceThreshold){
+                count+= 1;
+            }
+        }
+
+        return count;
+    }
+
+    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
+        
+        unordered_map<int, vector<pair<int, int>>> graph;
+        
+
+        for(int i = 0; i < edges.size(); i++){
+            int src = edges[i][0];
+            int des = edges[i][1];
+            int wt = edges[i][2];
+            graph[src].push_back({wt, des});
+            graph[des].push_back({wt, src});
+        }
+
+        // Assigning empty values Nodes with no edges
+        for(int i = 0; i < n; i++){
+            vector<pair<int, int>> temp;
+            if(graph.find(i) == graph.end()){
+                graph[i] = temp;
+            }
+        }
+
+        int minAns = INT_MAX;
+        int city = 0;
+        for(int i = 0; i < n; i++){
+            int citiesreachable = getDistance(graph, i, distanceThreshold);
+
+            if(citiesreachable <= minAns){
+                minAns = citiesreachable;
+                city = i;
+            }
+        }
+
+        
+        return city;
+    }
+*/
