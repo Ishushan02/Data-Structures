@@ -218,3 +218,53 @@ int main() {
 		}
     };
 */
+
+/*
+
+    Fractional Knapsack
+    (https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1)
+
+    double fractionalKnapsack(vector<int>& val, vector<int>& wt, int capacity) {
+        // Your code here
+        
+        vector<double> perUnitValue;
+        
+        for(int i = 0; i < val.size(); i++){
+            // cout << (1.0 * val[i])/wt[i] << endl;
+            perUnitValue.push_back((1.0 * val[i])/wt[i]);
+        }
+        
+        priority_queue<pair<double, pair<int, int>>> que;
+
+        for(int i = 0; i < val.size(); i++){
+            que.push({perUnitValue[i], {val[i], wt[i]}});
+        }
+        
+        double totalValue = 0;
+        
+
+        while(capacity > 0 && !que.empty()){
+            auto topVal = que.top();
+            que.pop();
+            double unitVal = topVal.first;
+            int vals = topVal.second.first;
+            int wt = topVal.second.second;
+            if(capacity >= wt){ 
+                totalValue += vals;
+                capacity = capacity - wt;
+            }else{
+                double valremaining = unitVal * capacity;
+                totalValue += valremaining;
+                // capacity = 0;
+                capacity = capacity - wt;
+                break;
+            }
+           
+        }
+        
+        return totalValue;
+        
+        
+    }
+        
+*/
