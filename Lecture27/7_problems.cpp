@@ -348,3 +348,76 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
 */
 
 
+/*
+
+    Good APplication of Kruskal's Algorithm, See the procedure
+
+    1319. Number of Operations to Make Network Connected
+    (https://leetcode.com/problems/number-of-operations-to-make-network-connected/description/)
+
+    int getParents(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+
+        return parent[node] = getParents(parent, parent[node]);
+    }
+
+    void makeUnion(int u, int v, vector<int> &parent, vector<int> &rank){
+
+        u = getParents(parent, u);
+        v = getParents(parent, v);
+
+        if(rank[u] > rank[v]){
+            parent[v] = u;
+            rank[u]++;
+        }else if(rank[v] > rank[u]){
+            parent[u] = v;
+            rank[v]++;
+        }else{
+            parent[u] = v;
+            rank[v]++;
+        }
+
+    }
+
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        
+        if(connections.size() < n - 1){
+            return -1;
+        }
+
+        vector<int> parent(n, 0);
+        vector<int> rank(n, 0);
+
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
+        }
+
+        int extraedges = 0;
+        for(int i = 0; i < connections.size(); i++){
+
+            int u = getParents(parent, connections[i][0]);
+            int v = getParents(parent, connections[i][1]);
+
+            if(u != v){
+                makeUnion(u, v, parent, rank);
+            }else{
+                extraedges += 1;
+            }
+
+        }
+
+        int independentNodes = 0;
+        for(int i = 0; i < n; i++){
+            if(parent[i] == i){
+                independentNodes++;
+            }
+        }
+        int num_etherNet = independentNodes - 1;
+
+        return num_etherNet;
+    }
+
+
+*/
