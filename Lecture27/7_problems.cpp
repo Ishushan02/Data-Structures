@@ -526,3 +526,93 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
     }
 
 */
+
+/*
+
+    1584. Min Cost to Connect All Points
+    (https://leetcode.com/problems/min-cost-to-connect-all-points/description/)
+
+
+    bool static cmp(vector<int> &a, vector<int> &b){
+        return a[2] < b[2];
+    }
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void makeUnion(int u, int v, vector<int> &parent, vector<int> &rank){
+
+        u = getParent(parent, u);
+        v = getParent(parent, v);
+
+        if(rank[u] < rank[v]){
+            parent[u] = v;
+            rank[v]++;
+        }else if(rank[v] < rank[u]){
+            parent[v] = u;
+            rank[u]++;
+        }else{
+            parent[v] = u;
+            rank[u]++;
+        }
+
+    }
+
+    int manHattanDistance(vector<int> &coord1, vector<int> &coord2){
+        return abs(coord1[0] - coord2[0]) + abs(coord1[1] - coord2[1]);
+    }
+
+    int minCostConnectPoints(vector<vector<int>>& points) {
+        int n = points.size();
+        vector<int> rank(n, 0);
+        vector<int> parent(n, 0);
+
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
+        }
+
+        vector<vector<int>> graph;
+
+        // node1, node2, weight
+        // j> i because why calculate same distance again imagine of a matrix
+        // where we are calculation dist from i & where i being row elements
+        // and j being col elements {after the diagonal matrix, we are just
+        // repeating the task, isn't it ? , so I have taken elements above the diagonal element}
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(j > i ){
+                    int wt = manHattanDistance(points[i], points[j]);
+                    vector<int> temp;
+                    temp.push_back(i);
+                    temp.push_back(j);
+                    temp.push_back(wt);
+                    graph.push_back(temp);
+                }
+            }
+        }
+
+        sort(graph.begin(), graph.end(), cmp);
+
+        int ans = 0;
+        for(int i = 0; i < graph.size(); i++){
+
+            int u = getParent(parent, graph[i][0]);
+            int v = getParent(parent, graph[i][1]);
+
+            if(u != v){
+                ans += graph[i][2];
+                makeUnion(u, v, parent, rank);
+            }
+
+        }
+
+        return ans;
+
+    }
+*/
