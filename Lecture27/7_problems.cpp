@@ -421,3 +421,108 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
 
 
 */
+
+/*
+
+    721. Accounts Merge (Great Question)
+    (https://leetcode.com/problems/accounts-merge/description/)
+
+    Procedure
+    [["John","johnsmith@mail.com","john_newyork@mail.com"],   --> 0
+    ["John","johnsmith@mail.com","john00@mail.com"],          --> 1
+    ["Mary","mary@mail.com"],                                 --> 2
+    ["John","johnnybravo@mail.com"]]                          --> 3
+
+    I have got the uniqueness from indexing..
+    create a map <string, index>
+    iterate over the emails.. make sure you skip the first word name of it
+    if that email is already present do Union of it. else add that with respective index
+
+    after doing the above procedure, parent vector will have all set of Unions 
+        Ex: {0, 0, 2, 3}, which means index 0 and index 1 has same name as there is 1 common email b/w them
+
+    now we have to join the vectors, in this also we create unordered_map<int, set<string>>
+    set of string because while cobining we have to make sure that we dont insert same emails again
+
+
+    once we have index->set,string> .. loop it over and add it into vector<vector<string>> 
+        make sure to append the name first and rest of the elements, and while sorting skip first
+        element as that will be the name of the emails.
+
+
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void unionSet(int u, int v, vector<int> &parent, vector<int> &rank){
+
+        u = getParent(parent, u);
+        v = getParent(parent, v);
+
+        if(rank[u] < rank[v]){
+            parent[u] = v;
+            rank[v]++;
+        }else if(rank[u]>rank[v]){
+            parent[v] = u;
+            rank[u]++;
+        }else{
+            parent[v] = u;
+            rank[u]++;
+        }
+
+    }
+
+    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+        
+        int n = accounts.size();
+        vector<int> rank(n, 0);
+        vector<int> parent(n, 0);
+
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
+        }
+
+
+        unordered_map<string, int> emailMap;
+
+        for(int i = 0; i < n; i++){
+
+            auto emails = accounts[i];
+            for(int j = 1; j < accounts[i].size(); j++){
+
+                if(emailMap.find(emails[j]) == emailMap.end()){
+                    emailMap[emails[j]] = i;
+                }else{
+                    unionSet(i, emailMap[emails[j]], parent, rank);
+                }
+
+            }
+
+        }
+
+        map<int, set<string>> ansMap;
+
+        for(auto &[key, val]:emailMap){
+            int accountNum = getParent(parent, val);
+            ansMap[accountNum].insert(key);
+        }
+
+        vector<vector<string>> res;
+
+        for(auto &[key, val]:ansMap){
+            vector<string> temp;
+            temp.push_back(accounts[key][0]);
+            temp.insert(temp.end(), val.begin(), val.end());
+            sort(temp.begin()+1, temp.end());
+            res.push_back(temp);
+        }
+
+        return res;
+    }
+
+*/
