@@ -14,7 +14,7 @@
 
     //(https://www.spoj.com/submit/DEFKIN/)
 
-    #include <iostream>
+#include <iostream>
 #include<vector>
 using namespace std;
 
@@ -114,4 +114,107 @@ int main() {
 	return 0;
 } 
 
+*/
+
+/*
+    Huffman Encoding
+    (https://www.geeksforgeeks.org/problems/huffman-encoding3345/1)
+
+    class Node{
+
+    public:
+        pair<int, char> data;
+        Node* left;
+        Node* right;
+
+        Node(pair<int, char> val){
+            this->data = val;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+    class Solution
+    {   
+    
+	public:
+	    unordered_map<char, string> ansMap;
+	    vector<string> ans;
+	    
+	    void preOrder(Node* root, string s){
+	        if(root == NULL){
+	            return ;
+	        }
+	        
+	        
+	        pair<int, char> rootVal = root->data;
+            if (rootVal.second) {
+                ansMap[rootVal.second] = s;
+                ans.push_back(s);
+            }
+	        preOrder(root->left, s + '0');
+	        preOrder(root->right, s + '1');
+	        
+	    }
+	    
+	    struct cmp {
+            bool operator()(pair<int, Node*> a, pair<int, Node*> b) {
+                return a.first > b.first;
+            }
+        };
+    	
+		vector<string> huffmanCodes(string S,vector<int> f,int N)
+		{
+		    // Code here
+		    priority_queue<
+		    pair<int, Node*>,
+		    vector<pair<int, Node*>>,
+		    cmp> que;
+		    
+		    for(int i = 0; i < N; i++){
+		        Node* temp = new Node({f[i], S[i]});
+		        que.push({f[i], temp});
+		    }
+		    
+		    
+		    while(que.size() > 1){
+		      //  cout << "Here "<< endl;
+		        pair<int, Node*> val1 = que.top();
+		        que.pop();
+		        pair<int, Node*> val2 = que.top();
+		        que.pop();
+		        
+		        int lval = val1.first;
+		        int rval = val2.first;
+		        
+		        
+		        int value = lval + rval;
+		        char c = '\0';
+		        
+		        Node* temp = new Node({value, c});
+		        temp->left = val1.second;
+		        temp->right = val2.second;
+		        que.push({value, temp});
+		        
+		    }
+		    
+		    string s;
+		    pair<int, Node*> val = que.top();
+		    Node* root = val.second;
+		    
+		    preOrder(root, s);
+		    
+		  //  for(auto &value:ansMap){
+		  //      cout << value.first << ": " << value.second << endl;
+		  //  }
+		  
+		    
+		  //  vector<string> ans;
+		    
+		    
+		    return ans;
+		    
+		    
+		}
+    };
 */
