@@ -6,7 +6,7 @@ using namespace std;
     Combinationation of Nodes/Vertices and Edges is known as Graph
     Application - any Network connection, 
 
-    All Tree is Graph, but te vice versa is not True.
+    All Tree is Graph, but the vice versa is not True.
 
     Now there are 2 types - DIrected Edge and Undirected Edge
 
@@ -17,7 +17,7 @@ using namespace std;
 
     
     - Indegree - The incoming Nodes from a Vertex
-    - OutGegree - The Outgoing Nodes from  a Vertex
+    - OutGegree - The Outgoing Nodes from a Vertex
 
     - Cyclic Graph, Acyclic Graph
     - Weighted Graph, Unweighted Graph

@@ -26,6 +26,9 @@ Cycle Detection:
 
 
 /*
+
+    // Here Normal BFS won't work in Undirected graph, there are chances some disjoint nodes might be there, so
+
     Cycle in Undirected Graph using BFS
     (https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1)
 

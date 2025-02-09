@@ -11,8 +11,8 @@
 */
 
 /*
-
-    //(https://www.spoj.com/submit/DEFKIN/)
+    // Just see the procedure, ignore solving it on SPOJ
+    //(https://www.spoj.com/submit/DEFKIN/) (TLE)
 
 #include <iostream>
 #include<vector>
@@ -270,7 +270,7 @@ int main() {
 */
 
 /*
-    N  meetings in one room
+    N meetings in one room
     (https://www.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1)
 
     struct comp{
@@ -309,5 +309,5 @@ int main() {
         
         return ans;
     }
-        
+
 */
