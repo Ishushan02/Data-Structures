@@ -99,3 +99,54 @@
 
 
 */
+
+
+/*
+    1. Two Sum
+    (https://leetcode.com/problems/two-sum/description/)
+
+    struct comp{
+        bool operator()(pair<int, int> &a, pair<int, int> &b){
+            return a.first < b.first;
+        }
+    };
+
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+        // 
+
+        vector<pair<int, int>> values;
+
+        int start = 0;
+        int end = nums.size() - 1;
+
+        for(int i = 0; i < nums.size(); i++){
+            values.push_back({nums[i], i});
+        }
+
+        sort(values.begin(), values.end(), comp());
+
+        while(start < end){
+            int sum = values[start].first + values[end].first;
+
+            // cout << start << ", "<< end  << " : " << sum << endl;
+
+            if(sum == target){
+                return {values[start].second, values[end].second};
+            }
+
+            if(sum > target){
+                end = end - 1;
+                // cout << " Mod:, end "<< end << endl;
+            }else{
+                start = start + 1;
+                // cout << " Mod:, start "<< start << endl;
+
+            }
+        }
+
+        return {0, 0};
+    }
+
+    
+*/
