@@ -51,3 +51,51 @@
     }
 
 */
+
+/*  
+
+    Vry Important APplication of Variable Size SUbaray
+
+    209. Minimum Size Subarray Sum
+    (https://leetcode.com/problems/minimum-size-subarray-sum/description/)
+
+        - Variable size Window Application
+        - If Sum < target expand the Window 
+        - If Sum >= target shrink the Window
+
+
+    int minSubArrayLen(int target, vector<int>& nums) {
+
+        int ans = INT_MAX;
+
+        int start = 0;
+        int end = 0;
+        int n = nums.size();
+        int sum = 0;
+
+        while(end < n){
+            sum += nums[end];
+
+            while(sum >= target){
+                // shrink
+                ans = min(ans, end - start + 1);
+
+                sum = sum - nums[start];
+                start++;
+            }
+            
+            // expand
+            end++;
+            
+        }
+
+        if(ans == INT_MAX){
+            return 0;
+        }
+
+        return ans;
+
+    }
+
+
+*/
