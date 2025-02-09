@@ -266,5 +266,48 @@ int main() {
         
         
     }
+
+*/
+
+/*
+    N  meetings in one room
+    (https://www.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1)
+
+    struct comp{
+        bool operator()(pair<int, int> &a, pair<int, int> &b){
+            return a.second < b.second  ;
+        }
+    };
+    
+    int maxMeetings(vector<int>& start, vector<int>& end) {
+        // Your code here
+        vector<pair<int, int>> meetings;
+        
+        for(int i = 0; i< start.size(); i++){
+            meetings.push_back({start[i], end[i]});
+        }
+        
+        sort(meetings.begin(), meetings.end(), comp());
+        
+        
+        
+        // for overlapping case the next upcoming meetings 
+        // start time should be more than the already past one endtime.
+        auto value = meetings[0];
+        int prevEnd = value.second;
+        int ans = 1;
+        for(int i = 1; i< start.size(); i++){
+            auto value = meetings[i];
+            int st = value.first;
+            int et = value.second;
+            if(st > prevEnd){
+                ans += 1;
+                prevEnd = et;
+            }
+            
+        }
+        
+        return ans;
+    }
         
 */
