@@ -109,12 +109,15 @@
 /*
     Do it Again
     (https://leetcode.com/problems/cheapest-flights-within-k-stops/)
+
+    You couldn't even do it once idiot
 */
 
 /*
     2360. Longest Cycle in a Graph
     (https://leetcode.com/problems/longest-cycle-in-a-graph/description/)
 
+    Do it Again -- 
 
     Method 1 Memory Limit Exceeded
 
@@ -170,8 +173,7 @@
 
     Method 2
 
-    // The main idea is that remember there will always be just 1 cycle that will be 
-    // present in the given question. 
+    // The main idea is that remember that make sure you have 1 extra dfdTracker for keeping track of cycles
     // and rest is dfs Traversal
 
     void dfsTraversal(int node, vector<int> &visited, vector<int> &dfsTracker, vector<int> &dist,

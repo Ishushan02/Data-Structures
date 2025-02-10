@@ -26,52 +26,57 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
 
 
 /*
+    // The only problem which I face in this was the visited nodes where coming again
+    // so keep a check, if already visited node comes, pop it.
+
     MST Using Prims Algorithm
     (https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1)
 
     int spanningTree(int V, vector<vector<int>> adj[]) {
+        // code here
         
-        // node, - [ {wt, node}, {wt, node}, ... ]
-        unordered_map< int, vector<pair<int, int>> > adjList;
-        
-        for (int i = 0; i < V; i++) {
-            for (auto v : adj[i]) {
-                adjList[i].push_back({v[1], v[0]});
+        unordered_map<int, vector<pair<int, int>>> graph;
+        for(int i = 0; i < V; i++){
+            for(auto neigh: adj[i]){
+                graph[i].push_back({neigh[0], neigh[1]});
             }
         }
         
-        vector<int> visited;
-        // vector<int> mst<V, 0>;
-        int node = 0;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>> > que;
+        
+        int ans = 0;
+        vector<int> visited(V, 0);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> que;
         que.push({0, 0});
-        int totalCost = 0;
-
-        while(visited.size() < V){
+        int visitedCount = 0;
+        
+        
+        while(!que.empty() && visitedCount < V){
             
-            pair<int, int> topelem = que.top();
-            int wt = topelem.first;
-            int node = topelem.second;
-            if(find(visited.begin(), visited.end(), node) != visited.end()){
-                // if these node is already visited, pop it, and continue
-                que.pop();
+            pair<int, int> top = que.top();
+            que.pop();
+            int wt = top.first;
+            int node = top.second;
+            if(visited[node] == 1){
                 continue;
             }
-            visited.push_back(node);
-            totalCost += wt;
-            que.pop();
+            visited[node] = 1;
+            visitedCount++;
+            ans += wt;
             
-            for(neigh: adjList[node]){
-                if(find(visited.begin(), visited.end(), neigh.second) == visited.end()){
-                    que.push({neigh.first, neigh.second});
+            for(auto neigh: graph[node]){
+                int nd = neigh.first;
+                int weight = neigh.second;
+                
+                if(visited[nd] == 0){
+                    // cout << node << ",  "<< node << " : " << wt << endl;
+                    que.push({weight, nd});
                 }
             }
- 
         }
-
         
-        return totalCost;
+        return ans;
     }
+    
 */
 
 
