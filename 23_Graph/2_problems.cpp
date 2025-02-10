@@ -28,6 +28,7 @@ Cycle Detection:
 /*
 
     // Here Normal BFS won't work in Undirected graph, there are chances some disjoint nodes might be there, so
+    // make sure that you loop into other nodes as well by looping all nodes
 
     Cycle in Undirected Graph using BFS
     (https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1)
@@ -78,6 +79,8 @@ Cycle Detection:
 */
 
 /*
+    // We cannot check a Cycle in BFS by merely just Using BFS
+
     Cycle in a Directed Graph using BFS (Topological Sort)
     (https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1)
 

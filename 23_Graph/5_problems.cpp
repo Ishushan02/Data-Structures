@@ -97,25 +97,40 @@ Bridge in a Graph
     {More precisely, when bridge is remove the number of connected components in graph increases}
 
     // Please remeber the procedure
+    We have 4 array's and a time counter
+    discovered time -> first time that node is discovered , initialize with -1
+    lowest time -> the min possible time in which it can be discovered, initialize with -1
+    visited
+    parent, initialize with -1
 
-    // you have arrival time {representing the current time counter}, 
-    // discovered {at what time the node is discovered},
-    // low {the lowest time when it can be discovered}, 
-        so let's say we have 2 path to one node if we do DFS we reccur 1 path, 
-        but there is possibilibility that we can directly come to the destination
-        node from that initial node via second path, hence the lowest time will be the second one soo
+    // start DFS traversal
+     - if node is visiting for first time; i.e disc and low is -1.. update counter value to it, and increse counter time
+        {do this for all first time and mark it as visited}
 
-    // parent and visited
+        - come to neigh nodes of that current node
+            - if neigh is parent 
+                do nothing
+            - if not visited..
+                -> visit it by recursively calling dfs traversal
 
-    // do dfs traversal for all unvisited nodes
-        - visit the node increment arrrival time and assign it to discovered and low
-        - visit all the neighbouring nodes
-            - if neigh node is a parent of current node don't do anything as that will have lowest low point
-            - else if neighbour node is not visited do dfs on it
-                - while backtracing update the lowest node
-                - then check if lowest value of neigh is more than discovered node value which means that
-                    that is the weak point, {just do and think}
-            -  update the lowest node
+                // backtrack here 
+                check the discovered time of node, and lowest time of neigh
+                if (lowest time of node is > lowest time of neigh) --> update it
+                low[node] = min(low[node], low[neigh])
+                which means that there is alternate ways by which current node can be reached 
+
+                // now if the above update doesn't take place which means 
+                // the lowest time of neigh > discovered time of node
+                    matlab I cannot reach the neigh node via any other means that's why it didn't get updated right ?
+                    hence that is the bridge.. neigh and node
+
+                
+            - else visited
+                check low time of current node and discovered time of neigh
+                if the discovered time neigh is less than low time of node update it.
+                 Because it means that we can reach neigh via the alternate as well, hence
+                    low[node] = min(low[node], discovered[neigh])
+
     
 
     // What I did wrong in this question was while making graph I forgot to created it as undirected graph
@@ -126,62 +141,68 @@ Bridge in a Graph
 
     vector<vector<int>> bridges;
 
-    void dfsTraversal(int node, vector<int> &discovered, vector<int> &parent, vector<int> &low, vector<int> &visited, unordered_map<int, vector<int>> &graph, int &arrivalTime){
-        visited[node] = 1;
-    
-        arrivalTime++;
-        discovered[node] = arrivalTime;
-        low[node] = arrivalTime;
-       
+    void dfsTraversal(int node, vector<int> &visited, vector<int> &lowestDiscovered, 
+        vector<int> &discovered, vector<int> &parent, int &counter, unordered_map<int, vector<int>> &graph){
+            discovered[node] = counter;
+            lowestDiscovered[node] = counter;
+            counter += 1;
+            visited[node] = 1;
 
-        for(auto neigh:graph[node]){
-            
-            if(parent[node] == neigh){
-                continue;
-            }else if(visited[neigh] == 0){
-                parent[neigh] = node;
-                
-                dfsTraversal(neigh, discovered, parent, low, visited, graph, arrivalTime);
-                
-                // backtrack
-                low[node] = min(low[node], low[neigh]);
-                if(low[neigh] > discovered[node]){
-                    vector<int> temp;
-                    temp.push_back(node);
-                    temp.push_back(neigh);
+            for(auto neigh: graph[node]){
 
-                    bridges.push_back(temp);
+                if(neigh == parent[node]){
+                    continue;
                 }
-            }else{
-                low[node] = min(low[node], low[neigh]);
+
+                if(visited[neigh] == 0){
+                    parent[neigh] = node;
+                    dfsTraversal(neigh, visited, lowestDiscovered, discovered, parent, counter, graph);
+
+                    //backtrack
+                    lowestDiscovered[node] = min(lowestDiscovered[node], lowestDiscovered[neigh]);
+
+                    if(lowestDiscovered[neigh] > discovered[node]){
+                        vector<int> temp;
+                        temp.push_back(node);
+                        temp.push_back(neigh);
+                        bridges.push_back(temp);
+                    }
+
+                }else{
+                    lowestDiscovered[node] = min(lowestDiscovered[node], discovered[neigh]);
+                }
             }
-            
-        }
+
 
     }
 
-    vector<vector<int>> criticalConnections(int n, vector<vector<int>> connections) {
-        vector<int> discovered(n, -1);
-        vector<int> parent(n, -1);
-        vector<int> low(n, -1);
-        vector<int> visited(n, 0);
+    vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
+        
         unordered_map<int, vector<int>> graph;
-        int arrivalTime = 0;
 
+        for(int i = 0; i < connections.size(); i++){
+            int src = connections[i][0];
+            int des = connections[i][1];
 
-        for (const auto &conn : connections) {
-            graph[conn[0]].push_back(conn[1]);
-            graph[conn[1]].push_back(conn[0]);
+            graph[src].push_back(des);
+            graph[des].push_back(src);
         }
 
+        vector<int> visited(n, 0);
+        vector<int> lowestDiscovered(n, -1);
+        vector<int> discovered(n, -1);
+        vector<int> parent(n, -1);
+        int counter = 0;
 
         for(int i = 0; i < n; i++){
             if(visited[i] == 0){
-                dfsTraversal(i, discovered, parent, low, visited, graph, arrivalTime);
+                dfsTraversal(i, visited, lowestDiscovered, discovered, parent, counter, graph);
             }
         }
 
         return bridges;
+
+
     }
 
 

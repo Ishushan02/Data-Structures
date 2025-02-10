@@ -99,6 +99,8 @@ See previous all cycle detections using BFS and DFS
     // able to finish all the courses as each one of them will in depenedent on each other, whereas 
     // if cycle doen't exist which means we will be able to complete the courses independently
 
+    // If you do Cycle Detection using DFS, it will give TLE
+
 
     void topologicalBfs(int n, map<int, vector<int>> &adjList, vector<int> &ans){
 

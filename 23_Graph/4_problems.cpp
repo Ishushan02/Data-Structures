@@ -7,7 +7,7 @@ using namespace std;
 /*
 
     Remeber this if you do INTMAX + 1 --> this will go to -INT_MAX
-    This error which you douldn't figure out and took so much of your time.
+    This error which you couldn't figure out and took so much of your time.
 */
 
 
@@ -293,7 +293,7 @@ int main(){
     vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
         // Code here
         
-        vector<int> ans(V, 100000000);
+        vector<int> ans(V, 1e8);
         ans[src] = 0;
         
         for(int i = 0; i < V; i++){
@@ -303,7 +303,7 @@ int main(){
                 int desNode = neigh[1];
                 int weight = neigh[2];
                 
-                if((ans[node] != 100000000) && (ans[node] + weight < ans[desNode])){
+                if((ans[node] != 1e8) && (ans[node] + weight < ans[desNode])){
                     ans[desNode] = ans[node] + weight;
                 }
                 
@@ -325,72 +325,8 @@ int main(){
         return ans;
         
     }
-
-    Method 2. 
-        // The only change is that for negative nodes we run the 
-        // dijkstra's loop for V times and by any chances in between 
-        // the loop if the ans vector is not modified then that's the 
-        // shortest path from the source node or else even after V
-        // iterations the ans vector is modifying then there is a negative weight
-        // that is present in the graph
-
-    int isModified = false;
-    void bellmanFordItr(pair<int, int> src, unordered_map<int, vector<pair<int, int> > >& adjList, vector<int> &ans){
-        
-        queue< pair<int, int> > que;
-        
-        que.push(src);
-        
-        int count = 0;
-        while(!que.empty()){
-            if(count >= 10 * adjList.size()){
-                isModified = true;
-                return ;
-            }
-            pair<int, int> front = que.front();
-            que.pop();
-            
-            int node = front.second;
-            int wt = front.first;
-            
-            for(auto &neigh:adjList[node]){
-                int currnode = neigh.first;
-                int currwt = neigh.second;
-                if(wt + currwt < ans[currnode]){
-                    ans[currnode] = wt + currwt;
-                    que.push({ans[currnode], currnode});
-                }
-            }
-            count += 1;
-        }
-        
-        
-    }
     
-    vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
-        // Code here
-        
-        unordered_map<int, vector<pair<int, int> > > adjList;
-        
-        for(int i = 0; i < edges.size(); i++){
-            adjList[edges[i][0]].push_back({edges[i][1],edges[i][2]});
-        }
-        
-        vector<int> ans(V, 100000000);
-        ans[src] = 0;
-        
-        for(int i = 0; i < V; i++){
-            // isModified = false;
-            bellmanFordItr({ans[src], src}, adjList, ans);
-            if(isModified == true){
-                return {-1};
-            }
-        }
-        
-       
-        return ans;
-        
-    }
+   
 
 */
 
@@ -407,10 +343,10 @@ int main(){
 
     - We will solve this by DP
 
-     - let's say we have to find the min Distance from U to V,
-     - What you do is find the min distance from U to V through an intermediate Node..alignas
+    - let's say we have to find the min Distance from U to V,
+    - What you do is find the min distance from U to V through an intermediate Node..alignas
 
-     - U and V are all possible vertices of Graph also the Intermediate nodes are all possible vertices of Graph
+    - U and V are all possible vertices of Graph also the Intermediate nodes are all possible vertices of Graph
 
     Floyd Warshall
     (https://www.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1)
@@ -448,4 +384,9 @@ int main(){
         }
     }
 
+*/
+
+/*
+    Do All Of it. Floyd Warsall Application
+    https://leetcode.com/problem-list/9idenloe/
 */
