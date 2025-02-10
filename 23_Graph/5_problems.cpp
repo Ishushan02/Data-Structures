@@ -92,7 +92,8 @@
 
 /*
 
-Bridge in a Graph
+    Bridge in a Graph (This is also known as Tarjans Algorithm)
+
     Bridge in a Graph is defined as any edge, when removed makes the graph disconected
     {More precisely, when bridge is remove the number of connected components in graph increases}
 
@@ -323,7 +324,7 @@ Bridge in a Graph
                     if(ch == prev){
                         continue; // skipping the same word
                     }
-                    // cout << temp << endl;
+                    // cout << temp << endl;, count basically tells it's present in worList
                     if(temp != endWord && wordSet.count(temp) > 0 && visited[temp] == false){
                         que.push(temp);
                         stringMap[curr].push_back(temp);
@@ -400,80 +401,57 @@ Bridge in a Graph
     // and all in the minimum of all of that.
     // Rest is simple BFS (or you acn say is Dijkstra's Algorithm.)
 
+    // create min Heap
+    // The step is create a distance matrx with 1e8 initialization..
+    // find the max(abs(difference), prev_wdiff) compare that with value in distance.. 
+
     1631. Path With Minimum Effort
     (https://leetcode.com/problems/path-with-minimum-effort/description/)
 
     int minimumEffortPath(vector<vector<int>>& heights) {
         
-        int row = heights.size();
-        int col = heights[0].size();
-        // absdiff, coordinates
-        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>> > minHeap;
-        vector<vector<int>> distance(row, vector<int>(col, INT_MAX));
-        
-        distance[0][0] = 0;
-        minHeap.push({0, {0, 0}});
+        int m = heights.size();
+        int n = heights[0].size();
 
-        while(!minHeap.empty()){
+        priority_queue<pair<int, pair<int, int>>, 
+        vector<pair<int, pair<int, int>>>,
+        greater<pair<int, pair<int, int>>>> que;
 
-            pair<int, pair<int, int>> values = minHeap.top();
-            int currWt = values.first;
-            int i = values.second.first;
-            int j = values.second.second;
-            minHeap.pop();
+        vector<vector<int>> distance(m, vector<int>(n, 1e8));
 
-            // traverse along neighbours
-
-            if(i == row -1 && j == col -1){
-                return distance[i][j];
-            }
-                // right
-                if(j+1 < col){
-                    int diff = abs(heights[i][j] - heights[i][j+1]);
-                    int newMaxDiff = max(currWt, diff);
-                    if(newMaxDiff < distance[i][j+1]){
-                        distance[i][j+1] = newMaxDiff;
-                        minHeap.push({distance[i][j+1], {i, j+1}});
-                    }
-                    
-                }
-
-                // left 
-                if(j - 1 >= 0){
-                    int diff = abs(heights[i][j] - heights[i][j-1]);
-                    int newMaxDiff = max(currWt, diff);
-                    if(newMaxDiff < distance[i][j-1]){
-                        distance[i][j-1] = newMaxDiff;
-                        minHeap.push({distance[i][j-1], {i, j-1}});
-                    }
-                }
-
-                // up 
-                if(i - 1 >= 0){
-                    int diff = abs(heights[i][j] - heights[i-1][j]);
-                    int newMaxDiff = max(currWt, diff);
-                    if(newMaxDiff < distance[i-1][j]){
-                        distance[i-1][j] = newMaxDiff;
-                        minHeap.push({distance[i-1][j], {i-1, j}});
-                    }
-                }
-                
-                // down
-                if(i + 1 < row){
-                    int diff = abs(heights[i][j] - heights[i+1][j]);
-                    int newMaxDiff = max(currWt, diff);
-                    if(newMaxDiff < distance[i+1][j]){
-                        distance[i+1][j] = newMaxDiff;
-                        minHeap.push({distance[i+1][j], {i+1, j}});
-                    }
-                
+        que.push({0, {0, 0}});
+        while(!que.empty()){
+            pair<int, pair<int, int>> value = que.top();
+            que.pop();
+            int wt = value.first;
+            int i = value.second.first;
+            int j = value.second.second;
+            if(i == m -1 && j == n -1){
+                return wt;
             }
 
-            
+            vector<int> dx = {0, 0, 1, -1};
+            vector<int> dy = {1, -1, 0, 0};
+
+            for(int k = 0; k < 4; k++){
+                int x = i + dx[k];
+                int y = j + dy[k];
+
+                if(x >= 0 && x < m && y >= 0 && y < n){
+                    cout << x << " " << y << endl;
+                    int diff = abs(heights[i][j] - heights[x][y]);
+                    int maxWt = max(wt, diff);
+                    if(maxWt < distance[x][y]){
+                        distance[x][y] = maxWt;
+                        que.push({maxWt, {x, y}});
+                    }
+
+                }
+
+            }
+
 
         }
-
-
 
         return 0;
     }
