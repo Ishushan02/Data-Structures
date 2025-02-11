@@ -102,17 +102,17 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
 
 
 
-    struct cmp {
-        // you always forget const
-        bool operator()(vector<int> &a, vector<int> &b) const{
-            return a[0] < b[0];
-        }
-    };
   
     // Function to find sum of weights of edges of the Minimum Spanning Tree.
+
+
+    struct comp{
+        bool operator()(pair<int, pair<int, int>> &a, pair<int, pair<int, int>> &b){
+            return a.first < b.first;
+        }
+    };
     
     int findParent(vector<int> &parent, int node){
-        
         if(parent[node] == node){
             return node;
         }
@@ -120,76 +120,64 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
         // Not to check and find the parent multiple time
         // I am just updating the parents
         return parent[node] = findParent(parent, parent[node]);
-    
     }
     
-    void unionMat(int u, int v, vector<int> &parent, vector<int> &rank){
+    void Union(int u, int v, vector<int> &parent, vector<int> rank){
         
         u = findParent(parent, u);
         v = findParent(parent, v);
         
         if(rank[u] < rank[v]){
-            parent[u] = parent[v];
-        }else if(rank[u] > rank[v]){
-            parent[v] = parent[u];
-        }else{
-            // ranks are equal make any og them parent
             parent[u] = v;
             rank[v]++;
+        }else if(rank[u] > rank[v]){
+            parent[v] = u;
+            rank[u]++;
+        }else{
+            parent[v] = u;
+            rank[u]++;
         }
     }
-        
-    
     
     int spanningTree(int V, vector<vector<int>> adj[]) {
         // code here
         
-        // create parent and rank amtrix
-        vector<int> rank(V, 0);
+        // create parent and rank amtrix and parent Matrix
         vector<int> parent(V, 0);
+        vector<int> rank(V, 0);
         
         for(int i = 0; i < V; i++){
             parent[i] = i;
         }
         
-        // create function findParent
-        // done
-        
-        // MST Operation creating a linear DS
-        // wt, node1, node 2
-       
-      vector<vector<int>> edges;
-        
-        for (int i = 0; i < V; i++) {
-            for (auto vt : adj[i]) {
-                
-                int v = vt[0];
-                int wt = vt[1];
-                // int wt = vt[2];
-                // cout << i << v << wt << endl;
-                edges.push_back({wt, i, v});
+        // MST Operation creating a linear DS {wt, {node1, node2}};
+        vector<pair<int, pair<int, int>>> linearDS;
+        for(int i = 0; i < V; i++){
+            for(auto neigh: adj[i]){
+                linearDS.push_back({neigh[1], {i, neigh[0]}});
             }
         }
         
-        // sorting based on weight
-        sort(edges.begin(), edges.end(), cmp());
-        
         int ans = 0;
-        for(int i = 0; i < edges.size(); i++){
+
+        // sorting based on weight
+        sort(linearDS.begin(), linearDS.end(), comp());
+        
+        for(int i = 0; i < linearDS.size(); i++ ){
+            int node1 = linearDS[i].second.first;
+            int node2 = linearDS[i].second.second;
+            int wt = linearDS[i].first;
             
-            int wt = edges[i][0];
-            int u = findParent(parent, edges[i][1]);
-            int v = findParent(parent, edges[i][2]);
+            int u = findParent(parent, node1);
+            int v = findParent(parent, node2);
+            
             if(u != v){
                 ans += wt;
-                unionMat(u, v, parent, rank);
+                Union(u, v, parent, rank);
             }
-            
         }
         
         return ans;
-        
-    }
         
         
     }
