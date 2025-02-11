@@ -263,7 +263,6 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
     // Now, return the minimum count city.. and if there is a tie return the city with max key Val
 
 
-    map<int, int> reachableCity;
 
     int getDistance(unordered_map<int, vector<pair<int, int>>> &graph, int src, int distanceThreshold){
         vector<int> distance(graph.size(), 1e8);
@@ -345,6 +344,15 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
 
     Good APplication of Kruskal's Algorithm, See the procedure
 
+    // check size of connections matrix if that is less than nodes - 1 
+    // which means we cannot create min spanning tree or ethernet conections as cables are lower than required
+
+    // join all the nodes present with Kruskal's Algorithm
+    // The parent node at the end will be updated with its values, now
+    // if your parent value is same as that of index which means that it is not connected,
+    // hence get that Node.   so total required edges are not connectedNode - 1;
+
+
     1319. Number of Operations to Make Network Connected
     (https://leetcode.com/problems/number-of-operations-to-make-network-connected/description/)
 
@@ -387,7 +395,6 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
             parent[i] = i;
         }
 
-        int extraedges = 0;
         for(int i = 0; i < connections.size(); i++){
 
             int u = getParents(parent, connections[i][0]);
@@ -395,8 +402,6 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
 
             if(u != v){
                 makeUnion(u, v, parent, rank);
-            }else{
-                extraedges += 1;
             }
 
         }
@@ -407,6 +412,7 @@ So, get the minimum cost out of all the possible Spanning Trees, that's MST
                 independentNodes++;
             }
         }
+        // edges = nodes  - 1;
         int num_etherNet = independentNodes - 1;
 
         return num_etherNet;
