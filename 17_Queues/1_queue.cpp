@@ -347,6 +347,28 @@ int main(){
         return ans;
     }
 
+    Method 2
+
+    vector<int> rearrangeQueue(queue<int> &que){
+        
+        int n = que.size();
+        vector<int> ans(n, 0);
+        
+        for(int i = 0; i < n; i = i + 2){
+            int val = que.front();
+            que.pop();
+            ans[i] = val;
+        }
+        
+        for(int i = 1; i < n; i = i + 2){
+            int val = que.front();
+            que.pop();
+            ans[i] = val;
+        }
+        
+        return ans;
+    }
+
 */
 
 /*
