@@ -397,7 +397,7 @@ Procedure is (let's say window size is K)
         // this is actually storing answer for previous case
 
         // now time is to move the window, so include next element and remove previous element from que
-        // if(!q.empty() && index - q.front() >= k ) -->remove it q.pop()
+        // while(!q.empty() && index - q.front() >= k ) -->remove it q.pop()
 
         //store next eleme
         nexnew elem = arr[i]
@@ -511,7 +511,7 @@ Procedure is (let's say window size is K)
 
 /*
 
-IMP Question
+IMP Question (Do it Again, the logic is important )
 
 First non-repeating in a stream
 (https://www.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1)

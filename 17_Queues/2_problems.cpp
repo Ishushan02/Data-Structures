@@ -65,6 +65,8 @@
 
 
 /*
+    // the important thing to remember here is the method vector[i].isInteger() --> bool output
+
     341. Flatten Nested List Iterator
     (https://leetcode.com/problems/flatten-nested-list-iterator/)
 
@@ -116,6 +118,8 @@ public:
 
 /*
 
+    // See method 2 my Method
+
     649. Dota2 Senate
     (https://leetcode.com/problems/dota2-senate/)
 
@@ -158,6 +162,95 @@ public:
         }
 
         return "Dire"; // simply this line
+    }
+    
+
+    // Method 2 
+    // Logic is:
+    //      keep count of all R and D
+
+    //      loop on i
+    
+    //      if count of anyone is 0 return the other one
+
+    //      if i == 'R'
+    //         --> mark the first coming 'D' and decrease count of D
+    //      if i == 'D'
+    //         --> mark the first coming 'R' and decrease count of R
+    //      else if i == B
+    //         --> increase pointer
+    
+    string predictPartyVictory(string senate) {
+        
+        unordered_map<char, int> count;
+
+        for(auto v:senate){
+            count[v]++;
+        }
+        int n = senate.length();
+
+        int i = 0;
+        while(i >= 0){
+
+            if(count['R'] == 0){
+                return "Dire";
+            }
+            if(count['D'] == 0){
+                return "Radiant";
+            }
+
+            char curr = senate[i];
+            if(senate[i] == 'B'){
+                i++;
+            }else if(senate[i] == 'D'){
+                // D
+                // cout <<" here " << endl;
+                int j = (i + 1) % n;
+                while(j >= 0){
+                    if(senate[j] == 'R'){
+                        senate[j] = 'B';
+                        count['R']--;
+                        if(count['R'] == 0){
+                            return "Dire";
+                        }
+                        break;
+                    }
+                    j += 1;
+                    if(j >= n){
+                        j = j % n;
+                    }
+                    
+                }
+                i++ ;
+            }else{
+                // R
+                int j = (i + 1) % n;
+                while(j >= 0){
+                    if(senate[j] == 'D'){
+                        senate[j] = 'B';
+                        count['D']--;
+                        if(count['D'] == 0){
+                            return "Radiant";
+                        }
+                        break;
+                    }
+                    j += 1;
+                    if(j >= n){
+                        j = j % n;
+                    }
+                }
+                i++ ;
+            }
+
+            if(i >= n){
+                i = i % n;
+            }
+
+            // cout << senate << " i: " << i << endl;
+
+        }
+
+        return "Dire";
     }
 
 
