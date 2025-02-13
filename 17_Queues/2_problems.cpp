@@ -165,7 +165,7 @@ public:
     }
     
 
-    // Method 2 
+    Method 2  (very easy method.. and just focus on the question clearly)
     // Logic is:
     //      keep count of all R and D
 
