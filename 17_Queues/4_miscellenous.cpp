@@ -97,5 +97,63 @@
         return 0;
     }
 
+
+*/
+
+/*
+    622. Design Circular Queue
+    (https://leetcode.com/problems/design-circular-queue/)
+
+    class MyCircularQueue {
+    public:
+
+    queue<int> que;
+    int rearElem = -1;
+    int K = 0;
+
+    MyCircularQueue(int k) {
+        K = k;
+    }
     
+    bool enQueue(int value) {
+        if(isFull()){
+            return false;
+        }
+
+        que.push(value);
+        rearElem = value;
+        return true;
+    }
+    
+    bool deQueue() {
+        if(isEmpty()){
+            return false;
+        }
+        que.pop();
+        return true;
+    }
+    
+    int Front() {
+        if(isEmpty()){
+            return -1;
+        }
+        return que.front();
+    }
+    
+    int Rear() {
+        if(isEmpty()){
+            return -1;
+        }
+        return rearElem;
+    }
+    
+    bool isEmpty() {
+        return que.size() == 0;
+    }
+    
+    bool isFull() {
+        return  que.size() == K;
+    }
+    };
+
 */
