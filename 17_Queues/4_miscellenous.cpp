@@ -104,24 +104,34 @@
     622. Design Circular Queue
     (https://leetcode.com/problems/design-circular-queue/)
 
-    class MyCircularQueue {
-    public:
+    #include<vector>
+using namespace std;
+class MyCircularQueue {
+public:
 
-    queue<int> que;
-    int rearElem = -1;
-    int K = 0;
+    int K;
+    int start = -1;
+    int end = -1;
+    vector<int> arr;
 
     MyCircularQueue(int k) {
         K = k;
+        arr = vector<int>(k, -1);  // Proper initialization
     }
+
     
     bool enQueue(int value) {
         if(isFull()){
             return false;
         }
-
-        que.push(value);
-        rearElem = value;
+        if(isEmpty()){
+            start = 0;
+            end = 0;
+            arr[end] = value;
+            return true;
+        }
+        end++;
+        arr[end] = value;
         return true;
     }
     
@@ -129,7 +139,21 @@
         if(isEmpty()){
             return false;
         }
-        que.pop();
+        if(start == 0 && end == 0){
+            arr[start] = -1;
+            start = -1;
+            end = -1;
+            return true;
+        }
+
+        arr[start] = -1;
+        int temp = start;
+        for(int i = 1; i <= end; i++){
+            arr[temp] = arr[i];
+            temp++;
+        }
+        end--;
+
         return true;
     }
     
@@ -137,23 +161,34 @@
         if(isEmpty()){
             return -1;
         }
-        return que.front();
+        return arr[start];
     }
     
     int Rear() {
         if(isEmpty()){
             return -1;
         }
-        return rearElem;
+        return arr[end];
     }
     
     bool isEmpty() {
-        return que.size() == 0;
+        if(start == -1 && end == -1){
+            return true;
+        }
+        return false;
     }
     
     bool isFull() {
-        return  que.size() == K;
+        if(start == -1 && end == -1){
+            return false;
+        }
+        if(end - start + 1 == K){
+            return true;
+        }
+        return false;
     }
-    };
+};
 
 */
+
+
