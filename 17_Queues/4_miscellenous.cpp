@@ -192,3 +192,115 @@ public:
 */
 
 
+/*
+
+    641. Design Circular Deque
+    (https://leetcode.com/problems/design-circular-deque/description/)
+
+class MyCircularDeque {
+public:
+
+    vector<int> arr;
+    int start = -1;
+    int end = -1;
+    int size = 0;
+    int capacity = 0;
+
+    MyCircularDeque(int k) {
+        capacity = k;
+        arr = vector<int>(k, -1);
+    }
+    
+    bool insertFront(int value) {
+        if(isFull()){
+            return false;
+        }
+
+        if(isEmpty()){
+            start = 0;
+            end = 0;
+        }else{
+            start =( start - 1 + capacity) % capacity;
+        }
+
+        arr[start] = value;
+        size++;
+        return true;
+    }
+    
+    bool insertLast(int value) {
+        if(isFull()){
+            return false;
+        }
+
+        if(isEmpty()){
+            start = 0;
+            end = 0;
+        }else{
+            end = (end + 1) % capacity;
+        }
+
+        arr[end] = value;
+        size++;
+        return true;
+    }
+    
+    bool deleteFront() {
+        if(isEmpty()){
+            return false;
+        }
+
+        if(start == end){
+            start = -1;
+            end = -1;
+        }else{
+            start = (start + 1) % capacity;
+        }
+        size--;
+
+        return true;
+    }
+    
+    bool deleteLast() {
+        if(isEmpty()){
+            return false;
+        }
+
+        if(start == end){
+            start = -1;
+            end = -1;
+        }else{
+            end = (end - 1 + capacity) % capacity;
+        }
+        size--;
+
+        return true;
+    }
+    
+    int getFront() {
+        if(isEmpty()){
+            return -1;
+        }
+
+        return arr[start];
+        
+    }
+    
+    int getRear() {
+        if(isEmpty()){
+            return -1;
+        }
+
+        return arr[end];
+    }
+    
+    bool isEmpty() {
+        return size==0;
+    }
+    
+    bool isFull() {
+        return size == capacity;
+    }
+};
+
+*/
