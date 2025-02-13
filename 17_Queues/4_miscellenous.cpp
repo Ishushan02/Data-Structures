@@ -60,3 +60,42 @@
 
     }
 */
+
+/*
+    2073. Time Needed to Buy Tickets
+    (https://leetcode.com/problems/time-needed-to-buy-tickets/description/)
+
+    int timeRequiredToBuy(vector<int>& tickets, int k) {
+        
+        // idx, val
+        queue<pair<int, int>> que;
+
+        for(int i = 0; i < tickets.size(); i++){
+            que.push({i, tickets[i]});
+        }
+
+        int time = 0;
+        while(!que.empty()){
+            pair<int, int> front = que.front();
+
+            if(front.first == k && front.second == 1){
+                time += 1;
+                return time;
+            }
+
+            if(front.second == 1){
+                que.pop();
+            }else{
+                que.pop();
+                que.push({front.first, front.second - 1});
+            }
+
+            time++;
+            
+        }
+
+        return 0;
+    }
+
+    
+*/
