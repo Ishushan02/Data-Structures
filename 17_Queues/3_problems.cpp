@@ -815,6 +815,55 @@ public:
         
         return ans;
     }
+
+    Method 2
+
+    vector<int> deckRevealedIncreasing(vector<int>& deck) {
+        int n = deck.size();
+        sort(deck.begin(), deck.end());
+        queue<int> que;
+        vector<int> ans(n, -1);
+
+        for(int i = 0; i < n; i++){
+            que.push(deck[i]);
+        }
+            int i = 0;
+            char oper = 'R';
+            while(que.size()>1){
+                // reveal
+                if(oper == 'R'){
+                    int front = que.front();
+                    while(ans[i%n] != -1){
+                        i++;
+                    }
+                    ans[i%n] = front;
+                    que.pop();
+                    i++;
+                    oper = 'P';
+                }
+
+                if(oper == 'P'){
+                    // push
+                    while(ans[i%n] != -1){
+                        i++;
+                    }
+                    // current is empty
+                    i++;
+                    oper = 'R';
+                }  
+            }
+            
+        for(int i = 0; i < n; i++){
+            if(ans[i] == -1){
+                ans[i] = que.front();
+                que.pop();
+                break;
+            }
+        }
+        
+
+        return ans;
+    }
 */
 
 /*
