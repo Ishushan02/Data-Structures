@@ -757,6 +757,30 @@ public:
         return winner(n ,k);
     }  
 
+    Method 3
+    int findTheWinner(int n, int k) {
+        
+        queue<int> que;
+        for(int i = 1; i <= n; i++){
+            que.push(i);
+        }
+
+        int c = 1;
+        while(que.size()> 1){
+
+            if(c == k){
+                que.pop();
+                c = 1;
+            }else{
+                que.push(que.front());
+                que.pop();
+                c++;
+            }
+        }
+
+        return que.front();
+    }
+
 */
 
 /*
