@@ -69,6 +69,76 @@ int main(){
         return ans;
     }
 
+
+    Method 2
+    // Procedure is that first create a function to reverse K nodes, and return 
+        the reverse nodes head only if all the count of k is completed, else reverse initial head 
+
+    ListNode* reverse(ListNode* start, int count){
+
+        ListNode* curr = start;
+        ListNode* prev = NULL;
+
+        while(count && start){
+            ListNode* temp = new ListNode(start->val);
+            temp->next = prev ;
+            prev = temp;
+            start = start->next;
+            count--;
+        }
+
+        if(count == 0){
+            return prev;
+        }else{
+        // all nodes are not reversed, hence sending startigh result
+            return curr;
+        }
+
+        return prev;
+    }
+
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        
+        if(head == NULL){
+            return NULL;
+        }
+
+        if(head->next == NULL){
+            return head;
+        }
+
+        ListNode* temp = head;
+        ListNode* ansHead = NULL; // to return this
+        ListNode* ans = ansHead; // ans List such that whenever reversed list comes, connect it.
+
+
+        while(temp){
+                ListNode* reverseNodes = reverse(temp, k);
+                if(ansHead == NULL){
+                    ansHead = reverseNodes;
+                    ans = ansHead;
+                }else{
+                    while(ans->next){
+                        ans = ans->next;
+                    }
+                    ans->next = reverseNodes;
+                }
+
+            //  shift temp to that part untill the List is reversed
+            int tempCount = k-1;
+            while(temp->next && tempCount){
+                temp = temp->next;
+                tempCount--;
+            }
+
+            temp = temp->next;
+        }
+
+        
+
+        return ansHead;
+    }
+
 */
 
 
