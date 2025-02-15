@@ -264,6 +264,41 @@ int main(){
         }
         return true;
     }
+
+
+    Method 2 (reverse the LinkedList and check Palindrome)
+
+    ListNode* reverseLL(ListNode* head){
+
+        ListNode* prev = NULL;
+        ListNode* temp = head;
+
+        while(temp){
+            ListNode* newNode = new ListNode(temp->val);
+            newNode->next = prev;
+            prev = newNode;
+            temp = temp->next;
+        }
+
+        return prev;
+
+    }
+
+    bool isPalindrome(ListNode* head) {
+        
+        ListNode* reverse = reverseLL(head);
+        ListNode* forw = head;
+        while(forw){
+            if(forw->val != reverse->val){
+                return false;
+            }
+            forw = forw->next;
+            reverse = reverse->next;
+        }
+
+        return true;
+    }
+
 */
 
 /*
