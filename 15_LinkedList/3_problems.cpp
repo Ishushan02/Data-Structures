@@ -588,7 +588,7 @@ int main(){
 
 
 /*
-    IMP Question
+    IMP Question  (Check the Method 2 and Method 3)
     
     2. Add Two Numbers
     (https://leetcode.com/problems/add-two-numbers/)
@@ -725,6 +725,78 @@ int main(){
         return recursiveAdd(l1, l2, 0);
     }
 
+    Method 3 
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+
+        ListNode* num1 = l1;
+        ListNode* num2 = l2;
+        ListNode* ans = NULL;
+        ListNode* ansHead = NULL;
+        int prevSum = 0;
+
+        while(num1 || num2){
+
+            if(num1 != NULL && num2 == NULL){
+                int sum = num1->val + prevSum;
+                int digit = sum % 10;
+                prevSum = sum / 10 ;
+
+                ListNode* newNode = new ListNode(digit);
+                if(ans == NULL){
+                    ans = newNode;
+                    ansHead = ans;
+                }else{
+                    ans->next = newNode;
+                    ans = ans->next;
+                }
+
+                num1 = num1->next;
+            }else if(num1 == NULL && num2 != NULL){
+                int sum = num2->val + prevSum;
+                int digit = sum % 10;
+                prevSum = sum / 10 ;
+
+                ListNode* newNode = new ListNode(digit);
+                if(ans == NULL){
+                    ans = newNode;
+                    ansHead = ans;
+                }else{
+                    ans->next = newNode;
+                    ans = ans->next;
+                }
+
+                num2 = num2->next;
+            }else{
+
+                int sum = num1->val + num2->val + prevSum;
+                int digit = sum % 10;
+                prevSum = sum / 10 ;
+
+                ListNode* newNode = new ListNode(digit);
+                if(ans == NULL){
+                    ans = newNode;
+                    ansHead = ans;
+                }else{
+                    ans->next = newNode;
+                    ans = ans->next;
+                }
+
+                num1 = num1->next;
+                num2 = num2->next;
+
+
+            }
+        }
+
+        if(prevSum > 0){
+            ListNode* newNode = new ListNode(prevSum);
+            ans->next = newNode;
+            ans = ans->next;
+                
+        }
+        return ansHead;
+
+    }
 */
 
 /*
