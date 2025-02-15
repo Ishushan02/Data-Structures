@@ -325,8 +325,7 @@ int main(){
 
 
     Method 2
-
-// Fast pointer and slow pointer approach, if they meet at same pointer location then cycle approach. (rabbit and tortoise)
+    // Fast pointer and slow pointer approach, if they meet at same pointer location then cycle approach. (rabbit and tortoise)
 
     bool hasCycle(ListNode *head) {
         if (!head || !head->next){
@@ -450,6 +449,80 @@ int main(){
                 return twohead;
             }
         }
+    }
+
+
+    // Method 2 (Good and easy procedure)
+    Node* segregate(Node* head) {
+        // Add code here
+        Node* zeroll = NULL;
+        Node* zerohead = NULL;
+        Node* onehead = NULL;
+        Node* twohead = NULL;
+        Node* onell = NULL;
+        Node* twoll = NULL;
+        
+        Node* temp = head;
+        
+        while(temp){
+            
+            if(temp->data == 0){
+                Node* newNode = new Node(0);
+                if(zeroll == NULL){
+                    zeroll = newNode;
+                    zerohead = newNode;
+                    // zeroll = zeroll->next;
+                }else{
+                    zeroll->next = newNode;
+                    zeroll = newNode;
+                }
+            }else if(temp->data == 1){
+                Node* newNode = new Node(1);
+                if(onell == NULL){
+                    onell = newNode;
+                    onehead = newNode;
+                }else{
+                    onell->next = newNode;
+                    onell = newNode;
+                }
+            }else{
+                Node* newNode = new Node(2);
+                if(twoll == NULL){
+                    twoll = newNode;
+                    twohead = newNode;
+                }else{
+                    twoll->next = newNode;
+                    twoll = newNode;
+                }
+            }
+            
+            temp = temp->next;
+        }
+        
+        if(zerohead != NULL && onehead != NULL && twohead != NULL){
+            zeroll->next = onehead;
+            onell->next = twohead;
+            return zerohead;
+        }else{
+            if(zerohead != NULL && onehead != NULL && twohead == NULL){
+                zeroll->next = onehead;
+                return zerohead;
+            }else if(zerohead != NULL && onehead == NULL && twohead != NULL){
+                zeroll->next = twohead;
+                return zerohead;
+            }else if(zerohead == NULL && onehead != NULL && twohead != NULL){
+                onell->next = twohead;
+                return onehead;
+            }else if(zerohead == NULL && onehead == NULL && twohead != NULL){
+                return twohead;
+            }else if(zerohead != NULL && onehead == NULL && twohead == NULL){
+                return zerohead;
+            }else if(zerohead == NULL && onehead != NULL && twohead == NULL){
+                return onehead;
+            }
+        }
+        
+        return NULL;
     }
     
     
