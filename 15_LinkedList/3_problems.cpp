@@ -17,7 +17,7 @@ int main(){
 /*
 
 206. Reverse Linked List
-(https://leetcode.com/problems/reverse-linked-list/submissions/1416561388/)
+(https://leetcode.com/problems/reverse-linked-list/)
 
     ListNode* reverseList(ListNode* head) {
         ListNode* prev = NULL;
@@ -37,7 +37,7 @@ int main(){
 /*
 
 876. Middle of the Linked List
-(https://leetcode.com/problems/middle-of-the-linked-list/submissions/1416594390/)
+(https://leetcode.com/problems/middle-of-the-linked-list/)
 
     ListNode* middleNode(ListNode* head) {
         vector<int> value;
@@ -89,6 +89,27 @@ int main(){
         }
         return step1;
     }
+
+    // Method 2 of doing Tortoise Approach
+    ListNode* middleNode(ListNode* head) {
+        
+        ListNode* slowptr = head;
+        ListNode* fastptr = head;
+
+        while(fastptr){
+            // cout << "Slow: " << slowptr->val << " , Fast: " << fastptr->val << endl;
+            
+            if(fastptr->next == NULL){
+                break;
+            }
+
+            slowptr = slowptr->next;
+            fastptr = fastptr->next->next;
+        }
+
+        return slowptr;
+    }
+        
 */
 
 /*
