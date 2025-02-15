@@ -109,7 +109,7 @@ int main(){
 
         return slowptr;
     }
-        
+
 */
 
 /*
@@ -162,6 +162,40 @@ int main(){
         }
 
         return head;
+    }
+
+    Method 2 (easier step, when we go and refer middle Node, that time only delete it)
+    ListNode* getMiddleNode(ListNode* &head){
+        ListNode* slow = head;
+        ListNode* fast = head;
+        ListNode* prev = head;
+
+        while(fast){
+
+            if(fast->next == NULL){
+                break;
+            }
+
+            fast = fast->next->next;
+            prev = slow;
+            slow = slow->next;
+            
+        }
+
+        prev->next = slow->next;
+        
+        return head;
+    }
+
+    ListNode* deleteMiddle(ListNode* head) {
+        if(head->next == NULL){
+            return NULL;
+        }
+
+        ListNode* middleNode = getMiddleNode(head);
+
+        return head;
+
     }
 */
 
