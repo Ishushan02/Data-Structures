@@ -89,3 +89,115 @@
 
     }
 */
+
+/*  
+    705. Design HashSet
+    (https://leetcode.com/problems/design-hashset/description/)
+
+    class LinkedList{
+    public:
+        int val;
+        LinkedList* next;
+
+        LinkedList(int value){
+            this->val = value;
+            this->next = NULL;
+        }
+};
+
+class MyHashSet {
+public:
+
+    LinkedList* ll ;
+    LinkedList* head;
+
+    MyHashSet() {
+        ll = NULL;
+        head = ll;
+    }
+    
+    void add(int key) {
+        if(contains(key)){
+            return ;
+        }
+
+        LinkedList* node = new LinkedList(key);
+        if(head == NULL){
+            head = node;
+        }else{
+            
+            LinkedList* temp = head;
+
+            while(temp->next){
+                temp = temp->next;
+            }
+            temp->next = node;
+        }
+    }
+    
+    void remove(int val) {
+
+        if(head == NULL){
+            return ;
+        }
+
+        if(head->next == NULL){
+            if(head->val == val){
+                return ;
+            }
+            return ;
+        }
+
+        LinkedList* begin = head;
+        LinkedList* end = head->next;
+
+        while(end){
+
+            if(end->val == val){
+                LinkedList* temp = end;
+                while(temp){
+                    if(temp->val == val){
+                        temp = temp->next;
+                    }else{
+                        break;
+                    }
+                }
+
+                if(temp){
+                    begin->next = temp;
+                    begin = begin->next;
+                    end = begin->next;
+                }else{
+                    end = NULL;
+                    begin->next = NULL;
+                }
+
+            }else{
+                begin = begin->next;
+                end = end->next;
+            }
+        }
+
+        if(head->val == val){
+            head = head->next;
+        }        
+
+    }
+    
+    bool contains(int key) {
+        
+        LinkedList* temp = head;
+
+        while(temp){
+            // cout << temp->val << " ";
+            if(temp->val == key){
+                return true;
+            }
+            temp = temp->next;
+        }
+
+        return false;
+    }
+};
+
+*/
