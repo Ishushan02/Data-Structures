@@ -51,5 +51,41 @@
 
         return head;
     }
+
+*/
+
+/*
+    1290. Convert Binary Number in a Linked List to Integer
+    (https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/description/)
+
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+
+        while(curr){
+            ListNode* forw = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forw;
+        }
+        return prev;
+    }
+
+    int getDecimalValue(ListNode* head) {
         
+        ListNode* ll = reverseList(head);
+
+        int sum = 0;
+        int i = 0;
+        while(ll){
+            int val = ll->val;
+
+            sum = sum + val * pow(2, i);
+            i++;
+            ll = ll->next;
+        }
+
+        return sum;
+
+    }
 */
