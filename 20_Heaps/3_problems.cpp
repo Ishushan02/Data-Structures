@@ -48,6 +48,37 @@
             return ans;
         }
     };
+
+
+    Method 2 - Easiest Method
+    
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        
+        priority_queue<pair<int, int>> sortOrder;
+        unordered_map<int, int> freuency;
+
+        for(int i = 0; i < nums.size(); i++){
+            freuency[nums[i]]++;
+        }
+
+    
+        int count = 0;
+        vector<int> ans;
+
+        for(auto &[key, val]: freuency){
+            sortOrder.push({val, key});
+        }
+
+        while(count < k && !(sortOrder.empty())){
+            pair<int, int> val = sortOrder.top();
+            sortOrder.pop();
+            ans.push_back(val.second);
+            count++;
+        }
+
+        return ans;
+
+    }
 */
 
 /*
