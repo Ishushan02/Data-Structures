@@ -548,45 +548,42 @@ int main(){
 
         
     }
-  
+
     Node* addOne(Node* head) {
         // Your Code here
         // return head of list after adding one
-        Node* node = reverse(head);
-        // print(node);
         
-        Node* temp = node;
+        Node* temp = head;
+        Node* reverseNum = reverseLL(temp);
+        Node* v = reverseNum;
+        Node* endNode = NULL;
         
-        int carry = 1;
-        while(temp){
-            // cout << temp->data << endl;
-            int val = temp->data;
-            int sum = val + carry;
-            carry = sum / 10;
-            int k = sum % 10;
-            temp->data = k;
-            
-            // cout << newNode->data << endl;
-            temp = temp->next;
+        int prevSum = 1;
+        while(reverseNum){
+            int sumVal = reverseNum->data + prevSum;
+            reverseNum->data = sumVal % 10;
+            prevSum = sumVal / 10;
+            endNode = reverseNum;
+            reverseNum = reverseNum->next;
         }
         
-        if(carry != 0){
-            Node* nn = new Node(carry);
-            nn->next = node;
-            node = nn;
-            // node->next = NULL;
-        }else{
-            Node* ans = reverse(node);
-            return ans;
+        if(prevSum > 0){
+            Node* newNode = new Node(prevSum);
+            endNode->next = newNode;
+            newNode = endNode;
         }
-        // print(node);
-
         
+        // while(v){
+        //     cout << v->data << " - "<< endl;
+        //     v = v->next;
+        // }
         
-        // print(node);
+        Node* ans = reverseLL(v);
+        return ans;
         
-        return node;
     }
+  
+    
 */
 
 
