@@ -260,5 +260,37 @@ public:
         return reverse(reverseList);
 
     }
-        
+
+*/
+
+/*
+    24. Swap Nodes in Pairs
+    (https://leetcode.com/problems/swap-nodes-in-pairs/description/)
+
+    ListNode* swapPairs(ListNode* head) {
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+
+        ListNode* firstNode = head;
+        ListNode* secondNode = head->next;
+
+        while(firstNode->next){
+            swap(firstNode->val, secondNode->val);
+            if(firstNode->next){
+                firstNode = firstNode->next->next;
+            }else{
+                break;
+            }
+            if(secondNode->next){
+                secondNode = secondNode->next->next;
+            }else{
+                break;
+            }
+            
+            // break;
+        }
+
+        return head;
+    }
 */
