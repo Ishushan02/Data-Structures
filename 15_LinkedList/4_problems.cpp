@@ -625,7 +625,7 @@ Important QUestion, took many times to solve please focus on variable traversal
 
 /*
     21. Merge Two Sorted Lists
-    (https://leetcode.com/problems/merge-two-sorted-lists/submissions/1431053260/)
+    (https://leetcode.com/problems/merge-two-sorted-lists/)
 
     Method 1 
 

@@ -14,7 +14,7 @@ int main(){
     VVI and Tricky Question - Practise it.
 
     138. Copy List with Random Pointer
-    (https://leetcode.com/problems/copy-list-with-random-pointer/submissions/1432943259/)
+    (https://leetcode.com/problems/copy-list-with-random-pointer/)
 
 
     Node* recursemap(Node* head, unordered_map<Node*, Node*> & mp){

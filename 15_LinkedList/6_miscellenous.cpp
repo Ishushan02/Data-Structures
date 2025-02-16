@@ -201,3 +201,64 @@ public:
 };
 
 */
+
+/*
+    19. Remove Nth Node From End of List
+    (https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)
+
+    ListNode* reverse(ListNode* temp){
+        ListNode* prev = NULL;
+        ListNode* head = temp;
+        while(head){
+            ListNode* forw = head->next;
+            head->next = prev;
+            prev = head;
+            head = forw;
+
+        }
+        return prev;
+    }
+
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+
+        ListNode* reverseList = reverse(head);
+
+        ListNode* temp = reverseList;
+        if(n == 1){
+            temp = temp->next;
+            return reverse(temp);
+        }
+        int count = 1;
+        while(temp){
+
+            if(count == n-1){
+                // cout << " Here "<< endl;
+                if(temp->next && temp->next->next){
+                    ListNode* fut = temp->next->next;
+                    temp->next = fut;
+                    temp = temp->next;
+                }else{
+                    temp->next = NULL;
+                    // temp = temp->next;
+                }
+                break;
+                
+            }
+            count++;
+            temp = temp->next;
+        }
+
+        ListNode* v = reverseList;
+
+        // while(v){
+        //     cout << v->val << endl;
+        //     v = v->next;
+        // }
+
+
+        
+        return reverse(reverseList);
+
+    }
+        
+*/
