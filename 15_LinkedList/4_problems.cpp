@@ -335,6 +335,27 @@ int main(){
         }
         return rab;
     }
+
+    Method 2
+    ListNode *detectCycle(ListNode *head) {
+        unordered_map<ListNode*, int> indexMap;
+
+
+        ListNode* temp = head;
+        int idx = 0;
+
+        while(temp){
+            if(indexMap.find(temp) != indexMap.end()){
+                return temp;
+            }
+            
+            indexMap[temp] = idx;
+            idx++;
+            temp = temp->next;
+        }
+
+        return NULL;
+    }
 */
 
 /*
