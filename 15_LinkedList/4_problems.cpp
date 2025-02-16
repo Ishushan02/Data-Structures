@@ -362,11 +362,47 @@ int main(){
 
     // Note the additional addition of temp in the LinkedList (the condition in For Loop)
 
+    NOTE N REMEMBER THIS TIP
+
+    // Seee the 2nd Method
+    // If there are N nodes in the list, and k parts, then every part has N/k elements, 
+    // except the first N%k parts have an extra one.
+
     725. Split Linked List in Parts
     (https://leetcode.com/problems/split-linked-list-in-parts/)
+    
+    // removed 1st method
+
+    Method 2
+
+    ListNode* getList(ListNode* start, int count, vector<ListNode*> &ans){
+
+        ListNode* temp = start;
+        ListNode* tempHead = NULL;
+        ListNode* tail = NULL;
+
+        while(temp  && count){
+            ListNode* newNode = new ListNode(temp->val);
+            if(tempHead == NULL){
+                tempHead = newNode;
+                tail = newNode;
+            }else{
+                tail->next = newNode;
+                tail = tail->next;
+            }
+
+            temp = temp->next;
+            count--;
+        }
+
+        ans.push_back(tempHead);
+        
+        return temp;
+    }
 
     vector<ListNode*> splitListToParts(ListNode* head, int k) {
-        vector<int> buckets;
+        
+        vector<ListNode*> ans;
 
         int n = 0;
         ListNode* temp = head;
@@ -375,43 +411,27 @@ int main(){
             temp = temp->next;
         }
 
-        int totalequalelements = n / k;
-        int remainingelements = n % k;
+        int partA = n / k;
+        int partB = n % k;
 
-        for(int i = 0; i < k; i++){
-            buckets.push_back(totalequalelements);
-        }
+        ListNode* start = head;
 
-        
-        while(remainingelements){
-            for(int i = 0; i < k; i++){
-                if(remainingelements <= 0){
-                    break;
-                }
-                buckets[i] = buckets[i] + 1;
-                remainingelements--;
+        for(int i = 1; i <= k; i++){
+
+            if(i <= partB){
+                
+                int count = partA + 1;
+                start = getList(start, count, ans);
+
+            }else{
+                int count = partA ;
+                start = getList(start, count, ans);
             }
+            
+            
         }
-
-        temp = head;
-        vector<ListNode*> ans(k, nullptr);
-        for(int i = 0; i < k && temp; i++){    // Important thing of adding condition in For Loop
-            ans[i] = temp;
-            int totalelements =  buckets[i];
-            for(int j = 0; j < totalelements-1; j++){
-                temp = temp->next;
-            }
-
-            ListNode* newelem = temp->next;
-            temp->next = nullptr;
-            temp = newelem;
-
-        }
-
-        
 
         return ans;
-
     }
 
 */
