@@ -244,6 +244,50 @@ int main(){
 
     }
 
+    Method 2 (Simple and Easy)
+    ListNode* oddEvenList(ListNode* head) {
+        if(head == NULL){
+            return NULL;
+        }
+        
+        ListNode* evenList = NULL;
+        ListNode* evenListHead = NULL;
+        ListNode* oddList = NULL;
+        ListNode* oddListHead = NULL;
+
+
+        int i = 0;
+        ListNode* temp = head;
+
+        while(temp){
+            ListNode* node = new ListNode(temp->val);
+            if(i&1){
+                if(oddList == NULL){
+                    oddList = node;
+                    oddListHead = node;
+                }else{
+                    oddList->next = node;
+                    oddList = oddList->next;
+                }
+            }else{
+                if(evenList == NULL){
+                    evenList = node;
+                    evenListHead = node;
+                }else{
+                    evenList->next = node;
+                    evenList = evenList->next;
+                }
+            }
+            i++;
+            temp = temp->next;
+        }
+
+        evenList->next = oddListHead;
+        evenList = evenList->next;
+
+        return evenListHead;
+    }
+
 
 */
 
