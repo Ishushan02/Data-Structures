@@ -478,7 +478,7 @@ VVVIIII Question
         return head;
     }
 
-    
+
     Method 2 (Something Similar)
 
     pair<Node*, Node*> flattenNodes(Node* head){
@@ -576,6 +576,46 @@ Important QUestion, took many times to solve please focus on variable traversal
     Node* linkdelete(Node* head, int n, int m) {
         // code here
         deleteNode(head, n, m);
+        return head;
+        
+    }
+
+    Method 2
+
+    Node* linkdelete(Node* head, int n, int m) {
+        // code here
+        
+        int count = 1;
+        Node* temp = head;
+        
+        while(temp){
+            
+            
+            if(count == m){
+                Node* todelete = temp->next;
+                temp->next = NULL;
+                
+                int c = n;
+                while(c && todelete){
+                    todelete = todelete->next;
+                    c--;
+                }
+                
+                count = 0;
+                if(todelete){
+                    temp->next = todelete;
+                }else{
+                    temp = temp->next;
+                }
+                
+            }else{
+                count++;
+                temp = temp->next;
+            }
+            
+            
+        }
+        
         return head;
         
     }
