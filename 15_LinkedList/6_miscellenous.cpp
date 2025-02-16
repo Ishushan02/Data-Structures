@@ -294,3 +294,45 @@ public:
         return head;
     }
 */
+
+/*
+    82. Remove Duplicates from Sorted List II
+    (https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/description/)
+
+    ListNode* deleteDuplicates(ListNode* head) {
+        
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+
+        map<int, int> mapVal;
+
+        ListNode* temp = head;
+        while(temp){
+            mapVal[temp->val]++;
+            temp = temp->next;
+        }
+
+        ListNode* anslist = NULL;
+        ListNode* ansHead = NULL;
+
+        for(auto &[key, val]:mapVal){
+            if(val == 1){
+                ListNode* newNode = new ListNode(key);
+
+                if(anslist == NULL){
+                    anslist = newNode;
+                    ansHead = newNode;
+                }else{
+                    anslist->next = newNode;
+                    anslist = anslist->next;
+                }
+            }
+        }
+
+        return ansHead;
+
+    }
+
+    
+*/
