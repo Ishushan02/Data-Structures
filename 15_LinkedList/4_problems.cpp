@@ -478,6 +478,56 @@ VVVIIII Question
         return head;
     }
 
+    
+    Method 2 (Something Similar)
+
+    pair<Node*, Node*> flattenNodes(Node* head){
+
+        Node* headNode = head;
+        Node* tailNode = head;
+
+        while(headNode){
+            
+            if(headNode->child){
+                Node* futureNodes = headNode->next;
+                pair<Node*, Node*> nodes = flattenNodes(headNode->child);
+                headNode->child = NULL;
+                
+                Node* flatHead = nodes.first;
+                Node* flatTail = nodes.second;
+                // cout << headNode->val << ": " << flatHead->val << " " << flatTail->val << endl;
+
+                headNode->next = flatHead;
+                flatHead->prev = headNode;
+
+                flatTail->next = futureNodes;
+                if(futureNodes){
+                    futureNodes->prev = flatTail;
+                }
+                
+            }
+            // cout << headNode->val << endl;
+
+            tailNode = headNode;
+            headNode = headNode->next;
+        }
+
+
+        return {head, tailNode};
+
+    }
+
+    Node* flatten(Node* head) {
+        
+        pair<Node*, Node*> nodes = flattenNodes(head);
+        Node* flatHead = nodes.first;
+        Node* flatTail = nodes.second;
+
+        // cout << flatHead->val << " " << flatTail->val << endl;
+
+        return head;
+    }
+
 
 */
 
