@@ -336,3 +336,42 @@ public:
 
     
 */
+
+/*
+    3217. Delete Nodes From Linked List Present in Array
+    (https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/)
+
+    ListNode* modifiedList(vector<int>& nums, ListNode* head) {
+        
+        ListNode* anshead =NULL;
+        ListNode* anslist =NULL;
+
+        unordered_map<int, bool> valMap;
+        for(auto v:nums){
+            valMap[v] = true;
+        }
+
+        ListNode* temp = head;
+
+        while(temp){
+            int value = temp->val;
+
+            if(valMap[value] == 0){
+                ListNode* newNode = new ListNode(value);
+                if(anslist == NULL){
+                    anslist = newNode;
+                    anshead = newNode;
+                }else{
+                    anslist->next = newNode;
+                    anslist = anslist->next;
+                }
+            }
+
+            temp = temp->next;
+        }
+
+        return anshead;
+
+    }
+        
+*/
