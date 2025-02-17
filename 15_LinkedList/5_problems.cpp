@@ -410,7 +410,7 @@ int main(){
 
 
     2181. Merge Nodes in Between Zeros
-    (https://leetcode.com/problems/merge-nodes-in-between-zeros/submissions/1435719601/)
+    (https://leetcode.com/problems/merge-nodes-in-between-zeros/)
 
     ListNode* mergeNodes(ListNode* head) {
         int sum = 0;
@@ -586,9 +586,7 @@ int main(){
             temp = temp->next;
         }
 
-        int p = firstptr->val;
-        firstptr->val = secondptr->val;
-        secondptr->val = p;
+        swap(firstptr->val, secondptr->val);
 
         return head;
     }
@@ -716,6 +714,162 @@ VVVVIIIIII Question--
         ListNode* mergedLL = Divide(head);
 
         return mergedLL;
+    }
+
+
+    Method 2
+    // Process is same just that the seperating list procedure is different
+    // but the above 1 is simpler one, follow the above one
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        
+        if(list1 == NULL){
+            return list2;
+        }
+
+        if(list2 == NULL){
+            return list1;
+        }
+
+        int elem = 0;
+        if(list1->val < list2->val){
+            elem = list1->val;
+            list1 = list1->next;
+        }else{
+            elem = list2->val;
+            list2 = list2->next;
+
+        }
+
+        ListNode* anshead = new ListNode(elem);
+        ListNode* anslist = anshead;
+
+        while(list1 && list2){
+            int val1 = list1->val;
+            ListNode* node1 = new ListNode(val1);
+            int val2 = list2->val;
+            ListNode* node2 = new ListNode(val2);
+
+
+            if(val1 < val2){
+                anslist->next = node1;
+                anslist = anslist->next;
+                list1 = list1->next;
+            }else if(val1 > val2){
+                anslist->next = node2;
+                anslist = anslist->next;
+                list2 = list2->next;
+            }else{
+                anslist->next = node1;
+                anslist = anslist->next;
+                anslist->next = node2;
+                anslist = anslist->next;
+                list1 = list1->next;
+                list2 = list2->next;
+            }
+        }
+
+        while(list1){
+            int val1 = list1->val;
+            ListNode* node1 = new ListNode(val1);
+            anslist->next = node1;
+            anslist = anslist->next;
+            list1 = list1->next;
+        }
+
+        while(list2){
+            int val2 = list2->val;
+            ListNode* node2 = new ListNode(val2);
+            anslist->next = node2;
+            anslist = anslist->next;
+            list2 = list2->next;
+        }
+
+        return anshead;
+
+    }
+
+    int getLength(ListNode* temp){
+
+        ListNode* templist = temp;
+        int n = 0;
+        while(templist){
+            n++;
+            templist = templist->next;
+        }
+
+        return n;
+    }
+
+
+    pair<ListNode*, ListNode*> seperateNodes(ListNode* list){
+        int n = getLength(list);
+
+        int mid = n / 2;
+        // cout << n << endl;
+        ListNode* nodehead1 = NULL;
+        ListNode* nodelist1 = NULL;
+        ListNode* nodehead2 = NULL;
+        ListNode* nodelist2 = NULL;
+
+        int i = 0;
+        while(i < n){
+            ListNode* newNode = new ListNode(list->val);
+
+            if(i < mid){
+                if(nodehead1 == NULL){
+                    nodehead1 = newNode;
+                    nodelist1 = newNode;
+                }else{
+                    nodelist1->next = newNode;
+                    nodelist1 = nodelist1->next;
+                }
+            }else if(i >= mid){
+                if(nodehead2 == NULL){
+                    nodehead2 = newNode;
+                    nodelist2 = newNode;
+                }else{
+                    nodelist2->next = newNode;
+                    nodelist2 = nodelist2->next;
+                }
+            }
+            
+            list = list->next;
+            i++;
+        }
+
+
+
+        // nodelist1->next = NULL;
+        // cout << nodehead1->val << " " << nodehead2->val << endl;
+
+        return {nodehead1, nodehead2};
+
+        
+    }
+    
+
+    ListNode* divideNodes(ListNode* head){
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+
+        pair<ListNode*, ListNode*> nodes = seperateNodes(head);
+
+        ListNode* leftNode = divideNodes(nodes.first);
+        ListNode* rightNode = divideNodes(nodes.second);
+
+
+        ListNode* mergelist = mergeTwoLists(leftNode, rightNode);
+        
+        return mergelist;
+    }
+
+    ListNode* sortList(ListNode* head) {
+        if(head == NULL){
+            return NULL;
+        }
+        return divideNodes(head);
     }
 
 */
