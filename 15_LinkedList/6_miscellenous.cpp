@@ -445,5 +445,54 @@ public:
 
     }
 
-    
+
+*/
+
+/*
+    2487. Remove Nodes From Linked List
+    (https://leetcode.com/problems/remove-nodes-from-linked-list/description/)
+
+    ListNode* reverseNodes(ListNode* head){
+        ListNode* prev = NULL;
+
+        ListNode* temp = head;
+
+        while(temp){
+            ListNode* future = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = future;
+        }
+
+        return prev;
+    }
+
+    ListNode* removeNodes(ListNode* head) {
+        
+        ListNode* reversedNodes = reverseNodes(head);
+
+        int maxNum = -1;
+        ListNode* temp = reversedNodes;
+        ListNode* anslist = NULL;
+        ListNode* ansHead = NULL;
+
+        while(temp){
+            int val = temp->val;
+            if(val >= maxNum){
+                maxNum = val;
+                ListNode* newNode = new ListNode(val);
+                if(anslist== NULL){
+                    anslist = newNode;
+                    ansHead = newNode;
+                }else{
+                    anslist->next = newNode;
+                    anslist = anslist->next;
+                }
+            }
+
+            temp = temp->next;
+        }
+        return reverseNodes(ansHead);
+    }
+        
 */
