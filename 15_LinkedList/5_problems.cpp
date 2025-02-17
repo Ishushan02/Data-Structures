@@ -167,6 +167,9 @@ int main(){
 
     Method 2 // Easy Method
 
+    // So the idea is get length, get total rotations do mod of it to get actual rotation,
+    // and get the elements at that index (n - k).. join the later to the first head;
+
     ListNode* rotateRight(ListNode* head, int k) {
         if(head == NULL || head->next == NULL){
             return head;

@@ -1010,10 +1010,10 @@ Important QUestion, took many times to solve please focus on variable traversal
         
         if(a->data < b->data){
             ans = a;
-            a->bottom = mergeNode(a->bottom, b);
+            ans->bottom = mergeNode(a->bottom, b);
         }else{
             ans = b;
-            b->bottom = mergeNode(a, b->bottom);
+            ans->bottom = mergeNode(a, b->bottom);
         }
         
         return ans;
