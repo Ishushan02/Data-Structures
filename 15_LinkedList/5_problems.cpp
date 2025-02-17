@@ -165,6 +165,60 @@ int main(){
         return rotatedHead;
     }
 
+    Method 2 // Easy Method
+
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+        
+        ListNode* temp = head;
+        int n = 0;
+
+        while(temp){
+            temp = temp->next;
+            n++;
+        }
+
+        int stop = 0;
+
+        k = k % n;
+        stop = n - k;
+
+        if(stop == 0 || k == 0){
+            return head;
+        }
+
+
+
+        ListNode* ansList = NULL;
+        ListNode* ansHead = NULL;
+
+        temp = head;
+        // cout << stop << endl;
+        int count = 1;
+        while(count && temp){
+            if(count == stop){
+                cout << temp->val << endl;
+                ansList = temp->next;
+                ansHead = temp->next;
+                temp->next = NULL;
+                break;
+            }
+            count++;
+            temp = temp->next;
+        }
+
+        while(ansList->next){
+            ansList = ansList->next;
+        }
+
+        ansList->next = head;
+        ansList = ansList->next;
+
+        return ansHead;
+    }
+
 */
 
 /*
