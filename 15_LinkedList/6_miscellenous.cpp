@@ -373,5 +373,77 @@ public:
         return anshead;
 
     }
-        
+
+*/
+
+/*
+    2807. Insert Greatest Common Divisors in Linked List
+    (https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/description/)
+
+    int getGCD(int a, int b){
+        if(a == 0){
+            return b;
+        }else if(b == 0){
+            return a;
+        }
+
+        while(a > 0 && b > 0){
+            if(a > b){
+                a = a - b;
+            }else{
+                b = b - a;
+            }
+        }
+
+        if(a == 0){
+            return b;
+        }
+
+        return a;
+    }
+
+    ListNode* insertGreatestCommonDivisors(ListNode* head) {
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+        ListNode* anslist = NULL;
+        ListNode* anshead = NULL;
+
+        ListNode* temp = head;
+
+        while(temp->next){
+
+            int a = temp->val;
+            int b = temp->next->val;
+
+            int gcd = getGCD(a, b);
+
+            ListNode* newa = new ListNode(a);
+            ListNode* newb = new ListNode(b);
+            ListNode* newgcd = new ListNode(gcd);
+
+
+            if(anslist == NULL){
+                anshead = newa;
+                anslist = newa;
+                anslist->next = newgcd;
+                anslist = anslist->next;
+                anslist->next = newb;
+                anslist = anslist->next;
+            }else{
+                anslist->next = newgcd;
+                anslist = anslist->next;
+                anslist->next = newb;
+                anslist = anslist->next;
+            }
+
+            temp = temp->next;
+
+        }
+
+        return anshead;
+
+    }
+
+    
 */
