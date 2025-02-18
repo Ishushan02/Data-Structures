@@ -548,6 +548,32 @@ int main(){
 
 */
 
+
+
+/*
+    // Good Question
+    // TO delete the current topNode, swap it with next nodes, such that the first nodes
+    // which needs to be deleted comes in the last, and then make the prev of end node as NUll
+
+    237. Delete Node in a Linked List
+    (https://leetcode.com/problems/delete-node-in-a-linked-list/description/)
+
+    void deleteNode(ListNode* node) {
+        
+        ListNode* temp = node;
+        ListNode* prev = NULL;
+
+        while(temp->next){
+            swap(temp->val, temp->next->val);
+            prev = temp;
+            temp = temp->next;
+        }
+        prev->next = NULL;
+
+    }
+
+*/
+
 /*
 
     1721. Swapping Nodes in a Linked List
