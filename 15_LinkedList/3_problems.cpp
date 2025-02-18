@@ -35,6 +35,13 @@ int main(){
 
 
 /*
+
+    // Procedure is 
+    // when you get the starting index of the node to be reverse, send that to the function.. 
+    // in that keep reverse var and head var.. such that reverse only till the required nodes
+    // and rest.. connect it.. like prevtail->next = current_reversed_head.. Done
+
+
     92. Reverse Linked List II
     (https://leetcode.com/problems/reverse-linked-list-ii/description/)
 
@@ -97,7 +104,7 @@ int main(){
         return NULL;
 
     }
-        
+
 */
 
 /*
