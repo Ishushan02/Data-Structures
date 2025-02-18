@@ -598,3 +598,99 @@ public:
     }
 
 */
+
+/*
+    445. Add Two Numbers II
+    (https://leetcode.com/problems/add-two-numbers-ii/description/)
+
+    ListNode* reverse(ListNode* head){
+
+        ListNode* prev = NULL;
+
+        while(head){
+
+            ListNode* nextNode = head->next;
+            head->next = prev;
+            prev = head;
+            head = nextNode;
+        }
+
+        return prev;
+    }
+
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        ListNode* num1 = reverse(l1);
+        ListNode* num2 = reverse(l2);
+        ListNode* ans = NULL;
+        ListNode* ansHead = NULL;
+        int prevSum = 0;
+
+        while(num1 || num2){
+
+            if(num1 != NULL && num2 == NULL){
+                int sum = num1->val + prevSum;
+                int digit = sum % 10;
+                prevSum = sum / 10 ;
+
+                ListNode* newNode = new ListNode(digit);
+                if(ans == NULL){
+                    ans = newNode;
+                    ansHead = ans;
+                }else{
+                    ans->next = newNode;
+                    ans = ans->next;
+                }
+
+                num1 = num1->next;
+            }else if(num1 == NULL && num2 != NULL){
+                int sum = num2->val + prevSum;
+                int digit = sum % 10;
+                prevSum = sum / 10 ;
+
+                ListNode* newNode = new ListNode(digit);
+                if(ans == NULL){
+                    ans = newNode;
+                    ansHead = ans;
+                }else{
+                    ans->next = newNode;
+                    ans = ans->next;
+                }
+
+                num2 = num2->next;
+            }else{
+
+                int sum = num1->val + num2->val + prevSum;
+                int digit = sum % 10;
+                prevSum = sum / 10 ;
+
+                ListNode* newNode = new ListNode(digit);
+                if(ans == NULL){
+                    ans = newNode;
+                    ansHead = ans;
+                }else{
+                    ans->next = newNode;
+                    ans = ans->next;
+                }
+
+                num1 = num1->next;
+                num2 = num2->next;
+
+
+            }
+        }
+
+        if(prevSum > 0){
+            ListNode* newNode = new ListNode(prevSum);
+            ans->next = newNode;
+            ans = ans->next;
+                
+        }
+        return reverse(ansHead);
+
+    
+
+    }
+        
+
+*/
