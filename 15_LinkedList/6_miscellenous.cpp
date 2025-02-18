@@ -496,3 +496,56 @@ public:
     }
         
 */
+
+/*
+    2326. Spiral Matrix IV
+    (https://leetcode.com/problems/spiral-matrix-iv/)
+
+    vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
+        
+        vector<vector<int>> ans(m, vector<int>(n, -1));
+
+        int row = m;
+        int col = n;
+        int startRow = 0;
+        int endRow = row - 1;
+        int startCol = 0;
+        int endCol = col - 1;
+
+        ListNode* temp = head;
+
+        while(temp){
+            for(int i = startCol; temp && i <= endCol; i++){
+                ans[startRow][i] = temp->val;
+                temp = temp->next;
+            }
+            startRow++;
+
+
+            for(int i = startRow; temp && i <= endRow; i++){
+                ans[i][endCol] = temp->val;
+                temp = temp->next;
+            }
+            endCol--;
+
+            for(int i = endCol; temp && i >= startCol; i--){
+                ans[endRow][i] = temp->val;
+                temp = temp->next;
+            }
+            cout << endl;
+            endRow--;
+
+            for(int i = endRow; temp && i >= startRow; i--){
+                ans[i][startCol] = temp->val;
+                temp = temp->next;
+            }
+            startCol++;
+
+        }
+
+        return ans;
+
+
+    }
+        
+*/
