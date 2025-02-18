@@ -35,6 +35,72 @@ int main(){
 
 
 /*
+    92. Reverse Linked List II
+    (https://leetcode.com/problems/reverse-linked-list-ii/description/)
+
+    ListNode* reverseList(ListNode* head, int count){
+
+        ListNode* prevhead = NULL;
+        ListNode* prevtail = head;
+        ListNode* temp = head;
+
+        ListNode* nextNode = NULL;
+        while(count && temp){
+            nextNode = temp->next;
+            temp->next = prevhead;
+            prevhead = temp;
+            temp = nextNode;
+            
+            count--;
+        }
+
+        prevtail->next = nextNode;
+
+        return prevhead;
+
+    }
+
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+
+        left = left - 1;
+        right = right - 1;
+
+        int n = 0;
+        ListNode* temp = head;
+        ListNode* prev = NULL;
+
+        while(temp){
+            
+            if(n == left){
+                int totalelements = right-left;
+                
+                ListNode* reversed = reverseList(temp, totalelements+1);
+
+                if(reversed && prev){
+                    prev->next = reversed;
+                    return head;
+                }else{
+                    return reversed;
+                }
+                
+                break;
+            }
+            prev = temp;
+            temp = temp->next;
+            n++;
+        }
+
+        return NULL;
+
+    }
+        
+*/
+
+/*
 
 876. Middle of the Linked List
 (https://leetcode.com/problems/middle-of-the-linked-list/)
