@@ -691,6 +691,54 @@ public:
     
 
     }
-        
 
+
+*/
+
+/*
+    86. Partition List
+    (https://leetcode.com/problems/partition-list/description/)
+
+    ListNode* partition(ListNode* head, int x) {
+        
+        ListNode* lowerNodes = NULL;
+        ListNode* greaterNodes = NULL;
+        ListNode* lowerhead = NULL;
+        ListNode* greaterhead = NULL;
+
+        ListNode* temp = head;
+
+        while(temp){
+            ListNode* newNode = new ListNode(temp->val);
+
+            if(newNode->val < x){
+                if(lowerNodes == NULL){
+                    lowerNodes = newNode;
+                    lowerhead = newNode;
+                }else{
+                    lowerNodes->next = newNode;
+                    lowerNodes = lowerNodes->next;
+                }
+            }else if(newNode->val >= x){
+                if(greaterNodes == NULL){
+                    greaterNodes = newNode;
+                    greaterhead = newNode;
+                }else{
+                    greaterNodes->next = newNode;
+                    greaterNodes = greaterNodes->next;
+                }
+            }
+            temp = temp->next;
+        }
+
+        if(lowerNodes){
+            lowerNodes->next = greaterhead;
+            lowerNodes = lowerNodes->next;
+            return lowerhead;
+        }
+
+        return greaterhead;
+
+    }
+        
 */
