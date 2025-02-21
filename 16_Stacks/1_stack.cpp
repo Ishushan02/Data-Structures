@@ -17,7 +17,7 @@ using namespace std;
 // get MiddleElement
 
 /*
-    So, the biggest advantage is that, we can use recursion for stack oeration as it also follows STACK operation in backend
+    So, the biggest advantage is that, we can use recursion for stack operation as it also follows STACK operation in backend
 */
 
 void printstack(stack<int>& stck){
@@ -225,7 +225,7 @@ int main(){
 
 /*
 
-    // Important Question
+    // Important Question, Do it Again bsdk
     // (Similar will be the smallest on Right Question try that)
     Smaller on Left
     (https://www.geeksforgeeks.org/problems/smallest-number-on-left3403/1)
@@ -255,6 +255,13 @@ int main(){
 /*
     // VVIII Question, do it later..(Class 3 Last question)
     84. Largest Rectangle in Histogram
+
+    Procedure:
+        So the thought process is that, get the shortest number to it left and right wards,
+        that would be the max area covered by it, hence calculate the area and also store the maximum
+        possible solution. 
+
+
     (https://leetcode.com/problems/largest-rectangle-in-histogram/)
 
 
