@@ -463,6 +463,55 @@ COMPLETE THE N STACKS IN AN ARRAY -
         return ans;
     }
 
+
+    Method 2 // Recursion
+    string recursiveSol(string s, int &i, int &a){
+
+        string ans = "";
+        
+        while(i < s.length()){
+
+            if(isdigit(s[i])){
+                // think about 100
+                int repeat = s[i] - '0';
+                i++;
+                while(isdigit(s[i])){
+                    int val = s[i] - '0';
+                    
+                    repeat = repeat * 10 + val;
+                    i++;
+                }
+                i += 1; // for '['
+                ans += recursiveSol(s, i, repeat);
+            }else if(s[i] == '['){
+                int repeat = 1;
+                i = i + 1;
+                ans += recursiveSol(s, i, repeat);
+            }else if(s[i] == ']'){
+                i += 1;
+                break;
+            }else{
+                ans += s[i];
+                i += 1;
+            }
+            
+        }
+
+        string res;
+        while(a){
+            res += ans;
+            a--;
+        }
+
+        return res;
+    }
+
+    string decodeString(string s) {
+        int i = 0;
+        int repeat = 1;
+        return recursiveSol(s, i, repeat);
+    }
+
 */
 
 /*  
