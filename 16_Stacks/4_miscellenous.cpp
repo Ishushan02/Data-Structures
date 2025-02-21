@@ -57,5 +57,32 @@
 
         return st.size();
     }
+
+*/
+
+/*
+    1614. Maximum Nesting Depth of the Parentheses
+    (https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/description/)
+
+    int maxDepth(string s) {
+        int maxSize = 0;
+        stack<char> st;
+
+        int i = 0;
+        while(i < s.length()){
+            if(s[i] == '('){
+                st.push(s[i]);
+                int n = st.size();
+                maxSize = max(n, maxSize);
+            }else{
+                if(s[i] == ')'){
+                    st.pop();
+                }
+            }
+            i++;
+        }
+
+        return maxSize;
+    }
         
 */
