@@ -84,5 +84,47 @@
 
         return maxSize;
     }
+
+*/
+
+/*
+    2000. Reverse Prefix of Word
+    (https://leetcode.com/problems/reverse-prefix-of-word/description/)
+
+    string reversePrefix(string word, char ch) {
+        
+        int i = 0;
+        stack<char> st;
+        bool isPresent = false;
+
+        while(i < word.length()){
+            st.push(word[i]);
+            if(word[i] == ch){
+                isPresent = true;
+                break;
+            }
+            i++;
+        }
+
+        if(!isPresent){
+            return word;
+        }
+
+        string ans;
+
+        while(!st.empty()){
+            // cout << st.top() << " : " << ans<< endl;
+            ans += st.top();
+            st.pop();
+        }
+
+        i++;
+        while(i < word.length()){
+            ans += word[i];
+            i++;
+        }
+
+        return ans;
+    }
         
 */
