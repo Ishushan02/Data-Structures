@@ -319,6 +319,38 @@ COMPLETE THE N STACKS IN AN ARRAY -
 
     }
 
+
+    Method 2 (Smae as prev Greater ELement, notice till now we have solved 5 questions of same Pattern)
+
+    class StockSpanner {
+    public:
+
+        vector<int> prices;
+
+        StockSpanner() {
+            
+        }
+
+        int prevMax(vector<int> prices, int price){
+            int count = 0;
+            stack<pair<int, int>> st;
+            int ans = prices.size();
+            for(int i = prices.size() -1;  i >= 0; i--){
+                if(prices[i] > price){
+                    return count;
+                }else{
+                    count++;
+                }
+            }
+            return count;
+        }
+        
+        int next(int price) {
+            prices.push_back(price);
+            return prevMax(prices, price);
+        }
+};
+
 */
 
 
