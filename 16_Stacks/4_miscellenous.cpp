@@ -126,5 +126,30 @@
 
         return ans;
     }
+
+*/
+
+/*
+    1598. Crawler Log Folder
+    (https://leetcode.com/problems/crawler-log-folder/description/)
+
+    int minOperations(vector<string>& logs) {
+        
+        stack<string> st;
+        int i = 0;
+
+        while(i < logs.size()){
+            if(logs[i] == "../"){
+                if(!st.empty()){
+                    st.pop();
+                }
+            }else if(logs[i] != "./"){
+                st.push(logs[i]);
+            }
+            i++;
+        }
+
+        return st.size();
+    }
         
 */
