@@ -384,6 +384,28 @@ COMPLETE THE N STACKS IN AN ARRAY -
         return true;
     }
 
+    Method 2
+
+    bool isValid(string s) {
+        
+        int i = 0;
+        while(i < s.length()){
+            string sub = s.substr(i, 3);
+            // cout << s <<": "<< sub << endl;
+            if(sub == "abc"){
+                s.erase(i, 3);
+                i = 0;
+            }else{
+                i += 1;
+            }
+
+            if(s.length() == 0){
+                return true;
+            }
+            
+        }
+        return false;
+    }
 
 */
 
