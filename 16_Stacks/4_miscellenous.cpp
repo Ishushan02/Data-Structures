@@ -151,5 +151,45 @@
 
         return st.size();
     }
+
+*/
+
+/*
+    1544. Make The String Great
+    (https://leetcode.com/problems/make-the-string-great/)
+
+    string makeGood(string s) {
+        
+        stack<char> st;
+        int i = 0;
+
+        while(i < s.length()){
+            char c = s[i];
+            // cout << i << endl;
+            char topchar;
+            if(st.size() > 0){
+                topchar = st.top();
+            }
+            
+            int a = (topchar - '0') - (c - '0');
+            // 32 because the difference between same char small and large is 32
+            if((a == 32 || a == -32) && !st.empty()){
+                st.pop();
+            }else{
+                st.push(c);
+            }            
+        
+            i++;
+        }
+
+        string ans;
+
+        while(!st.empty()){
+            ans = st.top() + ans;
+            st.pop();
+        }
+
+        return ans;
+    }
         
 */
