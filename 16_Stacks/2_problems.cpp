@@ -623,70 +623,49 @@ COMPLETE THE N STACKS IN AN ARRAY -
     71. Simplify Path (Good and Important Question)
     (https://leetcode.com/problems/simplify-path/)
 
-
-    void reverse(stack<string>& stck, string& ans){
-        if(stck.empty()){
-            return;
-        }
-
-        string topelem = stck.top();
-        stck.pop();
-        reverse(stck, ans);
-        ans += topelem;
-    }
-
     string simplifyPath(string path) {
         
-        string ans;
-        stack <string> st;
-
         int i = 0;
+        stack<string> st;
         while(i < path.length()){
-
+            
             int j = i;
-            string next;
-            next += path[i];
-            j += 1;
+            string nextVal;
+            nextVal += path[i];
+            j++;
             while(j < path.length()){
                 if(path[j] == '/'){
                     break;
                 }
-                next += path[j];
+                nextVal += path[j];
                 j++;
             }
-            i = j;
 
-            if(!st.empty() && next == "/.."){
+            // cout << nextVal << endl;
+
+            if(nextVal == "/.." && !st.empty()){
                 st.pop();
-            }else if(next == "/" || next == "/."){
-                // do nothing
-                continue;
-            }else if(next != "/.."){
-                st.push(next);
+            }else if(nextVal != "/" && nextVal != "/." && nextVal != "/.."){
+                st.push(nextVal);
             }
 
-
-            // cout << next << endl;
-            // i++;
+            i = j;
         }
 
-        
-        if(st.empty()){
-            // root directory
+        string ans;
+
+        while(!st.empty()){
+            ans = st.top() + ans;
+            st.pop();
+        }
+
+        if (ans == ""){
             return "/";
         }
 
-        // reverse the stack or else add that string there itself
-        reverse(st, ans);
-
-        // ans
-        // while(!newstck.empty()){
-        //     ans += newstck.top();
-        //     newstck.pop();
-        // }
-        cout << "Ans " << ans << endl;
-
         return ans;
-
     }
+    
+
+
 */
