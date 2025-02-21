@@ -190,57 +190,10 @@ Celebrity Problem
 
 
     1019. Next Greater Node In Linked List
-    (https://leetcode.com/problems/next-greater-node-in-linked-list/description/)
-    
-    
-    // Method 1, Time Limit Exceeded by 1 test case
-    vector<int> nextLargerNodes(ListNode* head) {
-        stack<ListNode*> st;
-
-        ListNode* temp = head;
-        vector<int> ans;
-
-        st.push(temp);
-        while(temp != NULL && !st.empty()){
-            ListNode* topNode = st.top();
-            // cout << topNode->val << " - curr temp val " << temp->val << endl;
-            if(temp->val > topNode->val){
-                ans.push_back(temp->val);
-                st.pop();
-
-                ListNode* newNode = topNode->next;
-                if(newNode != NULL){
-                    st.push(newNode);
-                }
-                temp = newNode;
-            }else{        
-                // no element greater than that element
-                if(temp->next == NULL){
-                    ans.push_back(0);
-                    st.pop();
-
-                    ListNode* newNode = topNode->next;
-                    if(newNode != NULL){
-                        st.push(newNode);
-                    }
-                    temp = newNode;
-                }else{
-                    temp = temp->next;
-                }
-
-                
-            }
-
-        }
-
-        // always last element will not have any next greater
-        // ans.push_back(0);
-
-        return ans;
-    }
+    (https://leetcode.com/problems/next-greater-node-in-linked-list/description/)    
 
 
-    // Method 2 (Good Approach)
+    // Method 1 (Good Approach)
     vector<int> nextLargerNodes(ListNode* head) {
         
         vector<int> ans;
@@ -267,6 +220,49 @@ Celebrity Problem
 
         }
 
+        return ans;
+
+    }
+
+
+    Method 2 // Good APproach (Remember prev question of next smaller, and histogram area, same logic)
+    ListNode* reverseLL(ListNode* head){
+
+        ListNode* prev = NULL;
+        
+        while(head){
+            ListNode* nextNode = head->next;
+            head->next = prev;
+            prev = head;
+            head = nextNode;
+        }
+
+        return prev;
+    }
+
+    vector<int> nextLargerNodes(ListNode* head) {
+        
+        ListNode* reversedElem = reverseLL(head);
+
+        vector<int> ans;
+        stack<int> st;
+
+        while(reversedElem){
+            int elem = reversedElem->val;
+            while(!st.empty() && st.top() <= elem){
+                st.pop();
+            }
+
+            if(st.empty()){
+                ans.push_back(0);
+            }else{
+                ans.push_back(st.top());
+            }
+            st.push(elem);
+            reversedElem = reversedElem->next;
+        }
+
+        reverse(ans.begin(), ans.end());
         return ans;
 
     }
