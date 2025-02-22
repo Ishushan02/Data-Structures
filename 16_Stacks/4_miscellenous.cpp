@@ -370,5 +370,57 @@
 
         return ans;
     }
+
+*/
+
+/*
+    682. Baseball Game
+    (https://leetcode.com/problems/baseball-game/description/)
+
+    int calPoints(vector<string>& operations) {
+        
+        stack<int> st;
+
+        int i = 0;
+        while(i < operations.size()){
+
+            string currop = operations[i];
+
+            if(currop == "C"){
+                // cout << "C: " << st.top() << endl;
+                st.pop();
+            }else if(currop == "D"){
+                    // cout << "D: " << 2 * st.top() << endl;
+                    // int a = st.top();
+                    st.push(2 * st.top());
+
+            }else if(currop == "+"){
+                    int a = st.top();
+                    st.pop();
+                    int b = st.top();
+                    st.pop();
+
+                    // cout << "+: " << a << " and " << b << " is "<< a + b << endl;
+                    st.push(b);
+                    st.push(a);
+                    st.push(b + a);
+            }else{
+                // cout << "Num: " << currop << endl;
+                st.push(stoi(currop));
+            }
+            i++;
+        }
+
+        int ans = 0;
+
+        while(!st.empty()){
+            // cout << st.top() << endl;
+            ans += st.top();
+            st.pop();
+        }
+
+        return ans;
+
+    }
         
 */
