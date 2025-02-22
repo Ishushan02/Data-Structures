@@ -239,5 +239,41 @@
 
         return ans;
     }
+
+*/
+
+/*
+    897. Increasing Order Search Tree
+    (https://leetcode.com/problems/increasing-order-search-tree/description/)
+
+    void inOrderedTraversal(TreeNode* root, TreeNode* &ansNode, TreeNode* &ansHead){
+        if(root == NULL){
+            return ;
+        }
+
+        
+        inOrderedTraversal(root->left, ansNode, ansHead);
+        TreeNode* newNode = new TreeNode(root->val);
+        if(ansNode == NULL){
+            ansNode = newNode;
+            ansHead = newNode;
+        }else{
+            ansNode->right = newNode;
+            ansNode = ansNode->right;
+        }
+        
+        inOrderedTraversal(root->right, ansNode, ansHead);
+
+    }
+
+    TreeNode* increasingBST(TreeNode* root) {
+        
+        TreeNode* ansNode = NULL;
+        TreeNode* ansHead = NULL;
+
+        inOrderedTraversal(root, ansNode, ansHead);
+
+        return ansHead;
+    }
         
 */
