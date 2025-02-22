@@ -275,5 +275,47 @@
 
         return ansHead;
     }
+
+*/
+
+/*
+    844. Backspace String Compare
+    (https://leetcode.com/problems/backspace-string-compare/description/)
+
+    string procedure(string s){
+        int i = 0;
+        stack<char> st1;
+        
+        while(i < s.length()){
+            if(s[i] == '#'){
+                if(st1.size()>0){
+                    st1.pop();
+                }
+            }else{
+                st1.push(s[i]);
+            }
+            i++;
+        }
+
+        string s1;
+
+        while(!st1.empty()){
+            s1 = st1.top() + s1;
+            st1.pop();
+        }
+
+        return s1;
+    }
+
+    bool backspaceCompare(string s, string t) {
+        
+        stack<char> st1;
+        stack<char> st2;
+        
+        string s1 = procedure(s);
+        string s2 = procedure(t);
+        
+        return s1 == s2;
+    }
         
 */
