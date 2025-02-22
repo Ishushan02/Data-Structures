@@ -343,5 +343,32 @@
 
         return ans;
     }
+
+*/
+
+/*
+    590. N-ary Tree Postorder Traversal
+    (https://leetcode.com/problems/n-ary-tree-postorder-traversal/description/)
+
+    void postOrderNArr(Node* root, vector<int> &ans){
+        if(root == NULL){
+            return ;
+        }
+        Node* curr = root;
+        
+        for(Node* child:curr->children){
+            postOrderNArr(child, ans);
+        }
+
+        ans.push_back(curr->val);
+        
+    }
+
+    vector<int> postorder(Node* root) {
+        vector<int> ans;        
+        postOrderNArr(root, ans);
+
+        return ans;
+    }
         
 */
