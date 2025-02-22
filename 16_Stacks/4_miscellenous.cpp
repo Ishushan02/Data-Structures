@@ -317,5 +317,31 @@
         
         return s1 == s2;
     }
+
+*/
+
+/*
+    589. N-ary Tree Preorder Traversal
+    (https://leetcode.com/problems/n-ary-tree-preorder-traversal/description/)
+
+    void preOrderNArr(Node* root, vector<int> &ans){
+        if(root == NULL){
+            return ;
+        }
+        Node* curr = root;
+        ans.push_back(curr->val);
+        for(Node* child:curr->children){
+            // cout << child->val << endl;
+            preOrderNArr(child, ans);
+        }
+        
+    }
+
+    vector<int> preorder(Node* root) {
+        vector<int> ans;        
+        preOrderNArr(root, ans);
+
+        return ans;
+    }
         
 */
