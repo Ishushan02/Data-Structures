@@ -104,6 +104,33 @@
         // return k || val.size() ;
     }
 
+
+    Method 2 (Same thing but in a descriptive way)
+
+    int minAddToMakeValid(string s) {
+        int open = 0;
+        int close = 0;
+        stack<char> st;
+
+        for(int i = 0; i < s.length(); i++){
+
+            if(s[i] == '('){
+                st.push(s[i]);
+            }else{
+
+                if(st.empty()){
+                    close++;
+                }else{  
+                    st.pop();
+                }
+            }
+        }
+
+        open = st.size();
+
+        return open + close;
+    }
+
 */
 
 /*
