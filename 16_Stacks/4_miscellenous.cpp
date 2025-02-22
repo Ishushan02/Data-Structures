@@ -191,5 +191,53 @@
 
         return ans;
     }
+
+*/
+
+/*
+    1021. Remove Outermost Parentheses
+    (https://leetcode.com/problems/remove-outermost-parentheses/description/)
+
+    string removeOuterParentheses(string s) {
+        
+        int open = 0;
+        int close = 0;
+
+        int i = 0;
+        string mid;
+        vector<string> partitions;
+
+        while(i < s.length()){
+
+            if(s[i] == '('){
+                open++;
+            }
+
+            if(s[i] == ')'){
+                close++;
+            }
+            mid += s[i];
+
+            if(open != 0 && (open == close)){
+                partitions.push_back(mid);
+                open = 0;
+                close = 0;
+                mid = "";
+            }
+
+            i++;
+        }
+
+        string ans;
+        for(int i = 0; i < partitions.size(); i++){
+            string curr = partitions[i];
+            curr.erase(0, 1);
+            curr.erase(curr.length()-1, 1);
+            // cout << curr << endl;
+            ans += curr;
+        }
+
+        return ans;
+    }
         
 */
