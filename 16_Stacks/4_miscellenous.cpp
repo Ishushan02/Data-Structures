@@ -468,5 +468,41 @@
 
         return st.top();
     }
+
+*/
+
+/*  
+    946. Validate Stack Sequences
+    (https://leetcode.com/problems/validate-stack-sequences/description/)
+
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
         
+        int i = 0;
+        int j = 0;
+        int n = pushed.size();
+        stack<int> st;
+        while(i < n && j < n){
+
+            while(i < n && pushed[i] != popped[j]){
+                st.push(pushed[i]);
+                i++;
+            }
+            if(i >= n){
+                break;
+            }
+            st.push(pushed[i]);
+            i++;
+            
+            while(!st.empty() && (st.top() == popped[j])){
+                st.pop();
+                j++;
+            }
+        }
+
+        if(st.empty()){
+            return true;
+        }
+
+        return false;
+    }
 */
