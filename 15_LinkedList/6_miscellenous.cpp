@@ -742,3 +742,65 @@ public:
     }
         
 */
+
+/*
+    143. Reorder List
+    (https://leetcode.com/problems/reorder-list/description/)
+
+    ListNode* reversedList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+
+        while(curr){
+            ListNode* forw = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forw;
+        }
+        return prev;
+    }
+
+    void reorderList(ListNode* head) {
+        
+        int n = 0;
+        ListNode* temp = head;
+        ListNode* countTemp = head;
+        
+        while(countTemp){
+            n = n + 1;
+            countTemp = countTemp->next;
+        }
+
+        ListNode* temp2 = head;
+
+        for(int i = 0; i < n/2; i++){
+            temp2 = temp2->next;
+        }
+
+        ListNode* reverseList = reversedList(temp2);
+        
+
+        ListNode* prev = NULL;
+
+        while(temp && reverseList){
+            ListNode* forFront = new ListNode(temp->val);
+            ListNode* backFront = new ListNode(reverseList->val);
+            
+            if(temp->next != NULL && reverseList->next != NULL){
+                ListNode* nextNode = temp->next;
+                temp->next = backFront;
+                temp = temp->next;
+                temp->next = nextNode;
+            }
+            
+
+            prev = temp;
+            temp = temp->next;
+            reverseList = reverseList->next;
+        }
+
+        // cout << prev->val << endl;
+
+    }
+        
+*/
