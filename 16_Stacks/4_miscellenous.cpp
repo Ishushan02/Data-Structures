@@ -506,3 +506,58 @@
         return false;
     }
 */
+
+/*
+    316. Remove Duplicate Letters
+    (https://leetcode.com/problems/remove-duplicate-letters/description/)
+
+    string removeDuplicateLetters(string s) {
+        
+        unordered_map<char, int> charMap;
+        unordered_map<char, int> charVisited;
+
+        int count = 0;
+        for(auto v: s){
+            charMap[v]++;
+            charVisited[v] = true;
+        }
+
+        stack<char> st;
+
+        for(int i = 0; i < s.length(); i++){
+            char curr = s[i];
+            if(st.empty()){
+                st.push(curr);
+                charMap[curr]--;
+                charVisited[curr] = false;
+            }else{
+                char top = st.top();
+                if(!st.empty() && charMap[top] > 0 && curr < top &&  charVisited[curr]){
+                    while(!st.empty() && charMap[st.top()] > 0 && curr < st.top()){
+                        charVisited[st.top()] = true;
+                        st.pop();
+                    }
+
+                    st.push(curr);
+                    charMap[curr]--;
+                    charVisited[curr] = false;
+                }else if(charMap[curr] > 0 && charVisited[curr]){
+                    st.push(curr);
+                    charMap[curr]--;
+                    charVisited[curr] = false;
+                }else{
+                    charMap[curr]--;
+                }
+            }
+        }   
+
+        string ans;
+
+        while(!st.empty()){
+            ans = st.top() + ans;
+            st.pop();
+        }
+
+        return ans;
+    }
+*/
