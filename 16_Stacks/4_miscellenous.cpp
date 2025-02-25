@@ -511,6 +511,12 @@
     316. Remove Duplicate Letters
     (https://leetcode.com/problems/remove-duplicate-letters/description/)
 
+    && 
+
+    1081. Smallest Subsequence of Distinct Characters
+    (https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/description/)
+
+    
     string removeDuplicateLetters(string s) {
         
         unordered_map<char, int> charMap;
