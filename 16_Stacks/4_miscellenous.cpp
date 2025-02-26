@@ -508,6 +508,9 @@
 */
 
 /*
+
+// Method 2 is better, but Method 1 gives better details
+
     316. Remove Duplicate Letters
     (https://leetcode.com/problems/remove-duplicate-letters/description/)
 
@@ -553,6 +556,58 @@
                     charVisited[curr] = false;
                 }else{
                     charMap[curr]--;
+                }
+            }
+        }   
+
+        string ans;
+
+        while(!st.empty()){
+            ans = st.top() + ans;
+            st.pop();
+        }
+
+        return ans;
+    }
+
+
+
+
+    Method 2
+
+    string removeDuplicateLetters(string s) {
+        
+        unordered_map<char, int> charMap;
+        unordered_map<char, int> charVisited;
+
+        int count = 0;
+        for(int i = 0; i < s.length(); i++){
+            charMap[s[i]] = i;
+            charVisited[s[i]] = false;
+        }
+
+        stack<char> st;
+
+        for(int i = 0; i < s.length(); i++){
+            
+            char currChar = s[i];
+            if(st.empty() && !charVisited[currChar]){
+                st.push(s[i]);
+                charVisited[s[i]] = true;
+            }else{
+                char tos = st.top();
+                
+                if(currChar < tos && charMap[tos] > i && !charVisited[currChar]){
+
+                    while(!st.empty() && currChar < st.top() && !charVisited[currChar] && charMap[st.top()] > i){
+                        charVisited[st.top()] = false;
+                        st.pop();
+                    }
+                    st.push(currChar);
+                    charVisited[currChar] = true;
+                }else if(!charVisited[currChar]){
+                    st.push(currChar);
+                    charVisited[currChar] = true;
                 }
             }
         }   
