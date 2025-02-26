@@ -622,3 +622,75 @@
         return ans;
     }
 */
+
+/*
+    227. Basic Calculator II
+    (https://leetcode.com/problems/basic-calculator-ii/)
+
+    int calculate(string s) {
+        
+        stack<int> st;
+        int i = 0;
+
+        int j = 0;
+        string t;
+        while(j < s.length()){
+            if(s[j] != ' '){
+                t += s[j];
+            }
+            j++;
+        }
+        s = t;
+
+
+        while(i < s.length()){
+
+            if(s[i] == '+'|| s[i] == '-'){
+                char op = s[i];
+                i++;
+                // int a = getDigit(s, i);
+                int a = 0;
+                while(isdigit(s[i])){
+                    a = a * 10 + (s[i] - '0');
+                    i++;
+                }
+                if(op == '-'){
+                    st.push(-1 * a);
+                }else{
+                    st.push(a);
+                }
+            }else if(s[i] == '*' || s[i] == '/'){
+                char op = s[i];
+                i++;
+                int tos = st.top();
+                st.pop();
+                int a = 0;
+                while(isdigit(s[i])){
+                    a = a * 10 + (s[i] - '0');
+                    i++;
+                }
+                if(op == '*'){
+                    st.push(tos * a);
+                }else{
+                    st.push(tos / a);
+                }
+
+            }else{
+                int a = getDigit(s, i);
+                st.push(a);
+            }
+
+        }
+
+        int ans = 0;
+        while(!st.empty()){
+            // cout << st.top() << endl;
+            ans += st.top();
+            st.pop();
+        }
+
+
+        return ans;
+    }
+
+*/
