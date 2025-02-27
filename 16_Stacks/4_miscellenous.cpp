@@ -694,3 +694,55 @@
     }
 
 */
+
+
+/*
+    1006. Clumsy Factorial
+    (https://leetcode.com/problems/clumsy-factorial/description/)
+
+    int clumsy(int n) {
+        
+        if(n == 1 || n == 2){
+            return n;
+        }
+        int a = n;
+        int b = n -1;
+
+        stack<int> st;
+        st.push(a * b);
+        char op = '/';
+        b--;
+        while(b >= 1){
+            
+            // cout << tos << " , " << b << endl;
+            if(op == '*'){
+                int tos = st.top();
+                st.pop();
+                st.push(tos * b);
+                op = '/';
+            }else if(op == '/'){
+                int tos = st.top();
+                st.pop();
+                st.push(tos / b);
+                op = '+';
+            }else if(op == '+'){
+                st.push(b);
+                op = '-';
+            }else{
+                st.push(-b);
+                op = '*';
+            }
+            b--;
+        }
+
+        int ans = 0;
+
+        while(!st.empty()){
+            ans += st.top();
+            st.pop();
+        }
+
+        return ans;
+    }
+        
+*/
