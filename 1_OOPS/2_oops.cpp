@@ -17,7 +17,7 @@ using namespace std;
     - As we are hiding data, the word Encapsulation is also known as Data Hiding
     - The Goal of Encapsulation is in a way that it prevents unauthorized access to or 
         modification of the original contents of a class by it's instance (or objects).
-        The undelying algorithm of each class may not be known to each other but they can communicate
+        The underlying algorithm of each class may not be known to each other but they can communicate
         to each other.
 
     - Access Modifiers
@@ -26,7 +26,7 @@ using namespace std;
         - They can be accessed by the objects and also the external Codes.
 
         Private
-        - members declared as private are only accessible withi the same class
+        - members declared as private are only accessible within the same class
         - They are not accessible from the outside class including the derived classes
 
         Protected
@@ -55,16 +55,14 @@ using namespace std;
 
 */
 
-
-class Student{
-
-    // Attributes
+class Student {
+        // Attributes
     public:
         int id;
         string name;
         int age;
 
-    private:
+    protected:  // Changing gpa and bloodgroup to protected
         int gpa;
         string blodgroup;
 
@@ -78,24 +76,22 @@ class Student{
         }
 
     public:
-    Student(int id, string name, int age, int gpa, string bloodgroup){
-        this->id = id;
-        this->name = name;
-        this->age = age;
-        this->gpa = *new int(gpa);
-        this->blodgroup = *new string(bloodgroup); 
-    }
+        Student(int id, string name, int age, int gpa, string bloodgroup){
+            this->id = id;
+            this->name = name;
+            this->age = age;
+            this->gpa = gpa;
+            this->blodgroup = bloodgroup; 
+        }
 
-    Student(const Student &sourceObject){ // const means it can never be changed 
-        cout <<" Student Copy Constructor " << endl; 
+    Student(const Student &sourceObject){ // Copy Constructor
+        cout << "Student Copy Constructor" << endl; 
         this->id = sourceObject.id;
         this->age = sourceObject.age;
         this->name = sourceObject.name;
         this->gpa = sourceObject.gpa;
         this->blodgroup = sourceObject.blodgroup;
-        // Settin g the parameter for this object so doin it
-     }
-
+    }
 
     // Methods/ Functions/ Behaviours
     void study(){
@@ -106,31 +102,38 @@ class Student{
         cout << this->id << " is playing " << endl;
     }
 
-    private:
-        void testScore(){
-            cout <<" The test score of "<< this->id << " is " << this->gpa << endl;
-        }
+private:
+    void testScore(){
+        cout <<" The test score of "<< this->id << " is " << this->gpa << endl;
+    }
 
+    // Destructor (commented out)
     // ~Student(){
     //     cout << " Default Destructor" << endl;
     // }
-
 };
 
+// Derived class
+class GraduateStudent : public Student {
+public:
+    GraduateStudent(int id, string name, int age, int gpa, string bloodgroup)
+        : Student(id, name, age, gpa, bloodgroup) {}
 
+    void printGpaAndBloodGroup() {
+        // Accessing protected variables from the base class
+        cout << this->name << "'s GPA: " << this->gpa << endl;
+        cout << this->name << "'s Blood Group: " << this->blodgroup << endl;
+    }
 
-int main(){
+    void study() {
+        cout << this->name << " is studying for the thesis." << endl;
+    }
+};
 
-    Student A(1, "Ishan", 29, 4, "B+");
-    cout << A.id << endl;
-
-    cout << A.getGpa() << endl;
-    A.setGpa(3);
-    cout << A.getGpa() << endl;
+int main() {
+    GraduateStudent gs1(1, "John", 25, 3, "O+");
+    gs1.study();  // Calling overridden study method
+    gs1.printGpaAndBloodGroup();  // Accessing protected variables from base class
     
-    // cout << A.gpa << endl; inaccesible
-
-
-
     return 0;
 }
