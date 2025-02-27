@@ -39,7 +39,7 @@ class Student{
 
      // Constructor helps in creating Objects of the class
      Student(int id, int age, string name, int ns){
-        cout <<" Student Default Constructor " << endl; 
+        cout << " Student Default Constructor " << endl; 
         this->id = id;
         this->age = age;
         this->name = name;
@@ -76,7 +76,7 @@ class Student{
     // Destructors
     ~Student(){
         cout <<" Student Default Destructor " << endl; 
-     }
+    }
 
     // by default if constructors and Destructors are not given compiler creates a default constructor/destructor
 };
@@ -120,3 +120,4 @@ int main(){
 
     return 0;
 }
+
