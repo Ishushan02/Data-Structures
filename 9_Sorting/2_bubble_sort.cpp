@@ -35,17 +35,13 @@ as the last that  many numbers of elements will be sorted
 int main()
 {
 
-    int arr[7] = {1, 7, 9, 2, 3, 10, 0};
+    int nums[7] = {1, 7, 9, 2, 3, 10, 0};
     int n = 7;
 
-    for (int i = 1; i < n ; i++)
-    {
-        for (int j = 0 ; j < n-i; j++)
-        {
-            if (arr[j+1] < arr[j])
-            {
-                swap(arr[j+1], arr[j]);
-                
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n - i - 1; j++){
+            if(nums[j] > nums[j+1]){
+                swap(nums[j+1], nums[j]);
             }
         }
     }
@@ -54,6 +50,6 @@ int main()
 
     for (int i = 0; i < 7; i++)
     {
-        cout << arr[i] << " ";
+        cout << nums[i] << " ";
     }
 }
