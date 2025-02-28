@@ -125,5 +125,32 @@
         traverse(root, path, ans);
         return ans;
     }
+
+*/
+
+/*
+    404. Sum of Left Leaves
+    (https://leetcode.com/problems/sum-of-left-leaves/description/)
+
+    void traverse(TreeNode* root, int &sum){
+        if(root == NULL){
+            return ;
+        }
+
+        if(root->left){
+            if(root->left->left == NULL && root->left->right == NULL){
+                sum += root->left->val;
+            }
+        }
+
+        traverse(root->left, sum);
+        traverse(root->right, sum);
+    }
+
+    int sumOfLeftLeaves(TreeNode* root) {
+        int sum = 0;
+        traverse(root, sum);
+        return sum;
+    }
         
 */
