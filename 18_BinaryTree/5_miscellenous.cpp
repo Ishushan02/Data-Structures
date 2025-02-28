@@ -98,3 +98,32 @@
         return root;
     }
 */
+
+/*
+    257. Binary Tree Paths
+    (https://leetcode.com/problems/binary-tree-paths/description/)
+
+    void traverse(TreeNode* root, string path, vector<string> &ans){
+        if(root == NULL){
+            return;
+        }
+
+        if(root->left == NULL && root->right == NULL){
+            // path +=  "->" + to_string(root->val);
+            ans.push_back(path + to_string(root->val));
+            // path.pop_back();
+        }
+        
+        traverse(root->left, path +to_string(root->val) + "->", ans);
+        traverse(root->right, path +to_string(root->val) + "->", ans);
+
+    }
+
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> ans;
+        string path;
+        traverse(root, path, ans);
+        return ans;
+    }
+        
+*/
