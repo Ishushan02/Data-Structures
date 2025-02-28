@@ -64,5 +64,37 @@
         }
         return minHeight;
     }
-        
+
+*/
+
+/*
+    226. Invert Binary Tree
+    (https://leetcode.com/problems/invert-binary-tree/description/)
+
+    void invert(TreeNode* &root){
+        if(root == NULL){
+            return ;
+        }
+
+        // cout << root->left->val << " , " << root->right->val << endl;
+        invert(root->left);
+        invert(root->right);
+        swap(root->left, root->right);
+
+    }
+
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL){
+            return NULL;
+        }
+        TreeNode* leftV = root->left;
+        TreeNode* rightV = root->right;
+
+        invert(root);
+
+        root->right = leftV;
+        root->left = rightV;
+
+        return root;
+    }
 */
