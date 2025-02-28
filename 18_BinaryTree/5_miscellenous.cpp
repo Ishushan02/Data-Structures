@@ -34,3 +34,35 @@
     }
         
 */
+
+/*
+    111. Minimum Depth of Binary Tree
+    (https://leetcode.com/problems/minimum-depth-of-binary-tree/description/)
+
+    void height(TreeNode* root, int h, int &minHeight){
+        if(root == NULL){
+            return ;
+        }
+
+        if(root->left == NULL && root->right == NULL){
+            minHeight = min(minHeight, h);
+        }
+
+        height(root->left, h + 1, minHeight);
+        height(root->right, h + 1, minHeight);        
+
+    }
+
+    int minDepth(TreeNode* root) {
+        
+        int minHeight = INT_MAX;
+
+        height(root, 1, minHeight);
+
+        if(minHeight == INT_MAX){
+            return 0;
+        }
+        return minHeight;
+    }
+        
+*/
