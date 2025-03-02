@@ -14,7 +14,9 @@ namespace Ishan
     }
 }
 
+using namespace Ishan;
+
 int main(){
-    Ishan::LetsParty();
-    Ishan::Study();
+    LetsParty();
+    Study();
 }

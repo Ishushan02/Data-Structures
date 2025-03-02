@@ -8,7 +8,7 @@ using namespace std;
 POLYMORPHISM
 
 - The ability to work on different ways based on the object it is acting upon the need.
-- There are 2 types of Polumorphism
+- There are 2 types of Polymorphism
     - Compile Time Polymorphism /static
         : Function Overloading
         : Operator Overloading
@@ -88,10 +88,9 @@ class Complex{
 
 
 /*
-
 RunTime Polymorphism
 
-- Virtual Keyword is a way to achieve Polymorphism by deffering binding decision to runtime
+- Virtual keyword is a way to achieve Polymorphism by deffering binding decision to runtime
 - Override keyword helps to make the intention clear and allows the compiler to enforce
     overriding rules making your code safer and easier to understand.
 
@@ -126,30 +125,30 @@ void ShapeDrawing(Shape *s){
 
 int main(){
 
-    /*
-    Function Overloading
+    
+    // Function Overloading
     Add A;
     double a = 5, b = 6;
     cout << A.sum(1, 2) << " -- " << A.sum(1, 2, 3) << " -- "<< A.sum(a, b) << endl;
-    return 0;
-    */
+    // return 0;
+    
 
-    /*
-    Operator Overloading
-    Complex A(2, 5);
-    A.print();
+    
+    // Operator Overloading
+    Complex AA(2, 5);
+    AA.print();
     Complex B(3, 9);
     B.print();
 
-    Complex C = A + B;
+    Complex C = AA + B;
     C.print();
 
-    Complex D = A - B;
+    Complex D = AA - B;
     D.print();
 
-    bool val = A==B;
+    bool val = AA==B;
     cout << val << endl;
-    */
+    
 
    Circle c;
    ShapeDrawing(&c);

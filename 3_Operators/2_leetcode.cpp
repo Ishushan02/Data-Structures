@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 
-    // Leetcode 1281 - https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/submissions/
+    // Leetcode 1281 - https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
     int n = 15;
     int digitsum = 0;
     int digitmul = 1;
