@@ -54,9 +54,32 @@ int main()
 }
 
 
-// 2nd method see in Lec10 1.cpp
+// 2nd method see in Array 6_problems.cpp last  question
 {
-    Important Question do it practise it
+    75. Sort Colors
+    (https://leetcode.com/problems/sort-colors/description/)
+    // Important Question do it practise it
+
+    void sortColors(vector<int>& nums) {
+        
+        int start = 0;
+        int mid = 0;
+        int end = nums.size() -1 ;
+
+        while(mid <= end){
+
+            if(nums[mid] == 1){
+                mid++;
+            }else if(nums[mid] == 0){
+                swap(nums[start], nums[mid]);
+                mid++;
+                start++;
+            }else{
+                swap(nums[mid], nums[end]);
+                end--;
+            }
+        }
+    }
 }
 
 */

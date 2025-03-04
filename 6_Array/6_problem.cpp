@@ -319,6 +319,8 @@ void sortZeroesAndOne(int input[], int size)
 /*
 Sort 0 1 2 array
 
+(https://leetcode.com/problems/sort-colors/description/)
+
 so the basic idea is to keep 0 at left most 1 in between and 2 at the end
 
 logic is

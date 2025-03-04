@@ -88,7 +88,6 @@ so all lower functionalities are done by Stack and Higher memory functionalities
 like variable declaration, function calls, etz --> by Stack hence when you give 10000000 size of the array it
 will give Stack Over flow error because the size for it is  assigned very little
 
-
 */
 
 /*
