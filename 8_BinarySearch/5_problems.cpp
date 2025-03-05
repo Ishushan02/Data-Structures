@@ -214,3 +214,86 @@ int aggressiveCows(vector<int> &stalls, int k)
 }
 
 */
+
+
+/*
+
+ROTI PARATA Problem
+(https://www.spoj.com/problems/PRATA/)
+
+#include<iostream>
+using namespace std;
+#include<vector>
+
+
+bool possiblyCook(int time, vector<int> &cookingRate, int requiredParathas){
+	
+	int parathasCooked = 0;
+	for(int i = 0; i < cookingRate.size(); i++){
+		int rate = cookingRate[i];
+		int startTime = 1;
+		int totalTime = 0;
+		
+		while(true){
+			
+			if(totalTime + rate * startTime <= time ){
+				parathasCooked++;
+				totalTime += rate * startTime;
+				startTime++;
+			}else{
+				break;
+			}
+		}
+	}
+	
+	if(parathasCooked >= requiredParathas){
+		return true;
+	}
+	
+	return false;
+}
+
+int main(){
+	int n;
+	cin >> n;
+	
+	for(int itr = 0; itr < n; itr++){
+		int parathas;
+		cin >> parathas;
+		
+		int totalCooks;
+		cin >> totalCooks;
+		
+		vector<int> cookingRate(totalCooks, 0);
+		
+		for(int i = 0; i < totalCooks; i++){
+			cin >> cookingRate[i];
+		}
+		
+		int maxRate = 0;
+		for(int i = 0; i < totalCooks; i++){
+			maxRate = max(maxRate, cookingRate[i]);
+		}
+		
+		int start = 0;
+		int end = maxRate * (parathas) * (parathas + 1) / 2;
+		int mid = (start + end)/2;
+		
+		int ans = 0;
+		
+		while(start <= end){
+			
+			if(possiblyCook(mid, cookingRate, parathas)){
+				ans = mid;
+				end = mid - 1;
+			}else{
+				start = mid + 1;
+			}
+			mid = (start + end)/2;
+		}
+		
+		cout << ans << endl;
+		
+	}
+}
+*/

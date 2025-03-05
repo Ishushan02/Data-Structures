@@ -254,6 +254,7 @@ VERY VERY IMP Question
 
 
 LINEAR MEthod (Brute Force Method)
+It's a Binary Search Problem, see the procedure once in BS Folder, and try doing it with it.
 
 
 int cookParathas(int time, int arr[]){
@@ -313,112 +314,5 @@ int main()
 }
 
 
-
-
-
-BS IMPLEMENTATION
-
-
-
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-
-bool cancook(vector<int> arr, int parathas, int cook, int mid)
-{
-
-    int totparathas = 0;
-    int totalminutes = 1;
-    // run till mid minutes and see how many parathas can be cooked by each chef
-
-    for (int i = 0; i < cook; i++)
-    {
-        int R = arr[i];
-        int starttime = 1;
-        int totaltime = 0;
-
-        while (true)
-        {
-            if (totaltime + starttime * R <= mid)
-            {
-
-                totaltime += starttime * R;
-                starttime++;
-                totparathas++;
-            }
-            else
-            {
-                // exceeded the minutes
-                break;
-            }
-        }
-    }
-
-    cout << " Total Parathas is " << totparathas << " in " << mid << " minutes " << endl;
-
-    if (totparathas >= parathas)
-    {
-        return true;
-    }
-
-    return false;
-}
-
-int main()
-{
-    // your code goes here
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int parathas;
-        cin >> parathas;
-        int cook;
-        cin >> cook;
-        vector<int> arr;
-        for (int j = 0; j < cook; j++)
-        {
-            int rate;
-            cin >> rate;
-            arr.push_back(rate);
-        }
-        int maxr = -1;
-        for (int i = 0; i < cook; i++)
-        {
-            if (arr[i] > maxr)
-            {
-                maxr = arr[i];
-            }
-        }
-
-        cout << "  Max R is " << maxr << endl;
-        int start = 0;
-        int end = (maxr * parathas * (parathas + 1)) / 2;
-        int mid = (start + end) >> 1;
-
-        int ans = -1;
-        while (start <= end)
-        {
-
-            cout << " Start is " << start << " Mid is " << mid << " End is " << end << endl;
-            if (cancook(arr, parathas, cook, mid))
-            {
-                ans = mid;
-                end = mid - 1;
-            }
-            else
-            {
-                start = mid + 1;
-            }
-
-            mid = (start + end) >> 1;
-        }
-
-        cout << " Ans is " << ans << endl;
-    }
-
-    // return 0;
-}
 
 */
