@@ -88,6 +88,26 @@ int main()
 LeetCode - Unique Occurence of a Number
 // 1207 - https://leetcode.com/problems/unique-number-of-occurrences/description/
 
+    bool uniqueOccurrences(vector<int>& arr) {
+        
+        unordered_map<int, int> freqMap;
+        for(int i = 0; i < arr.size(); i++){
+            freqMap[arr[i]]++;
+        }
+
+        unordered_map<int, bool> uniqueValue;
+        for(auto &[key, val]: freqMap){
+            if(uniqueValue[val] == true){
+                return false;
+            }else{
+                uniqueValue[val] = true;
+            }
+        }
+
+        return true;
+
+    }
+
 */
 
 /*
