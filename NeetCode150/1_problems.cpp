@@ -168,6 +168,33 @@ public:
     }
 
 
+    Method 2 (This method used in some other sub problems)
+    
+    void traverse(vector<int>& nums, vector<int>& tempAns, vector<vector<int>>& res, unordered_map<int, bool> &visited){
+        if(tempAns.size() == nums.size()){
+            res.push_back(tempAns);
+            return;
+        }
+
+        for(int i = 0; i < nums.size();i++){
+            if(visited[i] == false){
+                visited[i] = true;
+                tempAns.push_back(nums[i]);
+                traverse(nums, tempAns, res, visited);
+                tempAns.pop_back();
+                visited[i] = false;
+            }
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        unordered_map<int, bool> visited;
+        vector<int> tempAns;
+        vector<vector<int>> res;
+        traverse(nums, tempAns, res, visited);
+
+        return res;
+    }
 */
 
 /*

@@ -16,9 +16,4 @@ Input Constraint | Complexity
     n < 10 ^ 100  | O(n^4)
     n < 10 ^ [15 .. 18]  | O(2^n n^2)
     n < 10 ^ [10 .. 11]  | O(n!)
-
-
-
-
-
 */
