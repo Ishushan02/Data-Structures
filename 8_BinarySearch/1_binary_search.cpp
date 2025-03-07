@@ -1,14 +1,13 @@
 /*
-- Binary search are only applied on Monotnic functions
-  // So, the array or elements should be either in increasing or decreasing order
+  - Binary search are only applied on Monotnic functions
+    // So, the array or elements should be either in increasing or decreasing order
 
-Ex -  arr = [3, 5, 9, 13, 27] key to search = 13
+  Ex -  arr = [3, 5, 9, 13, 27] key to search = 13
 
-- now find the mid element (9)
-- is key=9 or key > 9 or key<9 (key=13 > 9)
-- so (key>9) then go right (if less key<9 than go left)
-- repeat from 1st step
-
+  - now find the mid element (9)
+  - is key=9 or key > 9 or key<9 (key=13 > 9)
+  - so (key>9) then go right (if less key<9 than go left)
+  - repeat from 1st step
 */
 
 #include <iostream>
@@ -59,7 +58,7 @@ int main()
 #include <algorithm>
 
 /*
-int invuilt_function(){
+int inbuilt_function(){
   binary_search(arr, arr+n, key)
 }
 */
@@ -88,5 +87,4 @@ so when element is found the length of array = 1 at iteration n/2^k
 1 = n/2^k
 2^k = n
 hence, k = logn is the time complexity of binary search
-
 */

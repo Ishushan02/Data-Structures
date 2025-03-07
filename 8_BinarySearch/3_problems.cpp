@@ -304,30 +304,32 @@ Find Smallest Number greater than target - Leetcode 744
 class Solution {
 public:
     char nextGreatestLetter(vector<char>& letters, char target) {
+        
+        if(target == 'z'){
+            return letters[0];
+        }
+        int ans = 0;
 
         int start = 0;
-        char ans = letters[0];
         int end = letters.size()-1;
-        int mid = (start+end)/2;
+        int mid = (start + end)/2;
+        int n = letters.size();
 
-        //edge cases
-        if (target=='z'){
-            return letters[0];
-        }else if (target>=letters[end]){
-            return letters[0];
+        while(start <= end){
+           
+           if(letters[mid] > target){
+                ans = mid;
+                end = mid - 1;
+           }else{
+                start = mid + 1;
+           }
+           mid = (start + end)/2;
         }
 
-        while (start<end){
-            if (target< letters[mid]){
-                ans = letters[mid];
-                end = mid;
-            }else{
-                start = mid+1;
-                ans = letters[start];
-            }
-            mid = (start+end)/2;
-        }
-        return ans;
+        cout << ans << endl;
+
+        return letters[ans];
+
     }
 };
 
