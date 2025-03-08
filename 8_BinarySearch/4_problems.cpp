@@ -213,33 +213,6 @@ public:
 };
 
 
-Method 3 O(N)
-class Solution {
-public:
-    int findKthPositive(vector<int>& arr, int k) {
-        int num = 1;
-        int n = arr.size();
-        int i = 0;
-
-        while (i<n && k>0){
-            if (arr[i] == num){
-                i++;
-            }else{
-                k--;
-            }
-            num++;
-        }
-
-        while(k){
-            num++;
-            k--;
-        }
-
-        return num-1;
-    }
-};
-
-
 Methd 4 O(logn)   -- (https://www.youtube.com/watch?v=BltzCxN1vRc)
 
 Procedure
@@ -259,27 +232,29 @@ ans = s+k (4+5) --> 9
 
 
 
-class Solution {
-public:
-    int findKthPositive(vector<int>& arr, int k) {
+int findKthPositive(vector<int>& arr, int k) {
+        
+        int n = arr.size();
         int start = 0;
-        int end = arr.size()-1;
-        int mid = start+ (end-start)/2;
+        int end = n - 1;
+        int mid = (start + end)/2;
+        int ansidx = 0;
 
-        while(start<=end){
-            int missing_element = arr[mid] - (mid+1);
+        while(start <= end){
 
-            if (k > missing_element){
-                start = mid+1;
+            int missing = arr[mid] - (mid + 1);
+            if(missing < k){
+                ansidx = mid + 1;
+                start = mid + 1;
             }else{
                 end = mid - 1;
             }
-            mid = start+ (end-start)/2;
+            mid = (start + end)/2;
         }
 
-        return start + k ;
+        return ansidx + k;
     }
-};
+
 
 */
 
