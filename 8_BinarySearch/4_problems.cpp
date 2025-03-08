@@ -294,61 +294,66 @@ Procedure
 - get first position of positive index (f)
 - return max(l-0+1, n-f)
 
-int lastnegindex(vector<int> arr, int key){
-    int start = 0;
-    int end = arr.size()-1;
-    int mid = (start+end)/2;
-    int ans = -1;
-    while(start<=end){
-        if (arr[mid]<key){
-            ans = mid;
-            start = mid+1;
-        }else{
-            end = mid-1;
+    int negIdx(vector<int>& nums){
+        int start = 0;
+        int end = nums.size()-1;
+        int mid = (start + end)/2;
+        int ans = nums.size();
+        while(start <= end){
+            if(nums[mid] < 0){
+                ans = mid;
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
         }
-        mid = (start+end)/2;
-    }
-    return ans;
-}
 
-int firstposindex(vector<int> arr, int key){
-    int start = 0;
-    int end = arr.size()-1;
-    int mid = (start+end)/2;
-    int ans = -1;
-    while(start<=end){
-        if (arr[mid]>key){
-            ans = mid;
-            end = mid-1;
-        }else{
-            start = mid+1;
+        return ans;
+    }
+
+    int posIdx(vector<int>& nums){
+        int start = 0;
+        int end = nums.size()-1;
+        int mid = (start + end)/2;
+        int ans = nums.size();
+        while(start <= end){
+            if(nums[mid] > 0){
+                ans = mid;
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start + end)/2;
         }
-        mid = (start+end)/2;
-    }
-    return ans;
-}
 
-class Solution {
-public:
+        return ans;
+    }
+
+
     int maximumCount(vector<int>& nums) {
-        int lnidx = lastnegindex(nums, 0) ;
-        int fpidx = firstposindex(nums, 0);
         int n = nums.size();
-        if (lnidx== -1 && fpidx == -1){
+        int pos = posIdx(nums);
+        int neg = negIdx(nums);
+
+        // cout << neg << " - " << pos << endl;
+
+        if(neg == n && pos == n){
             return 0;
-        }else if (fpidx == -1){
-            return lnidx+1;
-        }else if (lnidx== -1 ){
-            return n-fpidx;
-        }
-        else{
-            int ans = max((lnidx+1), (n-fpidx));
-            return ans;
         }
 
+        if(neg == n && pos != n ){
+            return n - pos ;
+        }else if(neg != n && pos == n ){
+            return neg + 1;
+        }else{
+            return max(n-pos, neg+1);
+        }
+
+        return n;
 
     }
-};
+    
 
 */
 
