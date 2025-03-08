@@ -173,27 +173,28 @@ Good Question
 
 (mixture of lower pivot and BS)
 
-int pivot(vector<int> arr, int n){
-    int start = 0;
-    int end = n-1;
-    int mid = (start + ((end-start)/2));
-    while (start < end)
-    {
-        if (arr[mid] > arr[0])
-        {
-            start = mid + 1;
+    int elbowidx(vector<int> &nums){
+        int start = 0;
+        int n = nums.size();
+        int end = n ;
+        int mid = (start+end)/2;
+        int ans = mid;
+
+
+        while(start < end){
+            if(nums[mid] >= nums[0]){
+                start = mid+ 1;
+            }else{
+                ans = mid;
+                end = mid;
+            }
+            mid = (start+end)/2;
         }
-        else
-        {
-            end = mid;
-        }
-        mid = (start + ((end-start)/2));
+        return ans;
+
     }
-    return start;
 
-}   
-
-int bs(vector<int> arr, int start,int end,int key){
+    int bs(vector<int> arr, int start,int end,int key){
     end = end-1;
     int mid = (start + ((end-start)/2));
 
@@ -209,16 +210,15 @@ int bs(vector<int> arr, int start,int end,int key){
     }
 
     return -1;
-}
+    }
 
 int search(vector<int>& arr, int n, int k)
 {
     // Write your code here.
     // Return the position of K in ARR else return -1.
 
-    int pivotindex = pivot(arr, n);
+    int pivotindex = elbowidx(arr, n);
     int ans = -1;
-    // cout << "index is " << pivotindex << " element is "<< (arr[pivotindex]) << endl;
     ans = bs(arr, pivotindex, n, k);
     if (ans!= -1){
         return ans;
