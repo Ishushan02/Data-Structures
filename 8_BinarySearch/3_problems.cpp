@@ -99,7 +99,33 @@ using namespace std;
 
 */
 
+/*
+    852. Peak Index in a Mountain Array
+    (https://leetcode.com/problems/peak-index-in-a-mountain-array/description/)
 
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int n = arr.size();
+        int start = 0;
+        int end = n - 1;
+        int mid = (start + end)/2;
+        int ans = 0;
+
+        while(start <= end){
+            if(mid - 1 >= 0 && arr[mid-1] > arr[mid]){
+                ans = mid - 1;
+                end = mid - 1;
+            }else if(mid + 1 < n && arr[mid + 1]> arr[mid]){
+                start = mid + 1;
+            }else{
+                return mid;
+            }
+            mid = (start + end)/2;
+        }
+
+        return ans;
+    }
+
+*/
 
 
 /*
@@ -297,7 +323,7 @@ for (int i =0;i<k;i++){
 */
 
 /*
-Find Smallest Number greater than target - Leetcode 744
+Find Smallest Letter greater than target - Leetcode 744
 (https://leetcode.com/problems/find-smallest-letter-greater-than-target/description/)
 
 
