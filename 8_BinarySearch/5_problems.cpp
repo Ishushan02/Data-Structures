@@ -4,6 +4,62 @@ using namespace std;
 
 // ADVANCED QUESTIONS
 
+
+/*
+    410. Split Array Largest Sum
+    (https://leetcode.com/problems/split-array-largest-sum/description/)
+
+    bool ifPossible(vector<int>& nums, int threshold, int k){
+
+        int sum = 0;
+        int n = nums.size();
+        int totNum = 1;
+
+        for(int i = 0; i < n; i++){
+            if(sum + nums[i] > threshold){
+                totNum++;
+                sum = nums[i];
+                if (totNum > k || nums[i] > threshold){
+                    return false;
+                }
+            }else{
+                sum += nums[i];
+            }
+            // cout << sum << " " << totNum << " Thr: "<< threshold << endl;
+        }
+
+        return true;
+    }
+
+    int splitArray(vector<int>& nums, int k) {
+        int ans = 0;
+        int totSum = 0;
+
+        for(int i = 0; i < nums.size(); i++){
+            totSum += nums[i];
+        }
+
+        int start = 0;
+        int end = totSum;
+        int mid = (start + end)/2;
+
+        while(start <= end){
+            // cout << "Mid Thres: "<< mid <<endl;
+            if(ifPossible(nums, mid, k)){
+                ans = mid;
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            
+            mid = (start + end)/2;
+        }
+        return ans;
+    }
+
+*/
+
+
 /*
 Book Allocation Problem
 (https://www.naukri.com/code360/problems/allocate-books_1090540?interviewProblemRedirection=true&leftPanelTabValue=PROBLEM)
