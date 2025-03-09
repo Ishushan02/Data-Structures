@@ -13,19 +13,19 @@ using namespace std;
 
         int sum = 0;
         int n = nums.size();
-        int totNum = 1;
+        int included = 1;
 
         for(int i = 0; i < n; i++){
             if(sum + nums[i] > threshold){
-                totNum++;
+                included++;
                 sum = nums[i];
-                if (totNum > k || nums[i] > threshold){
+                if (included > k || nums[i] > threshold){
                     return false;
                 }
             }else{
                 sum += nums[i];
             }
-            // cout << sum << " " << totNum << " Thr: "<< threshold << endl;
+            // cout << sum << " " << included << " Thr: "<< threshold << endl;
         }
 
         return true;
