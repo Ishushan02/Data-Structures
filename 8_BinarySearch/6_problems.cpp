@@ -21,35 +21,30 @@ Search in an almost Sorted Array
 
     int findTarget(vector<int>& arr, int target) {
         // Your code here
-        
         int start = 0;
-        int end = arr.size() - 1;
-        int mid = (start + end)/2;
+        int n = arr.size();
+        int end = n-1;
+        int mid = start + (end - start)/2;
         
-        int ans = -1;
         while(start <= end){
-            if(target == arr[mid]){
-                ans= mid;
-                break;
-            }else if(target > arr[mid]){
+            
+            if(arr[mid] == target){
+                return mid;
+            }else if(mid-1 >= 0 && arr[mid-1] == target){
+                return mid-1;
+            }else if(mid + 1 < n && arr[mid+1] == target){
+                return mid + 1;
+            }
+            
+            if(target > arr[mid]){
                 start = mid + 1;
             }else{
                 end = mid - 1;
             }
-            
-            if(mid -1>=0 && arr[mid-1] == target){
-                ans = mid - 1;
-                break;
-            }
-            if(mid +1 < arr.size() && arr[mid+1] == target){
-                ans = mid + 1;
-                break;
-            }
-            
-            mid = (start + end)/2;
+            mid = start + (end - start)/2;
         }
         
-        return ans;
+        return -1;
     }
 
 */
