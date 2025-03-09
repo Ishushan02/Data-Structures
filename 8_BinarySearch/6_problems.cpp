@@ -55,37 +55,26 @@ Search in an almost Sorted Array
     (https://leetcode.com/problems/find-peak-element/ )
 
     int findPeakElement(vector<int>& nums) {
-        // Remeber we have to return Local Maxima and not Global MAxima
         int ans = -1;
         int n = nums.size();
-        if(n == 1){
-            return 0;
-        }
-        
         int start = 0;
         int end = n - 1;
-        int mid = (start + end)/2;
+        int mid = start + (end - start)/2;
 
         while(start <= end){
-            if(start == end){
+
+            if(mid + 1 < n && nums[mid + 1] > nums[mid]){
+                ans = mid + 1;
+                start = mid + 1;
+            }else if(mid - 1 >= 0 && nums[mid - 1] > nums[mid]){
+                ans = mid - 1;
+                end = mid - 1;
+            }else{
                 return mid;
             }
-            if(mid-1 >= 0 && mid + 1<n && nums[mid] > nums[mid-1] && nums[mid+1] < nums[mid]){
-                ans = mid;
-                break;
-                // return mid;
-            }else if(mid-1 >= 0 && nums[mid-1] > nums[mid]){
-                end = mid - 1;
-            }else if(mid + 1 < n && nums[mid] < nums[mid+1]){
-                start = mid + 1;
-            }else if(mid+ 1 >= n){
-                start = mid ;
-            }else if(mid -1 < 0){
-                end = mid ;
-            }
-            mid = (start + end)/2;
-
+            mid = start + (end - start)/2;
         }
+
         return ans;
     }
     
