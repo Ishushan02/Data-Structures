@@ -150,62 +150,55 @@ Painters Partition Problem
 
 - Same Logic
 
-bool position(vector<int> arr, int n, int m, int mid){
-        int pagesum = 0;
-        int totalstud = 1;
+bool paintPossible(vector<int> &boards, int k, int threshold){
 
-        for (int i =0;i<n;i++){
-            if((pagesum+arr[i]) <= mid){
-                pagesum += arr[i];
-            }else{
-                totalstud++ ;
-                pagesum = arr[i];
-                if (totalstud > m  || arr[i]>mid){
-                    return false;
-                }
+    int painter = 1;
+    int painted = 0;
+
+    for(int i = 0; i < boards.size(); i++){
+
+        if(boards[i] + painted > threshold){
+            painter+= 1;
+            painted = boards[i];
+            if(painter> k || boards[i] > threshold){
+                return false;
             }
+        }else{
+            painted += boards[i];
         }
-
-        return true;
     }
 
-
+    return true;
+}
 
 int findLargestMinDistance(vector<int> &boards, int k)
 {
     //    Write your code here.
-    if (k > boards.size()){
-        return -1;
-    }
-    int n = boards.size();
-    int m = k;
+    int totalToPaint = 0;
+    int ans = 0;
 
-    int sum = 0;
-    if (m>n){
-        return -1;
-    }
-    for (int i = 0;i<n;i++){
-        sum+=boards[i];
+    for(int i = 0; i < boards.size(); i++){
+        totalToPaint += boards[i];
     }
 
-    int start = 0;
-    int end = sum;
-    int ans = -1 ;
-    int mid = start + (end-start)/2 ;
+    int start = 1;
+    int end = totalToPaint;
+    int mid = (start + end)/2;
 
-    while (start <= end ){
-        if (position(boards, n, m, mid)){
-            end = mid-1;
+    while(start<= end){
+        if(paintPossible(boards, k, mid)){
             ans = mid;
+            end = mid - 1;
         }else{
-            start = mid+1;
+            start = mid + 1;
         }
-        mid = start + (end-start)/2;
+        mid = (start + end)/2;
+
     }
+
     return ans;
 }
-
-
+    
 */
 
 /*
