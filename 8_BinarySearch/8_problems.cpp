@@ -6,6 +6,65 @@
 cout only prints till 5 digits, use printf to print more digit precision
 
 1. find precision with Normal Method as well as BS method(State Space Solution)
+
+    int main() {
+        // Write C++ code here
+        // finding sqrt
+        
+        int n = 7;
+        
+        int start = 1;
+        int end = n/2;
+        int mid = (start + end)/2;
+        int intPart = 0;
+        
+        while(start <= end){
+            // cout << mid << endl;
+            int prod = mid * mid;
+            if( prod == n){
+                intPart = mid;
+                break;
+            }else if(prod < n){
+                intPart = mid;
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
+        }
+        cout << intPart << endl;
+        
+        int precision = 5;
+        double k = 1;
+        int count = 0;
+        double ans = intPart;
+        
+        while(count < precision){
+            k = k / 10;
+            double st = k;
+            double ed = 1;
+            double md = (st + ed)/2;
+            while(st <= ed){
+                // cout << ans << endl;
+                double pr = (ans + md)*(ans + md);
+                if(pr == n){
+                    ans = ans + md;
+                    break;
+                }else if(pr > n){
+                    ed = md - k;
+                }else{
+                    ans = ans + md;
+                    st = md + k;
+                }
+                md = (st + ed)/2;
+            }
+            count++;
+        }
+        
+        cout << ans << endl;
+
+        return 0;
+    }
 */
 
 /*
