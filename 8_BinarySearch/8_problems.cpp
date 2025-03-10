@@ -172,62 +172,57 @@ Leetcode 1482 (https://leetcode.com/problems/minimum-number-of-days-to-make-m-bo
 class Solution {
 public:
 
-    bool checkbloom(vector<int>& bloomDay, int m, int k, int Dday){
+    bool minFlowersBloomed(vector<int>& bloomDay, int m, int k, int days){
 
-        int counter = 0;
-        for(int i = 0;i<bloomDay.size();i++){
+        int adjacent = k;
+        int bouquet = 0;
 
-            // check if flower is bloomed
-            if (bloomDay[i]<= Dday) counter++;
+        for(int i = 0; i < bloomDay.size(); i++){
 
-            // if k flowers are counted and bloomed then make the counter 0 again
-
-            if(counter==k){
-                m--;
-                counter = 0;
-                if (m==0) break;
+            if(bloomDay[i] <= days){
+                adjacent--;
+            }else{
+                adjacent = k;
             }
-
-            // if it's not adjacent again start from 0 ;
-            if(bloomDay[i]>Dday){
-                counter = 0;
+            if(adjacent == 0){
+                bouquet++;
+                adjacent = k;
             }
         }
 
-        if (m==0){
+        if(bouquet >= m){
             return true;
-        }else{
-            return false;
         }
+
+        return false;
     }
 
-
     int minDays(vector<int>& bloomDay, int m, int k) {
+        
+        int start = 0;
+
+        int maxBloomDay = 0;
+        for(auto v:bloomDay){
+            maxBloomDay = max(maxBloomDay, v);
+        }
+
         int ans = -1;
-        int n = bloomDay.size();
-        double data = (double)m * (double)k;
-        if (n < data ) return -1; // not possible to bloom
+        int end = maxBloomDay;
+        int mid = (start + end)/2;
 
-        int s = *min_element(bloomDay.begin(), bloomDay.end());
-        int e = *max_element(bloomDay.begin(), bloomDay.end());
-
-        int mid = (s+e)/2;
-
-        while(s<=e){
-            bool res = checkbloom(bloomDay, m, k, mid);
-
-            if (res){
+        while(start <= end){
+            if(minFlowersBloomed(bloomDay, m, k, mid)){
                 ans = mid;
-                e = mid - 1;
+                end = mid - 1;
             }else{
-                s = mid + 1;
+                start = mid + 1;
             }
-            mid = (s+e)/2;
+            mid = (start + end)/2;
         }
 
         return ans;
-
     }
+    
 };
 
 
