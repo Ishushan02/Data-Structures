@@ -71,3 +71,41 @@
 
 */
 
+/*
+    1346. Check If N and Its Double Exist
+    (https://leetcode.com/problems/check-if-n-and-its-double-exist/description/)
+
+    bool binarySearch(vector<int>& nums, int key, int start, int end){
+
+        int mid = (start + end)/2;
+
+        while(start <= end){
+            if(nums[mid] == key){
+                return true;
+            }else if(key > nums[mid]){
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        return false;
+    }
+
+    bool checkIfExist(vector<int>& arr) {
+        sort(arr.begin(), arr.end());
+        int n = arr.size();
+
+        for(int i = 0; i < arr.size(); i++){
+            int elem = arr[i];
+
+            if(binarySearch(arr, 2 * elem, i + 1, n - 1) || binarySearch(arr, 2 * elem, 0, i - 1)){
+                return true;
+            }
+        }
+        return false;
+
+    }
+        
+*/
