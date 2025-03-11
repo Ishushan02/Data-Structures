@@ -52,6 +52,9 @@
             for(auto v : mat[i]){
                 if(v == 1){
                     count++;
+                }else{
+                    // because 1's are only on the left
+                    break;
                 }
             }
             valPair.push_back({i, count});
@@ -65,5 +68,6 @@
 
         return ans;
     }
-        
+
 */
+
