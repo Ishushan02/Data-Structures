@@ -229,65 +229,52 @@ public:
 */
 
 /*
+    532. K-diff Pairs in an Array
+    (https://leetcode.com/problems/k-diff-pairs-in-an-array/)
 
-K-diff Pairs (https://leetcode.com/problems/k-diff-pairs-in-an-array/description/)
+    bool binarySearch(vector<int>& nums, int key, int start, int end){
 
-class Solution {
-public:
-bool binary_search(vector<int>& arr, int size, int key, int index){
-  int start = 0;
-  int end = size - 1;
-  int mid = (start + ((end - start) / 2));
+        int mid = (start + end)/2;
 
-
-  while(start <= end){
-
-    if (abs(arr[mid]) == key){
-        if (mid != index){
-            return true;
+        while(start <= end){
+            if(nums[mid] == key){
+                return true;
+            }else if(key > nums[mid]){
+                start = mid + 1;
+            }else{
+                end = mid - 1;
             }
-        else{
-            return false;
+            mid = (start + end)/2;
         }
-        }else if(arr[mid] > key){
-            end = mid - 1;
-        }else{
-            start = mid + 1;
-        }
-        mid = (start + ((end - start) / 2));
+
+        return false;
     }
-    return false;
-}
 
     int findPairs(vector<int>& nums, int k) {
-        int n =nums.size();
-        if (n == 2 ){
-            if (((nums[0]-nums[1])==k)|| (nums[1]-nums[0])==k){
-                return 1;
-            }else {
-                return 0;
-            }
-        }
+        
         sort(nums.begin(), nums.end());
+        int n = nums.size();
+        int ans = 0;
 
+        unordered_map<int, bool> valMap;
 
-        set<pair<int, int>> res;
+        for(int i = 0; i < nums.size(); i++){
+            int key = k + nums[i];
 
-        for(int i = 0;i<n;i++){
-            int val = abs(k + nums[i]);
-            int start = 0;
-            int end = n-1;
-            int mid = (start+end)/2;
-            bool temp = binary_search(nums, n, val, i);
-            if (temp){
-            cout << " Nums[i] is " << nums[i] <<" and Val is " << val << endl;
-
-            res.insert(make_pair(val, nums[i]));
+            if(valMap[nums[i]] == false){
+                // excluding current element for Binary Search
+                if(binarySearch(nums, key, 0, i - 1) || binarySearch(nums, key, i+1, n-1)){
+                    ans += 1;
+                    valMap[nums[i]] = true;
+                }
+                
             }
         }
-        return res.size();
+
+        return ans;
+
     }
-};
+
 
 */
 
