@@ -107,5 +107,44 @@
         return false;
 
     }
+
+*/
+
+/*
+    1351. Count Negative Numbers in a Sorted Matrix
+    (https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/)
+
+    int binarySearch(vector<int>& nums){
+        
+        int start = 0;
+        int end = nums.size()-1;
+        int mid = (start + end)/2;
+        int ans = -1;
+        while(start <= end){
+            if(nums[mid] < 0){
+                ans = mid;
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+
+            mid = (start + end)/2;
+        }
+
+        return ans;
+    }
+
+    int countNegatives(vector<vector<int>>& grid) {
+        int ans = 0;
+        for(int i = 0; i < grid.size(); i++){
+            int n = grid[0].size();
+            int id = binarySearch(grid[i]);
+            if(id != -1){
+                ans += (n - id);
+            }
+        }
+
+        return ans;
+    }
         
 */
