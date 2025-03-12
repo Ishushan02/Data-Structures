@@ -193,5 +193,41 @@
 
         return -1;
     }
+
+*/
+
+/*  
+    2389. Longest Subsequence With Limited Sum
+    (https://leetcode.com/problems/longest-subsequence-with-limited-sum/description/)
+
+    vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
+        sort(nums.begin(), nums.end());
+        vector<int> ans;
+
+        for(int i = 0; i < queries.size(); i++){
+
+            int maxelem = queries[i];
+            int count = 0;
+            int sum = 0;
+
+            for(int j = 0; j < nums.size(); j++){
+                if(sum + nums[j] <= maxelem){
+                    count += 1;
+                    sum += nums[j];
+                }else{
+                    break;
+                }
+            }
+            ans.push_back(count);
+        }
+
+
+        if(ans.size() == 0){
+            ans.push_back(0);
+            return ans;
+        }
+
+        return ans;
+    }
         
 */
