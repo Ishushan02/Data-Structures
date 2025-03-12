@@ -229,5 +229,43 @@
 
         return ans;
     }
+
+*/
+
+/*
+    2540. Minimum Common Value
+    (https://leetcode.com/problems/minimum-common-value/)
+
+    bool binarySearch(vector<int> &nums, int key){
+        
+        int start = 0;
+        int end = nums.size() -1;
+        int mid = (start + end)/2;
+
+        while(start <= end){
+            if(key == nums[mid]){
+                return true;
+            }else if(key < nums[mid]){
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        return false;
+    }
+
+    int getCommon(vector<int>& nums1, vector<int>& nums2) {
+        
+        for(int i = 0; i < nums1.size(); i++){
+            if(binarySearch(nums2, nums1[i])){
+                return nums1[i];
+            }
+        }
+
+        return -1;
+
+    }
         
 */
