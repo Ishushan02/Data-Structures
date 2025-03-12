@@ -148,3 +148,50 @@
     }
         
 */
+
+/*
+    1608. Special Array With X Elements Greater Than or Equal X
+    (https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/description/)
+
+    int getTotalGreaterCount(vector<int> &nums, int key, int n){
+        
+        int start = 0;
+        int end = n -1;
+        int mid = (start + end)/2;
+
+        int ans = n;
+
+        while(start <= end){
+            if(key <= nums[mid]){
+                ans = mid;
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        return n - ans;
+    }
+
+    int specialArray(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+
+        int start = 0;
+        int end = nums[n-1];
+        int mid = (start + end)/2;
+
+        while(start <= end){
+            int greaterCount = getTotalGreaterCount(nums, start, n);
+            if(greaterCount == start){
+                return start;
+            }
+
+            start += 1;
+        }
+
+        return -1;
+    }
+        
+*/
