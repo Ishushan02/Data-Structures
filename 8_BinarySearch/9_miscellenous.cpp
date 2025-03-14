@@ -269,3 +269,49 @@
     }
         
 */
+
+/*
+    2970. Count the Number of Incremovable Subarrays I
+    (https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/)
+
+    bool isIncreasing(int n, vector<int>& nums, int i, int j){
+        
+        int prev = 0;
+        if(i >= 1){
+            prev = nums[0];
+        }
+        for(int k = 1; k <= i - 1; k++){
+            if(prev >= nums[k]){
+                return false;
+            }
+            prev = nums[k];
+        }
+
+        for(int k = j + 1; k < n; k++){
+            if(prev >= nums[k]){
+                return false;
+            }
+            prev = nums[k];
+        }
+
+        // cout << " Ispossible " << endl;
+        return true;
+
+    }
+
+    int incremovableSubarrayCount(vector<int>& nums) {
+        int n = nums.size();
+        int ans = 0;
+        for(int i = 0; i < nums.size(); i++){
+            for(int j = i; j < nums.size(); j++){
+                // cout << nums[i] << " , " << nums[j] << endl;
+                if(isIncreasing(n, nums, i, j)){
+                    ans += 1;
+                }
+            }
+        }
+
+        return ans;
+    }
+
+*/
