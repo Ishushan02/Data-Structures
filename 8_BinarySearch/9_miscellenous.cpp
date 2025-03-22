@@ -315,3 +315,79 @@
     }
 
 */
+
+/*
+    81. Search in Rotated Sorted Array II
+    (https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/)
+
+    int getPivotIdx(vector<int>& nums){
+        int n = nums.size();
+        int start = 0; 
+        int end = n-1;
+        int mid = (start + end)/2;
+
+        while(start <= end){
+            // cout << "STart: "<< start << " Mid: " << mid << " End: "<< end << endl;
+            if(mid - 1 >= 0 && nums[mid - 1] > nums[mid]){
+                return mid;
+            }else if(mid + 1 < n && nums[mid] > nums[mid+1]){
+                return mid + 1;
+            }else if(nums[mid] == nums[start] && nums[mid] == nums[end]){
+                // important
+                start++;
+                end--;
+            }else if(nums[mid] > nums[0]){
+                start = mid + 1;
+            }else if(nums[mid] < nums[0]){
+                end = mid - 1;
+            }else if(nums[mid] == nums[0]){
+                start = mid + 1;
+            }else if(nums[mid] == nums[end]){
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        return start;
+    }
+
+    bool binarySearch(vector<int>&nums, int start, int end, int key){
+        int mid = (start + end)/2;
+
+        while(start <= end){
+            if(nums[mid] == key){
+                return true;
+            }else if(key > nums[mid]){
+                start = mid +1;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        return false;
+    }
+
+    bool search(vector<int>& nums, int target) {
+        
+        int n = nums.size();
+        if(n == 1){
+            if(nums[0] == target){
+                return true;
+            }
+            return false;
+        }
+
+        
+
+        int pivot = getPivotIdx(nums);
+        cout << pivot << endl;
+
+        if(pivot - 1 >= 0 && binarySearch(nums, 0, pivot-1, target)){
+            return true;
+        }else if(binarySearch(nums, pivot, n-1, target)){
+            return true;
+        }
+        return false;
+    }
+*/
