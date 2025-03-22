@@ -428,5 +428,49 @@
         int idx = getPivot(nums);
         return nums[idx];
     }
+
+*/
+
+/*
+    274. H-Index
+    (https://leetcode.com/problems/h-index/description/)
+
+    int totalCites(vector<int>& citations, int numCite){
         
+        int count = 0;
+        for(auto v:citations){
+            if(v - numCite >= 0){
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    int hIndex(vector<int>& citations) {
+        
+        int maxCite = 0;
+        for(auto v:citations){
+            maxCite = max(maxCite, v);
+        }
+
+        int start = 0;
+        int end = maxCite;
+        int mid = (start + end)/2;
+        int ans = 0;
+
+        while(start <= end){
+            int val = totalCites(citations, mid);
+
+            if(val >= mid){
+                ans = mid;
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid =  (start + end)/2;
+        }
+
+        return ans;
+    }
 */
