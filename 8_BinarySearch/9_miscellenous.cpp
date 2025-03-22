@@ -474,3 +474,59 @@
         return ans;
     }
 */
+
+/*
+    275. H-Index II
+    (https://leetcode.com/problems/h-index-ii/)
+
+    int totalCites(vector<int>& citations, int numCite){
+        
+        int ans = 0;
+        int n = citations.size();
+        int start = 0;
+        int end = n - 1;
+        int mid = (start + end)/2;
+
+        while(start <= end){
+            if(citations[mid] >= numCite){
+                ans = mid;
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        
+
+        return n - ans;
+    }
+
+    int hIndex(vector<int>& citations) {
+        
+        int maxCite = 0;
+        for(auto v:citations){
+            maxCite = max(maxCite, v);
+        }
+
+        int start = 0;
+        int end = maxCite;
+        int mid = (start + end)/2;
+        int ans = 0;
+
+        while(start <= end){
+            int val = totalCites(citations, mid);
+
+            if(val >= mid){
+                ans = mid;
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid =  (start + end)/2;
+        }
+
+        return ans;
+    }
+        
+*/
