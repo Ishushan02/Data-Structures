@@ -391,3 +391,42 @@
         return false;
     }
 */
+
+/*
+    153. Find Minimum in Rotated Sorted Array
+    (https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
+
+    int getPivot(vector<int> &nums){
+        int n = nums.size();
+        int start = 0;
+        int end = n - 1;
+        int mid = (start + end)/2;
+        int ans = 0;
+
+        while(start <= end){
+            if(mid - 1 >= 0 && nums[mid-1] > nums[mid]){
+                return mid;
+            }else if(mid + 1 < n && nums[mid + 1] < nums[mid]){
+                return mid + 1;
+            }else if(nums[mid] > nums[0]){
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        // cout << start << endl;
+        if(start >= n){
+            return 0;
+        }
+        return start;
+    }
+
+    int findMin(vector<int>& nums) {
+        cout << getPivot(nums) << endl;
+        int idx = getPivot(nums);
+        return nums[idx];
+    }
+        
+*/
