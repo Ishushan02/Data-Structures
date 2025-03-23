@@ -295,7 +295,13 @@ public:
 */
 
 /*
-    456. 132 Pattern (VVIII Question)
+    456. 132 Pattern (VVIII Question), intution is hard, just try doing it
+
+    - The main idea is that, you have to go from back,
+    - store the third num (the max One),
+    - in stack if the current elem > top elem, which means assign maxelem = top, and pop it
+
+
     (https://leetcode.com/problems/132-pattern/description/)
 
     bool find132pattern(vector<int>& nums) {
