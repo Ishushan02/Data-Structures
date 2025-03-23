@@ -293,3 +293,35 @@ public:
     }
     };
 */
+
+/*
+    456. 132 Pattern (VVIII Question)
+    (https://leetcode.com/problems/132-pattern/description/)
+
+    bool find132pattern(vector<int>& nums) {
+
+        stack<int> st;
+        int n = nums.size();
+
+        if(n < 3){
+            return false;
+        }
+
+        int thirdNum = INT_MIN;
+        for(int i = n-1; i >= 0; i--){
+            
+            if(thirdNum > nums[i]){
+                return true;
+            }
+
+            while(!st.empty() && nums[i] > st.top()){
+                thirdNum = st.top();
+                st.pop();
+            }
+
+            st.push(nums[i]);
+        }
+        return false;
+    }
+
+*/
