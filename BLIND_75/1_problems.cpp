@@ -164,5 +164,62 @@
 
         return ans;
     }
+
+*/
+
+/*
+    Problem 5
+    133. Clone Graph
+    (https://leetcode.com/problems/clone-graph/description/)
+
+    void buildMap(Node* node, map<int, vector<int>> &nodeMap){
+        if(node == NULL || nodeMap.find(node->val) != nodeMap.end()){
+            return ;
+        }
+
+        nodeMap[node->val] = {};
+        for(auto v: node->neighbors){
+            nodeMap[node->val].push_back(v->val);
+            buildMap(v, nodeMap);
+        }
         
+    }
+
+    Node* cloneGraph(Node* node) {
+        map<int, vector<int>> nodeMap;
+        buildMap(node, nodeMap);
+
+        Node* ansNode = NULL;
+        unordered_map<int, Node*> allNodes;
+
+        for(auto &[key, value]:nodeMap){
+            // cout << key << ": ";
+            Node* newNode = NULL;
+            if(allNodes.find(key) == allNodes.end()){
+                newNode = new Node(key);
+                allNodes[key] = newNode;
+            }else{
+                newNode = allNodes[key];
+            }
+
+            if(ansNode == NULL){
+                ansNode = newNode;
+            }
+
+            for(auto v:value){
+                if(allNodes.find(v) == allNodes.end()){
+                    Node* tempNode = new Node(v);
+                    allNodes[v] = tempNode;
+                    newNode->neighbors.push_back(tempNode);
+                }else{
+                    Node* tempNode = allNodes[v];
+                    newNode->neighbors.push_back(tempNode);
+                }
+
+            }
+        }
+
+        
+        return ansNode;
+    }
 */
