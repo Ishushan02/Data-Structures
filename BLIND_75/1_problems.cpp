@@ -38,3 +38,48 @@
         return maxConsecutive+1;
     }
 */
+
+/*
+    Problem 2
+    1. Two Sum
+    (https://leetcode.com/problems/two-sum/description/)
+
+    struct valueSort{
+        bool operator()(pair<int, int> &a, pair<int, int> &b){
+            return a.first < b.first;
+        }
+    };
+
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+        vector<pair<int, int>> valuePair;
+        for(int i = 0; i < nums.size(); i++){
+            valuePair.push_back({nums[i], i});
+        }
+
+        sort(valuePair.begin(), valuePair.end(), valueSort());
+
+        int i = 0;
+        int j = nums.size() - 1;
+        while(i <= j){  
+            pair<int, int> num1 = valuePair[i];
+            pair<int, int> num2 = valuePair[j];
+            int sumVal = num1.first + num2.first;
+
+            if(sumVal == target){
+                return {num1.second, num2.second};
+            }
+
+            if(sumVal > target){
+                j--;
+            }else{
+                i++;
+            }
+
+        }
+
+        return {0, 1};
+
+    }
+        
+*/
