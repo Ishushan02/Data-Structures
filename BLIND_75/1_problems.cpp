@@ -223,3 +223,35 @@
         return ansNode;
     }
 */
+
+/*
+    Problem 6
+    647. Palindromic Substrings
+    (https://leetcode.com/problems/palindromic-substrings/)
+
+    int substrings(string s, int i, int j, int count){
+        while(i >= 0 && j < s.length() && s[i] == s[j]){
+            count++;
+            i--;
+            j++;
+        }
+        return count;
+        
+    }
+
+    int countSubstrings(string s) {
+        
+        int count = 0;
+        for(int centre = 0; centre < s.length(); centre++){
+            // odd substr
+            count += substrings(s, centre, centre, 0);
+
+            //even substr
+            count += substrings(s, centre, centre+1, 0);
+
+        }
+
+        return count;
+
+    }
+*/
