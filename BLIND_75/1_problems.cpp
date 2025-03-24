@@ -81,5 +81,33 @@
         return {0, 1};
 
     }
+
+*/
+
+/*
+    Problem 3
+    3. Longest Substring Without Repeating Characters
+    (https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+
+    int lengthOfLongestSubstring(string s) {
+        int uniqueMax = 0;
+        int i = 0;
+        unordered_map<char, bool> charCount;
+        while(i < s.length()){
+            int curridx = i;
+            int j = i;
+            int count = 0;
+            while(j < s.length() && !(charCount[s[j]])){
+                charCount[s[j]] = true;
+                count++;
+                j++;
+            }
+            charCount.clear();
+            uniqueMax = max(uniqueMax, count);
+            i = curridx + 1;
+        }        
+
+        return uniqueMax;
+    }
         
 */
