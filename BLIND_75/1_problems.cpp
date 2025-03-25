@@ -406,3 +406,89 @@
     }
 
 */
+
+/*
+    Problem 12
+    143. Reorder List
+    (https://leetcode.com/problems/reorder-list/submissions/)
+
+    ListNode* reversedList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+
+        while(curr){
+            ListNode* forw = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forw;
+        }
+        return prev;
+    }
+
+    void reorderList(ListNode* head) {
+
+        if(head->next == NULL){
+            return ;
+        }
+        
+        ListNode* fastptr = head;
+        ListNode* slowptr = head;
+        ListNode* countPtr = head;
+
+        int n = 0;
+        while(countPtr){
+            n++;
+            countPtr = countPtr->next;
+        }
+
+        
+        while(fastptr && fastptr->next){
+            slowptr = slowptr->next;
+            fastptr = fastptr->next->next;
+        }
+
+        // cout << slowptr->val << endl;
+        ListNode* reverseNode = reversedList(slowptr);
+
+        ListNode* headNode = head;
+        ListNode* newNode = NULL;
+        ListNode* temp = newNode;
+
+        while(headNode && reverseNode){
+            ListNode* nextHeadNode = headNode->next;
+            ListNode* nextRevNode = reverseNode->next;
+            
+            ListNode* thead = headNode;
+            ListNode* ttail = reverseNode;
+            // cout << thead->val << " , " << ttail->val << endl;
+            if(temp == NULL){
+                temp = thead;
+                temp->next = ttail;
+                temp = temp->next;
+            }else{
+                // cout << temp << endl;
+                if(temp == NULL || temp->next == NULL){
+                    break;
+                }
+                temp->next = thead;
+                temp = temp->next;
+                if(temp == NULL || temp->next == NULL){
+                    break;
+                }
+                temp->next = ttail;
+                temp = temp->next;
+            }
+
+            // cout << temp->val << endl;
+
+            // cout << headNode->val << " , "<< reverseNode->val << endl;
+            
+            headNode = nextHeadNode ;
+            reverseNode = nextRevNode;
+        }
+
+        head = newNode;
+        // head = reversedList(newNode);
+    }
+
+*/
