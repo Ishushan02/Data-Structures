@@ -255,3 +255,25 @@
 
     }
 */
+
+/*
+
+    Problem 7
+    141. Linked List Cycle
+    (https://leetcode.com/problems/linked-list-cycle/submissions/)
+
+    bool hasCycle(ListNode *head) {
+        
+        while(head){
+            if(head->val == -1000000){
+                return true;
+            }
+            head->val = -1000000;
+
+            head = head->next;
+        }
+
+        return false;
+    }
+        
+*/
