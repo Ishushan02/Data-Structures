@@ -366,3 +366,43 @@
         return checkPresence(s, 0, wordMap, dpArr);
     }
 */
+
+/*
+    Problem 11
+    15. 3Sum
+    (https://leetcode.com/problems/3sum/description/)
+
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        
+        sort(nums.begin(), nums.end());
+        set<vector<int>> tempAns;
+        int n = nums.size();
+        for(int i = 0; i < n; i++){
+
+            int start = i + 1;
+            int end = n - 1;
+            while(start < end){
+                int target = nums[start] + nums[end] + nums[i];
+                if(target == 0){
+                    vector<int> temp{nums[i], nums[start], nums[end]};
+                    tempAns.insert(temp);
+                }
+
+                if(target >= 0){
+                    end--;
+                }else{
+                    start++;
+                }
+
+            }
+        }
+
+        vector<vector<int>> ans;
+        for(auto v:tempAns){
+            ans.push_back(v);
+        }
+
+        return ans;
+    }
+
+*/
