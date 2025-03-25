@@ -296,3 +296,33 @@
     }
         
 */
+
+/*
+    Problem 9
+    11. Container With Most Water
+    (https://leetcode.com/problems/container-with-most-water/)
+    // the idea is we move from min because we expect the next one will have higher length, hence higher Area
+
+    int maxArea(vector<int>& height) {
+        
+        int n = height.size();
+        int maxArea = 0;
+        int i = 0;
+        int j = n - 1;
+
+        while(i < j){
+            int l1 = height[i];
+            int l2 = height[j];
+            maxArea = max(maxArea, min(l1, l2) * (j - i));
+            if(l1 < l2){
+                i++;
+            }else{
+                j--;
+            }
+
+        }
+
+        return maxArea;
+    }
+
+*/
