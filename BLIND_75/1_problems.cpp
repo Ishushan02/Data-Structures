@@ -275,5 +275,24 @@
 
         return false;
     }
+
+*/
+
+/*
+    Problem 8
+    268. Missing Number
+    (https://leetcode.com/problems/missing-number/submissions/)
+
+    int missingNumber(vector<int>& nums) {
+        
+        int n = nums.size();
+        int sum = n * (n+1)/2;
+        int totalSum = 0;
+        for(auto v:nums){
+            totalSum += v;
+        }
+
+        return sum - totalSum;
+    }
         
 */
