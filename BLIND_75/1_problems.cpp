@@ -326,3 +326,43 @@
     }
 
 */
+
+/*
+    Problem 10
+    139. Word Break
+    (https://leetcode.com/problems/word-break/)
+
+    bool checkPresence(string &s, int i, unordered_map<string, bool> &wordMap, vector<int> &dpArr){
+        if(i >= s.length()){
+            return true;
+        }
+
+        if(dpArr[i] != -1){
+            return dpArr[i];
+        }
+
+        bool flag = false;
+        for(int j = i; j < s.length(); j++){
+            string substring = s.substr(i, j - i +1);
+            if(wordMap[substring] && checkPresence(s, j+1, wordMap, dpArr)){
+                flag = true;
+            }
+        }
+
+        dpArr[i] = flag;
+        return dpArr[i];
+    }
+
+
+    bool wordBreak(string s, vector<string>& wordDict) {
+        
+        unordered_map<string, bool> wordMap;
+        vector<int> dpArr(s.length(), -1);
+
+        for(auto word:wordDict){
+            wordMap[word] = true;
+        }
+
+        return checkPresence(s, 0, wordMap, dpArr);
+    }
+*/
