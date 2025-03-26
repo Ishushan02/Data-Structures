@@ -75,3 +75,48 @@
         return ansHead;
     }
 */
+
+/*
+    Problem 17
+    152. Maximum Product Subarray
+    (https://leetcode.com/problems/maximum-product-subarray/)
+
+    void productMax(vector<int> &nums, int i, int product, int &maxProduct, map<pair<int, int>, int> &dpMap){
+        if(i >= nums.size()){
+            maxProduct = max(maxProduct, product);
+            return ;
+        }
+
+        if(dpMap.find({i, product}) != dpMap.end()){
+            // maxProduct = max(dpMap[{i, product}], maxProduct);
+            return ;
+        }
+
+        // include nums[i]
+        maxProduct = max(maxProduct, nums[i] * product);
+        productMax(nums, i + 1, nums[i] * product, maxProduct, dpMap);
+
+        // exclude nums[i]
+        if(i + 1 < nums.size()){
+            productMax(nums, i + 1, 1, maxProduct, dpMap);
+        }else{
+            productMax(nums, i + 1, nums[i], maxProduct, dpMap);
+        }
+
+        dpMap[{i, product}] = maxProduct;
+
+    }
+
+    int maxProduct(vector<int>& nums) {
+        if(nums.size() == 1){
+            return nums[0];
+        }
+        map<pair<int, int>, int> dpMap;
+        int ans = 1;
+        int maxAns = INT_MIN;
+        
+        productMax(nums, 0, 1, maxAns, dpMap);
+        return maxAns;
+    }
+        
+*/
