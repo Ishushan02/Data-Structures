@@ -161,5 +161,69 @@
         return nums[mid];
 
     }
+
+*/
+
+/*
+    Problem 19
+    33. Search in Rotated Sorted Array
+    (https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
+    int pivot(vector<int>& nums, int n){
+        int start = 0;
+        int end = n - 1;
+        int mid = (start + end)/2;
+
+        while(start <= end){
+
+            if(mid + 1 < n && nums[mid] > nums[mid+1]){
+                return mid + 1;
+            }else if(mid - 1>= 0 && mid + 1 < n && nums[mid] < nums[mid + 1] && nums[mid] < nums[mid-1]){
+                return mid;
+            }else if(nums[mid] > nums[0]){
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        if(start >= n){
+            return 0;
+        }
+
+        return start;
+
+    }
+
+    int binarySearch(vector<int>& nums, int start, int end, int key){
+        int mid = (start + end)/2;
+
+        while(start <= end){
+
+            if(nums[mid] == key){
+                return mid;
+            }else if(key > nums[mid]){
+                start = mid + 1;
+            }else{
+                end = mid -1;
+            }
+            mid = (start + end)/2;
+        }
+
+        return -1;
+    }
+
+    int search(vector<int>& nums, int target){
+
+        int n = nums.size();
+        int pivotidx = pivot(nums, n);
+
+        int ansidx = binarySearch(nums, 0, pivotidx-1, target);
+        if(ansidx == -1){
+            ansidx = binarySearch(nums, pivotidx, n-1, target);
+        }
+        return ansidx;
+    }
         
 */
