@@ -118,5 +118,48 @@
         productMax(nums, 0, 1, maxAns, dpMap);
         return maxAns;
     }
+
+*/
+
+/*
+    Problem 18
+    153. Find Minimum in Rotated Sorted Array
+    (https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+
+    int findMin(vector<int>& nums) {
+        
+        int n = nums.size();
+
+        int start = 0;
+        int end = n -1;
+        int mid = (start + end)/2;
+        int ans = -1;
+
+        while(start <= end){
+
+            if(mid + 1 < n && nums[mid] > nums[mid+1]){
+                return nums[mid + 1];
+            }else if(mid + 1 < n && mid - 1 >= 0 && nums[mid-1] > nums[mid] && nums[mid+1] > nums[mid]){
+                return nums[mid];
+            }
+
+            if(nums[mid] > nums[0]){
+                // ans = nums[start];
+                start = mid + 1;
+            }else{
+                ans = nums[start];
+                end = mid - 1;
+            }
+
+            mid = (start + end)/2;
+        }
+
+        if(ans == -1){
+            return nums[0];
+        }
+
+        return nums[mid];
+
+    }
         
 */
