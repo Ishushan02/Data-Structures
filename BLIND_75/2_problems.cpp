@@ -225,5 +225,40 @@
         }
         return ansidx;
     }
+
+*/
+
+
+/*
+    Problem 20
+    39. Combination Sum
+    (https://leetcode.com/problems/combination-sum/)
+
+    void allPossibilities(vector<int>& candidates, int j, int target, vector<int> temp, int sum, vector<vector<int>> &ans){
+
+        if(sum == target){
+
+            ans.push_back(temp);
+            return;
+        }
+
+        for(int i = j; i < candidates.size(); i++){
+            if(sum + candidates[i] <= target){
+                temp.push_back(candidates[i]);
+                allPossibilities(candidates, i, target, temp, sum + candidates[i], ans);
+                temp.pop_back();
+            }
+        }
+
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        
+        vector<vector<int>> ans;
+        vector<int> temp;
+        allPossibilities(candidates, 0, target, temp, 0, ans);
+
+        return ans;
+    }
         
 */
