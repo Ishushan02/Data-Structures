@@ -260,5 +260,101 @@
 
         return ans;
     }
+
+*/
+
+/*
+    Problem 21
+    295. Find Median from Data Stream
+    (https://leetcode.com/problems/find-median-from-data-stream/)
+
+    class MedianFinder {
+    public:
+
+        priority_queue<int> maxHeap;
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+        double median = 0.0;
+
+        MedianFinder(){
+
+        }
         
+        void addNum(int num){
+            if(maxHeap.size() < minHeap.size()){
+                if(maxHeap.size() == 0){
+                    if(num > minHeap.top()){
+                        maxHeap.push(minHeap.top());
+                        minHeap.pop();
+                        minHeap.push(num);
+                    }else{
+                        maxHeap.push(num);
+                    }
+                    
+                }else{
+                    if(num > minHeap.top()){
+                        maxHeap.push(minHeap.top());
+                        minHeap.pop();
+                        minHeap.push(num);
+                    }else{
+                        maxHeap.push(num);
+                    }
+                }
+            }else if(maxHeap.size() > minHeap.size()){
+                if(minHeap.size() == 0){
+                    if(num < maxHeap.top()){
+                        minHeap.push(maxHeap.top());
+                        maxHeap.pop();
+                        maxHeap.push(num);
+                    }else{
+                        minHeap.push(num);
+                    }
+                }else{
+                    if(num < maxHeap.top()){
+                        minHeap.push(maxHeap.top());
+                        maxHeap.pop();
+                        maxHeap.push(num);
+                    }else{
+                        maxHeap.push(minHeap.top());
+                        minHeap.pop();
+                        minHeap.push(num);
+                    }
+                }
+            }else{
+                // initialCase
+                if(maxHeap.size()==0 || minHeap.size()==0 ){
+                    maxHeap.push(num);
+                }else{
+                    if(num < maxHeap.top()){
+                        minHeap.push(maxHeap.top());
+                        maxHeap.pop();
+                        maxHeap.push(num);
+                    }else{
+                        minHeap.push(num);
+                    }
+                }
+            }
+
+            int maxSize = maxHeap.size();
+            int minSize = minHeap.size();
+            // cout << num << " , MaxSize: " << maxSize << " , MinSize: "<< minSize << endl;
+
+            if(maxSize > minSize){
+                median = maxHeap.top();
+            }else if(maxSize == minSize){
+                median = ((double)maxHeap.top() + minHeap.top()) / 2;
+            }else{
+                if(minHeap.size() == 0){
+                    median = maxHeap.top();
+                }else{
+                    median = minHeap.top();
+                }       
+                
+            }
+            // cout << num << " : " << median << endl;
+        }
+        
+        double findMedian() {
+            return median;
+        }
+    };
 */
