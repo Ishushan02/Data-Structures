@@ -358,3 +358,162 @@
         }
     };
 */
+
+/*
+    Problem 22
+    (297. Serialize and Deserialize Binary Tree)
+    (https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+
+    int height(TreeNode* root){
+        if(root == NULL){
+            return 0;
+        }
+
+        int l = height(root->left);
+        int r = height(root->right);
+
+        return max(l, r) + 1;
+    }
+
+    vector<TreeNode*> traverseSerialize(TreeNode* root){
+
+        queue<TreeNode*> que;
+        que.push(root);
+        vector<TreeNode*> serializedData;
+        serializedData.push_back(root);
+        int h = height(root);
+
+        while(!que.empty() && h > 0){
+
+            // TreeNode* top = que.front();
+            // serializedData.push_back(top);
+            int size = que.size();
+            // que.pop();
+
+            for(int i = 0; i < size; i++){
+                TreeNode* top = que.front();
+                if(top->left != NULL){
+                    que.push(top->left);
+                    serializedData.push_back(top->left);
+                }else{
+                    serializedData.push_back(NULL);
+                }
+
+                if(top->right != NULL){
+                    que.push(top->right);
+                    serializedData.push_back(top->right);
+                }else{
+                    serializedData.push_back(NULL);
+                }
+
+                que.pop();
+            }
+            h--;
+        }   
+        
+        return serializedData;
+    }
+
+    TreeNode* traverseDeseralize(vector<int> data){
+        queue<TreeNode*> que;
+        TreeNode* root = new TreeNode(data[0]);
+        que.push(root);
+        int i = 1;
+
+        while(!que.empty()){
+            TreeNode* curr = que.front();
+            que.pop();
+            // cout << curr->val << " : " << data[i] << " , " << data[i+1] << endl;
+
+            // left
+            // TreeNode* leftNode = NULL;
+            if(i < data.size() && data[i] != 9999){
+                TreeNode* leftNode = new TreeNode(data[i]);
+                curr->left = leftNode;
+                que.push(leftNode);
+            }
+            i++;
+            // right
+            // TreeNode* rightNode = NULL;
+            if(i < data.size() && data[i] != 9999){
+                TreeNode* rightNode = new TreeNode(data[i]);
+                curr->right = rightNode;
+                que.push(rightNode);
+            }
+            i++;
+
+        }
+
+        return root;
+
+    }
+
+    vector<int> getNodeValue(string &data){
+        vector<int> values;
+        // values.push_back(9999);
+        string elem;
+        int i = 0;
+        while(i < data.length()){
+            if(data[i] == ' '){
+                int val = stoi(elem);
+                values.push_back(val);
+                elem = "";
+            }else{
+                elem += data[i];
+            }
+            i++;
+        }
+        return values;
+    }
+
+    class Codec {
+    public:
+        vector<TreeNode*> serialized;
+        // Encodes a tree to a single string.
+        string serialize(TreeNode* root) {
+            if(root == NULL){
+                return "";
+            }
+            
+            int h = height(root);
+            serialized = traverseSerialize(root);
+            int size = serialized.size();
+
+            string ans;
+            for(int i = 0; i < size; i++){
+                TreeNode* v = serialized[i];
+                if(v == NULL){
+                    ans += "9999 ";
+                    // cout << "-1" << " ";
+                }else{
+                    ans += to_string(v->val) + " ";
+                    // cout << v->val << " ";
+                }
+            }
+            // cout << endl;
+
+            return ans;
+        }
+
+        // Decodes your encoded data to tree.
+        TreeNode* deserialize(string data) {
+            if(data == ""){
+                return NULL;
+            }
+
+            vector<int> elementValues = getNodeValue(data);
+            // for(auto v: elementValues){
+            //     cout << v << " ";
+            // }
+            int index = 0;
+            TreeNode* root = traverseDeseralize(elementValues);
+
+            // for(auto v: elementValues){
+            //     cout << v << " ";
+            // }
+            return root;
+        }
+    };
+
+
+*/
