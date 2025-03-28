@@ -517,3 +517,66 @@
 
 
 */
+
+/*
+    Problem 23
+    424. Longest Repeating Character Replacement
+    (https://leetcode.com/problems/longest-repeating-character-replacement/)
+
+    TLE (Method 1)
+    void replaceChars(string &s, char prev, int i, int k, int ans, int &maxAns){
+        if(i >= s.length()){
+            return ;
+        }
+
+        // cout << i << " : " << s << endl;
+
+        if(s[i] == prev){
+            ans++;
+            maxAns = max(maxAns, ans);
+            replaceChars(s, s[i], i+1, k, ans, maxAns);
+        }else{
+
+            // 2 options
+            // replace
+            char curr = s[i];
+            if(k > 0){
+                // replace curr
+                s[i] = prev;
+                replaceChars(s, s[i], i, k-1, ans, maxAns);
+                s[i] = curr;
+
+                // replace prev
+                // ans++;
+                replaceChars(s, s[i], i, k-1, 1, maxAns);
+            }
+            
+            // don't replace
+            s[i] = curr;
+            if(prev == curr){
+                ans++;
+                maxAns = max(maxAns, ans);
+                replaceChars(s, curr, i+1, k, ans, maxAns);
+            }else{
+
+                // change prev
+                replaceChars(s, curr, i+1, k, 1, maxAns);
+            }
+            
+
+        }
+    }
+
+    int characterReplacement(string s, int k) {
+        
+        if(s.length() == 1){
+            return 1;
+        }
+
+        int maxAns = 1;
+        replaceChars(s, s[0], 1, k, 1, maxAns);
+
+        return maxAns;
+    }
+
+*/
