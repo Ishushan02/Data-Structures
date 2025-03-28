@@ -760,5 +760,51 @@
         return ans;
 
     }
-        
+
+*/
+
+/*
+    Problem 28
+    55. Jump Game
+    (https://leetcode.com/problems/jump-game/)
+
+    bool ifPossible(vector<int> &nums, int i, vector<int> &dpArray){
+        // cout << i << endl;
+        if(i >= nums.size()){
+            return false;
+        }
+
+        if(dpArray[i] != -1){
+            return dpArray[i];
+        }
+
+        if(i == nums.size() - 1){
+            return true;
+        }
+
+        if(nums[i] == 0){
+            return false;
+        }
+
+        bool ans = false;
+        for(int j = 1; j <= nums[i]; j++ ){
+            ans = ans || ifPossible(nums, i + j, dpArray);
+            if(ans){
+                dpArray[i] = 1;
+                return true;
+            }
+            
+            
+        }
+
+        dpArray[i] = ans;
+        return ans;
+
+    }
+
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dpArray(n+1, -1);
+        return ifPossible(nums, 0, dpArray);
+    }
 */
