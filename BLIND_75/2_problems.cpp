@@ -695,5 +695,70 @@
 
         return maxSum;
     }
+
+*/
+
+/*
+    Problem 27
+    54. Spiral Matrix
+    (https://leetcode.com/problems/spiral-matrix/description/)
+
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int row = matrix.size();
+        int col = matrix[0].size();
+
+        int startRow = 0;
+        int endRow = row - 1;
+        int startCol = 0;
+        int endCol = col - 1;
+
+        int count = 0;
+        int totalElem = row * col;
+        vector<int> ans;
+
+        while(count < totalElem){
+            cout << count << " - "<< startRow << ", " << endRow << ", "<< startCol << ", " << endCol << endl;
+            // row left to right
+            for(int i = startCol; count < totalElem && i <= endCol; i++){
+                cout << matrix[startRow][i] << " ";
+                ans.push_back(matrix[startRow][i]);
+                count++;
+            }
+            cout <<endl;
+            startRow++;
+
+
+            // col top to bottom
+            for(int i = startRow; count < totalElem && i <= endRow; i++){
+                cout << matrix[i][endCol] << " ";
+                ans.push_back(matrix[i][endCol]);
+                count++;
+            }
+            cout << endl;
+            endCol--;
+
+            // row right to left
+            for(int i = endCol; count < totalElem && i >= startCol; i--){
+                cout << matrix[endRow][i] << " ";
+                ans.push_back(matrix[endRow][i]);
+                count++;
+            }
+            cout << endl;
+            endRow--;
+
+            // col bottom to top
+            for(int i = endRow; count < totalElem && i >= startRow; i--){
+                cout << matrix[i][startCol] << " ";
+                ans.push_back(matrix[i][startCol]);
+                count++;
+            }
+            cout << endl;
+            startCol++;
+
+        }
+
+        return ans;
+
+    }
         
 */
