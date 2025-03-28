@@ -642,3 +642,32 @@
         }
     }
 */
+
+/*
+    Problem 25
+    49. Group Anagrams
+    (https://leetcode.com/problems/group-anagrams/)
+
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        
+        vector<string> temp(strs.begin(), strs.end());
+        unordered_map<string, vector<int>> valAns;
+        int i = 0;
+        for(auto s:temp){
+            sort(s.begin(), s.end());
+            valAns[s].push_back(i);
+            i++;
+        }
+
+        vector<vector<string>> ans;
+        for(auto &[key, vals]:valAns){
+            vector<string> val;
+            for(auto v:vals){
+                val.push_back(strs[v]);
+            }
+            ans.push_back(val);
+        }
+
+        return ans;
+    }
+*/
