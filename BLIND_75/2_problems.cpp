@@ -808,3 +808,58 @@
         return ifPossible(nums, 0, dpArray);
     }
 */
+
+/*
+    Problem 29
+    572. Subtree of Another Tree
+    (https://leetcode.com/problems/subtree-of-another-tree/)
+
+    void subRootNode(TreeNode* root, TreeNode* subRoot, vector<TreeNode*> &nodes){
+        if(root== NULL){
+            return ;
+        }
+
+        if(root->val == subRoot->val){
+            nodes.push_back(root);
+        }
+
+        subRootNode(root->left, subRoot, nodes);
+        subRootNode(root->right, subRoot, nodes);
+
+    }
+
+    bool checkSimilarity(TreeNode* rootA, TreeNode* rootB){
+        if((rootA == NULL && rootB != NULL) || (rootA != NULL && rootB == NULL)){
+            return false;
+        }
+        if(rootA == NULL && rootB == NULL){
+            return true;
+        }
+
+        if(rootA->val != rootB->val){
+            return false;
+        }
+
+        return checkSimilarity(rootA->left, rootB->left) && checkSimilarity(rootA->right, rootB->right);
+    }
+
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        
+        vector<TreeNode*> nodes;
+        subRootNode(root, subRoot, nodes);
+        
+        if(nodes.size() == 0){
+            return false;
+        }
+        // cout << node->val << endl;
+
+        for(auto v: nodes){
+            if(checkSimilarity(v, subRoot)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+        
+*/
