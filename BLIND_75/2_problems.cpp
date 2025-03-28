@@ -671,3 +671,29 @@
         return ans;
     }
 */
+
+/*
+    Problem 26
+    53. Maximum Subarray
+    (https://leetcode.com/problems/maximum-subarray/)
+
+    int maxSubArray(vector<int>& nums) {
+        
+        int sum = 0;
+        int maxSum = INT_MIN;
+
+        for(auto v: nums){
+
+            sum += v;
+            maxSum = max(maxSum, sum);
+
+            if(sum < 0){
+                sum = 0;
+            }
+
+        }
+
+        return maxSum;
+    }
+        
+*/
