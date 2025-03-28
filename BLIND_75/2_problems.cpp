@@ -580,3 +580,39 @@
     }
 
 */
+
+/*
+    Problem 24
+    300. Longest Increasing Subsequence
+    (https://leetcode.com/problems/longest-increasing-subsequence/)
+
+    int getLongestIncrSubs(vector<int>& nums, int i, int prev, vector<vector<int>> &dpArray){
+        if(i >= nums.size()){
+            return 0;
+        }
+
+        if(dpArray[i][prev + 1] != -1){
+            return dpArray[i][prev+1];
+        }
+
+        int include = 0;
+        int exclude = 0;
+
+        if(prev == -1 || nums[i] > nums[prev]){
+            include = 1 + getLongestIncrSubs(nums, i+1, i, dpArray);
+        }
+
+        exclude = getLongestIncrSubs(nums, i+1, prev, dpArray);
+
+        dpArray[i][prev+1] = max(include, exclude);
+        return max(include, exclude);
+
+    }
+
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<vector<int>> dpArray(n+1, vector<int>(n+1, -1));
+        return getLongestIncrSubs(nums, 0, -1, dpArray);
+
+    }
+*/
