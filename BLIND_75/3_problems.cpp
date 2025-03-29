@@ -295,3 +295,79 @@
         return false;
     }
 */
+
+/*
+    Problem 40
+    207. Course Schedule
+    (https://leetcode.com/problems/course-schedule/)
+
+    bool dfs(int node, unordered_map<int, vector<int>> &graph, vector<bool> &visited){
+
+        visited[node] = true;
+        for(auto each_node: graph[node]){
+            if(visited[each_node] == false){
+                bool temp = dfs(each_node, graph, visited);
+                if(temp){
+                    // cout << node << " , " << each_node << endl;
+                    return true;
+                }
+            }else{
+                // cout << node << " here , " << each_node << endl;
+                return true;
+            }
+        }
+        visited[node] = false;
+
+        return false;
+    }
+
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        
+        unordered_map<int, vector<int>> graph;
+        
+
+        for(auto v: prerequisites){
+            graph[v[1]].push_back(v[0]);
+        }
+
+        // dfs is giving TLE
+
+        vector<int> indegree(numCourses, 0);
+
+        for(auto &[key, values]:graph){
+            for(auto node: values){
+                indegree[node]++;
+            }
+        }
+
+        queue<int> que;
+        for(int i = 0; i < numCourses; i++){
+            if(indegree[i] == 0){
+                que.push(i);
+            }
+        }
+
+        int ans = 0;
+
+        while(!que.empty()){
+            int front = que.front();
+            que.pop();
+            ans++;
+
+            for(auto node: graph[front]){
+                indegree[node]--;
+                if(indegree[node] == 0){
+                    que.push(node);
+                }
+            }
+        }
+
+        if(ans == numCourses){
+            return true;
+        }
+
+        return false;
+
+    }
+        
+*/
