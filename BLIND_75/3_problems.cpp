@@ -143,3 +143,43 @@
         return robHouse(nums, 0, dpArray);
     }
 */
+
+/*
+    Problem 36
+    200. Number of Islands
+    (https://leetcode.com/problems/number-of-islands/)
+
+    void visit(int m, int n, int i, int j, vector<vector<char>>& grid, vector<vector<bool>>& visited){
+
+        if(i < 0 || i >= m || j < 0 || j >= n){
+            return ;
+        }
+
+        if(visited[i][j] == false && grid[i][j] == '1'){
+            visited[i][j] = true;
+            visit(m, n, i+1, j, grid, visited);
+            visit(m, n, i, j+1, grid, visited);
+            visit(m, n, i-1, j, grid, visited);
+            visit(m, n, i, j-1, grid, visited);
+        }
+
+    }
+
+    int numIslands(vector<vector<char>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        int ans = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] =='1' && visited[i][j] == false){
+                    ans += 1;
+                    visit(m, n, i, j, grid, visited);
+                }
+            }
+        }
+
+        return ans;
+
+    }
+*/
