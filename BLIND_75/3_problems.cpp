@@ -27,3 +27,25 @@
         return ans;
     }
 */
+
+/*
+    Problem 32
+    191. Number of 1 Bits
+    (https://leetcode.com/problems/number-of-1-bits/)
+
+    int hammingWeight(int n) {
+        
+        int count = 0;
+
+        while(n){
+
+            if(n & 1){
+                count = count + 1;
+            }
+            n = n >> 1;
+        }
+
+        return count;
+    }
+        
+*/
