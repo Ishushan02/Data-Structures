@@ -861,5 +861,61 @@
 
         return false;
     }
+
+*/
+
+/*
+    Problem 30
+    62. Unique Paths
+    (https://leetcode.com/problems/unique-paths/)
+
+    int allPossiblePaths(int i, int j, int m, int n, vector<vector<int>> dpArr){
+        if(i > m || j > n){
+            return 0;
+        }
+        if(i == m && j == n ){
+            return 1;
+        }
+        // cout << i << " , " << j << endl;
+        if(dpArr[i][j] != -1){
+            return dpArr[i][j];
+        }
+        int allPaths = 0;
+        allPaths += allPossiblePaths(i + 1, j, m, n, dpArr) + allPossiblePaths(i, j+1, m, n, dpArr);
+        dpArr[i][j] = allPaths;
         
+
+        return allPaths;
+    }
+
+    int topDownApproach(int m, int n){
+
+        vector<vector<int>> dpArr(m+2, vector<int>(n+2, 0));
+        dpArr[m][n] = 1;
+        for(int i = 1; i <= m+1 ; i++){
+            dpArr[i][n] = 1;
+        }
+
+        for(int i = 1; i <= n+1 ; i++){
+            dpArr[m][i] = 1;
+        }
+
+        for(int i = m-1; i >= 1; i--){
+            for(int j = n-1; j >= 1; j--){
+                // cout << i<<j << " , " << i+1<<j << " and " << i<<j+1 << endl;
+                // cout << dpArr[i][j] << " , " << dpArr[i+1][j] << " and " << dpArr[i][j+1] << endl;
+                dpArr[i][j] += dpArr[i+1][j] + dpArr[i][j+1];
+                // cout << dpArr[i][j] << endl;
+            }
+        }
+
+        return dpArr[1][1];
+    }
+
+    int uniquePaths(int m, int n) {
+        // vector<vector<int>> dpArr(m+2, vector<int>(n+2, -1));
+        return topDownApproach(m, n);
+        // return 1;
+    }
+
 */
