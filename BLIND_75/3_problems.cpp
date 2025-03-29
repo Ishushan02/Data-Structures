@@ -249,3 +249,49 @@
     }
 
 */
+
+/*
+    Problem 39
+    79. Word Search
+    (https://leetcode.com/problems/word-search/)
+
+    bool wordPresent(int m, int n, int row, int col, vector<vector<char>>& board, string word, int i, vector<vector<bool>>& visited){
+        if(i >= word.length()){
+            return true;
+        }
+
+        if( row < 0 || row >= m || col < 0 || col >= n){
+            return false;
+        }
+
+        if(visited[row][col] == false && word[i] == board[row][col]){
+            visited[row][col] = true;
+            bool ansVal = wordPresent(m, n, row+1, col, board, word, i+1, visited) || wordPresent(m, n, row-1, col, board, word, i+1, visited) || wordPresent(m, n, row, col+1, board, word, i+1, visited) ||  wordPresent(m, n, row, col-1, board, word, i+1, visited) ;
+            if(ansVal){
+                return true;
+            }
+            visited[row][col] = false;
+        }
+
+        return false;
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        
+        int m = board.size();
+        int n = board[0].size();
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(word[0] == board[i][j]){
+                    vector<vector<bool>> visited(m ,vector<bool>(n, false));
+                    bool ans = wordPresent(m, n, i, j, board, word, 0, visited);
+                    if(ans){
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+*/
