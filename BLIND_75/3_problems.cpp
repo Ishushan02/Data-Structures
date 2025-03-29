@@ -225,5 +225,27 @@
             }
         }
     }
+
+*/
+
+/*
+    Problem 38
+    206. Reverse Linked List
+    (https://leetcode.com/problems/reverse-linked-list/)
+
+    ListNode* reverseList(ListNode* head) {
         
+        ListNode* prev = NULL;
+        ListNode* temp = head;
+
+        while(temp){
+            ListNode* nextElem = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = nextElem;
+        }
+
+        return prev;
+    }
+
 */
