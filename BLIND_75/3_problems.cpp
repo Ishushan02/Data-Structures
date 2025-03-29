@@ -88,5 +88,33 @@
         }
         return ans;
     }
+
+*/
+
+/* 
+    Problem 34
+    70. Climbing Stairs
+    (https://leetcode.com/problems/climbing-stairs/)
+
+    int allPossibility(int n, vector<int> &dpArray){
+        if(n == 0){
+            return 1;
+        }
+        if(n < 0){
+            return 0;
+        }
+
+        if(dpArray[n] != -1){
+            return dpArray[n];
+        }
+
+        dpArray[n] = allPossibility(n -1, dpArray) + allPossibility(n - 2, dpArray);
+        return dpArray[n];
+    }
+
+    int climbStairs(int n) {
+        vector<int> dpArray(n+1, -1);
+        return allPossibility(n, dpArray);
+    }
         
 */
