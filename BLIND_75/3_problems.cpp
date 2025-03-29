@@ -183,3 +183,47 @@
 
     }
 */
+
+/*
+    Problem 37
+    73. Set Matrix Zeroes
+    (https://leetcode.com/problems/set-matrix-zeroes/)
+
+    void setCol(int m, int n, int row, int col, vector<vector<int>>& matrix, vector<vector<bool>>& visited){
+        for(int i = 0; i < m; i++){
+            if(i != row && matrix[i][col] != 0){
+                matrix[i][col] = 0;
+                visited[i][col] = true;
+            }
+        }
+
+    }
+
+    void setRow(int m, int n, int row, int col, vector<vector<int>>& matrix, vector<vector<bool>>& visited){
+        for(int i = 0; i < n; i++){
+            if(i != col && matrix[row][i] != 0){
+                matrix[row][i] = 0;
+                visited[row][i] = true;
+            }
+        }
+        
+    }
+
+    void setZeroes(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(visited[i][j] == false && matrix[i][j] == 0){
+                    // cout << i << " , " << j << endl;
+                    setRow(m ,n, i, j, matrix, visited);
+                    setCol(m ,n, i, j, matrix, visited);
+                }
+            }
+        }
+    }
+        
+*/
