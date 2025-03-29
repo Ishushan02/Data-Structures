@@ -49,3 +49,44 @@
     }
         
 */
+
+/*
+    Problem 33
+    322. Coin Change
+    (https://leetcode.com/problems/coin-change/)
+
+    int allDenominations(vector<int>& coins, int amount, vector<int> &dpArray){
+        if(dpArray[amount] != -1){
+            return dpArray[amount];
+        }
+        
+        if(amount == 0){
+            return 0;
+        }
+
+        int minSteps = INT_MAX;
+        for(int i = 0; i < coins.size(); i++){
+            // cout << i << endl;
+            if(amount - coins[i] >= 0){
+                int ans = allDenominations(coins, amount - coins[i], dpArray);
+                if(ans != INT_MAX){
+                    minSteps = min(minSteps, ans+1);
+                }   
+                
+            }
+        }
+
+        dpArray[amount] = minSteps;
+        return dpArray[amount];
+    }
+
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> dpArray(amount + 1, -1);
+        int ans = allDenominations(coins, amount, dpArray);
+        if(ans == INT_MAX){
+            return -1;
+        }
+        return ans;
+    }
+        
+*/
