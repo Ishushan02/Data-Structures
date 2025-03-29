@@ -116,5 +116,30 @@
         vector<int> dpArray(n+1, -1);
         return allPossibility(n, dpArray);
     }
-        
+
+*/
+
+/*
+    Problem 35
+    198. House Robber
+    (https://leetcode.com/problems/house-robber/)
+
+    int robHouse(vector<int>& nums, int i, vector<int> &dpArray){
+        if(i >= nums.size()){
+            return 0;
+        }
+        if(dpArray[i] != -1){
+            return dpArray[i];
+        }
+
+        int include = nums[i] + robHouse(nums, i + 2, dpArray);
+        int exclude = robHouse(nums, i + 1, dpArray);
+        dpArray[i] = max(include, exclude);
+        return dpArray[i];
+    }
+
+    int rob(vector<int>& nums) {
+        vector<int> dpArray(nums.size(), -1);
+        return robHouse(nums, 0, dpArray);
+    }
 */
