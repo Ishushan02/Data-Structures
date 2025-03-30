@@ -395,3 +395,91 @@
         return ans;
     }
 */
+
+/*
+    Problem 42
+    208. Implement Trie (Prefix Tree)
+    (https://leetcode.com/problems/implement-trie-prefix-tree/)
+
+    class TrieNode{
+
+        public: 
+            unordered_map<char, TrieNode*> child;
+            bool isTerminal;
+            char value;
+            TrieNode(char c){
+                value = c;
+                isTerminal = false;
+            }
+
+            void insert(TrieNode* root, string word){
+                if(word.length()==0){
+                    root->isTerminal = true;
+                    return ;
+                }
+
+                TrieNode* newNode;
+                char c = word[0];
+                if(root->child.count(c) == 1){
+                    newNode = root->child[c];
+                }else{
+                    newNode = new TrieNode(c);
+                    root->child[c] = newNode;
+                }
+                insert(newNode, word.substr(1));
+            }
+
+            bool search(TrieNode* root, string word){
+                if(word.length()==0){
+                    return root->isTerminal;
+                }
+
+                TrieNode* newNode;
+                char c = word[0];
+                if(root->child.find(c) != root->child.end()){
+                    newNode = root->child[c];
+                }else{
+                    return false;
+                }
+                return search(newNode, word.substr(1));
+            }
+
+            bool startsWith(TrieNode* root, string word){
+                if(word.length()==0){
+                    return true;
+                }
+
+                TrieNode* newNode;
+                char c = word[0];
+                if(root->child.find(c) != root->child.end()){
+                    newNode = root->child[c];
+                }else{
+                    return false;
+                }
+                return startsWith(newNode, word.substr(1));
+            }
+    };
+
+
+    class Trie {
+    public:
+
+        TrieNode* root;
+
+        Trie() {
+            root = new TrieNode('-');
+        }
+        
+        void insert(string word) {
+            root->insert(root, word);
+        }
+        
+        bool search(string word) {
+            return root->search(root, word);
+        }
+        
+        bool startsWith(string prefix) {
+            return root->startsWith(root, prefix);
+        }
+};
+*/
