@@ -560,3 +560,39 @@
     };
 
 */
+
+/*
+    Problem 44
+    213. House Robber II
+    (https://leetcode.com/problems/house-robber-ii/)
+
+    int maxWealthRobbed(vector<int> &nums, int i, int end, vector<int> &dpArray){
+        if(i >= end){
+            return 0;
+        }
+
+        if(dpArray[i] != -1){
+            return dpArray[i];
+        }
+
+        int includeans = nums[i] + maxWealthRobbed(nums, i + 2, end, dpArray);
+        int excludeans = maxWealthRobbed(nums, i + 1, end, dpArray);
+
+        dpArray[i] = max(includeans, excludeans);
+        return dpArray[i];
+    }
+
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1){
+            return nums[0];
+        }
+        vector<int> dpArray1(n, -1);
+        vector<int> dpArray2(n, -1);
+        int ansA = maxWealthRobbed(nums, 0, n-1, dpArray1);
+        int ansB = maxWealthRobbed(nums, 1, n, dpArray2);
+
+        return max(ansA, ansB);
+    }
+        
+*/
