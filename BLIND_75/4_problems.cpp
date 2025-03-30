@@ -51,5 +51,50 @@
         
         return isBST(root->left, LONG_MIN, root->val) && isBST(root->right, root->val, LONG_MAX);
     }
+
+*/
+
+/*
+    Problem 48
+    226. Invert Binary Tree
+    (https://leetcode.com/problems/invert-binary-tree/)
+
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL){
+            return NULL;
+        }
+        queue<TreeNode*> que;
+
+        que.push(root);
+
+        while(!que.empty()){
+
+            TreeNode* top = que.front();
+            que.pop();
+
+            if(top->left != NULL && top->right != NULL){
+                que.push(top->right);
+                que.push(top->left);
+                cout << top->left->val << " , "<< top->right->val << endl;
+                swap(top->left, top->right);
+
+            }else if(top->left != NULL && top->right == NULL){
+                que.push(top->left);
+                TreeNode* newNode = top->left;
+                top->left = NULL;
+                top->right = newNode;
+            }else if(top->left == NULL && top->right != NULL){
+                que.push(top->right);
+                TreeNode* newNode = top->right;
+                top->right = NULL;
+                top->left = newNode;
+            }else{
+                
+            }
+        }
+
+        return root;
+
+    }
         
 */
