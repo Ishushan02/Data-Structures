@@ -483,3 +483,80 @@
         }
 };
 */
+
+/*
+    Problem 43
+    211. Design Add and Search Words Data Structure
+    (https://leetcode.com/problems/design-add-and-search-words-data-structure/)
+
+    class Trie{
+        public:
+            char value;
+            unordered_map<char, Trie*> child;
+            bool isTerminal;
+
+            Trie(char c){
+                isTerminal = false;
+                value = c;
+            }
+
+            void insert(Trie* root, string word){
+                if(word.length() == 0){
+                    root->isTerminal = true;
+                    return ;
+                }
+
+                Trie* childNode;
+                char c = word[0];
+
+                if(root->child.count(c) == 1){
+                    childNode = root->child[c];
+                }else{
+                    childNode = new Trie(c);
+                    root->child[c] = childNode;
+                }
+                insert(childNode, word.substr(1));
+            }
+
+            bool search(Trie* root, string word){
+                if(word.length() == 0){
+                    return root->isTerminal;
+                }
+
+                Trie* childNode;
+                char c = word[0];
+                bool ans = false;
+                if(root->child.find(c) != root->child.end()){
+                    childNode = root->child[c];
+                    ans = ans || search(childNode, word.substr(1));
+                }else if(c == '.'){
+                    for(auto &[c, val]:root->child){
+                        ans = ans || search(val, word.substr(1));
+                    }
+                    // childNode = root;
+                }else{
+                    ans = false;
+                }
+                return ans;
+            }
+    };
+
+    class WordDictionary {
+    public:
+
+        Trie* root;
+
+        WordDictionary() {
+            root = new Trie('-');
+        }
+        
+        void addWord(string word) {
+            root->insert(root, word);
+        }
+        
+        bool search(string word) {
+            return root->search(root, word);
+        }
+    };
+
+*/
