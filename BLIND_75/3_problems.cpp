@@ -594,5 +594,26 @@
 
         return max(ansA, ansB);
     }
+
+*/
+
+/*
+    Problem 45
+    217. Contains Duplicate
+    (https://leetcode.com/problems/contains-duplicate/)
+
+    bool containsDuplicate(vector<int>& nums) {
         
+        unordered_map<int, int> valMap;
+
+        for(auto c: nums){
+
+            if(valMap[c] > 0){
+                return true;
+            }
+            valMap[c]++;
+        }
+
+        return false;
+    }
 */
