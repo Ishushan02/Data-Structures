@@ -120,3 +120,42 @@
         return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 */
+
+/*
+    Problem 50
+    102. Binary Tree Level Order Traversal
+    (https://leetcode.com/problems/binary-tree-level-order-traversal/)
+
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if(root == NULL){
+            return res;
+        }
+        queue<TreeNode*> que;
+        que.push(root);
+        
+        
+        while(!que.empty()){
+            int size = que.size();
+            vector<int> temp;
+
+            for(int i = 0; i < size; i++){
+                TreeNode* fr = que.front();
+                temp.push_back(fr->val);
+
+                if(fr->left){
+                    que.push(fr->left);
+                }
+                if(fr->right){
+                    que.push(fr->right);
+                }
+                que.pop();
+            }
+            res.push_back(temp);
+        }
+
+        return res;
+
+    }
+
+*/
