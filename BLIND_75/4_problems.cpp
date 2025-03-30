@@ -159,3 +159,26 @@
     }
 
 */
+
+/*
+    Problem 51
+    230. Kth Smallest Element in a BST
+    (https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+
+    void getElements(TreeNode* root, vector<int> &ans){
+        if(root == NULL){
+            return ;
+        }
+
+        getElements(root->left, ans);
+        ans.push_back(root->val);
+        getElements(root->right, ans);
+    }
+
+    int kthSmallest(TreeNode* root, int k) {
+        vector<int> ans;
+        getElements(root, ans);
+        return ans[k-1];
+    }
+        
+*/
