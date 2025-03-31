@@ -361,3 +361,64 @@
         return true;
     }
 */
+
+/*
+    Problem 58
+    235. Lowest Common Ancestor of a Binary Search Tree
+    (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
+    void getParent(TreeNode* root, unordered_map<TreeNode*, TreeNode*> &parentMap){
+        if(root == NULL){
+            return ;
+        }
+
+        if(root->left){
+            parentMap[root->left] = root;
+        }
+        if(root->right){
+            parentMap[root->right] = root;
+        }
+
+        getParent(root->left, parentMap);
+        getParent(root->right, parentMap);
+    }
+
+    TreeNode* lca(TreeNode* p, TreeNode* q, unordered_map<TreeNode*, TreeNode*> &parentMap, unordered_map<TreeNode*, bool> &visited){
+        if(parentMap[p] == NULL && parentMap[q] == NULL){
+            if(p == NULL){
+                return q;
+            }
+            return p;
+        }
+
+        if(parentMap[q] == parentMap[p]){
+            return parentMap[q];
+        }
+
+        if(visited[p] == true || parentMap[q] == p){
+            return p;
+        }
+        if(visited[q] == true || parentMap[p] == q){
+            return q;
+        }
+
+        if(p != NULL)
+            visited[p] = true;
+        if(q != NULL)
+            visited[q] = true;
+        return lca(parentMap[p], parentMap[q], parentMap, visited);
+
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        
+        unordered_map<TreeNode*, TreeNode*> parentMap;
+        getParent(root, parentMap);
+        parentMap[root] = NULL;
+        unordered_map<TreeNode*, bool> visited;
+        return lca(p, q, parentMap, visited);
+
+        return NULL;
+    }
+
+*/
