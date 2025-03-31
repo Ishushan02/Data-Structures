@@ -422,3 +422,35 @@
     }
 
 */
+
+/*
+    Problem 59
+    121. Best Time to Buy and Sell Stock
+    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+
+    int maxProfit(vector<int>& prices) {
+
+        stack<int> st;
+        int ans = 0;
+        // st.push(prices[0])
+        int i = 0;
+        while(i < prices.size()){
+            if(st.empty()){
+                st.push(prices[i]);
+            }else{
+
+                if(prices[i] > st.top()){
+                    ans = max(ans, prices[i]-st.top());
+                }else{
+                    st.pop();
+                    st.push(prices[i]);
+                }
+            }
+
+            i++;
+        }
+
+        return ans;
+    }
+
+*/
