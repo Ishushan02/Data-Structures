@@ -304,5 +304,25 @@
         return true;
 
     }
+
+*/
+
+/*  
+    Problem 56
+    371. Sum of Two Integers
+    (https://leetcode.com/problems/sum-of-two-integers/)
+
+    int getSum(int a, int b) {
+        
+        int sum = a ^ b;
+        int carry = a & b;
+        carry = carry << 1;
+
+        if(carry != 0){
+            sum = getSum(sum, carry);
+        }
+
+        return sum;
+    }
         
 */
