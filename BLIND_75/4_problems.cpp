@@ -201,5 +201,36 @@
     int maxDepth(TreeNode* root) {
         return height(root);
     }
-        
+
+*/
+
+/*
+    Problem 53
+    105. Construct Binary Tree from Preorder and Inorder Traversal
+    (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+    TreeNode* Tree(vector<int>& preorder, vector<int>& inorder, int &preidx, int inStart, int inEnd){
+        if(preidx >= preorder.size()){
+            return NULL;
+        }
+        if(inStart > inEnd){
+            return NULL;
+        }
+        // cout << preorder[preidx] << " : " << inStart << " , " << inEnd << endl;
+        TreeNode* root = new TreeNode(preorder[preidx]);
+        auto it = find(inorder.begin(), inorder.end(), preorder[preidx]);
+        preidx++;
+        int inorderIdx = distance(inorder.begin(), it);
+        root->left = Tree(preorder, inorder, preidx, inStart, inorderIdx-1);
+        root->right = Tree(preorder, inorder, preidx, inorderIdx+1, inEnd);
+        return root;
+    }
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+
+
+        int n = preorder.size();
+        int preidx = 0;
+        return Tree(preorder, inorder, preidx, 0, n-1);
+    }
 */
