@@ -234,3 +234,40 @@
         return Tree(preorder, inorder, preidx, 0, n-1);
     }
 */
+
+/*
+    Problem 54
+    238. Product of Array Except Self
+    (https://leetcode.com/problems/product-of-array-except-self/)
+
+    vector<int> productExceptSelf(vector<int>& nums) {
+        
+        long long int prod = 1;
+        vector<int> ans(nums.size(), 0);
+        int zerCount = 0;
+        for(auto v: nums){
+            if(v == 0){
+                zerCount++;
+            }else{
+                prod = prod * v;
+            }
+        }
+
+        if(zerCount > 1){
+            return ans;
+        }
+
+        for(int i = 0; i < nums.size(); i++){
+            if(nums[i] == 0){
+                ans[i] = prod;
+            }else if(zerCount == 1){
+                ans[i] = 0;
+            }else{
+                ans[i] = prod/nums[i];
+            }   
+            
+        }
+
+        return ans;
+    }
+*/
