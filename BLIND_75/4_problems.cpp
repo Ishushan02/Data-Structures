@@ -324,5 +324,40 @@
 
         return sum;
     }
-        
+
+*/
+
+/*
+    Problem 57
+    125. Valid Palindrome
+    (https://leetcode.com/problems/valid-palindrome/)
+
+    bool isPalindrome(string s) {
+        string modified;
+
+
+        for(auto c:s){
+            if(c >= 'a' && c <= 'z' || c >= '0' && c <= '9'){
+                modified += c;
+            }else if(c >= 'A' && c <= 'Z'){
+                cout << c << endl;
+                char x = c + 32;
+                // cout <<  x  << endl;
+                modified += x;
+            }
+        }
+
+        int i = 0;
+        int j = modified.length()-1;
+
+        while(i <= j){
+            if(modified[i] != modified[j]){
+                return false;
+            }
+            i++;
+            j--;
+        }
+
+        return true;
+    }
 */
