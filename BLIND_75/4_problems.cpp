@@ -454,3 +454,115 @@
     }
 
 */
+
+/*
+    Problem 60
+    212. Word Search II
+    (https://leetcode.com/problems/word-search-ii/)
+
+    class Trie{
+        public:
+            bool isTerminal;
+            char val;
+            unordered_map<char, Trie*> child;
+
+            Trie(char c){
+                isTerminal = false;
+                val = c;
+            }
+
+            void insert(Trie* root, string word, int index){
+                if(index >= word.length()){
+                    root->isTerminal = true;
+                    return ;
+                }
+
+                char c = word[index];
+                Trie* node = NULL;
+                if(root->child.find(c) != root->child.end()){
+                    node = root->child[c];
+                }else{
+                    node = new Trie(c);
+                    root->child[c] = node;
+                }
+                insert(node, word, index+1);
+            }
+
+            bool find(Trie* root, string word, int index){
+                if(index >= word.length()){
+                    return true;
+                }
+                char c = word[0];
+                if(root->child.find(c) != root->child.end()){
+                    return find(root->child[c], word, index + 1);
+                }else{
+                    return false;
+                }
+            }
+
+    };
+
+
+
+
+    class Solution {
+    public:
+
+        void addWords(int m, int n, vector<string>& words, Trie* root, string temp, vector<vector<char>>& board, int i, int j, unordered_set<string> &res){
+            if(i < 0 || i >= m || j < 0 || j >= n){
+                return ;
+            } 
+
+            temp += board[i][j];
+            string ch;
+            ch += board[i][j];
+
+            
+            if(root->find(root, ch, 0) == false){
+                return ;
+            }
+            
+            root = root->child[board[i][j]];
+            if(root->isTerminal == true){
+                res.insert(temp);
+            }
+            char beginining = board[i][j];
+            board[i][j] = '+';
+            addWords(m, n, words, root, temp , board, i+1, j, res);
+            addWords(m, n, words, root, temp , board, i, j+1, res);
+            addWords(m, n, words, root, temp , board, i-1, j, res);
+            addWords(m, n, words, root, temp , board, i, j-1, res);
+            board[i][j] = beginining;
+        
+        }
+
+        vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+
+            int m = board.size();
+            int n = board[0].size();
+            unordered_set<string> res;
+
+            Trie* root = new Trie('-');
+
+            for(auto &word:words){
+                root->insert(root, word, 0);
+            }
+
+            for(int i = 0; i < m; i++){
+                for(int j = 0; j < n; j++){
+                    string ch;
+                    ch += board[i][j];
+                    if(root->find(root, ch, 0)) {
+                        string temp;
+                        addWords(m, n, words, root, temp , board, i, j, res);
+                    }
+                }
+            }
+            
+            vector<string> ans(res.begin(), res.end());
+
+            return ans;
+
+        }
+    };
+*/
