@@ -59,3 +59,50 @@
 
     }
 */
+
+/*
+
+    Probelm 2
+    2. Add Two Numbers
+    (https://leetcode.com/problems/add-two-numbers/submissions/)
+
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        ListNode* ansHead = new ListNode(-1);
+        ListNode* ansptr = ansHead;
+
+        ListNode* temp1 = l1;
+        ListNode* temp2 = l2;
+
+        int carry = 0;
+
+        while(temp1 || temp2){
+            int a = 0;
+            int b = 0;
+            if(temp1 != NULL){
+                a = temp1->val;
+                temp1 = temp1->next;
+            }
+            if(temp2 != NULL){
+                b = temp2->val;
+                temp2 = temp2->next;
+            }
+
+            int sum = a + b + carry;
+            carry = sum / 10;
+            int value = sum % 10;
+
+            ListNode* newNode = new ListNode(value);
+            ansptr->next = newNode;
+            ansptr = ansptr->next;
+        }
+
+        if(carry != 0){
+            ListNode* newNode = new ListNode(carry);
+            ansptr->next = newNode;
+            ansptr = ansptr->next;
+        }
+
+        return ansHead->next;
+    }
+*/
