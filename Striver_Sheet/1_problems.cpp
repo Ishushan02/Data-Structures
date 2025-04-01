@@ -146,3 +146,57 @@
     }
 
 */
+
+/*
+    Problem 4
+    5. Longest Palindromic Substring
+    (https://leetcode.com/problems/longest-palindromic-substring/)
+
+    pair<int, string> getPalindromicCount(int i, int j, string &s, int n){
+        int count = 0;
+        string ans;
+        if(i == j && s[i] == s[j]){
+            ans += s[i];
+            i--;
+            j++;
+            count = 1;
+        }
+
+        while(i >= 0 && j < n && s[i] == s[j]){
+            ans = s[i] + ans;
+            ans = ans + s[j];
+            count += 2;
+            i--;
+            j++;
+        }
+
+        return {count, ans};
+    }
+
+    string longestPalindrome(string s) {
+        
+        int n = s.length();
+        string ans;
+        int maxCount = 0;
+        
+        for(int centre = 0; centre < n; centre++){
+
+            // odd
+            pair<int, string> valStr = getPalindromicCount(centre, centre, s, n);
+            if(maxCount < valStr.first){
+                ans = valStr.second;
+                maxCount = valStr.first;
+            }
+            // even
+            if(centre+1 < n){
+                valStr = getPalindromicCount(centre, centre+1, s, n);
+                if(maxCount < valStr.first){
+                    ans = valStr.second;
+                    maxCount = valStr.first;
+                }
+            }
+        }
+
+        return ans;
+    }
+*/
