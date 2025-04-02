@@ -536,5 +536,51 @@
 
         return res;
     }
+
+*/
+
+/*
+    Problem 11
+    18. 4Sum
+    (https://leetcode.com/problems/4sum/)
+
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        if(nums.size() < 4){
+            return {};
+        }
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+
+        set<vector<int>> ans;
+
+        for(int a = 0; a < n; a++){
+            if(a > 0 && nums[a] == nums[a-1]){
+                continue;
+            }
+            for(int b = a + 1; b < n; b++){
+                int c = b + 1;
+                int d = n - 1;
+                while(c < d){
+                    // cout << c << " , " << d << endl;
+                    long long int sum = (long long int)nums[a] + (long long int)nums[b] + (long long int)nums[c] + (long long int)nums[d];
+
+                    if(sum == target){
+                        ans.insert({nums[a], nums[b], nums[c], nums[d]});
+                        c++;
+                        d--;
+                    }else if(sum > target){
+                        d--;
+                    }else{
+                        c++;
+                    }
+                }
+
+            }
+        }
+
+        vector<vector<int>> res(ans.begin(), ans.end());
+
+        return res;
+    }
         
 */
