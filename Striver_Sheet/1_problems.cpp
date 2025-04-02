@@ -394,5 +394,67 @@
 
         return -1;
     }
-        
+
+*/
+
+/*
+
+    Problem 8
+    13. Roman to Integer
+    (https://leetcode.com/problems/roman-to-integer/)
+
+    int romanToInt(string s) {
+        unordered_map<string, int> romanNum{
+            {"I", 1},
+            {"IV", 4},
+            {"V", 5},
+            {"IX", 9},
+            {"VX", 40},
+            {"X", 10},
+            {"XL", 40},
+            {"L", 50},
+            {"XC", 90},
+            {"C", 100},
+            {"CD", 400},
+            {"D", 500},
+            {"CM", 900},
+            {"M", 1000},
+        };
+
+        int i = 0;
+        int num = 0;
+
+        int n = s.length();
+
+        while(i < n){
+
+            string temp;
+            temp +=  s[i];
+            string curr;
+            curr += s[i];
+            int j = i + 1;
+            bool rev = false;
+            while(j < n ){
+                string t;
+                t += s[j];
+                if(romanNum[t] > romanNum[curr]){
+                    rev = true;
+                    temp += s[j];
+                    curr = s[j];
+                    j++;
+                }else{
+                    break;
+                }
+                
+            }
+            // cout << romanNum[temp] << endl;
+            num += romanNum[temp];
+
+            i = j;
+        }
+
+
+        return num;
+    }
+
 */
