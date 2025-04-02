@@ -458,3 +458,37 @@
     }
 
 */
+
+/*
+    Problem 9
+    14. Longest Common Prefix
+    (https://leetcode.com/problems/longest-common-prefix/)
+
+    string longestCommonPrefix(vector<string>& strs) {
+        
+        string ans;
+        ans = strs[0];
+        int n = strs.size();
+        int i = 0;
+        while(i < n){
+            string temp = strs[i];
+            int j = 0;
+            int k = 0;
+            string tempAns = "";
+            while(j < temp.length() && k < ans.length() && ans[k] == temp[j]){
+                tempAns += temp[j];
+                j++;
+                k++;
+            }
+            ans = tempAns;
+            if(tempAns == ""){
+                return "";
+            }
+            i++;
+        }
+
+        return ans;
+
+    }
+
+*/
