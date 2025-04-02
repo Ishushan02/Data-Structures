@@ -200,3 +200,60 @@
         return ans;
     }
 */
+
+/*
+    Problem 5
+    987. Vertical Order Traversal of a Binary Tree
+    (https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/)
+
+    struct comp{
+        bool operator()(pair<int, pair<int, TreeNode*>> &A, pair<int, pair<int, TreeNode*>>&B){
+            if(A.first < B.first){
+                return true;
+            }else if(A.first == B.first){
+                if(A.second.first < B.second.first){
+                    return true;
+                }else if(A.second.first == B.second.first){
+                    return A.second.second->val < B.second.second->val;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+            
+        }
+    };
+
+    void traversal(TreeNode* root, int height, int breadth, vector<pair<int, pair<int, TreeNode*>>> &dataValue){
+        if(root == NULL){
+            return ;
+        }
+
+        // cout <<  root->val<< " , "<< breadth << endl;
+        dataValue.push_back({height, {breadth, root}});
+        traversal(root->left, height - 1, breadth+1, dataValue);
+        traversal(root->right, height + 1, breadth+1, dataValue);
+
+    }
+
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        
+        vector<vector<int>> ans;
+        vector<pair<int, pair<int, TreeNode*>>> dataValue;
+        traversal(root, 0, 0, dataValue);
+        map<int, vector<int>> dataMap;
+        sort(dataValue.begin(), dataValue.end(), comp());
+
+        for(auto v:dataValue){
+            dataMap[v.first].push_back(v.second.second->val);
+            // cout << v.second.second->val << " ";
+        }
+
+        for(auto &[key, val]: dataMap){
+            ans.push_back(val);
+        }
+
+        return ans;
+    }
+*/
