@@ -325,5 +325,74 @@
         }
         return n;
     }
+
+*/
+
+/*
+    Problem 7
+    994. Rotting Oranges
+    (https://leetcode.com/problems/rotting-oranges/)
+
+    int orangesRotting(vector<vector<int>>& grid) {
+        
+        int fresh = 0;
+        queue<pair<int, int>> que;
+        int m = grid.size();
+        int n = grid[0].size();
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 2){
+                    que.push({i, j});
+                }else if(grid[i][j] == 1){
+                    fresh++;
+                }
+            }
+        }
+
+        int time = 0;
+        if(fresh == 0){
+            return time;
+        }
+        while(!que.empty()){
+            int qSize = que.size();
+
+            for(int k = 0; k < qSize; k++){
+                pair<int, int> idx = que.front();
+                que.pop();
+                int i = idx.first;
+                int j = idx.second;
+
+                if(i + 1 < m && grid[i+1][j] == 1){
+                    grid[i+1][j] = 2;
+                    fresh--;
+                    que.push({i+1, j});
+                }
+
+                if(j + 1 < n && grid[i][j+1] == 1){
+                    grid[i][j+1] = 2;
+                    fresh--;
+                    que.push({i, j+1});
+                }
+                if(i - 1 >= 0 && grid[i-1][j] == 1){
+                    grid[i-1][j] = 2;
+                    fresh--;
+                    que.push({i-1, j});
+                }
+                if(j - 1 >= 0 && grid[i][j-1] == 1){
+                    grid[i][j-1] = 2;
+                    fresh--;
+                    que.push({i, j-1});
+                }
+
+            }
+            time++;
+        }
+
+        if(fresh == 0){
+            return time-1;
+        }
+
+        return -1;
+    }
         
 */
