@@ -257,3 +257,73 @@
         return ans;
     }
 */
+
+/*
+    Problem 6
+    8. String to Integer (atoi)
+    (https://leetcode.com/problems/string-to-integer-atoi/)
+
+    int myAtoi(string s) {
+
+        bool isNegative = false;
+        long long int n = 0;
+        bool numStarted = false;
+
+        int i = 0;
+        bool signPres = false;
+        while(i < s.length()){
+            if(s[i] != ' '){
+                if(s[i] == '-'){
+                    isNegative = true;
+                    i++;
+                    break;
+                }else if(s[i] == '+'){
+                    i++;
+                    break;
+                }else if(s[i] >= '0' && s[i] <= '9'){
+                    break;
+                }else{
+                    return 0;
+                }
+            }
+            i++;
+        }
+
+        // i = 0;
+        while(i < s.length()){
+            char c = s[i];
+            if(c >= '0' && c <= '9'){
+                int j = i;
+                c = s[j];
+                while(j < s.length() && s[j] >= '0' && s[j] <= '9'){
+                    // cout << " * " << s[j] << " , " << n << endl;
+                    n = n * 10 + (s[j] - '0');
+                    j++;
+                    
+                    if(n >= INT_MAX || n < INT_MIN){
+                        break;
+                    }
+                }
+                
+                
+                break;
+            }else{
+                return 0;
+            }
+            i++;
+        }
+
+        if(isNegative){
+            n = n * -1;
+        }
+
+        if(n > INT_MAX - 1 ){
+            return INT_MAX;
+        }
+        if(n < INT_MIN){
+            return INT_MIN;
+        }
+        return n;
+    }
+        
+*/
