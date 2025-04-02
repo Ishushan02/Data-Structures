@@ -492,3 +492,49 @@
     }
 
 */
+
+
+/*
+    Problem 10
+    15. 3Sum
+    (https://leetcode.com/problems/3sum/)
+
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<int> tempVec(nums.begin(), nums.end());
+        // vector<vector<int>> res;
+        set<vector<int>> ans;
+
+        for(int i = 0; i<nums.size(); i++){
+            int val = nums[i];
+            tempVec.erase(tempVec.begin() + i);
+            int j = 0;
+            int k = tempVec.size()-1;
+
+            while(j < k){
+                int sum = nums[i] + tempVec[j] + tempVec[k];
+                if(sum == 0){
+                    if(nums[i] <= tempVec[j]){
+                        ans.insert({nums[i], tempVec[j], tempVec[k]});
+                    }else if(nums[i] > tempVec[k]){
+                        ans.insert({tempVec[j], tempVec[k], nums[i]});
+                    }else{
+                        ans.insert({tempVec[j], nums[i], tempVec[k]});
+                    }
+                    j++;
+                    k--;
+                }else if(sum < 0){
+                    j++;
+                }else{
+                    k--;
+                }
+            }
+            tempVec.insert(tempVec.begin() + i, val);
+        }
+
+        vector<vector<int>> res(ans.begin(), ans.end());
+
+        return res;
+    }
+        
+*/
