@@ -627,5 +627,45 @@
 
         return head;
     }
+
+*/
+
+/*
+    Problem 13
+    20. Valid Parentheses
+    (https://leetcode.com/problems/valid-parentheses/)
+
+    bool isValid(string s) {
         
+        int i = 0;
+        stack<char> st;
+
+        while(i < s.length()){
+            if(s[i] == '{' || s[i] == '(' || s[i] == '['){
+                st.push(s[i]);
+            }else{
+                if(st.empty()){
+                    return false;
+                }
+                if(s[i] == '}' && st.top() == '{'){
+                    st.pop();
+                }else if(s[i] == ')' && st.top() == '('){
+                    st.pop();
+                }else if(s[i] == ']' && st.top() == '['){
+                    st.pop();
+                }else{
+                    return false;
+                }
+            }
+            i++;
+        }
+
+        if(!st.empty()){
+            return false;
+        }
+
+        return true;
+
+    }
+
 */
