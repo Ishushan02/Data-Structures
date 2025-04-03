@@ -669,3 +669,65 @@
     }
 
 */
+
+/*
+    Problem 14
+    21. Merge Two Sorted Lists
+    (https://leetcode.com/problems/merge-two-sorted-lists/)
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        
+        if(list1 == NULL){
+            return list2;
+        }
+        if(list2 == NULL){
+            return list1;
+        }
+
+        ListNode* ansHead = new ListNode(0);
+        ListNode* ansptr = ansHead;
+
+        ListNode* temp1 = list1;
+        ListNode* temp2 = list2;
+
+        while(temp1 && temp2){
+            if(temp1->val < temp2->val){
+                ListNode* nexNode = temp1->next;
+                ansptr->next = temp1;
+                ansptr = ansptr->next;
+                temp1 = nexNode;
+            }else if(temp2->val < temp1->val){
+                ListNode* nexNode = temp2->next;
+                ansptr->next = temp2;
+                ansptr = ansptr->next;
+                temp2 = nexNode;
+            }else{
+                ListNode* nexNode1 = temp1->next;
+                ListNode* nexNode2 = temp2->next;
+                ansptr->next = temp1;
+                ansptr = ansptr->next;
+                ansptr->next = temp2;
+                ansptr = ansptr->next;
+
+                temp1 = nexNode1;
+                temp2 = nexNode2;
+            }
+        }
+
+        while(temp1){
+            ansptr->next = temp1;
+            ansptr = ansptr->next;
+            temp1 = temp1->next;
+        }
+
+        while(temp2){
+            ansptr->next = temp2;
+            ansptr = ansptr->next;
+            temp2 = temp2->next;
+        }
+
+        return ansHead->next;
+
+    }
+        
+*/
