@@ -870,5 +870,36 @@
         return constructTree(n, preorder, 0, n-1);
 
     }
+
+*/
+
+/*
+    Problem 18
+    28. Find the Index of the First Occurrence in a String
+    (https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
+    int strStr(string haystack, string needle) {
+        
+        int i = 0;
+        int j = 0;
+
+        while(i < haystack.length()){
+
+            int j = i;
+            int k = 0;
+            while(k < needle.length() && j < haystack.length() && haystack[j] == needle[k]){
+                j++;
+                k++;
+            }
+
+            if(k >= needle.length()){
+                return i;
+            }
+
+            i++;
+        }
+
+        return -1;
+    }
         
 */
