@@ -731,3 +731,79 @@
     }
         
 */
+
+/*
+    Problem 15
+    25. Reverse Nodes in k-Group
+    (https://leetcode.com/problems/reverse-nodes-in-k-group/)
+
+    ListNode* reverseList(ListNode* head, ListNode* tail){
+        ListNode* reverse = NULL;
+        ListNode* temp = head;
+
+        while(temp){
+            ListNode* nextNode = temp->next;
+            temp->next = reverse;
+            reverse = temp;
+            if(temp == tail){
+                break;
+            }
+            temp = nextNode; 
+        }
+
+        return reverse;
+    }
+
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        
+        ListNode* temp = head;
+        int len = 0;
+        while(temp){
+            len += 1;
+            temp = temp->next;
+        }
+
+        // cout << " Len: " << len << endl;
+        if(k > len){
+            return head;
+        }
+        
+        ListNode* ansHead = new ListNode(0);
+        ListNode* ansptr = ansHead;
+        temp = head;
+        int i = 1;
+        ListNode* start = head;
+        ListNode* end = NULL;
+        int itr = 0;
+
+        while(temp){
+            // cout << temp->val << endl;
+            ListNode* nextNode = temp->next;
+
+            
+
+            if(i == k){
+                end = temp;
+                ListNode* reversed = reverseList(start, end);
+                ansptr->next = reversed;
+                while(ansptr->next){
+                    ansptr = ansptr->next;
+                }
+                
+                start = nextNode;
+                i = 1;
+            }else{
+                i++;
+            }
+
+            itr++;
+            temp = nextNode;
+        }
+
+        ansptr->next = start;
+
+        return ansHead->next;
+
+    }
+        
+*/
