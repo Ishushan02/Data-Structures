@@ -833,3 +833,42 @@
         return i+1;
     }
 */
+
+/*
+    Problem 17
+    1008. Construct Binary Search Tree from Preorder Traversal
+    (https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/)
+
+    TreeNode* constructTree(int n, vector<int>& preorder, int start, int end){
+        if(start > end){
+            return NULL;
+        }
+
+        // cout << preorder[start] << " , " << preorder[end] << endl;
+
+        TreeNode* root = new TreeNode(preorder[start]);
+
+        int rptr = start;
+        while(rptr <= end){
+            if(preorder[rptr] > preorder[start]){
+                break;
+            }
+            rptr++;
+        }
+
+    
+        root->left = constructTree(n, preorder, start + 1, rptr - 1);
+        root->right = constructTree(n, preorder, rptr, end);
+            
+        return root;
+
+    }
+
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        int n = preorder.size();
+        // int
+        return constructTree(n, preorder, 0, n-1);
+
+    }
+        
+*/
