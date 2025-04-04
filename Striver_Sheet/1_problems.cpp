@@ -938,5 +938,79 @@
         diameter(root, ans);
         return ans;
     }
+
+*/
+
+/*
+    Problem 20
+    37. Sudoku Solver
+    (https://leetcode.com/problems/sudoku-solver/)
+
+    bool checkPlace(vector<vector<char>>& board, char num, int i, int j){
+
+        for(int row = 0; row < 9; row++){
+            if(board[row][j] == num){
+                return false;
+            }
+        }
+
+        for(int col = 0; col < 9; col++){
+            if(board[i][col] == num){
+                return false;
+            }
+        }
+
+        int rrow = 0;
+        int ccol = 0;
+
+        if(i >= 0 && i < 3)rrow = 0;
+        if(i >= 3 && i < 6)rrow = 3;
+        if(i >= 6 && i < 9)rrow = 6;
+        if(j >= 0 && j < 3)ccol = 0;
+        if(j >= 3 && j < 6)ccol = 3;
+        if(j >= 6 && j < 9)ccol = 6;
+
+        for(int p = rrow; p < rrow+3; p++){
+            for(int q = ccol; q < ccol+3; q++){
+                if(board[p][q] == num){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
+    }
+
+
+    bool placeChar(vector<vector<char>>& board){
+
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+
+                if(board[i][j] == '.'){
+
+                    for(int k = '1'; k <= '9'; k++){
+                        if(checkPlace(board, k, i, j)){
+
+                            board[i][j] = k;
+                            bool tempAns = placeChar(board);
+                            if(tempAns){
+                                return true;
+                            }
+                            board[i][j] = '.';
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    void solveSudoku(vector<vector<char>>& board) {
+        placeChar(board);
+    }
         
 */
