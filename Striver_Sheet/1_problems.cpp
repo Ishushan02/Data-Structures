@@ -1014,3 +1014,39 @@
     }
         
 */
+
+/*
+    Problem 21
+    38. Count and Say
+    (https://leetcode.com/problems/count-and-say/)
+
+    string compression(string &s){
+        string ans;
+        int i = 0;
+        int j = 0;
+
+        int tempCount = 0;
+        while(j < s.length()){
+            if(s[i]==s[j]){
+                tempCount++;
+            }else{
+                ans += to_string(tempCount) + s[i];
+                i = j;
+                tempCount = 1;
+            }
+            j++;
+        }
+
+        ans += to_string(tempCount) + s[i];
+
+        return ans;
+    }
+
+    string countAndSay(int n) {
+        if(n == 1){
+            return "1";
+        }
+        string ans = countAndSay(n - 1);
+        return compression(ans);
+    }
+*/
