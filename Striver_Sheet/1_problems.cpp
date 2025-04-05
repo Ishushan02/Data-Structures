@@ -1119,3 +1119,31 @@
 
     }
 */
+
+/*
+    Problem 24
+    46. Permutations
+    (https://leetcode.com/problems/permutations/)
+
+    void permutations(vector<int>& nums, int j, vector<vector<int>> &ans){
+        if(j >= nums.size()){
+            ans.push_back(nums);
+            return ;
+        }
+
+        for(int i = j; i < nums.size(); i++){
+            swap(nums[i], nums[j]);
+            permutations(nums, j+1, ans);
+            swap(nums[i], nums[j]);
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        
+        vector<vector<int>> ans;
+        permutations(nums, 0, ans);
+
+        return ans;
+    }
+        
+*/
