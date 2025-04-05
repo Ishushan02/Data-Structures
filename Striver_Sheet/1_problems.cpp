@@ -1082,3 +1082,40 @@
         return ans;
     }
 */
+
+
+/*
+    Problem 23
+    40. Combination Sum II
+    (https://leetcode.com/problems/combination-sum-ii/)
+
+    void allPossibilities(vector<int>& candidates, int j, int target, int tempSum, vector<int> &temp, vector<vector<int>> &ans){
+        if(tempSum == target){
+            ans.push_back(temp);
+            return ;
+        }
+
+        for(int i = j; i < candidates.size(); i++){
+            if (i > j && candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+
+            if(tempSum + candidates[i] <= target){
+                temp.push_back(candidates[i]);
+                allPossibilities(candidates, i+1, target, tempSum + candidates[i], temp, ans);
+                temp.pop_back();
+            }
+        }
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> temp;
+        int j = 0;
+        sort(candidates.begin(), candidates.end());
+        allPossibilities(candidates, 0, target, 0, temp, ans);
+
+        return ans;
+
+    }
+*/
