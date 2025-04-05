@@ -1050,3 +1050,35 @@
         return compression(ans);
     }
 */
+
+/*
+    Problem 22
+    39. Combination Sum
+    (https://leetcode.com/problems/combination-sum/description/)
+
+    void allPossibleSum(vector<int>& candidates, int j, vector<int> temp, int target, int tempSum, vector<vector<int>>& res){
+        if(tempSum == target){
+            res.push_back(temp);
+            return ;
+        }
+
+        int prev = -1;
+        for(int i = j; i < candidates.size(); i++){
+            if(tempSum + candidates[i] <= target){
+                temp.push_back(candidates[i]);
+                allPossibleSum(candidates, i, temp, target, tempSum + candidates[i], res);
+                temp.pop_back();
+            }
+
+            prev = i;
+        }
+
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> temp;
+        allPossibleSum(candidates, 0, temp, target, 0, ans);
+        return ans;
+    }
+*/
