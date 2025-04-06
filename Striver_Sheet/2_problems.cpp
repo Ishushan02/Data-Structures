@@ -137,5 +137,28 @@
 
         return res;
     }
+
+*/
+
+/*
+    53. Maximum Subarray
+    (https://leetcode.com/problems/maximum-subarray/)
+
+    int maxSubArray(vector<int>& nums) {
+        
+        int maxSum = INT_MIN;
+        int tempSum = 0;
+
+        for(auto i: nums){
+
+            tempSum += i;
+            maxSum = max(maxSum, tempSum);
+            if(tempSum < 0){
+                tempSum = 0;
+            }
+        }
+
+        return maxSum;
+    }
         
 */
