@@ -285,6 +285,26 @@ to switch positions
 {_, 2, 3, ...... 1, .....n - 2, n-1} // similarily for i it has (n-1) places
 // to switch positions
 
+Explanation 2 (Better Explanation)
+
+See let's take 1 number (0) and fix it, now there are in total of 
+n-1 total possitibilities.. this possibility will be there for all the numbers .... 
+hence totalDearrangements = n - 1 (all subproblem possibilities)
+
+we already have picked 0, let's pick a number i 
+
+    - Now there are 2 possibilities of keeping i, either at 0th place or any other place..
+
+    - let's place i at 0th place and vice versa, hence 0 and ith are swapped and fixed
+        now we have total of n - 2 possibilities for n - 2 numbers isn't this same as f(n-2)
+
+    - let's fix 0 at ith place and now i can be placed in any place.. which means that 
+        now we have n - 1 possibilities for i and similiarily this can happen for total n - 1 elements
+        isn't this same as counting for f(n-1)
+
+    hence total number of Derrangements are 
+    (n - 1) * (f(n-1) + f(n-2))
+
 
 hence for total number of 1 can be placed in
         (n-1) * [f(n-2) + f(n-1)]
