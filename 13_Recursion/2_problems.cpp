@@ -491,4 +491,29 @@ int square(int i, int j, vector<vector<char>>& matrix, int& maxi){
         int temp =  square(0, 0, matrix,  maxSqr);
         return maxSqr*maxSqr; // returning area
     }
+
+
+    Method II
+    Top DOwn Approach Of DP
+
+    int maximalSquare(vector<vector<char>>& matrix) {
+        
+        int row = matrix.size();
+        int col = matrix[0].size();
+
+        vector<vector<int>> dpArr(row + 1, vector<int>(col + 1, 0));
+        int maxSize =  0 ;
+        for(int i = 1; i <= row; i++){
+            for(int j = 1; j <= col; j++){
+                if(matrix[i-1][j-1] == '1'){
+                    int size = 1 + min(dpArr[i-1][j-1], min(dpArr[i-1][j], dpArr[i][j-1]));
+                    dpArr[i][j] = size;
+                    maxSize = max(maxSize, size);
+                }
+            }
+        }
+
+        return maxSize * maxSize;
+    }
+
 */
