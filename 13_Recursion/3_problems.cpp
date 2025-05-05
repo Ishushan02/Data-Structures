@@ -110,6 +110,39 @@ bool jumpsteps(vector<int>& nums, int index){
         return jumpsteps(nums, 0);
     }
 
+    Method II
+    bool isPossible(vector<int>& nums, int i, vector<int> &dpArr){
+        if(i == nums.size() -1){
+            return true;
+        }
+
+        if(i >= nums.size()){
+            return false;
+        }
+
+        if(dpArr[i] != -1){
+            return dpArr[i];
+        }
+
+        bool ans = false;
+        for(int j = 1; j <= nums[i]; j++){
+            ans = ans || isPossible(nums, j+i, dpArr);
+            if(ans){
+                dpArr[i] = true;
+                return true;
+            }
+        }
+
+        dpArr[i] = ans;
+
+        return dpArr[i];
+    }
+
+    bool canJump(vector<int>& nums) {
+        vector<int> dpArr(nums.size()+1, -1);
+        return isPossible(nums, 0, dpArr);
+    }
+
 */
 
 /*
