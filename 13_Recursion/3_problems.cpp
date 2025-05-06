@@ -207,4 +207,27 @@ int minSteps(vector<int> &nums, int index, int tempcount, int& mincount){
         return itterateTriangle(triangle, 0, 0);
     }
 
+    Method 2
+    int getminSum(vector<vector<int>>& triangle, int i, int j, vector<vector<int>> &dpArr){
+        if(i >= triangle.size()){
+            return 0;
+        }
+
+        if(dpArr[i][j] != -1){
+            return dpArr[i][j];
+        }
+
+        int sum = triangle[i][j] + min(getminSum(triangle, i+1, j, dpArr), getminSum(triangle, i+1, j+1, dpArr));
+        dpArr[i][j] = sum;
+
+        return dpArr[i][j];
+    }
+
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int row = triangle.size();
+        int col = triangle[row-1].size();
+        vector<vector<int>> dpArr(triangle.size(), vector<int>(col, -1));
+        return getminSum(triangle, 0, 0, dpArr);
+    }
+
 */
