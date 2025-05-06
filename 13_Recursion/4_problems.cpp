@@ -242,6 +242,28 @@ METHOD 2 (ACCEPTED)
         return maxProfit < 0 ? 0:maxProfit;
     }
 
+    Method 3 (Best Method)
+    int maxProfit(vector<int>& prices) {
+        
+        int maxProfit = 0;
+        stack<int> st;
+
+        for(int i = 0; i < prices.size(); i++){
+            if(st.empty()){
+                st.push(prices[i]);
+            }else{
+
+                if(st.top() > prices[i]){
+                    st.push(prices[i]);
+                }else{
+                    maxProfit = max(maxProfit, prices[i] - st.top());
+                }
+            }
+        }
+
+        return maxProfit;
+    }
+
 */
 
 
