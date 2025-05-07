@@ -383,4 +383,36 @@ METHOD 2 (ACCEPTED)
         return getPerm(s1, 0, s2);
     }
 
+    Method 2(GOod and Easy Method of counting Based)
+    bool checkInclusion(string s1, string s2) {
+        if(s1.length() > s2.length()){
+            return false;
+        }
+        vector<int> s1temp(26, 0);
+        
+
+        for(auto c:s1){
+            int idx = c - 'a';
+            s1temp[idx]++;
+        }
+        int len1 = s1.length();
+        int len2 = s2.length();
+
+        for(int i = 0; i <= len2-len1; i++){
+            vector<int> s2temp(26, 0);
+            for(int j = i; j < i + len1 ; j++){
+                int idx = s2[j] - 'a';
+                s2temp[idx]++;
+            }
+
+            if(s1temp == s2temp){
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+        
+
 */
