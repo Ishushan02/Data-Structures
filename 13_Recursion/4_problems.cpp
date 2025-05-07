@@ -413,6 +413,41 @@ METHOD 2 (ACCEPTED)
         return false;
 
     }
-        
+
+
+    Method 3 (Best Method and the Easiest One) // sliding Window
+    bool checkInclusion(string s1, string s2) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+
+        if(len1 > len2){
+            return false;
+        }
+
+        vector<int> s1temp(26, 0);
+        vector<int> s2temp(26, 0);
+
+        for(int i = 0; i < len1; i++){
+            s1temp[s1[i] - 'a']++;
+            s2temp[s2[i] - 'a']++;
+        }
+
+        for(int i = len1; i < len2; i++){
+            if(s1temp == s2temp){
+                return true;
+            }
+
+            s2temp[s2[i - len1] - 'a']--;
+            s2temp[s2[i] - 'a']++;
+        }
+
+        if(s1temp == s2temp){
+            return true;
+        }
+
+
+        return false;
+
+    }
 
 */
