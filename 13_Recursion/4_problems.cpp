@@ -269,7 +269,7 @@ METHOD 2 (ACCEPTED)
 
 /*
     115. Distinct Subsequences (Memory Limit Exceeded)
-    (https://leetcode.com/problexms/distinct-subsequences/description/)
+    (https://leetcode.com/problems/distinct-subsequences/description/)
 
     void getSubseq(string &s, string &temp, string &t, int &ans, int index){
         if(index >= s.length()){
@@ -321,6 +321,33 @@ METHOD 2 (ACCEPTED)
         getSum(nums, target, 0, 0, count);
 
         return count;
+    }
+
+    Method 2 DP
+    int allPossibleWays(vector<int>& nums, int tempSum, int target, int idx, map<pair<int, int>, int> &dpArray){
+        if(idx >= nums.size()){
+            if(tempSum == target){
+                return 1;
+            }
+            return 0;
+        }
+
+        if(dpArray.count({tempSum, idx}) > 0){
+            return dpArray[{tempSum, idx}];
+        }
+
+        int include =  allPossibleWays(nums, tempSum + nums[idx], target, idx + 1, dpArray);
+        int exclude = allPossibleWays(nums, tempSum - nums[idx], target, idx + 1, dpArray) ;
+
+        dpArray[{tempSum, idx}] = include + exclude;
+        return dpArray[{tempSum, idx}];
+    }
+
+
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int count = 0;
+        map<pair<int, int>, int> dpArray;
+        return allPossibleWays(nums, 0, target, 0, dpArray);
     }
     
 */
