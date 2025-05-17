@@ -22,7 +22,7 @@ void mergeSort(int arr1[], int n1, int arr2[], int n2, vector<int> & res ){
             res.push_back(arr1[i]);
             i++;
         }else{
-            res.push_back(arr2[j]);
+            res.push_back(arr2[j]); 
             j++;
         }
     }
@@ -200,7 +200,7 @@ Backtracking -----------------
 
 Backtracking will search for all possible solutions
 but will never explore the solutions again which he
-has already explored.
+has already been explored.
 
 We discard the solutions which we have already explored.
 

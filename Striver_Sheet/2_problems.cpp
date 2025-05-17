@@ -208,3 +208,54 @@
     }
 
 */
+
+/*
+    61. Rotate List
+    (https://leetcode.com/problems/rotate-list/description/)
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head == NULL){
+            return NULL;
+        }
+        
+        ListNode* temphead = head;
+        ListNode* temptail = NULL;
+        int n = 0;
+
+        while(temphead){
+            n += 1;
+            temptail = temphead;
+            temphead = temphead->next;
+        }
+        if(n == k){
+            return head;
+        }
+        // cout << temptail->val << endl;
+
+        temptail->next = head;
+        
+        int rotations = 0;
+
+        if(n > k){
+            rotations = n - k + 1;
+        }else{
+            // cout << k % n << endl;
+            rotations = n - (k % n)+1;
+        }
+
+        // cout << rotations << endl;
+        ListNode* prev = temptail;
+        ListNode* ans = NULL;
+        
+
+        while(rotations){
+            ans = temptail->next;
+            prev = temptail;
+            temptail = temptail->next;
+            rotations--;
+        }
+        prev->next = NULL;
+        // cout << ans->val << " , " << prev->val << endl;
+        
+        return ans;
+    } 
+*/
