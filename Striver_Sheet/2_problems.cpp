@@ -292,3 +292,34 @@
         
     }
 */
+
+/*
+    64. Minimum Path Sum
+    (https://leetcode.com/problems/minimum-path-sum/)
+
+    int minPathSum(vector<vector<int>>& grid) {
+        int row = grid.size();
+        int col = grid[0].size();
+
+        vector<vector<int>> dpArr(row+1, vector<int>(col+1, 0));
+
+        for(int i = row - 1; i >= 0; i--){
+            for(int j = col - 1; j >= 0; j--){
+                if(i == row - 1){
+                    dpArr[i][j] = grid[i][j] + dpArr[i][j+1];
+                }else if(j == col - 1){
+                    dpArr[i][j] = grid[i][j] + dpArr[i+1][j];
+                }else{
+                     int val1 = dpArr[i+1][j] + grid[i][j];
+                     int val2 = dpArr[i][j+1] + grid[i][j];
+                    dpArr[i][j] = min(val1, val2);
+                }
+                
+            }
+        }
+
+
+        return dpArr[0][0];
+    }
+        
+*/
