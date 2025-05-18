@@ -323,3 +323,44 @@
     }
         
 */
+
+/*
+    72. Edit Distance
+    (https://leetcode.com/problems/edit-distance/description/)
+
+    int modifyStrings(int i, int j, string &word1, string &word2, vector<vector<int>> &dpArr){
+
+        if(i >= word1.length() && j >= word2.length()){
+            return 0;
+        }else if(i >= word1.length()){
+            return word2.length()-j;
+        }else if(j >= word2.length()){
+            return word1.length()-i;
+        }
+
+        if(dpArr[i][j] != -1){
+            return dpArr[i][j];
+        }
+
+        int operations = 0;
+        if(word1[i] == word2[j]){
+            operations = 0 + modifyStrings(i+1, j+1, word1, word2, dpArr);
+        }else{
+
+            int insertop = 1 + modifyStrings(i, j+1, word1, word2, dpArr);
+            int deleteop = 1 + modifyStrings(i+1, j, word1, word2, dpArr);
+            int replaceop = 1 + modifyStrings(i+1, j+1, word1, word2, dpArr);
+
+            operations = min(insertop, min(deleteop, replaceop));
+        }
+
+        dpArr[i][j] = operations;
+        return dpArr[i][j];
+    }
+
+    int minDistance(string word1, string word2) {
+        
+        vector<vector<int>> dpArr(word1.length()+1, vector<int>(word2.length()+1, -1));
+        return modifyStrings(0, 0, word1, word2, dpArr);
+    }
+*/
