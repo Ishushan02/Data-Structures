@@ -211,6 +211,7 @@
 
 /*
     61. Rotate List
+    Problem 30
     (https://leetcode.com/problems/rotate-list/description/)
     ListNode* rotateRight(ListNode* head, int k) {
         if(head == NULL){
@@ -261,7 +262,7 @@
 */
 
 /*
-    62. Unique Paths
+    Problem 31
     (https://leetcode.com/problems/unique-paths/description/)
 
     int allPossiblePaths(int x, int y, int m, int n, vector<vector<int>> &dpArr){
@@ -294,7 +295,8 @@
 */
 
 /*
-    64. Minimum Path Sum
+    Problem 32
+    Minimum Path Sum
     (https://leetcode.com/problems/minimum-path-sum/)
 
     int minPathSum(vector<vector<int>>& grid) {
@@ -325,7 +327,7 @@
 */
 
 /*
-    72. Edit Distance
+    Problem 33
     (https://leetcode.com/problems/edit-distance/description/)
 
     int modifyStrings(int i, int j, string &word1, string &word2, vector<vector<int>> &dpArr){
@@ -366,7 +368,8 @@
 */
 
 /*
-    73. Set Matrix Zeroes
+    Problem 34
+    Set Matrix Zeroes
     (https://leetcode.com/problems/set-matrix-zeroes/)
 
     void setCol(int m, int n, int row, int col, vector<vector<int>>& matrix, vector<vector<bool>>& visited){
@@ -404,5 +407,56 @@
                 }
             }
         }
+    }
+*/
+
+
+/*
+
+    Problem 35
+    Search a 2D Matrix
+    (https://leetcode.com/problems/search-a-2d-matrix/description/)
+
+    bool binarySearch(vector<int> &arr, int target){
+        int start = 0;
+        int end = arr.size()-1;
+        int mid = (start + end)/2;
+
+        while(start <= end){
+            cout << start << " , " << mid << " , " << end << endl;
+            if(arr[mid] == target){
+                return true;
+            }else if(target < arr[mid]){
+                end = mid - 1;
+            }else{
+                start = mid + 1;
+            }
+            mid = (start + end)/2;
+        }
+        
+        return false;
+    }
+
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+
+        int row = matrix.size();
+        int col = matrix[0].size();
+
+        int start = 0;
+        int end = row-1;
+        int mid = (start + end)/2;
+
+        int idx = 0;
+        while(start <= end){
+            if(target >= matrix[mid][0]){
+                idx = mid;
+                start = mid + 1;
+            }else{
+                end = mid - 1;
+            }
+            mid = (start + end)/2;
+        }
+
+        return binarySearch(matrix[idx], target);
     }
 */
