@@ -488,3 +488,72 @@
     }
 
 */
+
+/*
+
+    Problem 37
+    84. Largest Rectangle in Histogram
+    (https://leetcode.com/problems/largest-rectangle-in-histogram/)
+
+    vector<int> prevSmallerElem(vector<int>& heights){
+        vector<int> ans(heights.size(), 0);
+        stack<int> st;
+        for(int i = 0; i < heights.size(); i++){
+
+            while(!st.empty() && heights[st.top()] >= heights[i]){
+                st.pop();
+            }
+
+            if(st.empty()){
+                ans[i] = -1;
+            }else{
+                ans[i] = st.top();
+            }
+            st.push(i);
+        }
+
+        // for(auto v:ans){
+        //     cout << v << " ";
+        // }
+        return ans;
+    }
+
+    vector<int> nextSmallerElem(vector<int>& heights){
+        vector<int> ans(heights.size(), 0);
+        stack<int> st;
+
+        for(int i = heights.size()-1; i >=0; i--){
+
+            while(!st.empty() && heights[st.top()] >= heights[i]){
+                st.pop();
+            }
+
+            if(st.empty()){
+                ans[i] = heights.size();
+            }else{
+                ans[i] = st.top();
+            }
+
+            st.push(i);
+        }
+
+        // for(auto v:ans){
+        //     cout << v << " ";
+        // }
+        return ans;
+    }
+
+    int largestRectangleArea(vector<int>& heights) {
+        
+        vector<int> prevElements = prevSmallerElem(heights);
+        vector<int> nextElements = nextSmallerElem(heights);
+
+        int maxAns = 0;
+
+        for(int i = 0; i < heights.size(); i++){
+            maxAns = max(maxAns, ((nextElements[i] - prevElements[i] - 1) * heights[i]));
+        }
+
+        return maxAns;
+    }
+*/
