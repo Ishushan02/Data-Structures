@@ -621,3 +621,29 @@
         return res;
     }
 */
+
+
+/*
+
+    Problem 40
+    (https://leetcode.com/problems/binary-tree-inorder-traversal/)
+
+    94. Binary Tree Inorder Traversal
+    void tranverse(TreeNode* root, vector<int> &ans){
+        if(root == NULL){
+            return ;
+        }
+
+        tranverse(root->left, ans);
+        ans.push_back(root->val);
+        tranverse(root->right, ans);
+
+    }
+
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> ans;
+        tranverse(root, ans);
+
+        return ans;
+    }
+*/
