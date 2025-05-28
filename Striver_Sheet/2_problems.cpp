@@ -594,3 +594,30 @@
         }
     }
 */
+
+/*
+    Problem 39
+    (https://leetcode.com/problems/subsets-ii/)
+
+    90. Subsets II
+    void uniquePowerSet(vector<int>& nums, int idx, vector<int> &ans, vector<vector<int>> &res){
+        res.push_back(ans);
+
+        for(int i = idx; i < nums.size(); i++){
+            if(i != idx && nums[i-1] == nums[i]) continue;
+
+            ans.push_back(nums[i]);
+            uniquePowerSet(nums, i + 1, ans, res);
+            ans.pop_back();
+        }
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<int> ans;
+        vector<vector<int>> res;
+        sort(nums.begin(), nums.end());
+        uniquePowerSet(nums, 0, ans, res);
+
+        return res;
+    }
+*/
