@@ -647,3 +647,49 @@
         return ans;
     }
 */
+
+/*
+
+    Problem 41
+    (https://leetcode.com/problems/validate-binary-search-tree/)
+
+    98. Validate Binary Search Tree
+    bool checkValidity(TreeNode* root, long long int leftrange, long long int rightrange){
+        
+        if(root == NULL){
+            return true;
+        }
+        if(root->left){
+            int leftVal = root->left->val;
+
+            if(leftVal >= root->val || leftVal <= leftrange ){
+                return false;
+            }
+        }
+
+        if(root->right){
+            int rightVal = root->right->val;
+
+            if(rightVal <= root->val || rightVal >= rightrange){
+                return false;
+            }
+        }
+
+        long long int lmin = leftrange;
+        long long int lmax = root->val;
+
+        long long int rmin = root->val;
+        long long int rmax = rightrange;
+
+        return checkValidity(root->left, lmin, lmax) && checkValidity(root->right, rmin, rmax);
+    }
+
+    bool isValidBST(TreeNode* root) {
+
+        if(root == NULL){
+            return true;
+        }
+        
+        return checkValidity(root, LONG_MIN, LONG_MAX);
+    }
+*/
