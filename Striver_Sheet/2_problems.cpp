@@ -713,5 +713,30 @@
 
         return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }  
-        
+
+*/
+
+/*
+
+    Problem 43
+    (https://leetcode.com/problems/symmetric-tree/)
+    101. Symmetric Tree
+
+    bool isMirror(TreeNode* p, TreeNode* q){
+        if(p == NULL && q == NULL){
+            return true;
+        }else if(p == NULL && q != NULL || p != NULL && q == NULL){
+            return false;
+        }else if(p->val != q->val){
+            return false;
+        }
+
+
+        return isMirror(p->left, q->right) && isMirror(p->right, q->left);
+    }
+
+    bool isSymmetric(TreeNode* root) {
+
+        return isMirror(root->left, root->right);
+    }
 */
