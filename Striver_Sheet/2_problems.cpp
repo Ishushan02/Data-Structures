@@ -740,3 +740,42 @@
         return isMirror(root->left, root->right);
     }
 */
+
+/*
+
+    Problem 44
+    102. Binary Tree Level Order Traversal
+    (https://leetcode.com/problems/binary-tree-level-order-traversal/)
+
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if(root == NULL){
+            return {};
+        }
+        queue<TreeNode*> que;
+        vector<vector<int>> ans;
+        que.push(root);
+
+        while(!que.empty()){
+            vector<int> temp;
+            int size = que.size();
+            
+            for(int i = 0; i < size; i++){
+                TreeNode* node = que.front();
+                temp.push_back(node->val);
+
+                if(node->left){
+                    que.push(node->left);
+                }
+                if(node->right){
+                    que.push(node->right);
+                }
+                que.pop();
+            }
+
+            ans.push_back(temp);
+        }
+
+        return ans;
+    }
+
+*/
