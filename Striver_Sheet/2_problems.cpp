@@ -826,3 +826,24 @@
     }
     
 */
+
+/*
+
+    Problem 46
+    (https://leetcode.com/problems/maximum-depth-of-binary-tree/)
+    104. Maximum Depth of Binary Tree
+
+    int depth(TreeNode* root){
+        if(root == NULL){
+            return 0;
+        }
+
+        int lh = depth(root->left);
+        int rh = depth(root->right);
+        return max(lh, rh) + 1;
+    }
+
+    int maxDepth(TreeNode* root) {
+        return depth(root);   
+    }
+*/
