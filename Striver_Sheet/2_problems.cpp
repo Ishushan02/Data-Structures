@@ -929,3 +929,33 @@
         return getTreeNode(inorder, postorder, idx, 0, n, indexMap);
     }
 */
+
+/*
+
+    Problem 49
+    (https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
+    108. Convert Sorted Array to Binary Search Tree
+
+    TreeNode* buildTree(vector<int>& nums, int start, int end){
+        if(start >= end){
+            return NULL;
+        }
+
+        int mid = (start+end)/2;
+        TreeNode* rootNode = new TreeNode(nums[mid]);
+
+        rootNode->left = buildTree(nums, start, mid);
+        rootNode->right = buildTree(nums, mid+1, end);
+
+        return rootNode;
+    }
+
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 0){
+            return NULL;
+        }
+
+        return buildTree(nums, 0, n);
+    }
+*/
