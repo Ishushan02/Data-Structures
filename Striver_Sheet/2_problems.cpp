@@ -847,3 +847,45 @@
         return depth(root);   
     }
 */
+
+/*
+
+    Problem 47
+    (https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+    105. Construct Binary Tree from Preorder and Inorder Traversal
+
+    TreeNode* treeNodeMake(vector<int>& preorder, vector<int>& inorder, int &idx, int start, int end, unordered_map<int, int> &indexMap){
+        if(start >= end){
+            return NULL;
+        }
+
+        if(idx >= preorder.size()){
+            return NULL;
+        }
+        
+        TreeNode* rootNode = new TreeNode(preorder[idx]);
+        int inorderdidx = indexMap[preorder[idx]];
+        idx++;
+        rootNode->left = treeNodeMake(preorder, inorder, idx, start, inorderdidx, indexMap);
+        rootNode->right = treeNodeMake(preorder, inorder, idx, inorderdidx+1, end, indexMap);
+
+        return rootNode;
+    }
+
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int n = preorder.size();
+        if( n == 0){
+            return NULL;
+        }
+        unordered_map<int, int> indexMap;
+        for(int i = 0; i < n; i++){
+            indexMap[inorder[i]] = i;
+        }
+
+        int idx = 0;
+        TreeNode* root = treeNodeMake(preorder, inorder, idx, 0, n, indexMap);
+
+        return root;
+    }
+        
+*/
