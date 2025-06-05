@@ -75,3 +75,51 @@
         return root;
     }
 */
+
+/*
+
+    Problem 53
+    (https://leetcode.com/problems/pascals-triangle/description/)
+    118. Pascal's Triangle
+
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ans;
+        if(numRows == 0){
+            return ans;
+        }
+        ans.push_back({1});
+
+        int col = 2;
+        for(int i = 1; i < numRows; i++){
+            vector<int> temp;
+            int size = ans[i-1].size();
+            for(int j = 0; j < col; j++){
+                // cout << i << " , " << j << endl;
+                int left = 0;
+                int right = 0;
+                if(i-1 < 0 || j-1 < 0){
+                    left = 0;
+                }else{
+                    left = ans[i-1][j-1];
+                }
+
+                if(i-1 < 0 || j < 0 || j >= size ){
+                    right = 0;
+                }else{
+                    right = ans[i-1][j];
+                }
+
+                if(left + right == 0){
+                    temp.push_back(1);
+                }else{
+                    temp.push_back(left + right);
+                }
+                
+            }
+            ans.push_back(temp);
+            col += 1;
+        }
+
+        return ans;
+    }
+*/
