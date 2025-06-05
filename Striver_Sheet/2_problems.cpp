@@ -959,3 +959,47 @@
         return buildTree(nums, 0, n);
     }
 */
+
+/*
+
+    Problem 50
+    110. Balanced Binary Tree
+    (https://leetcode.com/problems/balanced-binary-tree/description/)
+
+    int getHeight(TreeNode* root){
+        if(root == NULL){
+            return 0;
+        }
+
+        int lh = getHeight(root->left);
+        int rh = getHeight(root->right);
+
+        return max(lh, rh) + 1;
+    }
+
+    void traverse(TreeNode* root, bool &isBalanced){
+        if(root == NULL){
+            return ;
+        }
+
+        int lh = getHeight(root->left);
+        int rh = getHeight(root->right);
+        if(abs(lh - rh) > 1){
+            isBalanced = false;
+            return ;
+        }
+
+
+        traverse(root->left, isBalanced);
+        traverse(root->right, isBalanced);
+
+    }
+
+    bool isBalanced(TreeNode* root) {
+        bool isBalanced = true;
+        traverse(root, isBalanced);
+
+        return isBalanced;
+    }
+
+*/
