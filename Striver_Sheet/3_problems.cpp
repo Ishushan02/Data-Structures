@@ -36,5 +36,42 @@
     void flatten(TreeNode* root) {
         traverse(root);
     }
-        
+
+*/
+
+/*
+
+    Problem 52
+    (https://leetcode.com/problems/populating-next-right-pointers-in-each-node/)
+    116. Populating Next Right Pointers in Each Node
+
+    Node* connect(Node* root) {
+        if(root == NULL){
+            return NULL;
+        }
+        queue<Node*> que;
+        que.push(root);
+
+        while(!que.empty()){
+
+            int size = que.size();
+            Node* initialright = NULL;
+
+            for(int i = 0; i < size; i++){
+                Node* topNode = que.front();
+                if(topNode->right){
+                    topNode->right->next = initialright;
+                    initialright = topNode->right;
+                    topNode->left->next = initialright;
+                    initialright = topNode->left;
+                    que.push(topNode->right);
+                    que.push(topNode->left);
+                }
+                que.pop();
+            }
+            // que.pop();
+        }
+
+        return root;
+    }
 */
