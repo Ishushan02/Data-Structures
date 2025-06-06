@@ -150,3 +150,40 @@
         return maxProfit;
     }
 */
+
+/*
+
+    Problem 55
+    (https://leetcode.com/problems/binary-tree-maximum-path-sum/description/)
+    124. Binary Tree Maximum Path Sum
+
+    int getMaxSum(TreeNode* root, int &maxSum){
+        if(root == NULL){
+            return 0;
+        }
+        
+        // int currmaxSum = -1000;
+        int lSum = getMaxSum(root->left, maxSum);
+        int rSum = getMaxSum(root->right, maxSum);
+        int adjSum = 0;
+
+        int propSum = 0;
+        adjSum = lSum + rSum + root->val;
+        maxSum = max(maxSum, adjSum);
+        propSum = root->val + max(lSum, rSum);
+        
+        // cout << root->val << " , " << propSum << " , " << maxSum << endl;
+        if(propSum >= 0){
+            return propSum;
+        }else{
+            return 0;
+        }
+    }
+
+    int maxPathSum(TreeNode* root) {
+        int maxSum = -1000;
+        auto val = getMaxSum(root, maxSum);
+
+        return maxSum;
+    }
+*/
