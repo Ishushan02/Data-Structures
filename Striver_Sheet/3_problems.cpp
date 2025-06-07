@@ -280,3 +280,34 @@
         return ans;
     }
 */
+
+/*
+    Problem 58
+    (https://leetcode.com/problems/clone-graph/)
+    133. Clone Graph
+
+    (Node* createClone(Node* node, unordered_map<int, Node*> &nodeMap){
+
+        if(node == NULL){
+            return NULL;
+        }
+
+        if(nodeMap[node->val]){
+            return nodeMap[node->val];
+        }
+        Node* newNode = new Node(node->val);
+        nodeMap[node->val] = newNode;
+
+        for(auto eachNode:node->neighbors){
+            Node* currNode = createClone(eachNode, nodeMap);
+            newNode->neighbors.push_back(currNode);
+        }    
+
+        return newNode;
+    }
+
+    Node* cloneGraph(Node* node) {
+        unordered_map<int, Node*> nodeMap;
+        return createClone(node, nodeMap);
+    })
+*/
