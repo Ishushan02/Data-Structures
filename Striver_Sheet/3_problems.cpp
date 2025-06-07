@@ -190,7 +190,7 @@
 
 /*
     Great Question 
-    
+
     Problem 56 
     (https://leetcode.com/problems/longest-consecutive-sequence/)
     128. Longest Consecutive Sequence
@@ -225,4 +225,58 @@
     // find only takes O(logn) time in unordered_set 
 
     // Hence it is just O(n)
+*/
+
+/*
+    Problem 57
+    (https://leetcode.com/problems/palindrome-partitioning/description/)
+    131. Palindrome Partitioning
+
+    bool isPalindrome(string &s){
+        int i = 0;
+        int j = s.length()-1;
+
+        while(i <= j){
+            if(s[i] != s[j]){
+                return false;
+            }
+            i++;
+            j--;
+        }
+
+        return true;
+    }
+
+
+    void getPalindromicSubstr(string &s, int idx, vector<string> &tempAns, vector<vector<string>> &ans){
+        if(idx >= s.length()){
+            if(tempAns.size() > 0){
+                ans.push_back(tempAns);
+            }
+            // tempAns = {};
+            return ;
+        }
+
+        string tempStr;
+        for(int i = idx; i < s.length(); i++){
+            tempStr += s[i];
+            if(isPalindrome(tempStr)){
+                // cout << tempStr << endl;
+                tempAns.push_back(tempStr);
+                getPalindromicSubstr(s, i+1, tempAns, ans);
+                tempAns.pop_back();
+            }
+        }
+        
+
+    }
+
+    vector<vector<string>> partition(string s) {
+        
+        vector<vector<string>> ans;
+        vector<string> temp;
+        getPalindromicSubstr(s, 0, temp, ans);
+
+        return ans;
+    }
 */
