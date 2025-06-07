@@ -187,3 +187,34 @@
         return maxSum;
     }
 */
+
+/*
+
+    Problem 56 
+    (https://leetcode.com/problems/longest-consecutive-sequence/)
+    128. Longest Consecutive Sequence
+
+    int longestConsecutive(vector<int>& nums) {
+        
+        unordered_set<int> setMap(nums.begin(), nums.end());
+        int maxAns = 0;
+
+        for(auto v:setMap){
+
+            if(setMap.find(v-1) == setMap.end()){
+                int curr = v;
+                int ans = 0;
+
+                while(setMap.find(curr) != setMap.end()){
+                    ans += 1;
+                    curr += 1;
+                }
+
+                maxAns = max(maxAns, ans);
+            }
+        }
+
+        return maxAns;
+
+    }
+*/
