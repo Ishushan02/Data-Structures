@@ -189,7 +189,8 @@
 */
 
 /*
-
+    Great Question 
+    
     Problem 56 
     (https://leetcode.com/problems/longest-consecutive-sequence/)
     128. Longest Consecutive Sequence
@@ -205,6 +206,7 @@
                 int curr = v;
                 int ans = 0;
 
+                
                 while(setMap.find(curr) != setMap.end()){
                     ans += 1;
                     curr += 1;
@@ -217,4 +219,10 @@
         return maxAns;
 
     }
+
+    // Even though this is a nested loop, each number is only visited once over all
+    // iterations of the outer loop because we skip non-starting elements.
+    // find only takes O(logn) time in unordered_set 
+
+    // Hence it is just O(n)
 */
