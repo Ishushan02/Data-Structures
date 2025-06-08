@@ -429,3 +429,37 @@ let's go by formula     f(n=3) := f(n-2) * (k -1) + f(n-1) * (k - 1) = (f(n=1) *
         return maxAns * maxAns;
     }
 */
+
+/*
+    // STANDARD PARTITIONING OR CUT PROBLEMS ARE SOLVED IN THIS METHOD
+    1547. Minimum Cost to Cut a Stick
+    (https://leetcode.com/problems/minimum-cost-to-cut-a-stick/description/)
+
+    int getminCost(vector<int>& cuts, int start, int end, vector<vector<int>> &dpArr){
+        if(end - start < 2){
+            return 0;
+        }
+
+        if(dpArr[start][end] != -1){
+            return dpArr[start][end];
+        }
+        int minCost = INT_MAX;
+        for(int i = start+1; i <= end - 1; i++){
+            int cost = (cuts[end] - cuts[start]) + getminCost(cuts, start, i, dpArr) + getminCost(cuts, i, end, dpArr);
+            minCost = min(minCost, cost);
+        }
+
+        dpArr[start][end] = minCost;
+
+        return minCost;
+    }
+
+    int minCost(int n, vector<int>& cuts) {
+        sort(cuts.begin(), cuts.end());
+        cuts.insert(cuts.begin(), 0);
+        cuts.push_back(n);
+        vector<vector<int>> dpArr(cuts.size()+1, vector<int>(cuts.size()+1, -1));
+
+        return getminCost(cuts, 0, cuts.size()-1, dpArr);
+    }
+*/
