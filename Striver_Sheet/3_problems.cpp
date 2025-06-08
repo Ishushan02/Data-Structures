@@ -311,3 +311,32 @@
         return createClone(node, nodeMap);
     })
 */
+
+/*
+
+    Problem 59
+    (https://leetcode.com/problems/set-mismatch/submissions/)
+    645. Set Mismatch
+
+    vector<int> findErrorNums(vector<int>& nums) {
+        int n = nums.size();
+        vector<bool> present(n, 0);
+        vector<int> ans;
+
+        for(auto v:nums){
+            if(present[v-1] == 0){
+                present[v-1] = 1;
+            }else{
+                ans.push_back(v);
+            }
+        }
+
+        for(int i = 0; i < n; i++){
+            if(present[i] == 0){
+                ans.push_back(i+1);
+            }
+        }
+
+        return ans;
+    }
+*/
