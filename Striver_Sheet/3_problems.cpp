@@ -377,3 +377,36 @@
     }
 
 */
+
+/*
+
+    Problem 61
+    (https://leetcode.com/problems/copy-list-with-random-pointer/)
+    138. Copy List with Random Pointer
+
+    Node* newList(Node* head, unordered_map<Node*, Node*> &nodeMap){
+        if(head == NULL){
+            return NULL;
+        }
+
+        if(nodeMap.find(head) != nodeMap.end()){
+            return nodeMap[head];
+        }
+
+        Node* newNode = new Node(head->val);
+        nodeMap[head] = newNode;
+        if(head->random != NULL){
+            newNode->random = newList(head->random, nodeMap);
+        }
+
+        newNode->next = newList(head->next, nodeMap);
+        return newNode;
+    }
+
+    Node* copyRandomList(Node* head) {
+        unordered_map<Node*, Node*> nodeMap;
+        auto c = newList(head, nodeMap);
+        return nodeMap[head];
+    }
+        
+*/
