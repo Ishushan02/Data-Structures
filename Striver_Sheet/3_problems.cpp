@@ -469,3 +469,45 @@
         return NULL; 
     }
 */
+
+/*
+    Problem 64
+    (https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
+    653. Two Sum IV - Input is a BST
+
+    void inorder(TreeNode* root, vector<int> &values){
+        if(root == NULL){
+            return ;
+        }
+
+        inorder(root->left, values);
+        values.push_back(root->val);
+        inorder(root->right, values);
+
+    }
+
+    bool findTarget(TreeNode* root, int k) {
+        if(root == NULL){
+            return false;
+        }
+        vector<int> values;
+        inorder(root, values);
+        if(values.size() == 1){
+            return false;
+        }
+        int i = 0;
+        int j = values.size()-1;
+
+        while(i < j){
+            int sum = values[i] + values[j];
+            if(sum == k){
+                return true;
+            }else if(sum > k){
+                j--;
+            }else{
+                i++;
+            }
+        }
+        return false;
+    }
+*/
