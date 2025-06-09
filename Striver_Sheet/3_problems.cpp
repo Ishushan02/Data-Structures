@@ -408,5 +408,32 @@
         auto c = newList(head, nodeMap);
         return nodeMap[head];
     }
+
+*/
+
+/*
+
+    Problem 62
+    (https://leetcode.com/problems/linked-list-cycle/)
+    141. Linked List Cycle
+
+    bool hasCycle(ListNode *head) {
+        if(head == NULL){
+            return false;
+        }
         
+        ListNode* slowptr = head;
+        ListNode* fastptr = head->next;
+
+        while(fastptr && fastptr->next){
+            if(fastptr == slowptr){
+                return true;
+            }
+
+            slowptr = slowptr->next;
+            fastptr = fastptr->next->next;
+        }
+
+        return false;
+    }
 */
