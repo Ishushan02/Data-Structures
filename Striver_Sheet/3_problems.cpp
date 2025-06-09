@@ -534,3 +534,29 @@
         return ans;
     }
 */
+
+/*
+
+    Problem 66
+    (https://leetcode.com/problems/binary-tree-postorder-traversal/)
+    PostOrder Traversal
+
+    void getPostOrder(TreeNode* root, vector<int> &arr){
+        if(root == NULL){
+            return ;
+        }
+        
+        getPostOrder(root->left, arr);
+        getPostOrder(root->right, arr);
+        arr.push_back(root->val);
+        
+    }
+
+    vector<int> postorderTraversal(TreeNode* root) {
+        
+        vector<int> arr;
+        getPostOrder(root, arr);
+
+        return arr;
+    }
+*/
