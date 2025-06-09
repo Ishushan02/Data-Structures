@@ -437,3 +437,35 @@
         return false;
     }
 */
+
+/*
+
+    Problem 63
+    (https://leetcode.com/problems/linked-list-cycle-ii)
+    142. Linked List Cycle II
+
+    ListNode *detectCycle(ListNode *head) {
+        if (head == NULL || head->next == NULL) {
+            return NULL;
+        }
+
+        ListNode* slowptr = head;
+        ListNode* fastptr = head;
+
+        while (fastptr && fastptr->next) {
+            slowptr = slowptr->next;
+            fastptr = fastptr->next->next;
+            // 2*X1 + 2*X2 = X1 + X2 + X3 + X2
+            if (slowptr == fastptr) {
+                ListNode* initial = head;
+                while (initial != slowptr) {
+                    initial = initial->next;
+                    slowptr = slowptr->next;
+                }
+                return initial; 
+            }
+        }
+
+        return NULL; 
+    }
+*/
