@@ -618,3 +618,50 @@
         return maxWidth;
     }
 */
+
+/*
+    Problem 68
+    151. Reverse Words in a String
+    (https://leetcode.com/problems/reverse-words-in-a-string/)
+
+    string reverseWords(string s) {
+        int i = 0;
+        int j = 0;
+
+        stack<string> st;
+        string temp;
+        while(i < s.length()){
+            if(s[i] != ' '){
+                temp += s[i];
+                i++;
+            }else{
+                if(temp != ""){
+                    st.push(temp);
+                    // cout << temp << endl;
+                }
+                temp = "";
+                i++;
+            }
+        }
+        
+        if(temp != ""){
+            st.push(temp);
+        }
+
+        if(st.empty()){
+            return "";
+        }
+
+        string ans;
+        ans += st.top();
+        st.pop();
+
+        while(!st.empty()){
+            ans += ' ';
+            ans += st.top();
+            st.pop();
+        }
+
+        return ans;
+    }
+*/
