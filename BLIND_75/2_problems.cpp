@@ -119,6 +119,27 @@
         return maxAns;
     }
 
+
+    // Easiest Way
+    int maxProduct(vector<int>& nums) {
+        // if(nums.size() == 1){
+        //     return nums[0];
+        // }
+        int maxProd = INT_MIN;
+        for(int i = 0; i < nums.size(); i++){
+            int prod = nums[i];
+            maxProd = max(maxProd, prod);
+            for(int j = i; j < nums.size(); j++){
+                if(j > i){
+                    prod = prod * nums[j];
+                    maxProd = max(maxProd, prod);
+                }
+            }
+        }
+
+        return maxProd;
+    }
+
 */
 
 /*
