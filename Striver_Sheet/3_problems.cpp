@@ -560,3 +560,61 @@
         return arr;
     }
 */
+
+/*
+    Problem 67
+    (https://leetcode.com/problems/maximum-width-of-binary-tree/)
+    662. Maximum Width of Binary Tree
+
+    int widthOfBinaryTree(TreeNode* root) {
+        if(root == NULL){
+            return 0;
+        }
+        if(root->left == NULL && root->right == NULL){
+            return 1;
+        }
+
+        queue<pair<TreeNode*, long long int>> que;
+        que.push({root, 1});
+        long long int maxWidth = 0;
+        while(!que.empty()){
+
+            int size = que.size();
+            long long int minVal = INT_MAX;
+            long long int maxVal = INT_MIN;
+            int index = que.front().second;
+
+            for(int i = 0; i < size; i++){
+                auto frontNode = que.front();
+                frontNode.second = frontNode.second - index;
+
+                if(frontNode.first->left){
+                    // cout << "Left: " << frontNode.second << endl;
+                    long long int val = 2 * frontNode.second;
+                    minVal = min(minVal, val);
+                    maxVal = max(maxVal, val);
+                    que.push({frontNode.first->left, val});
+                }
+
+                if(frontNode.first->right){
+                    // cout << "Right: " << frontNode.second << endl;
+                    long long int val = 2 * frontNode.second + 1;
+                    minVal = min(minVal, val);
+                    maxVal = max(maxVal, val);
+                    que.push({frontNode.first->right, val});
+                }
+                que.pop();
+            }
+
+            if(maxVal == INT_MIN || minVal == INT_MAX){
+                long long int a = 1;
+                maxWidth = max(maxWidth, a);
+            }else{
+                maxWidth = max(maxWidth, maxVal - minVal + 1);
+            }
+            
+        }
+
+        return maxWidth;
+    }
+*/
