@@ -867,3 +867,30 @@
         return compareStrings(version1, version2, 0, 0, a, b);
     }
 */
+
+/*
+
+    Problem 73
+    (https://leetcode.com/problems/majority-element/)
+    169. Majority Element
+
+    // Boyer-Moore Voting Algorithm
+
+    int majorityElement(vector<int>& nums) {  
+        int ref = NULL;
+        int count = 0;
+
+        for(auto v: nums){
+            if(count == 0){
+                ref = v;
+                count++;
+            }else if(v == ref){
+                count++;
+            }else{
+                count--;
+            }
+        }
+
+        return ref;
+    }
+*/
