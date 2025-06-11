@@ -756,3 +756,35 @@
         }
     };
 */
+
+/*
+    Problem 71
+    (https://leetcode.com/problems/intersection-of-two-linked-lists/)
+    160. Intersection of Two Linked Lists
+    
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        if(headA == NULL|| headB == NULL){
+            return NULL;
+        }
+
+        ListNode* ptr1 = headA;
+        ListNode* ptr2 = headB;
+
+        while(ptr1 != ptr2){
+            if(ptr1){
+                ptr1 = ptr1->next;
+            }else{
+                ptr1 = headB;
+            }
+
+            if(ptr2){
+                ptr2 = ptr2->next;
+            }else{
+                ptr2 = headA;
+            }
+        }
+
+        return ptr1;
+    }
+*/
