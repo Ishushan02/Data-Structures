@@ -691,3 +691,68 @@
         return maxProd;
     }
 */
+
+/*
+
+    Problem 70
+    (https://leetcode.com/problems/min-stack/)
+    155. Min Stack
+
+    class Node{
+    public:
+        Node* next;
+        int val;
+        long long minVal;
+
+        Node(int val, int minVal){
+            this->next = NULL;
+            this->val = val;
+            this->minVal = minVal;
+        }
+    };
+
+    class MinStack {
+    public:
+        Node* startptr = NULL;
+        int minimumVal = INT_MAX;
+        Node* newNode = NULL;
+        MinStack() {
+            
+        }
+        
+        void push(int val) {
+            if(!startptr){
+                // minimumVal = min(minimumVal, val);
+                newNode = new Node(val, val);
+                startptr = newNode;
+            }else{
+                // cout << " Val then " << val << endl;
+                // cout << startptr->val << endl;
+                long long newMin = min(startptr->minVal, (long long)val);
+                Node* frontNode = new Node(val, newMin);
+                // frontNode->minVal = minimumVal;
+                frontNode->next = startptr;
+                // newNode = frontNode;
+                startptr = frontNode;
+            }
+        }
+        
+        void pop(){
+            // cout << startptr->val<< " and Min is " << startptr->minVal << endl;
+            if(startptr != NULL){
+                Node* temp = startptr;
+                startptr = startptr->next;
+                delete temp;
+                
+            } 
+        }
+        
+        int top() {
+            return startptr->val;
+        }
+        
+        int getMin() {
+            return startptr->minVal;
+        }
+    };
+*/
