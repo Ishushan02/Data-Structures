@@ -761,7 +761,7 @@
     Problem 71
     (https://leetcode.com/problems/intersection-of-two-linked-lists/)
     160. Intersection of Two Linked Lists
-    
+
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         
         if(headA == NULL|| headB == NULL){
@@ -786,5 +786,84 @@
         }
 
         return ptr1;
+    }
+*/
+
+/*
+
+    Problem 72
+    (https://leetcode.com/problems/compare-version-numbers/)
+    165. Compare Version Numbers
+
+    int getNum(int n, int p){
+        return p + 10 * n;
+    }
+
+    int compareStrings(string &version1, string &version2, int i, int j, int a, int b){
+        if(i >= version1.length() && j >= version2.length()){
+            // cout << " End " << endl;
+            if(a < b){
+                return -1;
+            }else if (a > b){
+                return 1;
+            }
+            return 0;
+        }
+        a = 0; 
+        b = 0;
+        
+        // cout << "i : "<< i << " , j: "<< j << endl;
+        while(i < version1.length() && version1[i] == '0'){
+            i++;
+        }
+
+        while(j < version2.length() && version2[j] == '0'){
+            j++;
+        }
+
+        while(i < version1.length()){
+            if(version1[i] == '.'){
+                // i++;
+                break;
+            }
+            int val = version1[i] - '0';
+            a = getNum(a, val);
+            i++;
+        }
+
+        while(j < version2.length()){
+            if(version2[j] == '.'){
+                // j++;
+                break;
+            }
+            int val = version2[j] - '0';
+            b = getNum(b, val);
+            // cout << b << endl;
+            j++;
+        }
+
+        // cout << a << " , " << b << endl;
+
+        if(a < b){
+            return -1;
+        }else if (a > b){
+            return 1;
+        }
+
+        return compareStrings(version1, version2, i+1, j+1, a, b);
+    }
+
+    int compareVersion(string version1, string version2) {
+
+        int i = 0;
+        int j = 0;
+
+        int a = 0;
+        int b = 0;
+        
+        int len1 = version1.length();
+        int len2 = version2.length();
+
+        return compareStrings(version1, version2, 0, 0, a, b);
     }
 */
