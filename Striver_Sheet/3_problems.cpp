@@ -894,3 +894,45 @@
         return ref;
     }
 */
+
+/*
+
+    (https://leetcode.com/problems/binary-search-tree-iterator/)
+    Problme 74
+    BST Iterator
+
+    class BSTIterator {
+    public:
+
+        stack<TreeNode*> stackNodes;
+
+        void getLeft(TreeNode* root){
+
+            while(root){
+                stackNodes.push(root);
+                root = root->left;
+            }
+        }
+
+        BSTIterator(TreeNode* root) {
+            getLeft(root);
+        }
+        
+        int next() {
+            
+            auto valNode = stackNodes.top();
+            stackNodes.pop();
+
+            if(valNode->right){
+                getLeft(valNode->right);
+            }
+
+            return valNode->val;
+        }
+        
+        bool hasNext() {
+            return stackNodes.size();
+        }
+    };
+
+*/
