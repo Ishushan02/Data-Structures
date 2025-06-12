@@ -936,3 +936,26 @@
     };
 
 */
+
+
+/*
+
+    Problem 75
+    (https://leetcode.com/problems/repeated-string-match/)
+    686. Repeated String Match
+
+    int repeatedStringMatch(string a, string b) {
+
+        string temp = a;
+        int repeats = (b.length() + a.length())/a.length();
+        int i = 0;
+        while(i <= repeats){
+            if(a.find(b) != -1){
+                return i+1;
+            }
+            a += temp;
+            i++;
+        }
+        return -1;
+    }
+*/
