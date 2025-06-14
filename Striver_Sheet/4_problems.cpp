@@ -105,3 +105,61 @@
 
     }
 */
+
+/*
+
+    Problme 79
+    (https://leetcode.com/problems/course-schedule/description/)
+    207. Course Schedule
+
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        
+        unordered_map<int, vector<int>> courseMap;
+        unordered_map<int, int> indegree;
+        for(int i = 0; i < numCourses; i++){
+            courseMap[i] = {};
+            indegree[i] = 0;
+        }
+
+        for(int i = 0; i < prerequisites.size(); i++){
+            courseMap[prerequisites[i][0]].push_back(prerequisites[i][1]);
+        }
+
+        
+        // for(int i = 0; i < numCourses; i++){
+            for(auto &[key, val]:courseMap){
+                for(auto v: val){
+                    indegree[v]++;
+                }
+            }
+        // }
+
+        queue<int> que;
+
+        for(auto &[key, val]:indegree){
+            if(val==0){
+                que.push(key);
+            }
+        }
+        vector<int> ans;
+        while(!que.empty()){
+            int frontNode = que.front();
+            que.pop();
+            ans.push_back(frontNode);
+
+            for(auto val:courseMap[frontNode]){
+                indegree[val]--;
+                if(indegree[val] == 0){
+                    que.push(val);
+                }
+            }
+
+        }
+
+        if(ans.size() != numCourses){
+            return false;
+        }
+
+        return true;
+    }
+*/
