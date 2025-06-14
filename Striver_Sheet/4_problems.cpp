@@ -163,3 +163,93 @@
         return true;
     }
 */
+
+/*
+    Problem 80
+    208. Implement Trie (Prefix Tree)
+    (https://leetcode.com/problems/implement-trie-prefix-tree/)
+
+    class TrieNode{
+        public: 
+            unordered_map<char, TrieNode*> nodeMap;
+            bool isTerminal = false;
+
+            TrieNode(char c, bool eow = false){
+                this->isTerminal = eow;
+            }
+
+            void insertNode(TrieNode* node, int i, string &word){
+                if(i == word.length()-1){
+                    if(node->nodeMap.find(word[i]) == node->nodeMap.end()){
+                        TrieNode* newNode = new TrieNode(word[i], true);
+                        node->nodeMap[word[i]] = newNode;
+                    }else{
+                        node->nodeMap[word[i]]->isTerminal = true;
+                    }
+                    return ;
+                }
+
+                if(node->nodeMap.find(word[i]) == node->nodeMap.end()){
+                    TrieNode* newNode = new TrieNode(word[i]);
+                    node->nodeMap[word[i]] = newNode;
+                    insertNode(newNode, i+1, word);
+                }else{
+                    insertNode(node->nodeMap[word[i]], i+1, word);
+                }
+
+            }
+
+
+            bool searchWord(TrieNode* node, int i, string &word){
+                if(i == word.length()-1){
+                    if(node->nodeMap.find(word[i]) != node->nodeMap.end()){
+                        return node->nodeMap[word[i]]->isTerminal;
+                    }
+                    return false;
+                }
+
+                if(node->nodeMap.find(word[i]) == node->nodeMap.end()){
+                    return false;
+                }      
+                return searchWord(node->nodeMap[word[i]], i+1, word);
+            }
+
+
+            bool startsWithWord(TrieNode* node, int i, string &word){
+                if(i == word.length()-1){
+                    if(node->nodeMap.find(word[i]) != node->nodeMap.end()){
+                        return true;
+                    }
+                    return false;
+                }
+
+                if(node->nodeMap.find(word[i]) == node->nodeMap.end()){
+                    return false;
+                }      
+                return startsWithWord(node->nodeMap[word[i]], i+1, word);
+            }
+    };
+
+
+    class Trie {
+    public:
+
+        TrieNode* node = new TrieNode('-');
+        Trie() {
+            
+        }
+        
+        void insert(string word) {
+            node->insertNode(node, 0, word);
+        }
+        
+        bool search(string word) {
+            return node->searchWord(node, 0, word);
+        }
+        
+        bool startsWith(string prefix) {
+            return node->startsWithWord(node, 0, prefix);
+        }
+    };
+
+*/
