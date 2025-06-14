@@ -253,3 +253,33 @@
     };
 
 */
+
+/*
+
+    Problem 81
+    (https://leetcode.com/problems/flood-fill/description/)
+    733. Flood Fill
+
+    void colorGrid(vector<vector<int>>& image, int i, int j, map<pair<int, int>, bool> &visited, int &srcVal, int color){
+
+        if(i < 0 || j < 0 || i >= image.size() || j >= image[0].size() || image[i][j] != srcVal || visited.find({i, j}) != visited.end()){
+            return ;
+        }
+        visited[{i, j}] = color;
+        image[i][j] = color;
+        colorGrid(image, i+1, j, visited, srcVal, color);
+        colorGrid(image, i, j+1, visited, srcVal, color);
+        colorGrid(image, i-1, j, visited, srcVal, color);
+        colorGrid(image, i, j-1, visited, srcVal, color);
+    }
+
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        
+        map<pair<int, int>, bool> visited;
+        int srcColor = image[sr][sc];
+        colorGrid(image, sr, sc, visited, srcColor, color);
+
+        return image;
+    }
+
+*/
