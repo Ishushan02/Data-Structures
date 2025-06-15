@@ -463,3 +463,35 @@ let's go by formula     f(n=3) := f(n-2) * (k -1) + f(n-1) * (k - 1) = (f(n=1) *
         return getminCost(cuts, 0, cuts.size()-1, dpArr);
     }
 */
+
+
+/*
+    Maximum Product of First and Last Elements of a Subsequence
+    (https://leetcode.com/contest/weekly-contest-454/problems/maximum-product-of-first-and-last-elements-of-a-subsequence/)
+
+    long long maximumProduct(vector<int>& nums, int m) {
+        long long maxProd = LONG_MIN;
+
+        long long maxNum = LONG_MIN;
+        long long minNum = LONG_MAX;
+        int count = 0;
+
+        for(int i = 0; i < nums.size(); i++){
+
+            if(i >= m - 1){
+                long long firstVal = nums[i - (m - 1)];
+                maxNum = max(maxNum, firstVal);
+                minNum = min(minNum, firstVal);
+                count += 1;
+            }
+
+            if(count > 0){
+                maxProd = max(maxProd, 1LL * nums[i] * maxNum);
+                maxProd = max(maxProd, 1LL * nums[i] * minNum);
+            }
+        }
+
+        return maxProd;
+        
+    }
+*/
