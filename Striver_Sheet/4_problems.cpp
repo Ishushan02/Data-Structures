@@ -400,3 +400,58 @@
         return getMaxSubseq(text1, text2, 0, 0, dpArray);
     }
 */
+
+/*
+
+    Problem 85
+    (https://leetcode.com/problems/majority-element-ii/)
+    229. Majority Element II
+
+    vector<int> majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        int count1 = 0;
+        int count2 = 0;
+        int elem1 = NULL;
+        int elem2 = NULL;
+
+        for(auto v: nums){
+
+            if(count1 == 0 && v != elem2){
+                count1++;
+                elem1 = v;
+            }else if(count2 == 0 && v != elem1){
+                count2++;
+                elem2 = v;
+            }else if(v == elem1){
+                count1++;
+            }else if(v == elem2){
+                count2++;
+            }else{
+                count1--;
+                count2--;
+            }
+        }
+
+        count1 = 0;
+        count2 = 0;
+        vector<int> ans;
+
+        for(auto v:nums){
+            if(elem1 == v){
+                count1++;
+            }
+            if(elem2 == v){
+                count2++;
+            }
+        }
+
+        if(count1 > n/3){
+            ans.push_back(elem1);
+        }
+        if(count2 > n/3 && elem2 != elem1){
+            ans.push_back(elem2);
+        }
+        
+        return ans;
+    }
+*/
