@@ -367,3 +367,36 @@
         return que.top();
     }
 */
+
+/*
+
+    Problem 84
+    (https://leetcode.com/problems/longest-common-subsequence/)
+    1143. Longest Common Subsequence
+
+    int getMaxSubseq(string &text1, string &text2, int i, int j, vector<vector<int>> &dpArray){
+        if(i >= text1.length() || j >= text2.length()){
+            return 0;
+        }
+
+        if(dpArray[i][j] != -1){
+            return dpArray[i][j];
+        }
+
+        int ans = 0;
+        if(text1[i] == text2[j]){
+            ans = 1 + getMaxSubseq(text1, text2, i+1, j+1, dpArray);
+        }else{
+            ans = 0 + max(getMaxSubseq(text1, text2, i+1, j, dpArray), getMaxSubseq(text1, text2, i, j+1, dpArray));
+        }
+
+        dpArray[i][j] = ans;
+        return dpArray[i][j];
+    }
+
+    int longestCommonSubsequence(string text1, string text2) {
+        vector<vector<int>> dpArray(text1.length()+1, vector<int>(text2.length()+1, -1));
+
+        return getMaxSubseq(text1, text2, 0, 0, dpArray);
+    }
+*/
