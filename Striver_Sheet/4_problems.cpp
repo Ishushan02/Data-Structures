@@ -727,3 +727,39 @@
         return ans;
     }
 */
+
+/*
+
+    Problem 91
+    (https://leetcode.com/problems/valid-anagram/)
+    242. Valid Anagram
+
+    bool isAnagram(string s, string t) {
+        if(s.length() != t.length()){
+            return false;
+        }
+        unordered_map<char, int> mapS;
+        unordered_map<char, int> mapT;
+
+        for(auto c:s){
+            mapS[c]++;
+        }
+
+        for(auto c:t){
+            mapT[c]++;
+        }
+
+        for(auto &[key, val]:mapS){
+            if(mapT.find(key) == mapT.end()){
+                return false;
+            }else{
+                if(val != mapT[key]){
+                    return false;
+                }
+            }
+        }
+        return true;
+
+    }
+
+*/
