@@ -656,3 +656,36 @@
     }
 
 */
+
+/*
+
+    Problem 89
+    (https://leetcode.com/problems/delete-node-in-a-linked-list/)
+    237. Delete Node in a Linked List
+
+    void deleteNode(ListNode* node) {
+        
+        ListNode* temp = node;
+
+        while(temp){
+            if(temp->next){
+                swap(temp->val, temp->next->val);
+            }
+            temp = temp->next;
+        }
+
+        temp = node;
+        ListNode* prev = temp;
+        while(temp){
+            if(temp->next == NULL){
+                prev->next = NULL;
+                delete temp;
+                return ;
+            }
+            prev = temp;
+            temp = temp->next;
+        }
+        
+    }
+
+*/
