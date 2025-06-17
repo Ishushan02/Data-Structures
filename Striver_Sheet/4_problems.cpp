@@ -607,3 +607,52 @@
         return true;
     }
 */
+
+/*
+
+    Problem 88
+    (https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+    236. Lowest Common Ancestor of a Binary Tree
+
+    bool traverse(TreeNode* a, TreeNode* b){
+        if(a == NULL){
+            return false;
+        }
+        if(a == b){
+            return true;
+        }
+        return traverse(a->left, b) || traverse(a->right, b);
+
+    }
+
+    void traverseRoot(TreeNode* root, TreeNode* p, TreeNode* q, TreeNode* &ansNode){
+        if(root == NULL){
+            return ;
+        }
+
+        bool ans = traverse(root, p) && traverse(root, q);
+        if(ans){
+            ansNode = root;
+            // return;
+        }
+
+        traverseRoot(root->left, p, q, ansNode);
+        traverseRoot(root->right, p, q, ansNode);
+
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        
+
+        // if(traverse(p, q)){
+        //     return p;
+        // }else if(traverse(q, p)){
+        //     return q;
+        // }
+
+        TreeNode* ansNode = NULL;
+        traverseRoot(root, p, q, ansNode);
+        return ansNode;
+    }
+
+*/
