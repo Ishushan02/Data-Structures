@@ -507,3 +507,103 @@
         }
     };
 */
+
+/*
+
+    Problem 87
+    (https://leetcode.com/problems/palindrome-linked-list/)
+    234. Palindrome Linked List
+
+    ListNode* reverseList(ListNode* head, ListNode* thresh) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+
+        while(curr != thresh){
+            ListNode* forw = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forw;
+        }
+
+        // curr->next = prev;
+        // prev = curr;
+
+        return prev;
+    }
+
+    bool checkPalindrome(ListNode* a, ListNode* b){
+
+        ListNode* temp1 = a;
+        ListNode* temp2 = b;
+
+        while(temp1 && temp2){
+            if(temp1->val != temp2->val){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    bool isPalindrome(ListNode* head) {
+        if(head == NULL || head->next == NULL){
+            return true;
+        }
+        ListNode* cnt = head;
+        int count = 0;
+        while(cnt){
+            count += 1;
+            cnt = cnt->next;
+        }
+        
+        ListNode* rab = head;
+        ListNode* tor = head;
+        ListNode* prev = NULL;
+
+        while(rab && rab->next){
+            prev = tor;
+            tor = tor->next;
+            rab = rab->next->next;
+        }   
+
+        if(count & 1){
+            ListNode* rightNode = tor->next;
+            tor->next = NULL;
+            ListNode* temp3 = head;
+            ListNode* reversed = reverseList(temp3, tor);
+
+            while(reversed){
+                // cout << reversed->val << " , " << rightNode->val << endl;
+                if(reversed->val != rightNode->val){
+                    return false;
+                }
+                
+                reversed = reversed->next;
+                rightNode = rightNode->next;
+            }
+
+        }else{
+            ListNode* rightNode = prev->next;
+            if(rightNode->val != prev->val){
+                return false;
+            }
+            rightNode = rightNode->next;
+            prev->next = NULL;
+            ListNode* temp4 = head;
+            ListNode* reversed = reverseList(temp4, prev);
+            while(reversed){
+                // cout << reversed->val << " , " << rightNode->val << endl;
+                if(reversed->val != rightNode->val){
+                    return false;
+                }
+                
+                reversed = reversed->next;
+                rightNode = rightNode->next;
+            }
+        }
+
+        
+
+        return true;
+    }
+*/
