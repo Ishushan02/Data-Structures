@@ -689,3 +689,41 @@
     }
 
 */
+
+/*
+
+    Problem 90
+    (https://leetcode.com/problems/sliding-window-maximum/)
+    239. Sliding Window Maximum
+
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        deque<int> que;
+        vector<int> ans;
+
+        for(int i = 0; i < k; i++){
+            while(!que.empty() && nums[i] > nums[que.back()]){
+                que.pop_back();
+            }
+
+            que.push_back(i);
+        }
+
+        ans.push_back(nums[que.front()]);
+
+        for(int i = k; i < nums.size(); i++){
+
+            while(!que.empty() && que.front() <= i - k){
+                que.pop_front();
+            }
+
+            while(!que.empty() && nums[i] > nums[que.back()]){
+                que.pop_back();
+            }
+            que.push_back(i);
+
+            ans.push_back(nums[que.front()]);
+        }
+
+        return ans;
+    }
+*/
