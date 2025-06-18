@@ -873,3 +873,39 @@
         return true;
     }
 */
+
+/*
+
+    Problem 95
+    (https://leetcode.com/problems/longest-increasing-subsequence/)
+    300. Longest Increasing Subsequence
+
+    int longestIS(vector<int> &nums, int idx, int previdx, vector<vector<int>> &dpArray){
+        if(idx >= nums.size()){
+            return 0;
+        }
+        
+
+        // int count = 0;
+        if(dpArray[idx][previdx+1] != -1){
+            return dpArray[idx][previdx+1];
+        }
+        int maxCount = 0;
+
+        for(int i = idx; i < nums.size(); i++){
+            if(previdx == -1 || nums[i] > nums[previdx]){
+                int count = 1 + longestIS(nums, i+1, i, dpArray);
+                maxCount = max(maxCount, count);
+            }
+        }
+
+        dpArray[idx][previdx+1] = maxCount;
+        return maxCount;
+    }
+
+    int lengthOfLIS(vector<int>& nums) {
+        vector<vector<int>> dpArray(nums.size()+2, vector<int>(nums.size()+2, -1));
+        return longestIS(nums, 0, -1, dpArray);
+    }
+        
+*/
