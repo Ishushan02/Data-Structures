@@ -817,3 +817,59 @@
     };
 
 */
+
+/*
+
+    Problem 94
+    (https://leetcode.com/problems/is-graph-bipartite/)
+    785. Is Graph Bipartite?
+
+    void dfsColorGraph(int node, unordered_map<int, vector<int>> &graphMap, unordered_map<int, char> &graphColors, unordered_map<int, bool> &visited, char color){
+        graphColors[node] = color;
+        visited[node] = true;
+        // cout << node << endl;
+
+        for(auto child:graphMap[node]){
+            if(visited.find(child) == visited.end()){
+                if(color == 'r'){
+                    dfsColorGraph(child, graphMap, graphColors, visited, 'b');
+                }else{
+                    dfsColorGraph(child, graphMap, graphColors, visited, 'r');
+                }
+            }
+        }
+
+    }
+
+    bool isBipartite(vector<vector<int>>& graph) {
+        
+        unordered_map<int, vector<int>> graphMap;
+        unordered_map<int, char> graphColors;
+        unordered_map<int, bool> visited;
+
+        for(int i = 0; i < graph.size(); i++){
+            graphMap[i] = graph[i];
+            graphColors[i] = 'x';
+        }
+
+        for(auto &[key, val]:graphMap){
+            if(visited.find(key) == visited.end()){
+                dfsColorGraph(key, graphMap, graphColors, visited, 'b');
+            }
+        }
+
+        
+
+        for(auto &[key, val]: graphMap){
+            char parentColor = graphColors[key];
+
+            for(auto each_child:val){
+                if(graphColors[each_child] == parentColor){
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+*/
