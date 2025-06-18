@@ -783,5 +783,37 @@
 
         return searchBST(root->left, val);
     }
-        
+
+*/
+
+/*
+
+    Problem 93
+    (https://leetcode.com/problems/kth-largest-element-in-a-stream/)
+    703. Kth Largest Element in a Stream
+
+    class KthLargest {
+    public:
+        priority_queue<int, vector<int>, greater<int>> minque;
+        int k;
+
+        KthLargest(int k, vector<int>& nums) {
+            this->k = k;
+            for (int num : nums) {
+                add(num);
+            }
+        }
+
+        int add(int val) {
+            if(minque.size() < k){
+                minque.push(val);
+            }else if(val > minque.top()){
+                minque.pop();
+                minque.push(val);
+            }
+
+            return minque.top();
+        }
+    };
+
 */
