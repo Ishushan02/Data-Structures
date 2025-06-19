@@ -1011,3 +1011,47 @@
     }
 
 */
+
+/*
+
+    Problem 99
+    (https://leetcode.com/problems/partition-equal-subset-sum/)
+    416. Partition Equal Subset Sum
+
+    bool equalSubsetSum(vector<int> &nums, int i, int sum, int totSum, vector<vector<int>> &dpArr){
+        if(i >= nums.size()){
+            return false;
+        }
+
+        if(dpArr[i][sum] != -1){
+            return dpArr[i][sum];
+        }
+        if(sum == totSum){
+            return true;
+        }
+
+        bool includeans = equalSubsetSum(nums, i+1, nums[i]+sum, totSum, dpArr);
+        bool excludeans = equalSubsetSum(nums, i+1, sum, totSum, dpArr);
+
+        dpArr[i][sum] = includeans || excludeans;
+
+        return dpArr[i][sum];
+    }
+
+    bool canPartition(vector<int>& nums) {
+        
+        int totSum = 0;
+
+        for(auto v:nums){
+            totSum += v;
+        }
+
+        if(totSum&1){
+            return false;
+        }
+
+        vector<vector<int>> dpArr(nums.size()+1, vector<int>(totSum+1, -1));
+        return equalSubsetSum(nums, 0, 0, totSum/2, dpArr);
+    }
+
+*/
