@@ -958,6 +958,7 @@
 /*
 
     Problem 97
+    (BEST METHOD)
     (https://leetcode.com/problems/top-k-frequent-elements/)
     347. Top K Frequent Elements
 
@@ -988,5 +989,25 @@
         return ans;
 
     }
-        
+
+*/
+
+/*
+
+    Problme 98
+    (https://leetcode.com/problems/middle-of-the-linked-list/)
+    876. Middle of the Linked List
+
+    ListNode* middleNode(ListNode* head) {
+        ListNode* tor = head;
+        ListNode* rab = head;
+
+        while(rab && rab->next){
+            tor = tor->next;
+            rab = rab->next->next;
+        }
+
+        return tor;
+    }
+
 */
