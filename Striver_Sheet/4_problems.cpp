@@ -954,3 +954,39 @@
         return ans;
     }
 */
+
+/*
+
+    Problem 97
+    (https://leetcode.com/problems/top-k-frequent-elements/)
+    347. Top K Frequent Elements
+
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int ,int> countMap;
+
+        for(auto v:nums){
+            countMap[v]++;
+        }
+
+        vector<vector<int>> frqVal(nums.size()+1);
+
+        for(auto &[key, val]:countMap){
+            // cout << val << " , "<< key << endl;
+            frqVal[val].push_back(key);
+        }
+
+        // cout << frqVal.size() << endl;
+
+        vector<int> ans;
+        for (int i = nums.size(); i >= 0 && ans.size() < k; --i) {
+            for (int num : frqVal[i]) {
+                ans.push_back(num);
+                if (ans.size() == k) break;
+            }
+        }
+
+        return ans;
+
+    }
+        
+*/
