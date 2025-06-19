@@ -907,5 +907,50 @@
         vector<vector<int>> dpArray(nums.size()+2, vector<int>(nums.size()+2, -1));
         return longestIS(nums, 0, -1, dpArray);
     }
+
+*/
+
+/*
+
+    Problem 96
+    (https://leetcode.com/problems/coin-change/)
+    Coin Change
+
+    int minCoins(vector<int> &coins, int amount, vector<int> &dpArray){
+        if(amount == 0){
+            return 0;
+        }
         
+        if(dpArray[amount] != -1){
+            return dpArray[amount];
+        }
+
+        int minCount = INT_MAX;
+        // int count = 0;
+        for(int i = 0; i < coins.size(); i++){
+
+            if(coins[i] <= amount){
+                int count = minCoins(coins, amount - coins[i], dpArray);
+                if(count != INT_MAX){
+                    minCount = min(count+1, minCount);
+                    dpArray[amount] = minCount;
+                }
+            }
+        }
+
+        dpArray[amount] = minCount;
+        return minCount;
+    }
+
+    int coinChange(vector<int>& coins, int amount) {
+        
+        vector<int> dpArray(amount + 1, -1);
+        int ans =  minCoins(coins, amount, dpArray);
+
+        if(ans == INT_MAX){
+            return -1;
+        }
+
+        return ans;
+    }
 */
