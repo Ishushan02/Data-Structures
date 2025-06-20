@@ -73,5 +73,41 @@
         }
         return maxcnt;
     }
+
+*/
+
+/*
+    Problem 103
+    (https://leetcode.com/problems/next-greater-element-i/)
+    496. Next Greater Element I
+    
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
         
+        vector<int> nextGreater;
+        for(int i = 0; i < nums2.size(); i++){
+            int num = nums2[i];
+            int nextNum = -1;
+            for(int j = i + 1; j < nums2.size(); j++){
+                if(nums2[j] > num){
+                    nextNum = nums2[j];
+                    break;
+                }
+            }
+            nextGreater.push_back(nextNum);
+        }
+
+        
+        unordered_map<int, int> idxMap2;
+        for(int i = 0; i < nums2.size();i++ ){
+            idxMap2[nums2[i]] = i;
+        }
+
+        vector<int> ans;
+        unordered_map<int, int> idxMap1;
+        for(int i = 0; i < nums1.size();i++ ){
+            int idx = idxMap2[nums1[i]];
+            ans.push_back(nextGreater[idx]);
+        }
+        return ans;
+    }
 */
