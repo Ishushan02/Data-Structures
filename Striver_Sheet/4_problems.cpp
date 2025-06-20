@@ -1055,3 +1055,39 @@
     }
 
 */
+
+/*
+
+    Problem 100
+    (https://leetcode.com/problems/online-stock-span/)
+    901. Online Stock Span
+
+    class StockSpanner {
+    public:
+        int ptr = -1;
+        vector<int> stockPrices;
+        
+        StockSpanner() {
+            
+        }
+        
+        int next(int price) {
+            int currentPrice = price;
+            stockPrices.push_back(price);
+            ptr += 1;
+
+            int count = 0;
+            int tempptr = ptr;
+            while(tempptr >= 0){
+                if(currentPrice >= stockPrices[tempptr]){
+                    count+= 1;
+                }else{
+                    break;
+                }
+                tempptr--;
+            }
+
+            return count;
+        }
+    };
+*/
