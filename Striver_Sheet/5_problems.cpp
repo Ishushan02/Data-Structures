@@ -51,3 +51,27 @@
         }
     };
 */
+
+/*
+
+    Problem 102
+    (https://leetcode.com/problems/max-consecutive-ones/)
+    485. Max Consecutive Ones
+
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        
+        int cnt = 0;
+        int maxcnt = 0;
+
+        for(auto i: nums){
+            if(i == 1){
+                cnt += 1;
+                maxcnt = max(maxcnt, cnt);
+            }else{
+                cnt = 0;
+            }
+        }
+        return maxcnt;
+    }
+        
+*/
