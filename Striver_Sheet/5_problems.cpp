@@ -179,3 +179,103 @@
         return count;
     }
 */
+
+/*
+
+    Problme 105
+    (https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+    297. Serialize and Deserialize Binary Tree
+
+    class Codec {
+    public:
+
+        // Encodes a tree to a single string.
+        string serialize(TreeNode* root) {
+            if(root == NULL){
+                return "";
+            }
+            queue<TreeNode*> que;
+            string ans;
+            que.push(root);
+            ans += to_string(root->val)+ "=";
+
+            while(!que.empty()){
+                auto topNode = que.front();
+                que.pop();
+                
+                if(topNode->left){
+                    ans += to_string(topNode->left->val) + "=";
+                    que.push(topNode->left);
+                }else{
+                    ans += "n=";
+                }
+                if(topNode->right){
+                    ans += to_string(topNode->right->val)+ "=";
+                    que.push(topNode->right);
+                }else{
+                    ans += "n=";
+                }
+            }
+            // cout << ans << endl;
+            return ans;
+        }
+
+        // Decodes your encoded data to tree.
+        TreeNode* deserialize(string data) {
+            if(data == ""){
+                return NULL;
+            }
+            vector<int> nodes;
+            int i = 0;
+            while(i < data.length() ){
+                int j = i;
+                string temp;
+                while(j < data.length()){
+                    if(data[j] == '='){
+                        break;
+                    }else{
+                        temp += data[j];
+                    }
+                    j++;
+                }
+                i = j+1;
+                // cout << temp << endl;
+                if(temp == "n"){
+                    nodes.push_back(-100000);
+                }else{
+                    nodes.push_back(stoi(temp));
+                }
+                
+            }
+            // data[0]
+            TreeNode* root = new TreeNode(nodes[0]);
+            // nodeMap[root->val]
+            queue<TreeNode*> que;
+            que.push(root);
+
+            i = 1;
+            while(!que.empty()){
+                auto topNode = que.front();
+                que.pop();
+
+                if(i < nodes.size()){
+                    if(nodes[i] != -100000){
+                        TreeNode* node = new TreeNode(nodes[i]);
+                        topNode->left = node;
+                        que.push(node);
+                    }
+                }
+                if(i+1 < nodes.size()){
+                    if(nodes[i+1] != -100000){
+                        TreeNode* node = new TreeNode(nodes[i+1]);
+                        topNode->right = node;
+                        que.push(node);
+                    }
+                }
+                i += 2;
+
+            }
+            return root;
+        }
+    };
+*/
