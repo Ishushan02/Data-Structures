@@ -111,3 +111,71 @@
         return ans;
     }
 */
+
+/*
+
+    Problem 104
+    (https://leetcode.com/problems/reverse-pairs/description/)
+    493. Reverse Pairs
+
+    void merge(vector<int>& nums, int start, int mid, int end, int &count){
+
+        int i = start;
+        int j = mid+1;
+        while(i <= mid){
+            while(j <= end && nums[i] > 2 * (long long int) nums[j]){
+                j++;
+            }
+            count += (j - (mid + 1));
+            i++;
+        }
+        
+
+        i = start;
+        int end1 = mid;
+        j = mid+1;
+        int end2 = end;
+        vector<int> ans;
+
+        while(i <= end1 && j <= end2){
+            if(nums[i] < nums[j]){
+                ans.push_back(nums[i]);
+                i++;
+            }else{
+                ans.push_back(nums[j]);
+                j++;
+            }
+        }
+
+        while(i <= end1){
+            ans.push_back(nums[i]);
+            i++;
+        }
+
+        while(j <= end2){
+            ans.push_back(nums[j]);
+            j++;
+        }
+
+        for(int k = start; k <= end; k++){
+            nums[k] = ans[k-start];
+        }
+    }
+
+    void divide(vector<int>& nums, int start, int end, int &count){
+        if(start >= end){
+            return ;
+        }
+        int mid = (start + end)/2;
+        divide(nums, start, mid, count);
+        divide(nums, mid+1, end, count);
+
+        merge(nums, start, mid, end, count);
+    }
+
+    int reversePairs(vector<int>& nums) {
+        int count = 0;
+        divide(nums, 0, nums.size()-1, count);
+        return count;
+    }
+*/
