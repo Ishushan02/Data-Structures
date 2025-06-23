@@ -344,3 +344,46 @@
         }
     };
 */
+
+/*
+
+    Problem 107
+    (https://leetcode.com/problems/ones-and-zeroes/)
+    474. Ones and Zeroes
+
+    int maxCounts(vector<pair<int, int>> &values, int idx, int m, int n, vector<vector<vector<int>>> &dpArr){
+        if(idx >= values.size()){
+            return 0;
+        }
+
+        if(dpArr[m][n][idx] != -1){
+            return dpArr[m][n][idx];
+        }
+
+        int zer0Count = values[idx].first;
+        int oneCount = values[idx].second;
+
+        int includeAns = 0;
+        int excludeAns = 0;
+
+        if(m - zer0Count >= 0 && n - oneCount >= 0){
+            includeAns = 1 + maxCounts(values, idx+1, m-zer0Count, n-oneCount, dpArr);
+        }
+        excludeAns = maxCounts(values, idx+1, m, n, dpArr);
+        
+        dpArr[m][n][idx] = max(includeAns, excludeAns);
+        return dpArr[m][n][idx];
+    }
+
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<pair<int, int>>values;
+
+        for(int i = 0; i < strs.size(); i++){
+            int zer = count(strs[i].begin(), strs[i].end(), '0');
+            int one = count(strs[i].begin(), strs[i].end(), '1');
+            values.push_back({zer, one});
+        }
+        vector<vector<vector<int>>> dpArr(m+1, vector<vector<int>>(n +1, vector<int>(strs.size() + 1, -1)));
+        return maxCounts(values, 0, m, n, dpArr);
+    }
+*/
