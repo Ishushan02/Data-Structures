@@ -387,3 +387,30 @@
         return maxCounts(values, 0, m, n, dpArr);
     }
 */
+
+/*
+
+    Problem 108
+    (https://leetcode.com/problems/find-the-duplicate-number/)
+    287. Find the Duplicate Number
+
+    int findDuplicate(vector<int>& nums) {
+        int tor = nums[0];
+        int rab = nums[0];
+        bool first =  true;
+        while(first || tor != rab){
+            tor = nums[tor];
+            rab = nums[nums[rab]];
+            first = false;
+        }
+
+        tor = nums[0];
+        while(tor != rab){
+            tor = nums[tor];
+            rab = nums[rab];
+        }
+
+        return tor;
+    }
+        
+*/
