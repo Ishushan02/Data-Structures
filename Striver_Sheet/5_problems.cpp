@@ -279,3 +279,68 @@
         }
     };
 */
+
+/*
+
+    Problem 106
+    (https://leetcode.com/problems/find-median-from-data-stream/)
+    295. Find Median from Data Stream
+
+    class MedianFinder {
+    public:
+
+        priority_queue<int> leftQueue;
+        priority_queue<int, vector<int>, greater<int>> rightQueue;
+        double MEDIAN ;
+
+
+        MedianFinder() {
+        }
+        
+        void addNum(int num) {
+            
+            if(leftQueue.empty()){
+                leftQueue.push(num);
+                MEDIAN = (double)leftQueue.top();
+                return ;
+            }else{
+                if(num <= leftQueue.top()){
+                    leftQueue.push(num);
+                }else{
+                    rightQueue.push(num);
+                }
+            }
+
+            int a = leftQueue.size();
+            int b = rightQueue.size();
+
+            if(a == b){
+                MEDIAN = ((double)leftQueue.top() + (double)rightQueue.top())/2;
+                return ;
+            }else{
+                if(a > b){
+                    while(leftQueue.size() - rightQueue.size() > 1){
+                        rightQueue.push(leftQueue.top());
+                        leftQueue.pop();
+                    }
+
+                }else{
+                    while(rightQueue.size() > leftQueue.size()){
+                        leftQueue.push(rightQueue.top());
+                        rightQueue.pop();
+                    }
+                }
+                if(leftQueue.size() == rightQueue.size()){
+                    MEDIAN = ((double)leftQueue.top() + (double)rightQueue.top())/2;
+                }else{
+                    MEDIAN = (double)leftQueue.top();
+                }
+                
+            }
+        }
+        
+        double findMedian() {
+            return MEDIAN;
+        }
+    };
+*/
