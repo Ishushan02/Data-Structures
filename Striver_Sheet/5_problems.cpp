@@ -414,3 +414,107 @@
     }
         
 */
+
+/*
+
+    Problem 109
+    (https://leetcode.com/problems/lru-cache/)
+    146. LRU Cache
+
+    class DLL{
+    public:
+        int val;
+        int key;
+        DLL* next;
+        DLL* prev;
+        DLL(int key, int value){
+            this->key = key;
+            this->val = value;
+            this->next = NULL;
+            this->prev = NULL;
+        }
+    };
+
+    class LRUCache {
+    public:
+
+        int n;
+        DLL* head = NULL;
+        DLL* tail = NULL;
+        unordered_map<int, DLL*> cacheMap;
+
+        LRUCache(int capacity) {
+            this->n = capacity;
+        }
+
+        void removeNode(DLL* node){
+            DLL* prevN = node->prev;
+            DLL* nextN = node->next;
+
+            if(node == head){
+                node = node->next;
+                head = node;
+            }else if(prevN == NULL){
+                nextN->prev = NULL;
+                head = nextN;
+            }else if(nextN == NULL){
+                prevN->next = NULL;
+                tail = prevN;
+            }else{
+                prevN->next = nextN;
+                nextN->prev = prevN;
+            }
+
+        }
+        
+        DLL* addNode(int key, int val){
+            DLL* newNode = new DLL(key, val);
+            if(head == NULL || tail == NULL){
+                head = newNode;
+                tail = newNode;
+            }else{
+                tail->next = newNode;
+                newNode->prev = tail;
+                tail = newNode;
+            }
+            return newNode;
+        }
+
+        int deleteHead(){
+            int v = head->key;
+            head = head->next;
+            return v;
+        }
+
+        int get(int key) {
+            if(cacheMap.find(key) != cacheMap.end()){
+                auto node = cacheMap[key];
+                removeNode(cacheMap[key]);
+                DLL* newNode = addNode(key, node->val);
+                cacheMap[key] = newNode;
+                return node->val;
+            }
+
+            return -1;
+        }
+        
+        void put(int key, int value) {
+            if(cacheMap.find(key) != cacheMap.end()){
+                removeNode(cacheMap[key]);
+                DLL* newNode = addNode(key, value);
+                cacheMap[key] = newNode;
+                return ;
+            }
+
+            if(cacheMap.size() == n){
+                int k = deleteHead();
+                cacheMap.erase(k);
+                DLL* newNode = addNode(key, value);
+                cacheMap[key] = newNode;
+            }else{
+                DLL* newNode = addNode(key, value);
+                cacheMap[key] = newNode;
+            }
+        }
+    };
+*/
