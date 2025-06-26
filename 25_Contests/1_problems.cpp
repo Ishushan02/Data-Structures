@@ -68,6 +68,6 @@ Weekly Contest 400
         }
         cout << freeDays << endl;
         return days - freeDays;
-    }©leetcode
+    }
 
 */

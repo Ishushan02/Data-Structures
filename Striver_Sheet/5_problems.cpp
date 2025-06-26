@@ -518,3 +518,154 @@
         }
     };
 */
+
+/*
+
+    Problme 110
+    (https://leetcode.com/problems/lfu-cache/description/)
+    460. LFU Cache
+
+    class DLL{
+    public:
+        int key;
+        int val;
+        int freq;
+        DLL* next;
+        DLL* prev;
+        DLL(int key, int val, int count = 1){
+            this->key = key;
+            this->val = val;
+            this->next = NULL;
+            this->prev = NULL;
+            this->freq = count;
+        }
+    };
+
+    class LFUCache {
+    public:
+        int n;
+        unordered_map<int, DLL*> cacheMap;
+        DLL* startptr = NULL;
+        DLL* endptr = NULL;
+
+        DLL* addNode(int key, int val, int count = 1){
+            DLL* newNode = new DLL(key, val, count);
+            if(startptr == NULL || endptr == NULL){
+                startptr = newNode;
+                endptr = newNode;
+            }else{
+                endptr->next = newNode;
+                newNode->prev = endptr;
+                endptr = newNode;
+            }
+            return newNode;
+        }
+
+        void deleteSpecificNode(DLL* node){
+
+            DLL* nextNode = node->next;
+            DLL* prevNode = node->prev;
+
+            if(prevNode == NULL && nextNode == NULL){
+                startptr = NULL;
+                endptr = NULL;
+            }else if(prevNode != NULL && nextNode == NULL){
+                prevNode->next = NULL;
+                endptr = prevNode;
+            }else if(prevNode == NULL && nextNode != NULL){
+                nextNode->prev = NULL;
+                startptr = nextNode;
+            }else{
+                prevNode->next = nextNode;
+                nextNode->prev = prevNode;
+            }
+
+        }
+
+        int deleteNode(){
+            // int key;
+            int minCount = INT_MAX;
+            DLL* minCountKey;
+            DLL* temp = endptr;
+
+            while(temp){
+                if(temp->freq <= minCount){
+                    minCount = temp->freq;
+                    minCountKey = temp;
+                }
+                temp = temp->prev;
+            }
+
+            DLL* nextNode = minCountKey->next;
+            DLL* prevNode = minCountKey->prev;
+
+            if(prevNode == NULL && nextNode == NULL){
+                startptr = NULL;
+                endptr = NULL;
+            }else if(prevNode != NULL && nextNode == NULL){
+                prevNode->next = NULL;
+                endptr = prevNode;
+            }else if(prevNode == NULL && nextNode != NULL){
+                nextNode->prev = NULL;
+                startptr = nextNode;
+            }else{
+                prevNode->next = nextNode;
+                nextNode->prev = prevNode;
+            }
+            return minCountKey->key;
+
+        }   
+
+        LFUCache(int capacity) {
+            this->n = capacity;
+        }
+        
+        int get(int key) {
+            // cout << " For Key : " << key << endl;
+            // for(auto &[k, v]:cacheMap){
+            //     cout << k << ": " << v->val << endl;
+            // }cout << endl;
+            
+            if(cacheMap.find(key) != cacheMap.end()){
+                
+                DLL* oldNode = cacheMap[key];
+                int ans = oldNode->val;
+                deleteSpecificNode(oldNode);
+                DLL* newNode = addNode(key, ans, oldNode->freq + 1);
+                cacheMap[key] = newNode;
+                return ans;
+            }
+            return -1;
+        }
+        
+        void put(int key, int value) {
+            // cout << " For PUT Key : " << key << " , val "<< value << endl;
+            // for(auto &[k, v]:cacheMap){
+            //     cout << k << ": " << v->val<< ", "<< v->freq << endl;
+            // }cout << endl;
+            if(cacheMap.find(key) != cacheMap.end()){
+                DLL* oldNode = cacheMap[key];
+                int ans = oldNode->val;
+                deleteSpecificNode(oldNode);
+                DLL* newNode = addNode(key, value, oldNode->freq + 1);
+                cacheMap[key] = newNode;
+                return ;
+            }
+
+            if(cacheMap.size() >= n){
+                int k = deleteNode();
+                // cout << " Exceeded Size and delete "<< k << endl;
+                cacheMap.erase(k);
+                DLL* newNode = addNode(key, value, 1);
+                cacheMap[key] = newNode;
+
+            }else{
+                DLL* newNode = addNode(key, value, 1);
+                cacheMap[key] = newNode;
+            }
+
+        }
+    };
+
+
+*/
