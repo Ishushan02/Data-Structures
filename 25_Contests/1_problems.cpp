@@ -71,3 +71,36 @@ Weekly Contest 400
     }
 
 */
+
+
+/*
+
+    Weekly Contest 401
+
+    3178. Find the Child Who Has the Ball After K Seconds
+    (https://leetcode.com/problems/find-the-child-who-has-the-ball-after-k-seconds/description/)
+
+    int placement(int N, int n, int k, char s){
+        // cout << n << ", " << k << " , " << s << endl;
+        if(n > k){
+            if(s == 'l'){
+                return (n - k) - 1;
+            }
+            return k + 1;
+        }
+        if(s == 'r'){
+            return placement(N, N-1, k - n, 'l');
+        }
+        
+        return placement(N, N-1, k - n, 'r');
+        
+    }
+    int numberOfChild(int n, int k) {
+        if(k < n){
+            return k;
+        }
+        return placement(n, n, k, 'r');
+    }
+
+
+*/
