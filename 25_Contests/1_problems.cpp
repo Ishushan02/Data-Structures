@@ -103,4 +103,34 @@ Weekly Contest 400
     }
 
 
+    3179. Find the N-th Value After K Seconds
+    (https://leetcode.com/problems/find-the-n-th-value-after-k-seconds/description/)
+
+    int valueAfterKSeconds(int n, int k) {
+        if(n == 1){
+            return 1;
+        }
+
+        vector<vector<long long int>> dpArray(k+1, vector<long long int>(n, 0));
+
+        for(int i = 0; i < n; i++){
+            dpArray[0][i] = 1;
+        }
+
+        for(int i = 0; i < k; i++){
+            dpArray[i][0] = 1;
+        }
+
+        // ans = n;
+        for(int i = 1; i <= k; i++){
+            for(int j = 1; j < n; j++){
+                dpArray[i][j] = (dpArray[i-1][j] + dpArray[i][j-1]) % 1000000007;
+                // ans = dpArray[i][j];
+            }
+        }
+
+
+        return (dpArray[k][n-1] + 1)% 1000000007;
+    }
+        
 */
