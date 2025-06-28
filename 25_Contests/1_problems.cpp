@@ -132,5 +132,43 @@ Weekly Contest 400
 
         return (dpArray[k][n-1] + 1)% 1000000007;
     }
+
+    3180. Maximum Total Reward Using Operations I
+    int getMaxReward(vector<int> &rewardValues, int reward, int idx, vector<unordered_map<int, int>> &dpArray) {
+    if (idx >= rewardValues.size()) {
+        return reward;
+    }
+
+    if(dpArray[idx].count(reward) > 0){
+        return dpArray[idx][reward];
+    }
+
+    int includeReward = reward;
+    int maxInclude = reward; 
+
+    if (rewardValues[idx] > reward) {
+        includeReward += rewardValues[idx];
+        int currReward = rewardValues[idx];
+        rewardValues[idx] = -1; 
+        maxInclude = getMaxReward(rewardValues, includeReward, idx + 1, dpArray);
+        rewardValues[idx] = currReward; 
+    }
+
+    int maxExclude = getMaxReward(rewardValues, reward, idx + 1, dpArray);
+
+    dpArray[idx][reward] = max(maxInclude, maxExclude);
+
+    return dpArray[idx][reward];
+}
+    
+    
+    int maxTotalReward(vector<int>& rewardValues) {
+
+        int maxReward = 0;
+        sort(rewardValues.begin(), rewardValues.end());
+        vector<unordered_map<int, int>> dpArray(rewardValues.size() + 1);
+        return getMaxReward(rewardValues, 0, 0, dpArray);
+        // return maxReward;
+    }
         
 */
