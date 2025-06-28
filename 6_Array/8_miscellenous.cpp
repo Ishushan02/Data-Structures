@@ -26,3 +26,30 @@
         return high - low + 1;
     }
 */
+
+/*
+
+    1010. Pairs of Songs With Total Durations Divisible by 60
+    (https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/description/)
+
+    int numPairsDivisibleBy60(vector<int>& time) {
+        
+        unordered_map<int, int> timeMap;
+        int count = 0;
+
+        for(auto t: time){
+
+            t = t % 60;
+
+            if(t == 0){
+                count += timeMap[t];
+            }else{
+                count += timeMap[60 - t];
+            }
+            timeMap[t] += 1;
+        }
+
+        return count;
+    }
+        
+*/
