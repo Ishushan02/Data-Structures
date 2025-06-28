@@ -209,40 +209,21 @@ Weekly Contest 400
     3185. Count Pairs That Form a Complete Day II
     (https://leetcode.com/problems/count-pairs-that-form-a-complete-day-ii/description/)
 
-    void getCountDays(vector<int> &hours, int count, long long int day, long long int &ans, int i){
-        if(i >= hours.size()){
-            if(count == 2){
-                if(day % 24 == 0){
-                ans += 1;
-                }
-            }
-            return ;
-        }
-        if(count > 2){
-            return ;
-        }
-
-        getCountDays(hours, count+1, day + hours[i], ans, i+1);
-        getCountDays(hours, count, day, ans, i+1);
-        
-    }
-    
     long long countCompleteDayPairs(vector<int>& hours) {
-
-        // long long int ans = 0;
-        // getCountDays(hours, 0, 0, ans, 0);
-        // return ans;
-
-        int count = 0;
-        for(int i = 0; i < hours.size(); i++){
-            for(int j = i+1; j < hours.size(); j++){
-                if((hours[i] + hours[j]) % 24 == 0){
-                    count += 1;
-                }
+        unordered_map<int, int> countMap;
+        long long int ans = 0;
+        for(auto hour: hours){
+            hour = hour % 24;
+            if(hour == 0){
+                ans += countMap[hour];
+            }else{
+                ans += countMap[24 - hour];
             }
+
+            countMap[hour] += 1;
         }
-        return count;
-        
+
+        return ans ;
     }
-        
+
 */
