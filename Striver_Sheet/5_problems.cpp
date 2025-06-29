@@ -802,3 +802,30 @@
 
 
 */
+
+/*
+
+    56. Merge Intervals (VVII Question)
+    (https://leetcode.com/problems/merge-intervals/)
+
+    void checkvector(vector<vector<int>>& intervals, int i, int j){
+        if(j >= intervals.size()){
+            return ;
+        }
+        if(intervals[i][1] >= intervals[j][0]){
+            intervals[i][0] = min(intervals[i][0], intervals[j][0]);
+            intervals[i][1] = max(intervals[i][1], intervals[j][1]);
+            intervals.erase(intervals.begin()+j);
+            checkvector(intervals, i, j);
+        }else{
+            checkvector(intervals, i + 1, j + 1);
+        }
+    }
+
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        
+        sort(intervals.begin(), intervals.end(), sortFn());
+        checkvector(intervals, 0, 1);
+        return intervals;
+    }
+*/
