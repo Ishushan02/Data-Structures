@@ -263,3 +263,30 @@ Weekly Contest 400
 
 
 */
+
+/*
+
+    Weekly Contest 403
+
+    3194. Minimum Average of Smallest and Largest Elements
+    (https://leetcode.com/problems/minimum-average-of-smallest-and-largest-elements/description/)
+
+    double minimumAverage(vector<int>& nums) {
+
+        sort(nums.begin(), nums.end());
+        int i = 0;
+        int j = nums.size()-1;
+
+        double minSort = (double)nums[j];
+        while(i <= j){
+            double avg = ((double)nums[i] + (double)nums[j])/2;
+            minSort = min(minSort, avg);
+            i++;
+            j--;
+        }
+
+        return minSort;
+    }
+
+    
+*/
