@@ -288,5 +288,31 @@ Weekly Contest 400
         return minSort;
     }
 
-    
+    3195. Find the Minimum Area to Cover All Ones I
+    (https://leetcode.com/problems/find-the-minimum-area-to-cover-all-ones-i/)
+    int minimumArea(vector<vector<int>>& grid) {
+
+        int minI = INT_MAX;
+        int minJ = INT_MAX;
+        int maxI = -1;
+        int maxJ = -1;
+
+        for(int i = 0; i < grid.size(); i++){
+            for(int j = 0; j < grid[0].size(); j++){
+                if(grid[i][j] == 1){
+                    minI = min(minI, i);
+                    minJ = min(minJ, j);
+                    maxI = max(maxI, i);
+                    maxJ = max(maxJ, j);
+                }
+            }
+        }
+
+        if(maxI == -1){
+            return 0;
+        }
+
+        return (maxI - minI + 1) * (maxJ - minJ + 1) ;
+    }
+
 */
