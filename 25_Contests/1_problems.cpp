@@ -227,3 +227,39 @@ Weekly Contest 400
     }
 
 */
+
+/*
+
+    Weekly Contest 456
+    3597. Partition String 
+    (https://leetcode.com/problems/partition-string/description/)
+
+    vector<string> partitionString(string s) {
+
+        unordered_map<string, bool> segments;
+        vector<string> ansVal;
+        string st;
+        for(auto c: s){
+            // st += c;
+            if(segments.find(st) == segments.end()){
+                ansVal.push_back(st);
+                segments[st] = true;
+                st = "";
+            }else{
+                segments[st] = true;
+            }
+            st += c;
+        }
+        if(segments.find(st) == segments.end()){
+            ansVal.push_back(st);
+            segments[st] = true;
+            st = "";
+        }
+        
+        ansVal.erase(ansVal.begin());
+
+        return ansVal;
+    }
+
+
+*/
