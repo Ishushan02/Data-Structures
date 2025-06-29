@@ -667,5 +667,138 @@
         }
     };
 
+    Method 2 (better method)
+
+    class DoublyLinkedList{
+    public:
+        int key;
+        int val;
+        int freq;
+        DoublyLinkedList* next;
+
+        DoublyLinkedList(int key, int val, int freq = 1){
+            this->key = key;
+            this->val = val;
+            this->freq = freq;
+            this->next = NULL;
+        }
+    };
+
+    class LFUCache {
+    public:
+        unordered_map<int,DoublyLinkedList* > nodeMap;
+        map<int, DoublyLinkedList* > freqMap;
+        int lfuSize;
+
+        LFUCache(int capacity) {
+            this->lfuSize = capacity;
+        }
+
+        void addNodeFreqMap(int freq, DoublyLinkedList* newNode, map<int, DoublyLinkedList* >& freqMap){
+            // cout << " To Add " << newNode->key << " , " << newNode->val << " and freq is "<< freq << endl;
+            if(freqMap.find(freq) == freqMap.end()){
+                freqMap[freq] = newNode;
+            }else{
+                DoublyLinkedList* temp = freqMap[freq];
+                while(temp->next){
+                    temp = temp->next;
+                }
+                temp->next = newNode;
+
+            }
+
+        }
+
+        void removeNode(int freq, DoublyLinkedList* node, map<int, DoublyLinkedList* >& freqMap){
+
+            DoublyLinkedList* temp = freqMap[freq];
+            DoublyLinkedList* prevNode = temp;
+            if(temp->key == node->key){
+                temp = temp->next;
+                if(temp != NULL){
+                    freqMap[freq] = temp;
+                }else{
+                    freqMap.erase(freq);
+                }
+                
+                return ;
+            }
+
+            while(temp){
+                if(temp->key == node->key){
+                    break;
+                }
+                prevNode = temp;
+                temp = temp->next;
+            }
+
+            if(temp->next){
+                prevNode->next = temp->next;
+                return ;
+            }
+
+            prevNode->next = NULL;
+
+        }
+
+        int removeleastFreqNode(map<int, DoublyLinkedList* >& freqMap){
+        
+            auto it = freqMap.begin();
+            DoublyLinkedList* temp = freqMap[it->first];
+            int key = temp->key;
+            temp = temp->next;
+            if(temp != NULL){
+                freqMap[it->first] = temp;
+            }else{
+                freqMap.erase(it->first);
+            }
+
+            return key;
+        }
+        
+        int get(int key) {
+            if(nodeMap.find(key) != nodeMap.end()){
+                auto node = nodeMap[key];
+                int value = node->val;
+                int currentFreq = node->freq;
+                removeNode(currentFreq, node, freqMap);
+
+                DoublyLinkedList* newNode = new DoublyLinkedList(key, value, currentFreq + 1);
+                addNodeFreqMap(currentFreq + 1, newNode, freqMap);
+                nodeMap[key] = newNode;
+                return value;
+            }
+
+            return -1;
+        }
+        
+        void put(int key, int value) {
+            
+            if(nodeMap.find(key) != nodeMap.end()){
+                auto node = nodeMap[key];
+                int currentFreq = node->freq;
+                removeNode(currentFreq, node, freqMap);
+
+                DoublyLinkedList* newNode = new DoublyLinkedList(key, value, currentFreq + 1);
+                addNodeFreqMap(currentFreq + 1, newNode, freqMap);
+                nodeMap[key] = newNode;
+                return ;
+            }
+
+            if(nodeMap.size() == lfuSize){
+                int k = removeleastFreqNode(freqMap);
+                nodeMap.erase(k);
+                DoublyLinkedList* newNode = new DoublyLinkedList(key, value, 1);
+                addNodeFreqMap(1, newNode, freqMap);
+                nodeMap[key] = newNode;
+            }else{
+                DoublyLinkedList* newNode = new DoublyLinkedList(key, value, 1);
+                addNodeFreqMap(1, newNode, freqMap);
+                nodeMap[key] = newNode;
+            }
+            
+        }
+    };
+
 
 */
