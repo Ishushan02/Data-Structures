@@ -360,7 +360,7 @@ Weekly Contest 400
         return max(getHeight(red, blue), getHeight(blue, red));
     }
 
-    3201. Find the Maximum Length of Valid Subsequence I
+    3201. Find the Maximum Length of Valid Subsequence I (TLE)
     (https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/description/)
 
     void getAllsubsequence(vector<int>& nums, int i, vector<int> &subseq, int &ans){
@@ -402,4 +402,9 @@ Weekly Contest 400
 
         return ans;
     }
+
+    3202. Find the Maximum Length of Valid Subsequence II
+    (https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/description/)
+
+    Good Question: Same Approach... Have to do it again in a well optimized way..
 */  
