@@ -360,4 +360,46 @@ Weekly Contest 400
         return max(getHeight(red, blue), getHeight(blue, red));
     }
 
-*/
+    3201. Find the Maximum Length of Valid Subsequence I
+    (https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/description/)
+
+    void getAllsubsequence(vector<int>& nums, int i, vector<int> &subseq, int &ans){
+        if(i >= nums.size()){
+            if(subseq.size() >= 2){
+                int j = 0;
+                int k = j + 1;
+                bool ansVal = true;
+                int modVal = (subseq[0] + subseq[1]) % 2;
+                while(k < subseq.size()){
+                    if((subseq[j] + subseq[k]) % 2 == modVal){
+                        k++;
+                        j++;
+                        ansVal = true;
+                    }else{
+                        ansVal = false;
+                        break;
+                    }
+                }
+                if(ansVal){
+                    int n = subseq.size();
+                    ans = max(ans, n);
+                }
+            }
+            return ;
+        }
+
+        subseq.push_back(nums[i]);
+        getAllsubsequence(nums, i+1, subseq, ans);
+        subseq.pop_back();
+        getAllsubsequence(nums, i+1, subseq, ans);
+
+    }
+    
+    int maximumLength(vector<int>& nums) {
+        vector<int> subseq;
+        int ans = 0;
+        getAllsubsequence(nums, 0, subseq, ans);
+
+        return ans;
+    }
+*/  
