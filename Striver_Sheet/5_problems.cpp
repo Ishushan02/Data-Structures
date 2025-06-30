@@ -804,7 +804,7 @@
 */
 
 /*
-
+    Problem 111
     56. Merge Intervals (VVII Question)
     (https://leetcode.com/problems/merge-intervals/)
 
@@ -813,7 +813,6 @@
             return ;
         }
         if(intervals[i][1] >= intervals[j][0]){
-            intervals[i][0] = min(intervals[i][0], intervals[j][0]);
             intervals[i][1] = max(intervals[i][1], intervals[j][1]);
             intervals.erase(intervals.begin()+j);
             checkvector(intervals, i, j);

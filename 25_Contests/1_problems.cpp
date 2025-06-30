@@ -316,3 +316,48 @@ Weekly Contest 400
     }
 
 */
+
+/*
+
+    Weekly Contest 404
+
+    3200. Maximum Height of a Triangle
+    (https://leetcode.com/problems/maximum-height-of-a-triangle/description/)
+
+    int getHeight(int c1, int c2){
+
+        int elemsrequired = 1;
+        int height = 0;
+        bool c1turn = true;
+        
+        while(c1 >= 0 || c2 >= 0){
+            // cout << " chance:  "<< c1turn << " - "<<  c1 << " , " << c2 << " req: "<< elemsrequired << endl;
+            if(c1turn){
+                if(c1 >= elemsrequired){
+                    c1 = c1 - elemsrequired;
+                    c1turn = false;
+                    height += 1;
+                }else{
+                    return height;
+                }
+            }else if(c1turn == false){
+                
+                if(c2 >= elemsrequired){
+                    c2 = c2 - elemsrequired;
+                    c1turn = true;
+                    height += 1;
+                }else{
+                    return height;
+                }
+            }
+            elemsrequired += 1;
+        }
+        return height;
+    }
+    
+    int maxHeightOfTriangle(int red, int blue) {
+
+        return max(getHeight(red, blue), getHeight(blue, red));
+    }
+
+*/
