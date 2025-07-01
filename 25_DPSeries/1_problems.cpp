@@ -59,3 +59,30 @@
     }
 
 */
+
+/*
+    Frog Jump(GFG)
+    (https://www.geeksforgeeks.org/problems/geek-jump/1)
+
+    int minCost(vector<int>& height) {
+        // Code here
+        int n = height.size();
+        vector<int> minCosts(height.size(), INT_MAX);
+        
+        minCosts[0] = 0;
+        minCosts[1] = abs(height[0] - height[1]);
+        for(int i = 0; i < height.size(); i++){
+            if(i+1 < n){
+                int energy = minCosts[i] +  abs(height[i] - height[i+1]);
+                minCosts[i+1] = min(minCosts[i+1], energy);
+            }
+            if(i+2 < n){
+                int energy = abs(height[i] - height[i+2]);
+                minCosts[i+2] = minCosts[i] + min(minCosts[i+2], energy);
+            }
+        }
+        
+        return minCosts[n-1];
+    }
+        
+*/
