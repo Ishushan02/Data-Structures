@@ -84,5 +84,30 @@
         
         return minCosts[n-1];
     }
+
+*/
+
+/*
+
+    Maximum sum of non-adjacent elements
+    (https://www.naukri.com/code360/problems/maximum-sum-of-non-adjacent-elements_843261?leftPanelTabValue=PROBLEM)
+    // optimized bottom Up Solution
+    int maximumNonAdjacentSum(vector<int> &nums){
+
+    int maxSum = 0;
+    int n = nums.size();
+    vector<int> dpArray(nums.size() + 3, 0);
+    
+    for(int i = n-1; i >= 0; i--){
+        int include = 0;
+        int exclude = 0;
+        include = nums[i] + dpArray[i+2];
+        exclude = dpArray[i+1];
         
+         
+        dpArray[i] = max(include, exclude);
+    }
+
+    return dpArray[0];    
+}
 */
