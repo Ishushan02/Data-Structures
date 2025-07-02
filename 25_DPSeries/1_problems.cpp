@@ -111,3 +111,50 @@
     return dpArray[0];    
 }
 */
+
+/*  
+    198. House Robber
+    House Robber
+    (https://leetcode.com/problems/house-robber/description/)
+    Optimized Solution
+
+    int rob(vector<int>& nums) {
+        int maxSum = 0;
+        int n = nums.size();
+        vector<int> dpArray(nums.size() + 3, 0);
+        
+        for(int i = n-1; i >= 0; i--){
+            int include = 0;
+            int exclude = 0;
+            include = nums[i] + dpArray[i+2];
+            exclude = dpArray[i+1];
+            
+            
+            dpArray[i] = max(include, exclude);
+        }
+
+        return dpArray[0];
+    }
+
+    OR SPACE OPTIMIZED
+    int rob(vector<int>& nums) {
+        int maxSum = 0;
+        int n = nums.size();
+        
+        int ith = 0;
+        int i1st = 0;
+        int i2nd = 0;
+        for(int i = n-1; i >= 0; i--){
+            int include = 0;
+            int exclude = 0;
+            include = nums[i] + i2nd;
+            exclude = i1st;
+            ith = max(include, exclude);
+            i2nd = i1st;
+            i1st = ith;
+        }
+
+        return ith;
+    }
+        
+*/
