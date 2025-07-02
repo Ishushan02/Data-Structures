@@ -158,3 +158,45 @@
     }
         
 */
+
+/*
+     Ninja’s Training
+    (https://www.naukri.com/code360/problems/ninja%E2%80%99s-training_3621003?leftPanelTabValue=PROBLEM)
+
+    int getMaxPoints(vector<vector<int>> &points, int i, int j, vector<vector<int>> &dpArray){
+        if(i >= points.size()){
+            return 0;
+        }
+
+        if(dpArray[i][j] != -1){
+            return dpArray[i][j];
+        }
+        int maxReward = 0;
+        for(int k = 0; k < 3; k++){
+            if(k != j){
+                int temp = getMaxPoints(points, i + 1, k, dpArray);
+                maxReward = max(maxReward, temp);
+            }
+        }
+
+        dpArray[i][j] = points[i][j] + maxReward;
+        return dpArray[i][j];
+    }
+
+
+    int ninjaTraining(int n, vector<vector<int>> &points)
+    {
+        // Write your code here.
+        int maxReward = 0;
+        for(int j = 0; j < 3; j++){
+            // cout << j << endl;
+            vector<vector<int>> dpArray(points.size(), vector<int>(4, -1));
+            int r = getMaxPoints(points, 0, j, dpArray);
+
+            maxReward = max(maxReward, r);
+        }
+
+        return maxReward;
+
+    }
+*/
