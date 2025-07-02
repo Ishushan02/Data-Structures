@@ -235,5 +235,43 @@
         return currSum;
 
     }
+
+*/
+
+/*
+    63. Unique Paths II
+    (https://leetcode.com/problems/unique-paths-ii/description/)
+
+    long long int allPaths(vector<vector<int>>& obstacleGrid, int i, int j, vector<vector<long long int>> &dpArray){
+        if(i == obstacleGrid.size()-1 && j == obstacleGrid[0].size()-1){
+            return 1;
+        }
+        if(i >= obstacleGrid.size() || j >= obstacleGrid[0].size()){
+            return 0;
+        }
+
+        if(dpArray[i][j] != -1){
+            return dpArray[i][j];
+        }
+
+        if(obstacleGrid[i][j] != 1){
+            dpArray[i][j] = allPaths(obstacleGrid, i+1, j, dpArray) + allPaths(obstacleGrid, i, j+1, dpArray);
+            return dpArray[i][j];
+        }
+
+        return 0;
+    }
+
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int m = obstacleGrid.size();
+        int n = obstacleGrid[0].size();
+        if(obstacleGrid[0][0] == 1 || obstacleGrid[m-1][n-1] == 1){
+            return 0;
+        }
+
         
+        vector<vector<long long int>> dpArray(m, vector<long long int>(n + 1, -1));
+        return allPaths(obstacleGrid, 0, 0, dpArray)%2000000000;
+    }
+
 */
