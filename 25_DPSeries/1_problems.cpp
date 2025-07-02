@@ -274,4 +274,29 @@
         return allPaths(obstacleGrid, 0, 0, dpArray)%2000000000;
     }
 
+    OPtimized SOlution
+
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int m = obstacleGrid.size();
+        int n = obstacleGrid[0].size();
+
+        if(obstacleGrid[0][0] == 1 || obstacleGrid[m-1][n-1] == 1){
+            return 0;
+        }
+
+        vector<vector<long long int>> dpArray(m+1, vector<long long int>(n + 1, 0));
+        dpArray[m-1][n-1] = 1;
+
+        for(int i = m - 1; i >= 0; i--){
+            for(int j = n - 1; j >= 0; j--){
+                if(obstacleGrid[i][j] != 1){
+                    dpArray[i][j] += dpArray[i+1][j] + dpArray[i][j+1];
+                }
+            }
+        }
+
+
+        return dpArray[0][0]%2000000000;
+    }
+
 */
