@@ -200,3 +200,40 @@
 
     }
 */
+
+/*
+    62. Unique Paths
+    (https://leetcode.com/problems/unique-paths/)
+
+    Optimized
+    int uniquePaths(int m, int n) {
+        vector<vector<int>> dpArray(m+2, vector<int>(n+2, 0));
+        dpArray[m-1][n-1] = 1;
+
+        for(int i = m; i >= 0; i--){
+            for(int j = n; j >= 0; j--){
+                dpArray[i][j] += dpArray[i+1][j] + dpArray[i][j+1];
+            }
+        }
+        return dpArray[0][0];
+    }
+
+    Space Optimized
+    int uniquePaths(int m, int n) {
+        vector<int> bottomSum(n+1, 0);
+        bottomSum[n-1] = 1;
+        int currSum = 0;
+
+        for(int i = m-1; i >= 0; i--){
+            int rightSum = 0;
+            for(int j = n-1; j >= 0; j--){
+                currSum = bottomSum[j] + rightSum;   
+                bottomSum[j] = currSum;
+                rightSum = currSum;
+            }
+        }
+        return currSum;
+
+    }
+        
+*/
