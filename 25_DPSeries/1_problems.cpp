@@ -338,7 +338,7 @@
     (https://leetcode.com/problems/minimum-path-sum/description/)
 
     OPtimized Solution
-    
+
     int minPathSum(vector<vector<int>>& grid) {
         int m = grid.size();
         int n = grid[0].size();
@@ -355,6 +355,27 @@
         }
 
         return dpArray[0][0];
+
+    }
+
+    SPACE OPTIMIZED
+    int minPathSum(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        
+        vector<long long int> linearDP(n, INT_MAX);
+        linearDP[n-1] = 0;
+
+        for(int i = m - 1; i >= 0; i--){
+            long long int right = INT_MAX;
+            for(int j = n - 1; j >= 0; j--){
+                int minSum = min(grid[i][j] + linearDP[j], grid[i][j] + right);    
+                linearDP[j] = minSum;
+                right = minSum;
+            }
+        }
+
+        return linearDP[0];
 
     }
 */
