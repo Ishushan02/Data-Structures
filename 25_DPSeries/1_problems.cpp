@@ -331,3 +331,30 @@
     }
 
 */
+
+/*  
+
+    64. Minimum Path Sum
+    (https://leetcode.com/problems/minimum-path-sum/description/)
+
+    OPtimized Solution
+    
+    int minPathSum(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<vector<long long int>> dpArray(m+1, vector<long long int>(n+1, INT_MAX));
+
+        dpArray[m-1][n-1] = grid[m-1][n-1];
+        dpArray[m][n-1] = 0;
+        dpArray[m-1][n] = 0;
+
+        for(int i = m - 1; i >= 0; i--){
+            for(int j = n - 1; j >= 0; j--){
+                dpArray[i][j] = min(grid[i][j] + dpArray[i+1][j], grid[i][j] + dpArray[i][j+1]);                
+            }
+        }
+
+        return dpArray[0][0];
+
+    }
+*/
