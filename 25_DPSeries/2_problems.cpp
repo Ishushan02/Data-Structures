@@ -96,4 +96,39 @@
 
         return maxSum;
     }
+
+    OPTIMIZED SOLUTION
+
+    int getMaxPathSum(vector<vector<int>> &matrix)
+    {
+        //  Write your code here.
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        vector< long long int> linearDP(n + 2, 0);
+        linearDP[0] = LONG_MIN;
+        linearDP[n+1] = LONG_MIN;
+        long long int maxSum = LONG_MIN;
+        for(int i = m - 1; i >= 0; i--){
+            vector< long long int> temp(n+2, LONG_MIN);
+            for(int j = n; j >= 1; j--){
+                temp[j] = max({linearDP[j-1], linearDP[j], linearDP[j+1]});
+                if(temp[j] != LONG_MIN){
+                    temp[j] += matrix[i][j-1];
+                }
+            }
+
+            linearDP = temp;
+        }
+
+        for(auto v: linearDP){
+            if(v > maxSum){
+                maxSum = v;
+            }
+        }
+
+        return maxSum;
+
+    }
+        
 */
