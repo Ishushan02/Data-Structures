@@ -132,3 +132,49 @@
     }
         
 */
+
+/*
+    1463. Cherry Pickup II
+    (https://leetcode.com/problems/cherry-pickup-ii/description/)
+
+    int getmaximumCherry(vector<vector<int>>& grid, int i, int j, int n, vector<vector<vector<int>>> &dpArray){
+        if(i == grid.size()-1 && j >= 0 && j < grid[0].size() && n >= 0 && n < grid[0].size()){
+            if(j == n){
+                return grid[i][j];
+            }
+            return grid[i][j] + grid[i][n];
+        }
+
+        if(i < 0 || i >= grid.size() || j >= grid[0].size() || j < 0 || n >= grid[0].size() || n < 0 ){
+            return -1e-9;
+        }
+        if(dpArray[i][j][n] != -1){
+            return dpArray[i][j][n];
+        }
+        int xCherry = grid[i][j];
+        int yCherry = grid[i][n];
+
+        int sum = 0;
+
+        int move1 =  max({getmaximumCherry(grid, i+1, j-1, n-1, dpArray), getmaximumCherry(grid, i+1, j-1, n, dpArray), getmaximumCherry(grid, i+1, j-1, n+1, dpArray)});
+        int move2 = max({getmaximumCherry(grid, i+1, j, n-1, dpArray), getmaximumCherry(grid, i+1, j, n, dpArray), getmaximumCherry(grid, i+1, j, n+1, dpArray)});
+        int move3 = max({getmaximumCherry(grid, i+1, j+1, n-1, dpArray), getmaximumCherry(grid, i+1, j+1, n, dpArray), getmaximumCherry(grid, i+1, j+1, n+1, dpArray)});
+        if(j == n){
+            sum = xCherry + max({move1, move2, move3});
+        }else{
+            sum = xCherry + yCherry + max({move1, move2, move3});
+        }
+
+        dpArray[i][j][n] = sum;
+        
+        return dpArray[i][j][n];
+    }
+
+    int cherryPickup(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+
+        vector<vector<vector<int>>> dpArray(m + 1, vector<vector<int>>(n + 1, vector<int>(n + 1, -1)));
+        return getmaximumCherry(grid, 0, 0, n-1, dpArray);
+    }
+*/
