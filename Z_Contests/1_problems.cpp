@@ -408,3 +408,72 @@ Weekly Contest 400
 
     Good Question: Same Approach... Have to do it again in a well optimized way..
 */  
+
+
+/*
+
+    Biweekly Contest - 160
+
+    (https://leetcode.com/contest/biweekly-contest-160/problems/minimum-cost-path-with-alternating-directions-ii/description/)
+
+    long long minCost(int m, int n, vector<vector<int>>& waitCost) {
+
+        vector<vector<pair<int, long long int>>> dpArray(m + 1, vector<pair<int, long long int>>(n + 1, {0, LONG_MAX}));
+
+        dpArray[0][0] = {1, 1};
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                // cout << i << " , " << j << endl; 
+                int currentTime = dpArray[i][j].first;
+                long long int currentCost = dpArray[i][j].second;
+                // cout << " Updated " << endl;
+                if(currentTime & 1){
+                    
+                    if(j + 1 < n){
+                        long long int cost = currentCost + ((i + 1) * (j + 1 + 1));
+                        if(dpArray[i][j+1].second > cost){
+                            dpArray[i][j+1].second = cost;
+                            // cout << i << " , " << j +1 << " : " << cost << endl;
+                        }
+                        dpArray[i][j+1].first = currentTime + 1;
+                    }
+
+                    if(i + 1 < m){
+                        long long int cost = currentCost + ((i + 1 + 1) * (j + 1));
+                        if(dpArray[i+1][j].second > cost){
+                            dpArray[i+1][j].second = cost;
+                            // cout << i+1 << " , " << j << " : " << cost << endl;
+                        }
+                        dpArray[i+1][j].first = currentTime + 1;
+                    }
+                }else{
+                    // dpArray[i][j].second;
+                    
+                    if(j + 1 < n){
+                        long long int cost = currentCost + waitCost[i][j] + ((i + 1) * (j + 1 + 1));
+                        if(dpArray[i][j+1].second > cost){
+                            dpArray[i][j+1].second = cost;
+                            // cout << i << " , " << j +1 << " : " << cost << endl;
+                        }
+                        dpArray[i][j+1].first = currentTime + 2;
+                    }
+
+                    if(i + 1 < m){
+                        long long int cost = currentCost + waitCost[i][j] + ((i + 1 + 1) * (j + 1));
+                        if(dpArray[i+1][j].second > cost){
+                            dpArray[i+1][j].second = cost;
+                            // cout << i+1 << " , " << j << " : " << cost << endl;
+                        }
+                        dpArray[i+1][j].first = currentTime + 2;
+                    }
+                }
+            }
+        }
+
+        return dpArray[m-1][n-1].second;
+    }
+
+    
+
+*/
