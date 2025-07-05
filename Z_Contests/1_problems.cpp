@@ -474,6 +474,51 @@ Weekly Contest 400
         return dpArray[m-1][n-1].second;
     }
 
-    
+    Q1. Hexadecimal and Hexatrigesimal Conversion
+    (https://leetcode.com/contest/biweekly-contest-160/problems/hexadecimal-and-hexatrigesimal-conversion/submissions/1687674135/)
 
+    string concatHex36(int n) {
+
+        int hexadecimal = n * n;
+        long long int hexatrigesimal = n * n * n;
+
+        unordered_map<int, char> charMap;
+        char c = 'A';
+
+        for(int i = 10; i < 36; i++){
+            charMap[i] = c;
+            // cout << c << " : " << i << endl;
+            c++;
+        }
+
+        string hex;
+
+        while(hexadecimal){
+            
+            int val = hexadecimal%16;
+            if(val < 10){
+                hex = to_string(val) + hex;
+            }else{
+                hex = charMap[val] + hex;
+            }
+            
+            hexadecimal = hexadecimal/16;
+        }
+
+        string hextri;
+
+        while(hexatrigesimal){
+            int val = hexatrigesimal%36;
+            if(val < 10){
+                hextri = to_string(val) + hextri;
+            }else{
+                hextri = charMap[val] + hextri;
+            }
+            
+            hexatrigesimal = hexatrigesimal/36;
+        }
+
+        return hex + hextri;
+    }
+        
 */
