@@ -40,4 +40,31 @@
         return subsetSum(arr, 0, k, dpArrary);
 
     }
+
+    TOP DOWN
+
+    bool subsetSumToK(int n, int k, vector<int> &arr) {
+    // Write your code here.    
+    vector<vector<bool>> dpArrary(n, vector<bool>(k+1,false));
+
+    for(int i = 0; i < n; i++){
+        dpArrary[i][0] = true;
+    }
+
+    dpArrary[0][arr[0]] = true;
+
+    for(int i = 1; i < n; i++){
+        for(int j = 1; j <= k; j++){
+            bool ans = false;
+            if(j >= arr[i]){
+                ans = dpArrary[i-1][j - arr[i]];
+            }
+            dpArrary[i][j] = dpArrary[i-1][j] | ans;
+        }
+    }
+
+
+    return dpArrary[n-1][k];
+
+}
 */

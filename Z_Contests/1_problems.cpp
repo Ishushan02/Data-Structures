@@ -413,7 +413,7 @@ Weekly Contest 400
 /*
 
     Biweekly Contest - 160
-
+    Q2. Minimum Cost Path with Alternating Directions II
     (https://leetcode.com/contest/biweekly-contest-160/problems/minimum-cost-path-with-alternating-directions-ii/description/)
 
     long long minCost(int m, int n, vector<vector<int>>& waitCost) {
@@ -520,5 +520,5 @@ Weekly Contest 400
 
         return hex + hextri;
     }
-        
+
 */
