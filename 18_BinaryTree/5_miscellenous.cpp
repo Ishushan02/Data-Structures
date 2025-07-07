@@ -227,5 +227,79 @@
 
         return NULL;
     }
-        
+
+*/
+
+
+/*
+    865. Smallest Subtree with all the Deepest Nodes
+    (https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/description/)
+
+    int getParent(TreeNode* root, TreeNode* p, TreeNode* q, TreeNode* &ans){
+        if(root== NULL){
+            return 0;
+        }
+
+        int l = getParent(root->left, p, q, ans);
+        int r = getParent(root->right, p, q, ans);
+
+        int mid = (root == p || root == q);
+
+        if(l + r + mid >= 2){
+            ans = root;
+        }
+
+        return l || r || mid;
+    }
+
+    TreeNode* subtreeWithAllDeepest(TreeNode* root) {
+        if(root == NULL){
+            return NULL;
+        }
+        unordered_map<int, vector<TreeNode*>> depthMap;
+        queue<TreeNode*> que;
+        que.push(root);
+        int depth = 1;
+        int maxDepth = 0;
+
+        while(!que.empty()){
+            int size = que.size();
+
+            for(int i = 0; i < size; i++){
+                TreeNode* top = que.front();
+                que.pop();
+
+                if(top->left){
+                    que.push(top->left);
+                }
+
+                if(top->right){
+                    que.push(top->right);
+                }
+                depthMap[depth].push_back(top);
+                maxDepth = max(maxDepth, depth);
+            }
+            depth += 1;
+        }
+
+        vector<TreeNode*> ansNodes = depthMap[maxDepth];
+
+        if(ansNodes.size() == 1){
+            return ansNodes[0];
+        }else{
+
+            TreeNode* parent = ansNodes[0];
+            for(int i = 1; i < ansNodes.size(); i++){
+                // TreeNode* 
+                int a = getParent(root, parent, ansNodes[i], parent);
+                // cout << parent->val << endl;
+            }
+            return parent;
+        }
+
+
+
+        return NULL;
+    }
+
 */
