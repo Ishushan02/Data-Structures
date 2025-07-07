@@ -228,6 +228,33 @@
         return NULL;
     }
 
+
+    OPTIMIZED
+
+    pair<TreeNode*, int> getMaxDepthParentNode(TreeNode* root){
+        if(root == NULL){
+            return {NULL, 0};
+        }
+
+        pair<TreeNode*, int> leftNodes = getMaxDepthParentNode(root->left);
+        pair<TreeNode*, int> rightNodes = getMaxDepthParentNode(root->right);
+
+        if(leftNodes.second == rightNodes.second){
+            return {root, leftNodes.second + 1};
+        }else if(leftNodes.second > rightNodes.second){
+            return {leftNodes.first, leftNodes.second + 1};
+        }
+
+        return {rightNodes.first, rightNodes.second + 1};
+    }
+
+    TreeNode* subtreeWithAllDeepest(TreeNode* root) {
+        
+        pair<TreeNode*, int> ansVal = getMaxDepthParentNode(root);
+
+        return ansVal.first;
+    }
+
 */
 
 
@@ -300,6 +327,32 @@
 
 
         return NULL;
+    }
+
+    OPTIMIZED
+
+    pair<TreeNode*, int> getMaxDepthParentNode(TreeNode* root){
+        if(root == NULL){
+            return {NULL, 0};
+        }
+
+        pair<TreeNode*, int> leftNodes = getMaxDepthParentNode(root->left);
+        pair<TreeNode*, int> rightNodes = getMaxDepthParentNode(root->right);
+
+        if(leftNodes.second == rightNodes.second){
+            return {root, leftNodes.second + 1};
+        }else if(leftNodes.second > rightNodes.second){
+            return {leftNodes.first, leftNodes.second + 1};
+        }
+
+        return {rightNodes.first, rightNodes.second + 1};
+    }
+
+    TreeNode* subtreeWithAllDeepest(TreeNode* root) {
+        
+        pair<TreeNode*, int> ansVal = getMaxDepthParentNode(root);
+
+        return ansVal.first;
     }
 
 */
