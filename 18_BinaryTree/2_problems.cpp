@@ -285,6 +285,32 @@ using namespace std;
         return process(root, p, q);
     }
 
+
+
+    BEST METHOD
+
+    int getParent(TreeNode* root, TreeNode* p, TreeNode* q, TreeNode* &ans){
+        if(root == NULL){
+            return 0;
+        }
+
+        int a = getParent(root->left, p, q, ans);
+        int b = getParent(root->right, p, q, ans);
+        int c = root == p || root == q;
+        
+        if(a + b + c >= 2){
+            ans = root;
+        }
+            
+        return a | b | c;
+    }
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        TreeNode* ans;
+        int x = getParent(root, p, q, ans);
+        return ans;
+    }
+
 */
 
 
