@@ -568,3 +568,66 @@
         return getmaximumCherry(grid, 0, 0, n-1, dpArray);
     }
 */
+
+
+/*
+
+    741. Cherry Pickup
+    (https://leetcode.com/problems/cherry-pickup/description/)
+
+    Instead of taking one rounf from top left to bottom right why don't you think of getting
+    2 robots at once from top left to bottom right simultaneously.. isn't that same.. 
+
+    int allPossiblePaths(vector<vector<int>>& grid, int n, int i, int j, int p, int q, bool &reached, vector<vector<vector<vector<int>>>> &dpArray){
+
+        if(i >= n || j >= n || p >= n || q >= n || grid[i][j] == -1 || grid[p][q] == -1){
+            return INT_MIN;
+        }
+
+        if(i == n - 1 && j == n - 1 && p == n - 1 && q == n - 1){
+            reached = true;
+            return grid[i][j];
+        }
+
+        if(dpArray[i][j][p][q] != -1){
+            return dpArray[i][j][p][q];
+        }
+        
+        int cherries = 0;
+
+        if(i == p && j == q){
+            cherries += grid[i][j];
+        }else{
+            cherries += grid[i][j] + grid[p][q];
+        }
+
+        int path1 = allPossiblePaths(grid, n, i, j+1, p, q+1, reached, dpArray);
+        int path2 = allPossiblePaths(grid, n, i, j+1, p+1, q, reached, dpArray);
+        int path3 = allPossiblePaths(grid, n, i+1, j, p+1, q, reached, dpArray);
+        int path4 = allPossiblePaths(grid, n, i+1, j, p, q+1, reached, dpArray);
+
+        int maxVal = max({path1, path2, path3, path4});
+
+        if(maxVal != INT_MIN){
+            dpArray[i][j][p][q] = maxVal + cherries;
+        }else{
+            dpArray[i][j][p][q] = INT_MIN;
+        }
+
+        return dpArray[i][j][p][q];
+    }
+
+    int cherryPickup(vector<vector<int>>& grid) {
+        int n = grid.size();
+        bool reached = false;
+
+        vector<vector<vector<vector<int>>>> dpArray(n+1, vector<vector<vector<int>>>(n+1, vector<vector<int>>(n+1, vector<int>(n+1, -1))));
+        int ans = allPossiblePaths(grid, n, 0, 0, 0, 0, reached, dpArray);
+
+        if(reached){
+            return ans;
+        }
+        return 0;
+
+    }
+*/
