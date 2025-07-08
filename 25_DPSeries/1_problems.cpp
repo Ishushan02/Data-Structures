@@ -630,4 +630,60 @@
         return 0;
 
     }
+
+    OPTIMIZED - SPACE // ALways thing why i + j == p + q (at each step both are taking same step simultaneously)
+
+    int allPossiblePaths(vector<vector<int>>& grid, int n, int i, int j, int p , bool &reached, vector<vector<vector<int>>> &dpArray){
+        
+        int q = i + j - p;
+        if(i >= n || j >= n || p >= n || q >= n || grid[i][j] == -1 || grid[p][q] == -1){
+            return INT_MIN;
+        }
+
+        if(i == n - 1 && j == n - 1 && p == n - 1 && q == n - 1){
+            reached = true;
+            return grid[i][j];
+        }
+
+        if(dpArray[i][j][p] != -1){
+            return dpArray[i][j][p];
+        }
+        
+        int cherries = 0;
+
+        if(i == p && j == q){
+            cherries += grid[i][j];
+        }else{
+            cherries += grid[i][j] + grid[p][q];
+        }
+
+        int path1 = allPossiblePaths(grid, n, i, j+1, p, reached, dpArray);
+        int path2 = allPossiblePaths(grid, n, i, j+1, p+1, reached, dpArray);
+        int path3 = allPossiblePaths(grid, n, i+1, j, p+1, reached, dpArray);
+        int path4 = allPossiblePaths(grid, n, i+1, j, p, reached, dpArray);
+
+        int maxVal = max({path1, path2, path3, path4});
+
+        if(maxVal != INT_MIN){
+            dpArray[i][j][p] = maxVal + cherries;
+        }else{
+            dpArray[i][j][p] = INT_MIN;
+        }
+
+        return dpArray[i][j][p];
+    }
+
+    int cherryPickup(vector<vector<int>>& grid) {
+        int n = grid.size();
+        bool reached = false;
+
+        vector<vector<vector<int>>> dpArray(n+1, vector<vector<int>>(n+1, vector<int>(n+1, -1)));
+        int ans = allPossiblePaths(grid, n, 0, 0, 0, reached, dpArray);
+
+        if(reached){
+            return ans;
+        }
+        return 0;
+
+    }
 */
