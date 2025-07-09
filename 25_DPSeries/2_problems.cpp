@@ -120,3 +120,49 @@
     }
 
 */
+
+/*
+    Count Subsets with Sum K
+    (https://www.naukri.com/code360/problems/count-subsets-with-sum-k_3952532?leftPanelTabValue=PROBLEM)
+
+    int ways(vector<int> &arr, int sum, int i, vector<vector<int>> &dpArray){
+        if (sum == 0){
+            return 1;
+        }
+
+        if(i >= arr.size()){
+            return 0;
+        }
+
+        if(dpArray[i][sum] != -1){
+            return dpArray[i][sum];
+        }
+
+        int include = 0;
+
+        if(sum >= arr[i]){
+            include += ways(arr, sum - arr[i], i+1, dpArray);
+        }
+        int exclude = ways(arr, sum, i+1, dpArray);
+
+        dpArray[i][sum] = include + exclude;
+
+        return dpArray[i][sum];
+    }
+
+
+    int findWays(vector<int>& arr, int k)
+    {
+        // Write your code here.
+        vector<vector<int>> dpArray(arr.size()+1, vector<int>(k+1, -1));
+        int ans = ways(arr, k, 0, dpArray);
+        if(ans == -1){
+            return 0;
+        }
+        // cout << ans << endl;
+
+        return ans;
+    }
+
+
+*/
