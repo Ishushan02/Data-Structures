@@ -165,4 +165,35 @@
     }
 
 
+    OPTIMIZED
+
+    int findWays(vector<int>& arr, int k)
+{
+	// Write your code here.
+	int n = arr.size();
+	vector<vector<long long int>> dpArray(arr.size()+1, vector<long long int>(k+1, 0));
+	
+
+	for(int i = 0; i <= n; i++){
+		dpArray[i][0] = 1;
+	}
+
+	for(int i = n-1; i >= 0; i--){
+		for(int j = k; j >= 0; j--){
+			long long int include = 0;
+			long long int exclude = 0;
+
+			if(j >= arr[i]){
+				include += dpArray[i+1][j - arr[i]];
+			}
+			exclude += dpArray[i+1][j];
+			dpArray[i][j] = include + exclude;
+		}	
+	}
+
+	return dpArray[0][k]%1000000007;
+}
+
+
+
 */
