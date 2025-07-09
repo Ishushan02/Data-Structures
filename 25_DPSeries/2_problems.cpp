@@ -68,3 +68,55 @@
 
 }
 */
+
+/*
+    (GOOD QUESTION)
+    Array partition with minimum difference
+    (https://www.naukri.com/code360/problems/partition-a-set-into-two-subsets-such-that-the-difference-of-subset-sums-is-minimum_842494?leftPanelTabValue=PROBLEM)
+
+        int minSubsetSumDifference(vector<int>& nums, int n)
+    {
+        // Write your code here.
+        int totalSum = 0;
+            for(auto v:nums){
+                totalSum += v;
+            }
+
+            vector<vector<bool>> dpArray(nums.size()+1, vector<bool>(totalSum+1, false));
+
+            for(int i = 0; i < nums.size(); i++){
+                dpArray[i][0] = true;
+            }
+
+            if(nums[0] <= totalSum){
+                dpArray[0][nums[0]] = true;
+            }
+
+            for(int i = 1; i < nums.size(); i++){
+                for(int j = 1; j <= totalSum; j++){
+                    bool include = false;
+                    if(j >= nums[i]){
+                        include = dpArray[i-1][j-nums[i]];
+                    }
+                    bool exclude = dpArray[i-1][j];
+
+                    dpArray[i][j] = include || exclude;
+                }
+            }
+
+            int minSum = INT_MAX;
+            for(int i = 0; i <= totalSum; i++){
+                int k = nums.size()-1;
+                if(dpArray[k][i] == true){
+                    int sum1 = i;
+                    int sum2 = totalSum - i;
+                    int diff = abs(sum1 - sum2);
+                    minSum = min(minSum, diff);
+                }
+            }
+
+            return minSum;
+        
+    }
+
+*/
