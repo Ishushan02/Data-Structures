@@ -356,3 +356,33 @@
     }
 
 */
+
+/*
+    129. Sum Root to Leaf Numbers
+    (https://leetcode.com/problems/sum-root-to-leaf-numbers/description/)
+
+    long long int valSum(TreeNode* root, int sum, long long int &ansSum){
+        if(root == NULL){
+            return sum;
+        }
+        if(root->left == NULL && root->right == NULL){
+            ansSum += sum * 10 + root->val;
+            // cout << sum * 10 + root->val << endl; 
+        }
+
+        int prev = sum * 10 + root->val;
+        
+        long long int left = valSum(root->left, prev, ansSum);
+        long long int right = valSum(root->right, prev, ansSum);
+        
+        
+        return left + right;
+    }
+
+    int sumNumbers(TreeNode* root) {
+       long long int ansSum = 0;
+       auto c =  valSum(root, 0, ansSum);
+       return ansSum;
+    }
+       
+*/
