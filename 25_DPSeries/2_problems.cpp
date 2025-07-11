@@ -197,3 +197,47 @@
 
 
 */
+
+/*  
+     Partitions With Given Difference
+    (https://www.naukri.com/code360/problems/partitions-with-given-difference_3751628?leftPanelTabValue=SUBMISSION)
+
+    int countPartitions(int n, int d, vector<int> &arr) {
+        // Write your code here.
+        int count = 0;
+        
+        long long int totSum = 0;
+        for(auto v:arr){
+            totSum += v;
+        }
+        int diff = totSum - d;
+        if(diff < 0 || (diff % 2 != 0)){
+            return 0;
+        }
+        int k = diff/2;
+        // cout << k << endl;
+
+        n = arr.size();
+        vector<vector<long long int>> dpArray(n+1, vector<long long int>(k+1, 0));
+        
+
+        for(int i = 0; i <= n; i++){
+            dpArray[i][0] = 1;
+        }
+
+        for(int i = n-1; i >= 0; i--){
+            for(int j = k; j >= 0; j--){
+                long long int include = 0;
+                long long int exclude = 0;
+
+                if(j >= arr[i]){
+                    include += dpArray[i+1][j - arr[i]];
+                }
+                exclude += dpArray[i+1][j];
+                dpArray[i][j] = include + exclude;
+            }	
+        }
+
+        return dpArray[0][k] % 1000000007;
+    }
+*/
