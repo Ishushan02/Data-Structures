@@ -386,3 +386,29 @@
     }
        
 */
+
+/*
+    563. Binary Tree Tilt
+    (https://leetcode.com/problems/binary-tree-tilt/description/)
+
+    int sumDiff(TreeNode* root, int &ans){
+        if(root == NULL){
+            return 0;
+        }
+
+        int lSum = sumDiff(root->left, ans);
+        int rSum = sumDiff(root->right, ans);
+
+        // cout << root->val << " : " << lSum << " , " << rSum << endl;
+
+        ans += abs(lSum - rSum);
+        return root->val + lSum + rSum;
+    }
+
+    int findTilt(TreeNode* root) {
+        int ans = 0;
+        auto c =  sumDiff(root, ans);
+        return ans;
+    }
+        
+*/
