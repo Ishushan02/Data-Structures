@@ -287,3 +287,36 @@
     }
 
 */
+
+/*
+
+    322. Coin Change
+    (https://leetcode.com/problems/coin-change/description/)
+
+    int coinChange(vector<int>& coins, int amount) {
+        
+        int n = coins.size();
+        vector<long long int > dpWt(amount + 1, INT_MAX);
+
+        dpWt[0] = 0;
+        for(int i = 0; i < coins.size(); i++){
+            for(int j = coins[i]; j <= amount; j++){
+                long long int cnt = INT_MAX;
+                if(j >= coins[i]){
+                    cnt = dpWt[j-coins[i]];
+                    if(cnt != INT_MAX){
+                        cnt = cnt + 1;
+                    }
+                }
+
+                dpWt[j] = min(dpWt[j], cnt);
+
+            }
+        }
+
+        if(dpWt[amount] == INT_MAX){
+            return -1;
+        }
+        return dpWt[amount];
+    }
+*/
