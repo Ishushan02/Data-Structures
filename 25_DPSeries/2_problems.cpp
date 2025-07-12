@@ -251,7 +251,6 @@
         
         vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
 
-
         for (int i = 1; i <= n; i++) {
             for (int w = 0; w <= W; w++) {
                 int include = 0;
@@ -266,5 +265,25 @@
         return dp[n][W];
         
     }
+
+    SPACE OPTIMIZATION
+    int knapsack(int W, vector<int> &val, vector<int> &wt) {
+        int n = val.size();
         
+        vector<int> dpVal(W+1, 0);
+        for (int i = n-1; i >= 0; i--) {
+            for (int w = W; w >= 0; w--) {
+                int include = 0;
+                if (wt[i] <= w) {
+                    include = dpVal[w - wt[i]] + val[i];
+                }
+                int exclude = dpVal[w];
+                dpVal[w] = max(include, exclude);
+            }
+        }
+        
+        return dpVal[W];
+        
+    }
+
 */
