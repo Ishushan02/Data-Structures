@@ -431,4 +431,23 @@
         vector<vector<int>> dpArray(n+1, vector<int>(w+1, -1));
         return maxProfit(profit, weight, w, 0, dpArray);
     }
+
+    OPTIMIZED
+    int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight){
+        // Write Your Code Here.
+
+        vector<vector<int>> dpArray(n+1, vector<int>(w+1, 0));
+        for(int i = n -1; i >= 0; i--){
+            for(int j = 1; j <= w; j++){
+                int include = 0;
+                if(j >= weight[i]){
+                    include = profit[i] + dpArray[i][j-weight[i]];
+                }
+                int exclude = dpArray[i+1][j];
+                dpArray[i][j] = max(include, exclude);
+            }
+        }
+
+        return dpArray[0][w];
+    }
 */
