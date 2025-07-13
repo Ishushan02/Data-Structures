@@ -320,3 +320,54 @@
         return dpWt[amount];
     }
 */
+
+/*
+    518. Coin Change II
+    (https://leetcode.com/problems/coin-change-ii/description/)
+
+    int allPossibleCombinations(vector<int> &coins, int amount, int idx, vector<vector<int>> &dpArray){
+        if(amount == 0){
+            return 1;
+        }
+
+        if(dpArray[idx][amount] != -1){
+            return dpArray[idx][amount];
+        }
+        
+        int totalCount = 0;
+        for(int i = idx; i < coins.size(); i++){
+            if(amount - coins[i] >= 0){
+                totalCount += allPossibleCombinations(coins, amount - coins[i], i, dpArray);
+            }
+        }
+
+        dpArray[idx][amount] = totalCount;
+        return dpArray[idx][amount];
+
+    }
+
+    int change(int amount, vector<int>& coins) {
+        int count = 0;
+        int n = coins.size();
+        vector<vector<long long int>> dpArray(n + 1, vector<long long int>(amount + 1, 0));
+        // return allPossibleCombinations(coins, amount, 0, dpArray);
+
+        for(int i = 0; i < n; i++){
+            dpArray[i][0] = 1;
+        }
+
+        for(int i = n -1; i >= 0; i--){
+            for(int j = 1; j <= amount; j++){
+
+                dpArray[i][j] = dpArray[i+1][j];
+
+                if(j >= coins[i]){
+                    dpArray[i][j] += (dpArray[i][j-coins[i]] % INT_MAX);
+                }
+            }
+        }
+
+
+        return dpArray[0][amount];
+    }
+*/
