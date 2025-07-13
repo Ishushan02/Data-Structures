@@ -471,5 +471,48 @@
 
         return dpArrayVal[w];
     }
+
+*/
+
+/*
+    Rod cutting problem
+    (https://www.naukri.com/code360/problems/rod-cutting-problem_800284?leftPanelTabValue=PROBLEM)
+
+    int getMaxCut(vector<int> &price, int n, int i, int sum, vector<vector<int>> &dpArray){
+
+        if(i >= n){
+            return 0;
+        }
+
+        if(dpArray[i][sum] != -1){
+            return dpArray[i][sum];
+        }
         
+        int include = 0;
+        if(sum + i <= n){
+            include = price[i-1] + getMaxCut(price, n, i, sum + i, dpArray);
+        }
+        
+        int exclude = getMaxCut(price, n, i+1, sum, dpArray);
+
+        dpArray[i][sum] = max(include, exclude);
+
+        return dpArray[i][sum];
+    }
+
+
+    int cutRod(vector<int> &price, int n)
+    {
+        // Write your code here.
+        int maxCost = 0;
+        vector<int> nArray;
+        vector<vector<int>> dpArray(n + 1, vector<int>(n + 1, -1));
+
+        for(int i = 1; i <= n; i++){
+            nArray.push_back(i);
+        }
+        return getMaxCut(price, n, 1, 0, dpArray);
+
+        // return maxCost;
+    }
 */
