@@ -395,3 +395,40 @@
     }
         
 */
+
+/*
+    Unbounded Knapsack
+    (https://www.naukri.com/code360/problems/unbounded-knapsack_1215029?leftPanelTabValue=PROBLEM)
+    
+    int maxProfit(vector<int> &profit, vector<int> &weight, int totW, int i, vector<vector<int>> &dpArray){
+        if(i >= profit.size()){
+            return 0;
+        }
+
+        if(dpArray[i][totW] != -1){
+            return dpArray[i][totW];
+        }
+
+        int include = 0;
+        if(totW - weight[i] >= 0){
+            include = profit[i] + maxProfit(profit, weight, totW-weight[i], i, dpArray);
+        }
+        int exclude = maxProfit(profit, weight, totW, i+1, dpArray);
+
+        dpArray[i][totW] = max(include, exclude);
+
+        return dpArray[i][totW];
+
+    }
+
+    int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight){
+        // Write Your Code Here.
+        // int maxProfit = 0;
+        // maxProfitValue(profit, weight, 0, w, 0, maxProfit);
+
+        // return maxProfit;
+
+        vector<vector<int>> dpArray(n+1, vector<int>(w+1, -1));
+        return maxProfit(profit, weight, w, 0, dpArray);
+    }
+*/
