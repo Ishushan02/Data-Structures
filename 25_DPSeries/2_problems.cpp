@@ -515,4 +515,25 @@
 
         // return maxCost;
     }
+
+
+    OPTIMIZED SOLUTION
+    int cutRod(vector<int> &price, int n)
+    {
+        // Write your code here.
+        vector<vector<int>> dpArray(n + 2, vector<int>(n + 2, 0));
+
+        for(int i = n; i >= 1; i--){
+            for(int j = n; j >= 0; j--){
+                int include = 0;
+                if(j + i <= n){
+                    include = price[i-1] + dpArray[i][j+i];
+                }
+                int exclude = dpArray[i+1][j];
+                dpArray[i][j] = max(include, exclude);
+            }
+        }
+
+        return dpArray[1][0];
+    }
 */
