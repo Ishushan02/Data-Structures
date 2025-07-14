@@ -1,0 +1,31 @@
+
+/*
+
+    SERIES BASED DP PROBLEMS ONLY ----
+
+*/
+
+
+/*  
+
+    1143. Longest Common Subsequence
+    (https://leetcode.com/problems/longest-common-subsequence/description/)
+
+    int longestCommonSubsequence(string text1, string text2) {
+        int maxCount = 0;
+        int m = text1.length();
+        int n = text2.length();
+        vector<vector<int>> dpArray(m+1, vector<int>(n+1, 0));
+
+        for(int i = m -1 ; i>= 0; i--){
+            for(int j = n - 1; j >= 0; j--){
+                if(text1[i] == text2[j]){
+                    dpArray[i][j] = 1 + dpArray[i+1][j+1];
+                }else{
+                    dpArray[i][j] = max(dpArray[i][j+1], dpArray[i+1][j]);
+                }
+            }
+        }
+        return dpArray[0][0];
+    }
+*/
