@@ -29,3 +29,32 @@
         return dpArray[0][0];
     }
 */
+
+/*
+
+    Longest Common SUbstring
+    (https://www.geeksforgeeks.org/problems/longest-common-substring1452/1)
+
+    int longestCommonSubstr(string& s1, string& s2) {
+        // your code here
+        int m = s1.length();
+        int n = s2.length();
+        
+        vector<vector<int>> dpArray(m+1, vector<int>(n+1, 0));
+        int maxCount = 0;
+        for(int i = m-1; i>= 0; i--){
+            for(int j = n-1; j >= 0; j--){
+                
+                if(s1[i] == s2[j]){
+                    dpArray[i][j] = 1 + dpArray[i+1][j+1];
+                    maxCount = max(maxCount, dpArray[i][j]);
+                }else{
+                    dpArray[i][j] = 0;
+                }
+            }
+        }
+        
+        return maxCount;
+    }
+
+*/
