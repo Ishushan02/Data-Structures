@@ -85,4 +85,24 @@
 
         return dpArray[0][0];
     }
+
+    SPACE OPTIMIZED
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dpVal(nums.size()+1, 0);
+        for(int i = n - 1; i >= 0; i--){
+            for(int prev = i - 1; prev >= -1; prev--){
+                int include = 0;
+
+                if(prev == -1 || nums[i] > nums[prev]){
+                    include = 1 + dpVal[i+1];
+                }
+                int exclude = 0 + dpVal[prev+1];
+
+                dpVal[prev+1] = max(include, exclude);
+            }
+        }
+
+        return dpVal[0];
+    }
 */
