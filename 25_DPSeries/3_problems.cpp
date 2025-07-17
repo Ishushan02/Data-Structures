@@ -58,3 +58,31 @@
     }
 
 */
+
+/*
+
+    Longest Increasing Subsequence
+    (https://leetcode.com/problems/longest-increasing-subsequence/description/)
+
+    Tabulation
+    int lengthOfLIS(vector<int>& nums) {
+        int maxCount = 0;
+        vector<vector<int>> dpArray(nums.size()+1, vector<int>(nums.size()+1, 0));
+
+        int n = nums.size();
+        for(int i = n - 1; i >= 0; i--){
+            for(int prev = i - 1; prev >= -1; prev--){
+                int include = 0;
+
+                if(prev == -1 || nums[i] > nums[prev]){
+                    include = 1 + dpArray[i+1][i+1];
+                }
+                int exclude = 0 + dpArray[i+1][prev+1];
+
+                dpArray[i][prev+1] = max(include, exclude);
+            }
+        }
+
+        return dpArray[0][0];
+    }
+*/
