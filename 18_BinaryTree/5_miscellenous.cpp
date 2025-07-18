@@ -412,3 +412,25 @@
     }
         
 */
+
+/*
+    965. Univalued Binary Tree
+    (https://leetcode.com/problems/univalued-binary-tree/)
+
+    bool check(TreeNode* root, int &val){
+        if(root == NULL){
+            return true;
+        }
+        if(root->val != val){
+            return false;
+        }
+        return check(root->left, val) && check(root->right, val);
+    }
+
+    bool isUnivalTree(TreeNode* root) {
+        
+        int value = root->val;
+
+        return check(root, value);
+    }
+*/
