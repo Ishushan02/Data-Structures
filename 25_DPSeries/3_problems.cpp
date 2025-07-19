@@ -141,4 +141,27 @@
         vector<vector<int>> dpArray(n+1, vector<int>(n+1, -1));
         return longestPSubs(s, 0, n - 1, maxCount, dpArray);
     }
+
+    Tabulation
+    int longestPalindromeSubseq(string s) {
+        int n = s.length();
+        int maxCount = 0;
+        vector<vector<int>> dpArray(n+1, vector<int>(n+1, 0));
+
+        for(int i = 0; i < n; i++){
+            dpArray[i][i] = 1;
+        }
+
+        for(int i = n - 1; i >= 0; i--){
+            for(int j = i + 1; j < n; j++){
+                if(s[i] == s[j]){
+                    dpArray[i][j] = 2 + dpArray[i+1][j-1];
+                }else{
+                    dpArray[i][j] = max(dpArray[i+1][j], dpArray[i][j-1]);
+                }
+            }
+        }
+        
+        return dpArray[0][n-1];
+    }
 */
