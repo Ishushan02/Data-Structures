@@ -202,4 +202,34 @@
 
     }
 
+    // METHOD 2 
+    Maximum Insertion is total Length - longest palindromic Subsequence
+    (think about it .. )
+
+    int minInsertions(string s) {
+        
+        int n = s.length();
+        vector<vector<int>> dpArray(n + 1, vector<int>(n+1,0));
+
+        for(int i = 0; i < n; i++){
+            dpArray[i][i] = 1;
+        }
+
+        for(int i = n - 1; i >= 0; i--){
+            for(int j = i+1; j < n; j++){
+                int count = 0;
+                if(s[i] == s[j]){
+                    dpArray[i][j] = 2 + dpArray[i+1][j-1];
+                }else{
+                    dpArray[i][j] = max(dpArray[i+1][j], dpArray[i][j-1]);
+                }
+            }
+        }
+
+        int maxPlaindromicSubseq = dpArray[0][n-1];
+
+        return abs(n - maxPlaindromicSubseq);
+
+    }
+
 */
