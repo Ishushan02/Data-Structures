@@ -106,3 +106,39 @@
         return dpVal[0];
     }
 */
+
+/*
+
+    516. Longest Palindromic Subsequence
+    (https://leetcode.com/problems/longest-palindromic-subsequence/description/)
+
+    int longestPSubs(string &s, int i, int j, int &maxCount, vector<vector<int>> &dpArray){
+        if(i > j || i >= s.length() || j < 0){
+            return 0;
+        }
+
+        if(dpArray[i][j] != -1){
+            return dpArray[i][j];
+        }
+
+        int plen = 0;
+        if(s[i] == s[j] && i != j){
+            plen = 2 + longestPSubs(s, i + 1, j - 1, maxCount, dpArray);
+        }else if(s[i] == s[j] && i == j){
+            plen = 1 + longestPSubs(s, i + 1, j - 1, maxCount, dpArray);
+        }else{
+            plen = max(longestPSubs(s, i + 1, j, maxCount, dpArray), longestPSubs(s, i, j - 1, maxCount, dpArray));
+        }
+
+        dpArray[i][j] = max(maxCount, plen);
+
+        return dpArray[i][j];
+    }
+
+    int longestPalindromeSubseq(string s) {
+        int n = s.length();
+        int maxCount = 0;
+        vector<vector<int>> dpArray(n+1, vector<int>(n+1, -1));
+        return longestPSubs(s, 0, n - 1, maxCount, dpArray);
+    }
+*/
