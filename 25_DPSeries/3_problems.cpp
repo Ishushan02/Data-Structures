@@ -165,3 +165,41 @@
         return dpArray[0][n-1];
     }
 */
+
+/*
+
+    1312. Minimum Insertion Steps to Make a String Palindrome
+    (https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/description/)
+
+    int minPalInsertions(string &s, int i, int j, vector<vector<int>> &dpArray){
+        if(i >= s.length() || j < 0|| i > j){
+            return 0;
+        }
+
+        int count = 0;
+
+        if(dpArray[i][j] != -1){
+            return dpArray[i][j];
+        }
+
+        if(s[i] == s[j]){
+            count = 0 + minPalInsertions(s, i+1, j-1, dpArray);
+        }else{
+            int count1 = 1 + minPalInsertions(s, i+1, j, dpArray);
+            int count2 = 1 + minPalInsertions(s, i, j-1, dpArray);
+            count = min(count1, count2);
+        }
+        dpArray[i][j] = count;
+
+        return dpArray[i][j];
+    }
+
+    int minInsertions(string s) {
+        
+        int n = s.length();
+        vector<vector<int>> dpArray(n + 1, vector<int>(n+1, -1));
+        return minPalInsertions(s, 0, n-1, dpArray);
+
+    }
+
+*/
