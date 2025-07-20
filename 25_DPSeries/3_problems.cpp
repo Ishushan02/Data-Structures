@@ -233,3 +233,64 @@
     }
 
 */
+
+/*
+    (VVI and Good Question)
+    1092. Shortest Common Supersequence 
+    (https://leetcode.com/problems/shortest-common-supersequence/description/)
+
+    string shortestCommonSupersequence(string str1, string str2) {
+        int m = str1.length();
+        int n = str2.length();
+
+        vector<vector<int>> dpArray(m+1, vector<int>(n+1, 0));
+
+        for(int i = m - 1; i >= 0; i--){
+            for(int j = n - 1; j >= 0; j--){
+                int include = 0;
+                if(str1[i] == str2[j]){
+                    include = 1 + dpArray[i+1][j+1];
+                }
+                int exclude = max(dpArray[i+1][j], dpArray[i][j+1]);
+
+                dpArray[i][j] = max(include, exclude);
+            }
+        }
+
+        string lcs;
+        int i = 0;
+        int j = 0;
+        while(i < m && j < n){
+            if(str1[i] == str2[j]){
+                lcs += str1[i];
+                i += 1;
+                j += 1;
+            }else{
+                if(dpArray[i+1][j] > dpArray[i][j+1]){
+                    lcs += str1[i];
+                    i = i + 1;
+                }else{
+                    lcs += str2[j];
+                    j = j + 1;
+                }
+            }
+        }
+
+        if(lcs == ""){
+            return str1 + str2;
+        }
+
+        while(i < m){
+            lcs += str1[i];
+            i += 1;
+        }
+
+        while(j < n){
+            lcs += str2[j];
+            j += 1;
+        }
+
+        return lcs;
+
+    }
+*/
