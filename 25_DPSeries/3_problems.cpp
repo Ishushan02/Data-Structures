@@ -375,4 +375,40 @@
 
         return dpArray[0][0];
     }
+
+    // SPACE Optimization
+    int numDistinct(string s, string t) {
+        long long int ans = 0;
+        int m = s.length();
+        int n = t.length();
+
+        vector<int> dpLinear(n+1, 0);
+        dpLinear[n] = 1;
+
+       
+        for(int i = m -1; i >= 0; i--){
+            vector<int> tempDP = dpLinear;
+            for(int j = n - 1; j >= 0; j--){
+                int ans = 0;
+                if(s[i] == t[j]){
+                    long long int inc = dpLinear[j+1];
+                    long long int exc = dpLinear[j];
+                    if(inc + exc > ans){
+                        ans = inc + exc;
+                    }
+                    
+                }else{
+                    long long int next = dpLinear[j];
+                    if(next > ans){
+                        ans = next;
+                    }
+                }
+                tempDP[j] = ans;
+
+            }
+            dpLinear = tempDP;
+        }
+
+        return dpLinear[0];
+    }
 */
