@@ -339,4 +339,40 @@
         return distSubseq(s, t, 0, 0, dpArray);
 
     }
+
+    // TABULATION
+
+    int numDistinct(string s, string t) {
+        long long int ans = 0;
+        int m = s.length();
+        int n = t.length();
+        vector<vector<int>> dpArray(m+1, vector<int>(n+1, 0));
+
+        for(int i = 0; i < m+1; i++){
+            dpArray[i][n] = 1;
+        }
+
+        for(int i = m -1; i >= 0; i--){
+            for(int j = n - 1; j >= 0; j--){
+                int ans = 0;
+                if(s[i] == t[j]){
+                    long long int inc = dpArray[i+1][j+1];
+                    long long int exc = dpArray[i+1][j];
+                    if(inc + exc > ans){
+                        ans = inc + exc;
+                    }
+                    
+                }else{
+                    long long int next = dpArray[i+1][j];
+                    if(next > ans){
+                        ans = next;
+                    }
+                }
+                dpArray[i][j] = ans;
+
+            }
+        }
+
+        return dpArray[0][0];
+    }
 */
