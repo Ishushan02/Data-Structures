@@ -294,3 +294,49 @@
 
     }
 */
+
+/*
+    (DO IT AGAIN)
+    115. Distinct Subsequences 
+    (https://leetcode.com/problems/distinct-subsequences/)
+
+    long long int distSubseq(string &s, string &t, int i, int j, vector<vector<int>> &dpArray){
+
+        if(j >= t.length()){
+            return 1;
+        }
+        if(i >= s.length() || j >= t.length()){
+            return 0;
+        }
+
+        if(dpArray[i][j] != -1){
+            return dpArray[i][j];
+        }
+        
+        long long int ans = 0;
+        if(s[i] == t[j]){
+            long long int inc = distSubseq(s, t, i + 1, j + 1, dpArray);
+            long long int exc = distSubseq(s, t, i + 1, j, dpArray);
+            if(inc + exc > ans){
+                ans = inc + exc;
+            }
+            // maxAns = max(maxAns, inc + exc);
+        }else{
+            long long int next = distSubseq(s, t, i + 1, j, dpArray);
+            if(next > ans){
+                ans = next;
+            }
+        }
+
+        dpArray[i][j] = ans;
+        return dpArray[i][j];
+
+    }
+
+    int numDistinct(string s, string t) {
+        long long int ans = 0;
+        vector<vector<int>> dpArray(s.length()+1, vector<int>(t.length()+1, -1));
+        return distSubseq(s, t, 0, 0, dpArray);
+
+    }
+*/
