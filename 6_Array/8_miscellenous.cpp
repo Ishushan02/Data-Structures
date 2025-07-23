@@ -53,3 +53,25 @@
     }
         
 */
+
+/*
+    1186. Maximum Subarray Sum with One Deletion
+    (https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/)
+
+    int maximumSum(vector<int>& arr) {
+        
+        int maxOneDeletion = -100000;
+        int maxNoDeletion = arr[0];
+        int maxSum = arr[0];
+
+        for(int i = 1; i < arr.size(); i++){
+            maxOneDeletion = max(maxOneDeletion + arr[i], maxNoDeletion);
+            maxNoDeletion = max(maxNoDeletion + arr[i], arr[i]);
+
+            maxSum = max({maxSum, maxOneDeletion, maxNoDeletion});
+        }
+
+        return maxSum;
+    }
+        
+*/
