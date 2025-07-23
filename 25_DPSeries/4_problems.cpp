@@ -92,5 +92,29 @@
         vector<vector<int>> dpArray(prices.size()+1, vector<int>(2, -1));
         return maxiMumBuy(prices, 0, 1, dpArray);
     }
+
+    Method 4
+    int maxProfit(vector<int>& prices) {
+        vector<vector<int>> dpArray(prices.size()+1, vector<int>(2, 0));
+        // return maxiMumBuy(prices, 0, 1, dpArray);
+
+        for(int i = prices.size()-1; i >= 0; i--){
+            int profit = 0;
+            for(int j = 1; j>= 0; j--){
+                if(j == 1){
+                    int includebuy = dpArray[i+1][0] - prices[i];
+                    int excludebuy = dpArray[i+1][1];
+                    profit = max(includebuy, excludebuy);
+                }else{
+                    int includesell = prices[i] + dpArray[i+1][1];
+                    int excludesell = dpArray[i+1][0];
+                    profit = max(includesell, excludesell);
+                }
+                dpArray[i][j] = profit;
+            }
+        }
+
+        return dpArray[0][1];
+    }
         
 */
