@@ -45,5 +45,24 @@
 
         return sum;
     }
+
+    MEthod 2 which is BAD
+    void getMaxProfit(vector<int> &prices, int profit, int prev, int idx, int &maxProfit){
+        
+        maxProfit = max(maxProfit, profit);
+        for(int i = idx; i < prices.size(); i++){
+            if(i > prev && prices[i] > prices[prev]){
+                getMaxProfit(prices, profit + (prices[i] - prices[prev]), i, i+1, maxProfit);
+            }
+            prev = i;
+        }
+    }
+
+    int maxProfit(vector<int>& prices) {
+        int maxProfit = 0;
+        getMaxProfit(prices, 0, 0, 1, maxProfit);
+
+        return maxProfit;
+    }
         
 */
