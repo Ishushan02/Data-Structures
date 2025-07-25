@@ -197,3 +197,26 @@
    
     }
 */
+
+/*
+    714. Best Time to Buy and Sell Stock with Transaction Fee
+    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/)
+
+    int maxProfit(vector<int>& prices, int fee) {
+        int n = prices.size();
+        vector<vector<int>> dpArray(n + 1, vector<int>(2, 0));
+        // return getMaxProfit(prices, fee, 1, 0, dpArray);
+
+        for(int i = n - 1; i >= 0; i--){
+            for(int j = 1; j>= 0; j--){
+                if(j == 1){
+                    dpArray[i][j] = max(dpArray[i+1][0] - prices[i], dpArray[i+1][1]);
+                }else{
+                    dpArray[i][j] = max(dpArray[i+1][1] + prices[i] - fee, dpArray[i+1][0]);
+                }
+            }
+        }
+
+        return dpArray[0][1];
+    }
+*/
