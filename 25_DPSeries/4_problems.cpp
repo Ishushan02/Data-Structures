@@ -220,3 +220,53 @@
         return dpArray[0][1];
     }
 */
+
+/*
+    3573. Best Time to Buy and Sell Stock V
+    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-v/description/)
+
+    long long int getMaxProfit(vector<int>& prices, int k, int buy, int count, int i, vector<vector<vector<long long int>>> &dpArray){
+        if(i > prices.size() || count >= k){
+            return 0;
+        }
+
+        if(i == prices.size()-1){
+            if(buy == 1){
+                return prices[i];
+            }else if(buy == 2){
+                return -prices[i];
+            }
+            return 0;
+        }
+
+        if(dpArray[i][count][buy] != -1){
+            return dpArray[i][count][buy];
+        }
+
+        long long int profit = 0;
+        if(buy == 0){
+            long long int buyProfit = getMaxProfit(prices, k, 1, count, i+ 1, dpArray) - prices[i];
+            long long int ssProfit = getMaxProfit(prices, k, 2, count, i+ 1, dpArray) + prices[i];
+            long long int buyskip = getMaxProfit(prices, k, 0, count, i+ 1, dpArray);
+            profit = max({buyProfit, buyskip, ssProfit});
+        }else if(buy == 1){
+            long long int sell = getMaxProfit(prices, k, 0, count + 1, i+ 1, dpArray) + prices[i];
+            long long int sellskip = getMaxProfit(prices, k, 1, count, i+ 1, dpArray);
+            profit = max({sell, sellskip});
+        }else if(buy == 2){
+            long long int shortsell = getMaxProfit(prices, k, 0, count + 1, i+ 1, dpArray) - prices[i];
+            long long int sellskip = getMaxProfit(prices, k, 2, count, i+ 1, dpArray);
+            profit = max({shortsell, sellskip});
+        }
+
+        dpArray[i][count][buy] = profit;
+        return profit;
+    }
+
+    long long maximumProfit(vector<int>& prices, int k) {
+        int n = prices.size();
+        vector<vector<vector<long long int>>> dpArray(n+1, vector<vector<long long int>>(k+1, vector<long long int>(3, -1)));
+        return getMaxProfit(prices, k, 0, 0, 0, dpArray);
+    }
+        
+*/
