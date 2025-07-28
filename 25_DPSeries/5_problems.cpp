@@ -66,3 +66,76 @@
         return ans;
     }
 */
+
+/*
+    1048. Longest String Chain (TLE)
+    (https://leetcode.com/problems/longest-string-chain/)
+
+    struct check{
+        bool operator()(string &a, string &b){
+            return a.length() < b.length();
+        }
+    };
+
+    bool checkSubsequences(string &a, string &b, string &temp, int i, map<pair<string, int>, bool> &dpMap){
+        if(i >= b.length()){
+            if(temp == a){
+                return true;
+            }
+            return false;
+        }
+
+        if(temp == a){
+            return true;
+        }
+
+        if(dpMap.find({temp, i}) != dpMap.end()){
+            return dpMap[{temp, i}];
+        }
+
+        string pre = temp;
+        bool inc = false;
+        temp += b[i];
+        inc = checkSubsequences(a, b, temp, i+1, dpMap);
+        bool exc = checkSubsequences(a, b, pre, i+1, dpMap);    
+
+        dpMap[{temp, i}] = inc || exc;
+        return dpMap[{temp, i}];
+
+    }
+
+    int getSubsequences(vector<string>& words, int prev, int i, vector<vector<int>> &dpArray){
+
+        if(i >= words.size()){
+            return 0;
+        }
+
+        if(dpArray[i][prev+1] != -1){
+            return dpArray[i][prev+1];
+        }
+
+        int include = 0;
+        string temp;
+        map<pair<string, int>, bool> dpMap;
+        if(prev == -1 || ((words[prev].length() == words[i].length() - 1) && (checkSubsequences(words[prev], words[i], temp, 0, dpMap)))){
+            include = 1 + getSubsequences(words, i, i+1, dpArray);
+        }
+
+        int exclude = getSubsequences(words, prev, i+1, dpArray);
+        dpArray[i][prev+1] = max(include, exclude);
+        return dpArray[i][prev+1];
+
+    }
+
+
+    int longestStrChain(vector<string>& words) {
+        
+        // sort(words.begin(), words.end(), check());
+        int n = words.size();
+        vector<vector<int>> dpArray(n + 1, vector<int>(n+1, -1));
+
+        return getSubsequences(words, -1, 0, dpArray);
+
+        // return ans;
+    }
+*/
