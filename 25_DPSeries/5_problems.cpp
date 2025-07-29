@@ -162,3 +162,75 @@
     }
  
 */
+
+
+/*
+
+    Longest Bitonic subsequence
+    (https://www.geeksforgeeks.org/problems/longest-bitonic-subsequence0824/1)
+
+    int longestDecSubseq(vector<int> &nums, int pre, int i, vector<vector<int>> &dpArray){
+        if(i >= nums.size()){
+            return 0;
+        }
+        
+        if(dpArray[i][pre + 1] != -1){
+            return dpArray[i][pre + 1];
+        }
+        
+        int inc = 0;
+        if(pre == -1 || nums[i] < nums[pre]){
+            inc = 1 + longestDecSubseq(nums, i, i + 1, dpArray);
+        }
+        int exc = longestDecSubseq(nums, pre, i+1, dpArray);
+        dpArray[i][pre + 1] = max(inc, exc);
+        
+        return dpArray[i][pre + 1];
+    }
+  
+    
+    int longestIncSubseq(vector<int> &nums, int pre, int i, vector<vector<int>> &dpArray){
+        if(i >= nums.size()){
+            return 0;
+        }
+        
+        if(dpArray[i][pre + 1] != -1){
+            return dpArray[i][pre + 1];
+        }
+        
+        int inc = 0;
+        if(pre == -1 || nums[i] > nums[pre]){
+            inc = 1 + longestIncSubseq(nums, i, i + 1, dpArray);
+        }
+        
+        int exc = longestIncSubseq(nums, pre, i + 1, dpArray);
+        dpArray[i][pre + 1] = max(inc, exc);
+        
+        return dpArray[i][pre + 1];
+        
+    }
+  
+    int LongestBitonicSequence(int n, vector<int> &nums) {
+        // code here
+        
+        int maxLen = 0;
+        
+        for(int i = 0; i < n; i++){
+            vector<vector<int>> lisdpArray(n + 1, vector<int>(n + 2, -1));
+            vector<vector<int>> ldsdpArray(n + 1, vector<int>(n + 2, -1));
+            
+            vector<int> incvec(nums.begin(), nums.begin() + i + 1);
+            vector<int> decvec(nums.begin() + i, nums.end());
+            int lis = longestIncSubseq(incvec, -1, 0, lisdpArray);
+            int lds = longestDecSubseq(decvec, -1, 0, ldsdpArray);
+            if(lis > 1 && lds > 1){
+                maxLen = max(maxLen, lis + lds - 1);
+            }
+            
+            
+        }
+        
+        return maxLen;
+    }
+        
+*/
