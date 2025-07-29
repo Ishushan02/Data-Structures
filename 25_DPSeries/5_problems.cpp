@@ -104,7 +104,7 @@
         return true;
     }
 
-    int longestIncreasingSubs(vector<string> &words, int pre, int i, vector<vector<int>> &dpArray, int &maxLen){
+    int longestIncreasingSubs(vector<string> &words, int pre, int i, vector<vector<int>> &dpArray){
         if(i >= words.size()){
             return 0;
         }
@@ -115,10 +115,10 @@
         int inc = 0;
 
         if(pre == -1 || stringComp(words[pre], words[i])){
-            inc = 1 + longestIncreasingSubs(words, i, i + 1, dpArray, maxLen);
+            inc = 1 + longestIncreasingSubs(words, i, i + 1, dpArray);
         }
 
-        int exc = longestIncreasingSubs(words, pre, i+1, dpArray, maxLen);
+        int exc = longestIncreasingSubs(words, pre, i+1, dpArray);
 
         maxLen = max({maxLen, inc, exc});
         dpArray[i][pre+1] = max(inc, exc);
@@ -130,17 +130,10 @@
         if(n == 1){
             return 1;
         }
-        // if(words.size() <= 50){
         sort(words.begin(), words.end(), check());
-        // }
         vector<vector<int>> dpArray(n + 2, vector<int>(n + 2, -1));
-        int maxLen = 1;
-        auto c = longestIncreasingSubs(words, -1, 0, dpArray, maxLen);
-        // string a = "abc";
-        // string b = "abd";
-
-        // cout << stringComp(a, b) << endl;
-        return maxLen;
+        return longestIncreasingSubs(words, -1, 0, dpArray);
+       
     }
  
 */
