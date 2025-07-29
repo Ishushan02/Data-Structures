@@ -169,6 +169,8 @@
     Longest Bitonic subsequence
     (https://www.geeksforgeeks.org/problems/longest-bitonic-subsequence0824/1)
 
+    (TLE)
+
     int longestDecSubseq(vector<int> &nums, int pre, int i, vector<vector<int>> &dpArray){
         if(i >= nums.size()){
             return 0;
@@ -227,10 +229,42 @@
                 maxLen = max(maxLen, lis + lds - 1);
             }
             
-            
         }
         
         return maxLen;
     }
+
+
+    EFFICIENT METHOD(VVVV Important Question)
+
+    int LongestBitonicSequence(int n, vector<int> &nums) {
+        // code here
+        vector<int> inc(n, 1);
+        vector<int> dec(n, 1);
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (nums[i] > nums[j]) {
+                    inc[i] = max(inc[i], inc[j] + 1);
+                }
+            }
+        }
         
+        for (int i = n - 1; i >= 0; --i) {
+            for (int j = n - 1; j > i; --j) {
+                if (nums[i] > nums[j]) {
+                    dec[i] = max(dec[i], dec[j] + 1);
+                }
+            }
+        }
+        
+        int maxLen = 0;
+        for (int i = 0; i < n; ++i) {
+            if(inc[i] > 1 && dec[i] > 1){
+                maxLen = max(maxLen, inc[i] + dec[i] - 1);
+            }
+        }
+
+        return maxLen;
+    }
+
 */
