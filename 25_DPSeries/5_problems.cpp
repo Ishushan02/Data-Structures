@@ -68,7 +68,7 @@
 */
 
 /*
-    1048. Longest String Chain (TLE)
+    1048. Longest String Chain 
     (https://leetcode.com/problems/longest-string-chain/)
 
     struct check{
@@ -77,65 +77,70 @@
         }
     };
 
-    bool checkSubsequences(string &a, string &b, string &temp, int i, map<pair<string, int>, bool> &dpMap){
-        if(i >= b.length()){
-            if(temp == a){
-                return true;
-            }
+    bool stringComp(string &a, string &b){
+        if(a.length() != b.length()-1){
             return false;
         }
+        int i = 0;
+        int j = 0;
+        int count = 0;
+        while(i < a.length() && j < b.length()){
+            if(a[i] == b[j]){
+                i++;
+                j++;
+            }else{
+                count += 1;
+                j++;
+            }
 
-        if(temp == a){
-            return true;
+            if(count > 1){
+                return false;
+            }
         }
 
-        if(dpMap.find({temp, i}) != dpMap.end()){
-            return dpMap[{temp, i}];
+        if(count > 1 || i < a.length()){
+            return false;
         }
-
-        string pre = temp;
-        bool inc = false;
-        temp += b[i];
-        inc = checkSubsequences(a, b, temp, i+1, dpMap);
-        bool exc = checkSubsequences(a, b, pre, i+1, dpMap);    
-
-        dpMap[{temp, i}] = inc || exc;
-        return dpMap[{temp, i}];
-
+        return true;
     }
 
-    int getSubsequences(vector<string>& words, int prev, int i, vector<vector<int>> &dpArray){
-
+    int longestIncreasingSubs(vector<string> &words, int pre, int i, vector<vector<int>> &dpArray, int &maxLen){
         if(i >= words.size()){
             return 0;
         }
 
-        if(dpArray[i][prev+1] != -1){
-            return dpArray[i][prev+1];
+        if(dpArray[i][pre+1] != -1){
+            return dpArray[i][pre+1];
+        }
+        int inc = 0;
+
+        if(pre == -1 || stringComp(words[pre], words[i])){
+            inc = 1 + longestIncreasingSubs(words, i, i + 1, dpArray, maxLen);
         }
 
-        int include = 0;
-        string temp;
-        map<pair<string, int>, bool> dpMap;
-        if(prev == -1 || ((words[prev].length() == words[i].length() - 1) && (checkSubsequences(words[prev], words[i], temp, 0, dpMap)))){
-            include = 1 + getSubsequences(words, i, i+1, dpArray);
-        }
+        int exc = longestIncreasingSubs(words, pre, i+1, dpArray, maxLen);
 
-        int exclude = getSubsequences(words, prev, i+1, dpArray);
-        dpArray[i][prev+1] = max(include, exclude);
-        return dpArray[i][prev+1];
-
+        maxLen = max({maxLen, inc, exc});
+        dpArray[i][pre+1] = max(inc, exc);
+        return dpArray[i][pre+1];
     }
-
 
     int longestStrChain(vector<string>& words) {
-        
-        // sort(words.begin(), words.end(), check());
         int n = words.size();
-        vector<vector<int>> dpArray(n + 1, vector<int>(n+1, -1));
+        if(n == 1){
+            return 1;
+        }
+        // if(words.size() <= 50){
+        sort(words.begin(), words.end(), check());
+        // }
+        vector<vector<int>> dpArray(n + 2, vector<int>(n + 2, -1));
+        int maxLen = 1;
+        auto c = longestIncreasingSubs(words, -1, 0, dpArray, maxLen);
+        // string a = "abc";
+        // string b = "abd";
 
-        return getSubsequences(words, -1, 0, dpArray);
-
-        // return ans;
+        // cout << stringComp(a, b) << endl;
+        return maxLen;
     }
+ 
 */
