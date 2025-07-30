@@ -268,3 +268,40 @@
     }
 
 */
+
+/*
+    673. Number of Longest Increasing Subsequence
+    (https://leetcode.com/problems/number-of-longest-increasing-subsequence/description/)
+
+    int findNumberOfLIS(vector<int>& nums) {
+        
+        int n = nums.size();
+        vector<int> dpArray(n + 1, 1);
+        vector<int> count(n + 1, 1);
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < i; j++){
+                if(nums[i] > nums[j]){
+                    if(dpArray[i] == 1 + dpArray[j]){
+                        count[i] += count[j];
+                    }else if(1 + dpArray[j] > dpArray[i]){
+                        dpArray[i] = 1 + dpArray[j];
+                        count[i] = count[j];
+                    }
+                }
+                
+            }
+        }
+
+        int LIS = *max_element(dpArray.begin(), dpArray.end());
+        int ans = 0;
+        for(int i = 0; i < n; i++){
+            if(dpArray[i] == LIS){
+                ans += count[i];
+            }
+        }
+
+        return ans;
+    }
+
+*/
