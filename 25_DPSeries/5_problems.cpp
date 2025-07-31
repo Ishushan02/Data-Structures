@@ -305,3 +305,40 @@
     }
 
 */
+
+
+/*
+
+    1498. Number of Subsequences That Satisfy the Given Sum Condition
+    (https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/description/)
+    I Didnot get this Intution, complete it again, do it again.. VVVIIII Question, good logic
+
+    int MOD = 1000000007;
+
+    int numSubseq(vector<int>& nums, int target) {
+        vector<int> temp;
+        int ans = 0;
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+
+        vector<int> preComputePow(n+1, 0);
+        preComputePow[0] = 1;
+
+        for(int i = 1; i <= n; i++){
+            preComputePow[i] = (2 * preComputePow[i-1])%MOD;
+        }
+        int i = 0; 
+        int j = nums.size()-1;
+        while(i <= j){
+            if(nums[i] + nums[j] > target){
+                j--;
+            }else{
+                int s = preComputePow[j- i] % MOD;
+                ans = (ans + s) % MOD;
+                i++;
+            }
+        }
+
+        return ans;
+    }
+*/
