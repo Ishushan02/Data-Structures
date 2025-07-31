@@ -374,5 +374,31 @@
         vector<vector<int>> ANS(ans.begin(), ans.end());
         return ANS;
     }
+
+*/
+
+/*
+
+    334. Increasing Triplet Subsequence
+    (https://leetcode.com/problems/increasing-triplet-subsequence/description/)
+
+    bool increasingTriplet(vector<int>& nums) {
         
+        int firstSmall = INT_MAX;
+        int secondSmall = INT_MAX;
+
+        for(int i = 0; i < nums.size(); i++){
+
+            if(nums[i] < firstSmall){
+                firstSmall = nums[i];
+            }else if(nums[i] > firstSmall && nums[i] < secondSmall){
+                secondSmall = nums[i];
+            }
+
+            if(nums[i] > firstSmall && nums[i] > secondSmall){
+                return true;
+            }
+        }
+        return false;
+    }
 */
