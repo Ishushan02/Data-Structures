@@ -342,3 +342,37 @@
         return ans;
     }
 */
+
+/*
+    491. Non-decreasing Subsequences
+    (https://leetcode.com/problems/non-decreasing-subsequences/description/)
+
+    void allSubseq(vector<int> nums, vector<int> &temp, int prev, int i, set<vector<int>> &ans){
+        if(i >= nums.size()){
+            if(temp.size() >= 2){
+                ans.insert(temp);
+            }
+            return;
+        }
+
+        if(prev == -1 || nums[i] >= nums[prev]){
+            temp.push_back(nums[i]);
+            allSubseq(nums, temp, i, i+1, ans);
+            temp.pop_back();
+        }
+
+        allSubseq(nums, temp, prev, i+1, ans);
+
+    }
+
+    vector<vector<int>> findSubsequences(vector<int>& nums) {
+        
+        set<vector<int>> ans;
+        vector<int> temp;
+        allSubseq(nums, temp, -1, 0, ans);
+
+        vector<vector<int>> ANS(ans.begin(), ans.end());
+        return ANS;
+    }
+        
+*/
