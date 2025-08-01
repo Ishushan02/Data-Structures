@@ -402,3 +402,44 @@
         return false;
     }
 */
+
+/*
+
+    392. Is Subsequence
+    (https://leetcode.com/problems/is-subsequence/description/)
+
+    bool isSubseq(string &s, string &t, int i, int j, vector<vector<int>> &dpArray){
+        
+        if(j >= t.length()){
+            if(i >= s.length()){
+                return true;
+            }
+            return false;
+        }
+
+        if(i >= s.length()){
+            return true;
+        }
+
+        if(dpArray[i][j] != -1){
+            return dpArray[i][j];
+        }
+
+        bool subseq = false;
+        if(s[i] == t[j]){
+            bool inc = isSubseq(s, t, i+1, j+1, dpArray);
+            bool exc = isSubseq(s, t, i, j+1, dpArray);
+            subseq = inc || exc ;
+        }else{
+            subseq = isSubseq(s, t, i, j+1, dpArray);
+        }
+        dpArray[i][j] = subseq;
+        return dpArray[i][j];
+    }
+
+    bool isSubsequence(string s, string t) {
+        vector<vector<int>> dpArray(s.length()+1, vector<int>(t.length()+1, -1));
+        return isSubseq(s, t, 0, 0, dpArray);
+    }
+        
+*/
