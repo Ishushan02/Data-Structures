@@ -36,4 +36,28 @@
         return minMatMulCost(arr, 1, n-1, dpArray);
     }
 
+    // Tabulation Method
+
+    int matrixMultiplication(vector<int> &arr) {
+        // code here
+        int n = arr.size();
+        vector<vector<int>> dpArray(n+1, vector<int>(n+1, 0));
+        
+        for(int i = 0; i < n + 1; i++){
+            dpArray[i][i] = 0;
+        }
+        
+        for(int i = n-1; i >= 0; i--){
+            for(int j = i+1; j < n; j++){
+                int minSteps = 1e9;
+                for(int k = i; k < j; k++){
+                    int steps = arr[i-1] * arr[k] * arr[j] + dpArray[i][k] + dpArray[k+1][j];
+                    minSteps = min(minSteps, steps);
+                }
+                dpArray[i][j] = minSteps;
+            }
+        }
+        
+        return dpArray[1][n-1];
+    }
 */
