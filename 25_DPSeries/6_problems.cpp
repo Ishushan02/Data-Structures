@@ -91,3 +91,34 @@
 
     }
 */
+
+/*
+    312. Burst Balloons
+    (https://leetcode.com/problems/burst-balloons/description/)
+
+    int maxCoins(vector<int>& nums) {
+        nums.insert(nums.begin(), 1);
+        nums.push_back(1);
+
+        // return getMaxBurst(nums, 1, nums.size()-2);
+        int n = nums.size();
+        vector<vector<int>> dpArray(n+1, vector<int>(n + 1, 0));
+
+        for(int start = n-1; start >= 1; start--){
+            for(int end = 1; end <= n - 2; end++){
+                if(start > end){
+                    continue;
+                }
+                int maxBurst = 0;
+                for(int k = start; k <= end; k++){
+                    int burst = nums[start - 1] * nums[k] * nums[end + 1] + getMaxBurst(nums, start, k-1) + getMaxBurst(nums, k+1, end);
+                    dpArray[start][end] = max(dpArray[start][end], burst);
+                }
+            }
+        }
+
+        return dpArray[1][n-2];
+
+    }
+        
+*/
