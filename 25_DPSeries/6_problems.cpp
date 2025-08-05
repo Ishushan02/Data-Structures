@@ -61,3 +61,33 @@
         return dpArray[1][n-1];
     }
 */
+
+/*
+    1547. Minimum Cost to Cut a Stick
+    (https://leetcode.com/problems/minimum-cost-to-cut-a-stick/)
+
+    int minCost(int n, vector<int>& cuts) {
+        cuts.push_back(n);
+        cuts.insert(cuts.begin(), 0);
+        sort(cuts.begin(), cuts.end());
+        // int n = cuts.size();
+
+        int m = cuts.size();
+        vector<vector<int>> dpArray(m+1, vector<int>(m + 1, 0));
+
+        for(int len = 2; len < m; len++){
+            for(int i = 0; i + len < m; i++){
+                int j = i + len;
+                int minCuts = 1e9;
+                for(int k = i + 1; k < j; k++){
+                    int cutCost = (cuts[j] - cuts[i]) + dpArray[i][k] + dpArray[k][j];
+                    minCuts = min(minCuts, cutCost);
+                }
+            dpArray[i][j] = minCuts;   
+            }
+        }
+
+        return dpArray[0][m-1];
+
+    }
+*/
