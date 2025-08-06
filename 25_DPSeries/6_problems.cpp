@@ -144,5 +144,51 @@
         return dpArray[1][n-2];
 
     }
+
+
+    2nd Metod
+    (There are 2 Methods, check recursion and Bottom Up )
+
+    int getMaxCoins(vector<int> &nums, int i, int j){
+        if(i > j){
+            return 0;
+        }
+
+        int maxCoins = 0;
+        for(int k = i; k <= j; k++){
+            cout << i-1 << " , " << k << " , " << j << endl;
+            int coins = nums[i-1] * nums[k] * nums[j+1] +
+                    getMaxCoins(nums, i, k - 1) +
+                    getMaxCoins(nums, k+1, j);
+            maxCoins = max(coins, maxCoins); 
+        }
+
+        return maxCoins;
+    }
+
+    int maxCoins(vector<int>& nums) {
+        nums.insert(nums.begin(), 1);
+        nums.push_back(1);
+        int n = nums.size();
+        // return getMaxCoins(nums, 1, n-2);
+        vector<vector<int>> dpArray(n + 1, vector<int>(n+1, 0));
+
+        for(int len = 1; len < n; len++){
+            for(int i = 1; i + len < n; i++){
+                int j = i + len - 1;
+                int maxCoins = 0;
+                for(int k = i; k <= j; k++){
+                    int coins = nums[i-1] * nums[k] * nums[j+1] +
+                            dpArray[i][k-1]+
+                            dpArray[k+1][j];
+                    maxCoins = max(coins, maxCoins); 
+                }
+                dpArray[i][j] = maxCoins;
+            }
+        }
+
+        return dpArray[1][n-2];
+
+    }
         
 */
