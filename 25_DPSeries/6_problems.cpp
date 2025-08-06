@@ -192,3 +192,69 @@
     }
         
 */
+
+/*
+
+    Boolean Parenthesization
+    (https://www.geeksforgeeks.org/problems/boolean-parenthesization5610/1)
+
+    int totalTrueWays(string &s, int i, int j, bool isTrue, vector<vector<vector<int>>> &dpArray){
+        if(i > j){
+            return 0;
+        }
+        if(i == j){
+            if(isTrue){
+                return s[i] =='T';
+            }else{
+                return s[i] == 'F';
+            }
+        }
+        
+        if(dpArray[i][j][isTrue] != -1){
+            return dpArray[i][j][isTrue];
+        }
+        
+        int allWays = 0;
+        for(int k = i+1; k <= j; k += 2){
+            int leftTrue = totalTrueWays(s, i, k-1, true, dpArray);
+            int leftFalse = totalTrueWays(s, i, k-1, false, dpArray);
+            int rightTrue = totalTrueWays(s, k+1, j, true, dpArray);
+            int rightFalse = totalTrueWays(s, k+1, j, false, dpArray);
+            
+            if(s[k] == '&'){
+                if(isTrue){
+                    allWays += ((  leftTrue * rightTrue ) ) ;
+                }else{
+                    allWays += (((  leftTrue * rightFalse)  + (  leftFalse * rightTrue) 
+                    + (  rightFalse * leftFalse) ))  ;
+                }
+            }else if(s[k] == '|'){
+                if(isTrue){
+                    allWays += ( (  leftTrue * rightTrue ) + (  leftFalse * rightTrue )  +
+                    (  leftTrue * rightFalse) ) ;
+                }else{
+                    allWays += ((  leftFalse * rightFalse)  ) ;
+                }
+            }else{
+                if(isTrue){
+                    allWays += ((  leftTrue*rightFalse)  + (  leftFalse * rightTrue) ) ;
+                }else{
+                    allWays += ((  leftTrue*rightTrue)  + (  leftFalse * rightFalse) ) ;
+                }
+            }
+
+        }
+        
+        dpArray[i][j][isTrue] = allWays ;
+        
+        return dpArray[i][j][isTrue];
+    }
+  
+    int countWays(string &s) {
+        // code here
+        int n = s.length();
+        vector<vector<vector<int>>> dpArray(n + 1, vector<vector<int>>(n + 1,
+        vector<int>(2, -1)));
+        return totalTrueWays(s, 0, n-1, 1, dpArray);
+    }
+*/
