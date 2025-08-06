@@ -60,6 +60,30 @@
         
         return dpArray[1][n-1];
     }
+
+    METHOD 2
+    int matrixMultiplication(vector<int> &arr) {
+        // code here
+        int n = arr.size();
+        vector<vector<int>> dpArray(n + 1, vector<int>(n+1, 0));
+        
+        for(int len = 2; len < n; len++){
+            for(int i = 1; i < n - len + 1; i++){
+                int j = i + len - 1;
+                int minCounts = INT_MAX;
+                for(int k = i; k < j; k++){
+                    int cnt = arr[i-1] * arr[k] * arr[j] + 
+                    dpArray[i][k] + 
+                    dpArray[k+1][j];
+                    minCounts = min(minCounts, cnt);
+                }
+                dpArray[i][j] = minCounts;
+            }
+        }
+        
+        return dpArray[1][n-1];
+        
+    }
 */
 
 /*
