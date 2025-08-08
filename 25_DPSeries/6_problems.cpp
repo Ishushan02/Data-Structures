@@ -258,3 +258,60 @@
         return totalTrueWays(s, 0, n-1, 1, dpArray);
     }
 */
+
+/*
+    132. Palindrome Partitioning II
+    (https://leetcode.com/problems/palindrome-partitioning-ii/description/)
+
+    bool isPalindrome(string &s){
+        int i = 0;
+        int j = s.length()-1;
+        while(i<=j){
+            if(s[i] != s[j]){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    int getMinPartCut(string &s, int idx, vector<int> &dpArray){
+        if(idx >= s.length()){
+            return 0;
+        }
+
+        if(dpArray[idx] != -1){
+            return dpArray[idx];
+        }
+
+        string temp;
+        int cut = 0;
+        int minCut = INT_MAX;
+        for(int i = idx; i < s.length(); i++){
+            temp += s[i];
+            if(isPalindrome(temp)){
+                int cut = getMinPartCut(s, i+1, dpArray);
+                if(cut != INT_MAX){
+                    cut = cut + 1;
+                }
+                minCut = min(minCut, cut);
+            }
+        }
+
+        dpArray[idx] = minCut;
+
+        return dpArray[idx];
+    }
+
+    int minCut(string s) {
+        if(isPalindrome(s)){
+            return 0;
+        }
+
+        int minCutAns = INT_MAX;
+        vector<int> dpArray(s.length() + 1, -1);
+        return getMinPartCut(s, 0, dpArray) - 1;
+    }
+        
+*/
