@@ -343,3 +343,60 @@
     }
 
 */
+
+/*
+
+    1745. Palindrome Partitioning IV
+    (https://leetcode.com/problems/palindrome-partitioning-iv/description/)
+
+    OPTIMIZE IT
+    bool isPalindrome(string &s){
+        int i = 0;
+        int j = s.length()-1;
+        while(i<=j){
+            if(s[i] != s[j]){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    void getMinPartCut(string &s, int idx, int cut, bool &ans, vector<vector<int>> &dpArray){
+        if(idx >= s.length()){
+            if(cut == 3){
+                ans = true;
+            }
+            return ;
+        }
+
+        if(dpArray[idx][cut] != -1){
+            return ;
+        }
+
+        string temp;
+        for(int i = idx; i < s.length(); i++){
+            temp += s[i];
+            if(isPalindrome(temp)){
+                getMinPartCut(s, i+1, cut + 1, ans, dpArray);
+            }
+        }
+
+        dpArray[idx][cut] = ans;
+
+    }
+
+    bool checkPartitioning(string s) {
+        
+        int n = s.length();
+
+        // int minCutAns = INT_MAX;
+        bool ans = false;
+        vector<vector<int>> dpArray(n + 1, vector<int>(n + 1, -1));
+        getMinPartCut(s, 0, 0, ans, dpArray);
+       
+        return ans;
+    }
+        
+*/
