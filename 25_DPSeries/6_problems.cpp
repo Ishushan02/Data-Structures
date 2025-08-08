@@ -313,5 +313,33 @@
         vector<int> dpArray(s.length() + 1, -1);
         return getMinPartCut(s, 0, dpArray) - 1;
     }
-        
+
+    Bottom UP Approach
+    int minCut(string s) {
+
+        int minCutAns = INT_MAX;
+        int n = s.length();
+        vector<int> dpArray(n + 2, 0);
+        // return getMinPartCut(s, 0, dpArray) - 1;
+
+        for(int idx = n-1; idx >= 0; idx--){
+            string temp;
+            int minCut = INT_MAX;
+            for(int i = idx; i < s.length(); i++){
+                temp += s[i];
+                if(isPalindrome(temp)){
+                    int cut = dpArray[i+1];
+                    if(cut != INT_MAX){
+                        cut = cut + 1;
+                    }
+                    minCut = min(minCut, cut);
+                }
+            }
+
+            dpArray[idx] = minCut;
+        }
+
+        return dpArray[0]-1;
+    }
+
 */
