@@ -398,5 +398,42 @@
        
         return ans;
     }
+
+*/
+
+
+/*
+
+    1043. Partition Array for Maximum Sum
+    (https://leetcode.com/problems/partition-array-for-maximum-sum/)
+
+    int getMaxParSum(vector<int> &arr, int idx, int k, vector<int> &dpArray){
+
+        int maxSum = 0;
+        int maxVal = 0;
+        int len = 0;
+
+        if(dpArray[idx] != -1){
+            return dpArray[idx];
+        }
+        
+        for(int i = idx; i < arr.size() && i < idx + k; i++){
+            len += 1;
+            maxVal = max(maxVal, arr[i]);
+
+            int sum = maxVal * len + getMaxParSum(arr, i + 1, k, dpArray);
+            maxSum = max(maxSum, sum);
+        }
+
+        dpArray[idx] = maxSum;
+
+        return dpArray[idx];
+    }
+
+    int maxSumAfterPartitioning(vector<int>& arr, int k) {
+        
+        vector<int> dpArray(arr.size()+1, -1);
+        return getMaxParSum(arr, 0, k, dpArray);
+    }
         
 */
