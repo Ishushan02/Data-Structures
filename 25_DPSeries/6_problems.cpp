@@ -435,5 +435,57 @@
         vector<int> dpArray(arr.size()+1, -1);
         return getMaxParSum(arr, 0, k, dpArray);
     }
+
+*/
+
+/*
+    85. Maximal Rectangle
+    (https://leetcode.com/problems/maximal-rectangle/description/)
+
+    int getMaxArea(vector<int> &heights, int n){
+        stack<int> st;
+
+        int maxArea = 0;
+        for(int i = 0; i <= n; i++){
+            while((!st.empty()) && (i == n || heights[st.top()] > heights[i])){
+                int ht = heights[st.top()];
+                st.pop();
+
+                int wt = i;
+                if(!st.empty()){
+                    wt = i - st.top() - 1;
+                }
+                maxArea = max(maxArea, ht * wt);
+            }
+            st.push(i);
+        }
+
+        return maxArea;
+    }
+
+
+    int maximalRectangle(vector<vector<char>>& matrix) {
         
+        int m = matrix.size();
+        int n = matrix[0].size();
+        vector<int> heights(n, 0);
+
+        int maxRectangle = 0;
+        for(int i = 0; i < m; i++){
+
+            for(int j = 0; j < n; j++){
+                if(matrix[i][j] == '1'){
+                    heights[j] += 1;
+                }else{
+                    heights[j] = 0;
+                }
+            }
+
+            int area = getMaxArea(heights, n);
+            maxRectangle = max(maxRectangle, area);
+        }
+
+        return maxRectangle;
+
+    }
 */
