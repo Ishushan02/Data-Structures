@@ -319,5 +319,32 @@ int main(){
 
         return maxArea;
     }
+
+
+    Efficient Solution (VVIIMMPPP)
+    int largestRectangleArea(vector<int>& heights) {
+        
+        int n = heights.size();
+        stack<int> st;
+
+        int maxRect = 0;
+        for(int i = 0; i <= n; i++){
+
+            while((!st.empty()) &&  (i == n || heights[st.top()] > heights[i])){
+                int ht = heights[st.top()];
+                st.pop();
+                int wt = i;
+                if(!st.empty()){
+                    wt = i - st.top() - 1;
+                }
+
+                maxRect = max(maxRect, ht * wt);
+            }
+            st.push(i);
+
+        }
+        return maxRect;
+
+    }
     
 */
