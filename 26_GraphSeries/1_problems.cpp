@@ -100,3 +100,51 @@
 
     Done See, previous submissions or my Code
 */
+
+/*
+    733. Flood Fill
+    (https://leetcode.com/problems/flood-fill/description/)
+
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        queue<pair<int, int>> que;
+        
+        que.push({sr, sc});
+
+        int m = image.size();
+        int n = image[0].size();
+
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+
+        while(!que.empty()){
+            auto curr = que.front();
+            que.pop();
+
+            int i = curr.first;
+            int j = curr.second;
+
+            if(visited[i][j] == true){
+                continue ;
+            }
+
+            visited[i][j] = true;
+            int initialCol = image[i][j];
+            image[i][j] = color;
+
+            if(i + 1 < m && image[i+1][j] == initialCol && visited[i+1][j] == false){
+                que.push({i+1, j});
+            }
+            if(j + 1 < n && image[i][j+1] == initialCol && visited[i][j+1] == false){
+                que.push({i, j+1});
+            }
+            if(i - 1 >= 0 && image[i-1][j] == initialCol && visited[i-1][j] == false){
+                que.push({i-1, j});
+            }
+            if(j - 1 >= 0 && image[i][j-1] == initialCol && visited[i][j-1] == false){
+                que.push({i, j-1});
+            }
+
+        }
+
+        return image;
+    }
+*/
