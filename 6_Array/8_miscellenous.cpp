@@ -75,3 +75,41 @@
     }
         
 */
+
+/*
+    42. Trapping Rain Water
+    (https://leetcode.com/problems/trapping-rain-water/description/)
+
+    int trap(vector<int>& height) {
+        int n = height.size();
+        vector<int> maxLeft(height.begin(), height.end());
+        vector<int> maxRight(height.begin(), height.end());
+
+        int l = 0;
+        int r = n - 1;
+
+        int maxLeftVal = height[l];
+        int maxRightVal = height[r];
+        while(l < n){
+            maxLeftVal = max(maxLeftVal, height[l]);
+            maxRightVal = max(maxRightVal, height[r]);
+            maxLeft[l] = maxLeftVal;
+            maxRight[r] = maxRightVal;
+            l++;
+            r--;
+        }
+
+        int i = 0;
+        int area = 0;
+
+        while(i < height.size()){
+            int boundary = min(maxLeft[i], maxRight[i]);
+            if(boundary > height[i]){
+                area += (boundary - height[i]);
+            }
+            i++;
+        }
+
+        return area;
+    }
+*/
