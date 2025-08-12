@@ -256,4 +256,52 @@
         }
         return false;
     }
+
+    -- BFS
+
+    bool bfs(int V, unordered_map<int, vector<int>> &graph, int node, vector<bool> &visited){
+        queue<int> que;
+        que.push(node);
+        vector<int> parents(V, -1);
+        
+        while(!que.empty()){
+            
+            int parent = que.front();
+            visited[parent] = true;
+            que.pop();
+            for(auto v:graph[parent]){
+                if(visited[v] == false){
+                    parents[v] = parent;
+                    // cout << parent << " , in que -> " << v << endl;
+                    que.push(v);
+                }else if(parents[parent] != v){
+                    // cout << parent << " , Cycle -> " << v << endl;
+                    return true;
+                }
+            }
+            
+        }
+        return false;
+    }
+  
+    bool isCycle(int V, vector<vector<int>>& edges) {
+        // Code here
+        unordered_map<int, vector<int>> graph;
+        for(int i = 0; i < edges.size(); i++){
+            graph[edges[i][0]].push_back(edges[i][1]);
+            graph[edges[i][1]].push_back(edges[i][0]);
+        }
+        
+        int n = V;
+        vector<bool> visited(n, false);
+        for(int i = 0; i < n; i++){
+            if(visited[i] == false){
+                if(bfs(V, graph, i, visited)){
+                    return true;
+                }
+            }
+        }
+        return false;
+        
+    }
 */
