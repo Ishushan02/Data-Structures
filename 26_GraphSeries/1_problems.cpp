@@ -214,3 +214,46 @@
 
     }
 */
+
+/*
+    Undirected Graph Cycle - DFS
+    (https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1)
+    
+    bool dfs(unordered_map<int, vector<int>> &graph, vector<bool> &visited, int node, int parent, bool &cycle){
+        visited[node] = true;
+
+        for(auto v:graph[node]){
+            if(visited[v] == false){
+               if(dfs(graph, visited, v, node, cycle)){
+                   return true;
+               }
+            }else if(v != parent){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+  
+    bool isCycle(int V, vector<vector<int>>& edges) {
+        // Code here
+        unordered_map<int, vector<int>> graph;
+        for(int i = 0; i < edges.size(); i++){
+            graph[edges[i][0]].push_back(edges[i][1]);
+            graph[edges[i][1]].push_back(edges[i][0]);
+        }
+        
+        int n = V;
+        vector<bool> visited(n, false);
+        bool cycle = false;
+        for(int i = 0; i < n; i++){
+            if(visited[i] == false){
+                if(dfs(graph, visited, i, -1, cycle)){
+                    return true;
+                }
+            }
+            
+        }
+        return false;
+    }
+*/
