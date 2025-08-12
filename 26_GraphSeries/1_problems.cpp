@@ -305,3 +305,60 @@
         
     }
 */
+
+/*
+    542. 01 Matrix
+    (https://leetcode.com/problems/01-matrix/description/)
+
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        
+        int m = mat.size();
+        int n = mat[0].size();
+        vector<vector<int>> ansMat(m, vector<int>(n, 0));
+        vector<vector<int>> visited(m, vector<int>(n, 0));
+
+        queue<pair<int, pair<int, int>>> queVal;
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(mat[i][j] == 0){
+                    queVal.push({0, {i, j}});
+                    visited[i][j] = 1;
+                }
+            }
+        }
+
+        while(!queVal.empty()){
+
+            auto front = queVal.front();
+
+            queVal.pop();
+
+            int i = front.second.first;
+            int j = front.second.second;
+            int dist = front.first;
+            ansMat[i][j] = dist;
+
+            if(i + 1 < m && visited[i+1][j] == 0){
+                visited[i+1][j] = 1;
+                queVal.push({dist + 1, {i+1, j}});
+            }
+
+            if(j + 1 < n && visited[i][j+1] == 0){
+                visited[i][j+1] = 1;
+                queVal.push({dist + 1, {i, j + 1}});
+            }
+            if(i - 1 >= 0 && visited[i-1][j] == 0){
+                visited[i-1][j] = 1;
+                queVal.push({dist + 1, {i-1, j}});
+            }
+            if(j - 1 >= 0 && visited[i][j-1] == 0){
+                visited[i][j-1] = 1;
+                queVal.push({dist + 1, {i, j-1}});
+            }
+
+        }
+
+        return ansMat;
+    }
+*/
