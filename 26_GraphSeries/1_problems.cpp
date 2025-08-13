@@ -362,3 +362,68 @@
         return ansMat;
     }
 */
+
+/*
+    130. Surrounded Regions
+    (https://leetcode.com/problems/surrounded-regions/description/)
+
+    void getSurroundings(int m, int n, vector<vector<char>>& board,  queue<pair<int, int>> &que){
+        
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+        while(!que.empty()){
+            auto [i, j] = que.front();
+            que.pop();
+            if(i < 0 || i >= m || j < 0 || j >= n || board[i][j] !='O'){
+                continue;
+            }
+
+            board[i][j] = 'T';
+
+            que.push({i+1, j});
+            que.push({i, j-1});
+            que.push({i, j+1});
+            que.push({i-1, j});
+        }
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(board[i][j] == 'O'){
+                    board[i][j] = 'X';
+                }
+                if(board[i][j] == 'T'){
+                    board[i][j] = 'O';
+                }
+            }
+        }
+
+    }
+
+    void solve(vector<vector<char>>& board) {
+        int m = board.size();
+        int n = board[0].size();
+
+        queue<pair<int, int>> que;
+        for(int i = 0; i < m; i++){
+            if(board[i][0] == 'O'){
+                que.push({i, 0});
+            }
+            if(board[i][n - 1] == 'O'){
+                que.push({i, n-1});
+            }
+        }
+
+        for(int i = 0; i < n; i++){
+            if(board[0][i] == 'O'){
+                que.push({0, i});
+            }
+            if(board[m-1][i] == 'O'){
+                que.push({m-1, i});
+            }
+        }
+        
+        cout <<que.size() << endl;
+        getSurroundings(m, n, board, que);
+
+    }
+        
+*/
