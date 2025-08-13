@@ -483,5 +483,64 @@
         return height;
 
     }
+
+*/
+
+/*
+    1020. Number of Enclaves
+    (https://leetcode.com/problems/number-of-enclaves/description/)
+
+    int numEnclaves(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+
+        queue<pair<int, int>> que;
+
+        for(int i = 0; i < m; i++){
+            if(grid[i][0] == 1){
+                que.push({i, 0});
+            }
+            if(grid[i][n-1] == 1){
+                que.push({i, n-1});
+            }
+        }
+
+        for(int i = 0; i < n; i++){
+            if(grid[0][i] == 1){
+                que.push({0, i});
+            }
+            if(grid[m-1][i] == 1){
+                que.push({m-1, i});
+            }
+        }
+
+        while(!que.empty()){
+            auto [i, j] = que.front();
+            que.pop();
+
+            if(i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0){
+                continue;
+            }
+
+            grid[i][j] = 0;
+            que.push({i+1, j});
+            que.push({i-1, j});
+            que.push({i, j+1});
+            que.push({i, j-1});
+        }
+
+        int ans = 0;
+        vector<vector<bool>> visited(m, vector<bool>(n, 0));
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 1){
+                    ans += 1;
+                }
+            }
+        }
+
+        return ans;
+
+    }
         
 */
