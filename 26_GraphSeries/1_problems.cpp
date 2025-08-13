@@ -425,5 +425,63 @@
         getSurroundings(m, n, board, que);
 
     }
+
+*/
+
+/*
+    1765. Map of Highest Peak
+    (https://leetcode.com/problems/map-of-highest-peak/description/)
+
+    vector<vector<int>> highestPeak(vector<vector<int>>& isWater) {
+        int m = isWater.size();
+        int n = isWater[0].size();
+
+        queue<pair<int, pair<int, int>>> que;
+        vector<vector<int>> visited(m, vector<int>(n, 0));
+
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(isWater[i][j] == 1){
+                    que.push({0, {i, j}});
+                    visited[i][j] = 1;
+                }
+            }
+        } 
+        
+        vector<vector<int>> height(m, vector<int>(n, 0));
+
+        while(!que.empty()){
+            auto val = que.front();
+            int cnt = val.first;
+            int i = val.second.first;
+            int j = val.second.second;
+
+            height[i][j] = cnt;
+
+            if(i+1 < m && visited[i+1][j] == 0){
+                que.push({cnt+1, {i+1, j}});
+                visited[i+1][j] = 1;
+            }
+
+            if(i-1 >= 0 && visited[i-1][j] == 0){
+                que.push({cnt+1, {i-1, j}});
+                visited[i-1][j] = 1;
+            }
+            if(j+1 < n && visited[i][j+1] == 0){
+                que.push({cnt+1, {i, j+1}});
+                visited[i][j+1] = 1;
+            }
+            if(j-1 >= 0 && visited[i][j-1] == 0){
+                que.push({cnt+1, {i, j-1}});
+                visited[i][j-1] = 1;
+            }
+
+            que.pop();
+        }
+
+        return height;
+
+    }
         
 */
