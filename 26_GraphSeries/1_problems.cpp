@@ -596,3 +596,57 @@
         return ans.size();
     }
 */
+
+
+/*
+    785. Is Graph Bipartite?
+    (https://leetcode.com/problems/is-graph-bipartite/description/)
+
+    void colorGraph(int node, vector<vector<int>>& graph, vector<bool>& visited, unordered_map<int, char>& coloredGraph, char color){
+
+        char nextCol;
+        if(color == 'r'){
+            nextCol = 'g';
+        }else{
+            nextCol = 'r';
+        }
+        visited[node] = true;
+        coloredGraph[node] = color;
+
+        for(auto v:graph[node]){
+            if(visited[v] == false){
+                colorGraph(v, graph, visited, coloredGraph, nextCol);
+            }
+        }
+
+        
+    }
+
+    bool isBipartite(vector<vector<int>>& graph) {
+        
+        int n = graph.size();
+        char col = 'r';
+        unordered_map<int, char> coloredGraph;
+        vector<bool> visited(n, false);
+
+        for(int i = 0; i < n; i++){
+            if(visited[i] == false){
+                colorGraph(i, graph, visited, coloredGraph, col);
+            }
+        }
+
+        for(int i = 0; i < n; i++){
+            int col = coloredGraph[i];
+
+            for(auto v:graph[i]){
+                if(coloredGraph[v] == col){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+        
+    }
+        
+*/
