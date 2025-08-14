@@ -542,5 +542,59 @@
         return ans;
 
     }
+
+*/
+
+/*
+
+    Number of Distinct Islands
+    (https://www.geeksforgeeks.org/problems/number-of-distinct-islands/1)
+
+    void colorIslands(int X, int Y, vector<vector<int>>& grid, int i, int j, 
+    int m, int n, vector<vector<int>>& visited){
+        if(i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0){
+            return ;
+        }
+        grid[i][j] = 0;
         
+        if(i + 1 < m && grid[i+1][j] == 1){
+            visited.push_back({i+1-X, j-Y});
+            colorIslands(X, Y, grid, i+1, j, m, n, visited);
+        }
+        
+        if(j + 1 < n && grid[i][j+1] == 1 ){
+            visited.push_back({i-X, j+1-Y});
+            colorIslands(X, Y, grid, i, j+1, m, n, visited);
+        }
+        
+        if(i - 1 >= 0 && grid[i-1][j] == 1 ){
+            visited.push_back({i-1-X, j-Y});
+            colorIslands(X, Y, grid, i-1, j, m, n, visited);
+        }
+        
+        if(j - 1 >= 0 && grid[i][j-1] == 1){
+            visited.push_back({i-X, j-1-Y});
+            colorIslands(X, Y, grid, i, j-1, m, n, visited);
+        }
+    }
+  
+    int countDistinctIslands(vector<vector<int>>& grid) {
+        // code here
+        int m = grid.size();
+        int n = grid[0].size();
+        set<vector<vector<int>>> ans;
+        
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 1){
+                    vector<vector<int>> visited;
+                    colorIslands(i , j, grid, i, j, m, n, visited);
+                    ans.insert(visited);
+                }
+            }
+        }
+        
+        
+        return ans.size();
+    }
 */
