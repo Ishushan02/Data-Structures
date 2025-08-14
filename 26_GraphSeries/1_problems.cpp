@@ -648,5 +648,66 @@
         return true;
         
     }
+
+*/
+
+/*
+    886. Possible Bipartition
+    (https://leetcode.com/problems/possible-bipartition/description/)
+
+    bool colorGraph(int vertex, unordered_map<int, vector<int>> &graph, vector<int> &colored){
+        
+        queue<pair<int, int>> que;
+        que.push({vertex, 0});
+
+        while(!que.empty()){
+            auto front = que.front();
+            int node = front.first;
+            int col = front.second;
+            que.pop();
+            colored[node] = col;
+
+            int nextCol = 0;
+            if(col == 0){
+                nextCol = 1;
+            }else{
+                nextCol = 0;
+            }
+
+            for(auto v:graph[node]){
+                if(colored[v] == col){
+                    return false;
+                }else if(colored[v] == -1){
+                    que.push({v, nextCol});
+                }
+            }
+        }
+
+        return true;
+    }
+
+    bool possibleBipartition(int n, vector<vector<int>>& dislikes) {
+        
+        vector<int> colored(n+1, -1);
+        unordered_map<int, vector<int>> graph;
+
+        for(int i = 0; i < dislikes.size(); i++){
+            int a = dislikes[i][0];
+            int b = dislikes[i][1];
+            graph[a].push_back(b);
+            graph[b].push_back(a);
+        }
+
+        for(int i = 1; i <= n; i++ ){
+            if(colored[i] == -1){
+                if(!colorGraph(i, graph, colored)){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
+    }
         
 */
