@@ -547,7 +547,8 @@
 
 /*
 
-    Number of Distinct Islands
+    694. Number of Distinct Islands
+    (https://leetcode.com/problems/number-of-distinct-islands/description/)
     (https://www.geeksforgeeks.org/problems/number-of-distinct-islands/1)
 
     void colorIslands(int X, int Y, vector<vector<int>>& grid, int i, int j, 
@@ -555,25 +556,22 @@
         if(i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0){
             return ;
         }
+        visited.push_back({i-X, j-Y});
         grid[i][j] = 0;
         
         if(i + 1 < m && grid[i+1][j] == 1){
-            visited.push_back({i+1-X, j-Y});
             colorIslands(X, Y, grid, i+1, j, m, n, visited);
         }
         
         if(j + 1 < n && grid[i][j+1] == 1 ){
-            visited.push_back({i-X, j+1-Y});
             colorIslands(X, Y, grid, i, j+1, m, n, visited);
         }
         
         if(i - 1 >= 0 && grid[i-1][j] == 1 ){
-            visited.push_back({i-1-X, j-Y});
             colorIslands(X, Y, grid, i-1, j, m, n, visited);
         }
         
         if(j - 1 >= 0 && grid[i][j-1] == 1){
-            visited.push_back({i-X, j-1-Y});
             colorIslands(X, Y, grid, i, j-1, m, n, visited);
         }
     }
