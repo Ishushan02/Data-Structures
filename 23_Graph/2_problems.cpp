@@ -213,6 +213,56 @@ Cycle Detection:
 
 /*
 
+    Good Method (Method 2)
+    Cycle in Directed Graph
+
+    bool isCycle(int node, unordered_map<int, vector<int>> &edges, vector<int> &visited,
+    vector<int> &pathVisited){
+        visited[node] = 1;
+        pathVisited[node] = 1;
+        
+        for(auto v:edges[node]){
+            
+            if(visited[v] == -1){
+                bool val = isCycle(v, edges, visited, pathVisited);
+                if(val){
+                    return true;
+                }
+            }else if(pathVisited[v] == 1){
+                return true;
+            }
+        }
+        
+        pathVisited[node] = -1;
+        return false;
+    }
+  
+    bool isCyclic(int V, vector<vector<int>> &edges) {
+        // code here
+        unordered_map<int, vector<int>> graph;
+        vector<int> visited(V, -1);
+        vector<int> pathVisited(V, -1);
+        
+        for(int i = 0; i < edges.size(); i++){
+            graph[edges[i][0]].push_back(edges[i][1]);
+        }
+        
+        for(int i = 0; i < V; i++){
+            if(visited[i] == -1){
+                bool val = isCycle(i, graph, visited, pathVisited);
+                if(val){
+                    return true;
+                }
+            }
+        }
+        return false;
+        
+    }
+
+*/
+
+/*
+
     VVVIIII Question : Amazon (Do it )
 
     Find the Number Of Island's
