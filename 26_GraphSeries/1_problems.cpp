@@ -752,5 +752,47 @@
 
         return ans;
     }
+    
+
+    Method II
+
+    bool isCycle(int node, vector<vector<int>> &edges, vector<int> &visited,
+    vector<int> &pathVisited){
+        visited[node] = 1;
+        pathVisited[node] = 1;
+        
+        for(auto v:edges[node]){
+            
+            if(visited[v] == -1){
+                bool val = isCycle(v, edges, visited, pathVisited);
+                if(val){
+                    return true;
+                }
+            }else if(pathVisited[v] == 1){
+                return true;
+            }
+        }
+        pathVisited[node] = -1;
+        return false;
+    }
+
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int> visited(n, -1);
+        vector<int> pathVisited(n, -1);
+        
+        for(int i = 0; i < n; i++){
+            if(visited[i] == -1){
+                bool val = isCycle(i, graph, visited, pathVisited);
+            }
+        }
+        vector<int> ans;
+        for(int i = 0; i < n; i++){
+            if(pathVisited[i] == -1){
+                ans.push_back(i);
+            }
+        }
+        return ans;
+    }
         
 */
