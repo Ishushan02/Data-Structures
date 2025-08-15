@@ -711,3 +711,46 @@
     }
         
 */
+
+/*
+    802. Find Eventual Safe States
+    (https://leetcode.com/problems/find-eventual-safe-states/description/)
+
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        
+        unordered_map<int, int> outdegree;
+        unordered_map<int, vector<int>> indegreeMap;
+        int n = graph.size();
+        vector<int> ans;
+        queue<int> que;
+
+        for(int i = 0; i < n; i++){
+            for(auto val:graph[i]){
+                indegreeMap[val].push_back(i);
+            }
+
+            outdegree[i] = graph[i].size();
+            if(outdegree[i] == 0){
+                que.push(i);
+            }
+        }
+
+        while(!que.empty()){
+            int node = que.front();
+            que.pop();
+            ans.push_back(node);
+
+            for(auto v:indegreeMap[node]){
+                outdegree[v]--;
+                if(outdegree[v] == 0){
+                    que.push(v);
+                }
+            }
+        }
+
+        sort(ans.begin(), ans.end());
+
+        return ans;
+    }
+        
+*/
