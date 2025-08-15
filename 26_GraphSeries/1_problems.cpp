@@ -794,5 +794,52 @@
         }
         return ans;
     }
+
+*/
+
+/*
+
+    2360. Longest Cycle in a Graph
+    (https://leetcode.com/problems/longest-cycle-in-a-graph/)
+
+    void isCycle(int node, unordered_map<int, int> &graph, vector<int> &pathVisited, vector<int> &visited, int count, unordered_map<int, int> &countGraph, int &maxLength){
+        visited[node] = 1;
+        pathVisited[node] = 1;
+        countGraph[node] = count;
+
+        int nextNode = graph[node];
+        if(nextNode != -1){
+            if(visited[nextNode] == -1){
+                isCycle(nextNode, graph, pathVisited, visited, count+1, countGraph, maxLength);
+            }else if(pathVisited[nextNode] == 1){
+                int cnt = count - countGraph[nextNode] + 1;
+                maxLength = max(maxLength, cnt);
+            }
+        }
+        pathVisited[node] = 0;
+    }
+
+    int longestCycle(vector<int>& edges) {
+        int n = edges.size();
+        unordered_map<int, int> graph;
+        for(int i = 0; i < n; i++){
+            graph[i] = edges[i];
+        }
+        
+        vector<int> visited(n, -1);
+        vector<int> pathVisited(n, 0);
+        
+
+        int maxCount = -1;
+        for(int i = 0; i < n; i++){
+            unordered_map<int, int> countGraph;
+            if(visited[i] == -1){
+                isCycle(i, graph, pathVisited, visited, 1, countGraph, maxCount);
+            }
+        }
+
+        return maxCount;
+
+    }
         
 */
