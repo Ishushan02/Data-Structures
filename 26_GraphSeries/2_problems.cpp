@@ -176,3 +176,42 @@
         return res;
     }
 */
+
+/*
+    Shortest Path in Undirected Graph
+    (https://www.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1)
+
+    vector<int> shortestPath(vector<vector<int>>& adj, int src) {
+        // code here
+        int n = adj.size();
+        vector<int> visited(n, 0);
+        vector<int> pathVisited(n, 0);
+        vector<int> distance(n, INT_MAX);
+        // dfs(src, adj, visited, pathVisited, 0, distance);
+        
+        queue<pair<int, int>> que;
+        que.push({src, 0});
+        while(!que.empty()){
+            auto fr = que.front();
+            int node = fr.first;
+            int dist = fr.second;
+            que.pop();
+            distance[node] = dist;
+            for(auto v:adj[node]){
+                if(distance[v] > dist + 1){
+                    distance[v] = dist + 1;
+                    que.push({v, dist + 1});
+                }
+            }
+        }
+        
+        for(auto &v:distance){
+            if(v == INT_MAX){
+                v = -1;
+            }
+        }
+        
+        return distance;
+    }
+        
+*/
