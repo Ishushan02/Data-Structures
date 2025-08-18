@@ -144,3 +144,35 @@
         return pathCost;
     }
 */
+
+/*
+    797. All Paths From Source to Target
+    (https://leetcode.com/problems/all-paths-from-source-to-target/description/)
+
+    void dfsPath(int node, vector<vector<int>>& graph, int src, int des, vector<int> &path, vector<vector<int>> &res){
+        // cout << node << endl;
+        if(node == des){
+            res.push_back(path);
+            return ;
+        }
+
+        for(auto v:graph[node]){
+            path.push_back(v);
+            dfsPath(v, graph, src, des, path, res);
+            path.pop_back();
+        }
+    }
+
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<vector<int>> res;
+        vector<int> path;
+
+        int src = 0;
+        int des = n - 1;
+        path.push_back(src);
+        dfsPath(0, graph, src, des, path, res);
+
+        return res;
+    }
+*/
