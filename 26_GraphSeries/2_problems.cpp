@@ -215,3 +215,68 @@
     }
         
 */
+
+
+/*
+    127. Word Ladder
+    (https://leetcode.com/problems/word-ladder/)
+
+    bool diffOne(string &a, string &b){
+        if(a == b) return false;
+        if (a.length() != b.length()) return false;
+
+        int count = 0;
+        for(int i = 0; i < a.length(); i++){
+            if(a[i] != b[i]){
+                count += 1;
+            }
+            if(count > 1){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_map<string, vector<string>> graph;
+        unordered_map<string, int> wordDist;
+        if(find(wordList.begin(), wordList.end(), beginWord) == wordList.end()){
+            wordList.push_back(beginWord);
+        }
+        if(find(wordList.begin(), wordList.end(), endWord) == wordList.end()){
+            return 0;
+        }
+        int n = wordList.size();
+        for(int i = 0; i < n; i++){
+            wordDist[wordList[i]] = INT_MAX;
+            for(int j = 0; j < n; j++){
+                if(diffOne(wordList[i], wordList[j])){
+                    graph[wordList[i]].push_back(wordList[j]);
+                }
+            }
+        }        
+        
+        queue<pair<string, int>> que;
+        // wordDist[beginWord] = 0;
+
+        que.push({beginWord, 1});
+
+        while(!que.empty()){
+            auto front = que.front();
+            que.pop();
+            string word = front.first;
+            int dist = front.second;
+            wordDist[word] = min(wordDist[word],dist);
+            for(auto v:graph[word]){
+                if(wordDist[v] > dist + 1){
+                    wordDist[v] = dist + 1;
+                    que.push({v, dist + 1});
+                }
+            }
+        }
+
+        if(wordDist[endWord] == INT_MAX) return 0;
+        
+        return wordDist[endWord];
+    }
+*/
