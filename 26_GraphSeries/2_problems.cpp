@@ -269,7 +269,6 @@
             wordDist[word] = min(wordDist[word],dist);
             for(auto v:graph[word]){
                 if(wordDist[v] > dist + 1){
-                    wordDist[v] = dist + 1;
                     que.push({v, dist + 1});
                 }
             }
@@ -278,5 +277,68 @@
         if(wordDist[endWord] == INT_MAX) return 0;
         
         return wordDist[endWord];
+    }
+
+
+    Method 2
+
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        
+        unordered_map<string, bool> visited;
+        unordered_map<int, vector<string>> dataStore;
+        unordered_set<string> stringSet(wordList.begin(), wordList.end());
+
+        queue<pair<string, int>> que;
+        que.push({beginWord, 1});
+
+        if(stringSet.count(endWord) == 0){
+            return {};
+        }
+
+        int ans = 0;
+        bool endWordReached = false;
+        while(!que.empty()){
+            auto front = que.front();
+            que.pop();
+            string s = front.first;
+            int count = front.second;
+            dataStore[count].push_back(s);
+            visited[s] = true;
+            // cout << s << " : " << endl;
+            string temp = s;
+            for(int i = 0; i < temp.length(); i++){
+                char prev = temp[i];
+                for(auto j = 'a'; j <= 'z'; j++){
+                    temp[i] = j;
+                    if(j == prev){
+                        continue;
+                    }
+
+                    if(visited[temp] == false && stringSet.count(temp) > 0){
+                        visited[temp] = true;
+                        que.push({temp, count + 1});
+                        if(temp == endWord){
+                            ans = count + 1;
+                            endWordReached = true;
+                        }
+                    }
+                }
+                temp[i] = prev;
+            }
+        }
+
+        // for(auto &[k, v]:dataStore){
+        //     cout << k << " : ";
+        //     for(auto val:v){
+        //         cout << val << " ";
+        //     }cout<<endl;
+        // }
+
+        if(endWordReached){
+            return ans;
+        }
+
+        return 0;
+
     }
 */
