@@ -389,3 +389,20 @@
         return distances;
     }
 */
+
+/*
+
+    In Dijkstra's Algorithm we can use 3 datastructures
+    Queue
+    Priority QUeue
+    Set
+
+    Queue is like a brute force approach which see and checks all possible paths, we will
+    get the answer but it is time consuming
+
+    Priority Queue and Set by default takes up the smallest dist node at the top, so they work similarily
+    the only difference between them is that one erase function and other's pop functions
+    to remove existing element from the data structure. 
+
+    Hencec Priority Queue and Set is better and efficient than Normal Queue Approach
+*/
