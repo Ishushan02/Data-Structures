@@ -342,3 +342,50 @@
 
     }
 */
+
+/*
+    126. Word Ladder II
+    (https://leetcode.com/problems/word-ladder-ii/description/)
+
+    Try DOing this, I tried multiple Approaches, try again.
+*/
+
+/*
+    Dijkstra Algorithm
+    (https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1)
+
+    vector<int> dijkstra(int V, vector<vector<int>> &edges, int src) {
+        // Code here
+        vector<int> distances(V, 1e9);
+        unordered_map<int, vector<pair<int, int>>> graph;
+        // cout << edges.size() << endl;
+        for(int i = 0; i < edges.size(); i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int w = edges[i][2];
+            graph[u].push_back({v, w});
+        }
+        
+        
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> que;
+        
+        que.push({0, src});
+        
+        while(!que.empty()){
+            auto front = que.top();
+            que.pop();
+            int node = front.second;
+            int dist = front.first;
+            distances[node] = min(distances[node], dist);
+            for(auto v:graph[node]){
+                int nd = v.first;
+                int wt = v.second;
+                if(distances[nd] > dist + wt){
+                    que.push({dist + wt, nd});
+                }
+            }
+        }
+        
+        return distances;
+    }
+*/
