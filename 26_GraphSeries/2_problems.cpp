@@ -406,3 +406,53 @@
 
     Hencec Priority Queue and Set is better and efficient than Normal Queue Approach
 */
+
+/*
+
+    1091. Shortest Path in Binary Matrix
+    (https://leetcode.com/problems/shortest-path-in-binary-matrix/description/)
+
+    int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
+        
+        if(grid[0][0] == 1){
+            return -1;
+        }
+        int m = grid.size();
+        int n = grid[0].size();
+
+        // vector<vector<int>> distance(m, vector<int>(n, 1e9));
+
+        // priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> que;
+        queue<pair<int, int>> que;
+        que.push({0, 0});
+        grid[0][0] = 1;
+        int dx[] = {-1, -1, -1, 0, 1, 1, 1, 0};
+        int dy[] = {-1, 0, 1, 1, 1, 0, -1, -1}; 
+
+        while(!que.empty()){
+            auto front = que.front();
+            int i = front.first;
+            int j = front.second;
+            if(i == m - 1 && j == n - 1){
+                return grid[i][j];
+            }
+            que.pop();
+            int dist = grid[i][j];
+            
+            for(int move = 0; move < 8; move++){
+                int x = i + dx[move];
+                int y = j + dy[move];
+                // if(x < 0 || y < 0 || x >= m || y >= n || grid[x][y] == 1){
+                //     continue;
+                // }
+                if(x >= 0 && y >= 0 && x < m && y < n && grid[x][y] == 0){
+                    que.push({x, y});
+                    grid[x][y] = 1 + dist;
+                }
+                
+            }
+        }
+
+        return -1;
+    }
+*/
