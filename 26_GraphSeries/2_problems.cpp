@@ -505,3 +505,56 @@
         return 0;
     }
 */
+
+/*
+    787. Cheapest Flights Within K Stops
+    (https://leetcode.com/problems/cheapest-flights-within-k-stops/description/)
+
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+
+        queue<pair<int, pair<int, int>>> que;
+
+        unordered_map<int, vector<pair<int, int>>> graph;
+        for(int i = 0; i < flights.size(); i++){
+            int u = flights[i][0];
+            int v = flights[i][1];
+            int cst = flights[i][2];
+            graph[u].push_back({v, cst});
+        }
+        vector<int> costVertx(n, 1e9);
+        que.push({0, {src, 0}});
+        costVertx[src] = 0;
+        int minCost = 1e9;
+        while(!que.empty()){
+
+            auto [cost, vals] = que.front();
+            auto [node, cnt] = vals;
+            // cout << node << " : " << endl;
+            que.pop();
+            if(node == dst && cnt <= k){
+                minCost = min(minCost, cost);
+                continue;
+            }
+
+            for(auto v:graph[node]){
+                auto [nd, cst] = v;
+                if(costVertx[nd] > cst + cost){
+                    // cout << nd << " :wt " << cst + cost << " , and cnt is "<< cnt + 1 << " ";
+                    costVertx[nd] = cst + cost;
+                    if(nd == dst){
+                        que.push({cost + cst, {nd, cnt}});
+                    }else{
+                        que.push({cost + cst, {nd, cnt + 1}});
+                    }
+                    
+                }
+            }cout<<endl;
+
+        }
+
+        if(minCost == 1e9) return -1;
+
+        return minCost;
+    }
+        
+*/
