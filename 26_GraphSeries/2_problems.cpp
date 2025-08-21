@@ -556,5 +556,40 @@
 
         return minCost;
     }
+
+*/
+
+/*
+    Minimum Multiplications to reach End
+    (https://www.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1)
+
+    int minimumMultiplications(vector<int>& arr, int start, int end) {
+        // code here
         
+        int n = arr.size();
+        queue<pair<int, int>> que;
+        que.push({start, 0});
+        unordered_map<int,bool> visited;
+        visited[start] = 1;
+        
+        while(!que.empty()){
+            auto [fr, count] = que.front();
+            que.pop();
+            if(fr == end){
+                return count;
+            }
+            visited[fr] = true;
+            for(int i = 0; i < n; i++){
+                int prod = (fr * arr[i]) % 100000;
+                if(visited[prod] == false){
+                    visited[prod] = true;
+                    que.push({prod, count + 1});
+                }
+                
+            }
+        }
+        
+        return -1;
+        
+    }
 */
