@@ -456,3 +456,52 @@
         return -1;
     }
 */
+
+
+/*
+    1631. Path With Minimum Effort
+    (https://leetcode.com/problems/path-with-minimum-effort/description/)
+    
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        int m = heights.size();
+        int n = heights[0].size();
+        int maxEffort = 0;
+        int minEffort = 1e9;
+
+        vector<vector<int>> weights(m, vector<int>(n, 1e9));
+        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> que;
+        que.push({0, {0, 0}});
+        weights[0][0] = 0;
+        int dx[] = {1, 0, -1, 0};
+        int dy[] = {0, 1, 0, -1};
+
+        while(!que.empty()){
+            auto front = que.top();
+            que.pop();
+            int maxEffort = front.first;
+            int i = front.second.first;
+            int j = front.second.second;
+
+            if(i == m - 1 && j == n - 1){
+                return maxEffort;
+            }
+
+            for(int pth = 0; pth < 4; pth++){
+                int x = i + dx[pth];
+                int y = j + dy[pth];
+                if(x >= 0 && y >= 0 && x < m && y < n ){
+                    int eff = abs(heights[i][j] - heights[x][y]);
+                    int maxEffortOnPath = max(maxEffort, eff);
+                    if(weights[x][y] > maxEffortOnPath){
+                        weights[x][y] = maxEffortOnPath;
+                        que.push({maxEffortOnPath, {x, y}});
+                    }
+
+                }
+            }
+
+        }
+
+        return 0;
+    }
+*/
