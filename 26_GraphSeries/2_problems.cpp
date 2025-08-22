@@ -636,3 +636,49 @@
         return distance[n-1].second % MOD ; 
     }
 */
+
+/*
+    Bellman-Ford
+    (https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1)
+
+    vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
+        // Code here
+        
+        unordered_map<int, vector<pair<int, int>>> graph;
+        for(int i = 0; i < edges.size(); i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int w = edges[i][2];
+            graph[u].push_back({v, w});
+        }
+        
+        vector<int> distance(V, 1e8);
+        distance[src] = 0;
+        
+        queue<pair<int, int>> que;
+        que.push({src, 0});
+        vector<int> negCycle(V, 0);
+        
+        while(!que.empty()){
+            auto [node, weight] = que.front();
+            que.pop();
+            
+            for(auto [nd, wt]: graph[node]){
+                if(distance[nd] > wt + weight){
+                    if(negCycle[nd] >= 2){
+                        return {-1};
+                    }
+                    if(distance[nd] < 0 && wt + weight < 0){
+                        negCycle[nd] += 1;
+                    }
+                    distance[nd] = wt + weight;
+                    que.push({nd, wt + weight});
+                }
+            }
+        }
+        
+        return distance;
+        
+        
+    }
+*/
