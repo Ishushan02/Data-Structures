@@ -593,3 +593,46 @@
         
     }
 */
+
+/*
+
+    1976. Number of Ways to Arrive at Destination
+    (https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/description/)
+
+    int countPaths(int n, vector<vector<int>>& roads) {
+        
+        unordered_map<long long, vector<pair<long long, long long>>> graph;
+        // int MOD = 1e9 + 7;
+        for(int i = 0; i < roads.size(); i++){
+            int u = roads[i][0];
+            int v = roads[i][1];
+            int time = roads[i][2];
+            graph[u].push_back({v, time});
+            graph[v].push_back({u, time});
+        }
+
+        vector<pair<long long, long long>> distance(n, {LLONG_MAX, 0});
+        distance[0] = {0, 1};
+        priority_queue<pair<long long, long long>, vector<pair<long long, long long>>, greater<pair<long long, long long>>> que;
+        que.push({0, 0});
+
+        long long MOD = 1e9 + 7;
+        while(!que.empty()){
+            auto [time, node] = que.top();
+            // time = time % 1000000007;
+            que.pop();
+            for(auto v: graph[node]){
+                auto [nd, reqTime] = v;
+                auto totTime = (time + reqTime);
+                if(distance[nd].first > totTime){
+                    distance[nd] = {totTime , distance[node].second };
+                    que.push({totTime, nd});
+                }else if(distance[nd].first == totTime){
+                    distance[nd].second = (distance[node].second + distance[nd].second) % MOD;
+                }
+            }
+        }
+
+        return distance[n-1].second % MOD ; 
+    }
+*/
