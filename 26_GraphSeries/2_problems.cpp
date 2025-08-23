@@ -682,3 +682,59 @@
         
     }
 */
+
+/*
+    743. Network Delay Time
+    (https://leetcode.com/problems/network-delay-time/description/)
+
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        
+        unordered_map<int, vector<pair<int, int>>> graph;
+
+        for(int i = 0; i < times.size(); i++){
+            int u = times[i][0];
+            int v = times[i][1];
+            int w = times[i][2];
+            graph[u].push_back({v, w});
+        }
+
+        int time = 0;
+        vector<int> timeNodes(n+1, 1e9);
+
+        queue<pair<int, int>> que;
+        que.push({0, k});
+        timeNodes[k] = 0;
+        // for(auto v:timeNodes){
+        //     cout << v << " , ";
+        // }cout<<endl;
+
+        while(!que.empty()){
+            int size = que.size();
+            int tmax = -1;
+            for(int i = 0; i < size; i++){
+                auto [t, node] = que.front();
+                // cout << node << " : " << endl;
+                que.pop();
+                for(auto [nd, tim]: graph[node]){
+                    // cout << nd << " , "<< endl;
+                    if(timeNodes[nd] > t + tim){
+                        tmax = max(tmax, tim);
+                        timeNodes[nd] = t + tim;
+                        que.push({t + tim, nd});
+                    }
+                }
+            }
+           
+        }
+
+        for(int i = 1; i <= n; i++){
+            time = max(timeNodes[i], time);
+            // cout << timeNodes[i] << " ";
+            if(timeNodes[i] == 1e9) return -1;
+        }
+
+        return time;
+
+    }
+
+*/
