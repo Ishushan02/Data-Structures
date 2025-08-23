@@ -738,3 +738,59 @@
     }
 
 */
+
+/*
+    1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
+    (https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description)
+
+    int dijkstras(int n, int node, unordered_map<int, vector<pair<int, int>>> graph, int thres){
+
+        vector<int> timeGraph(n, 1e9);
+        timeGraph[node] = 0;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> que;
+        que.push({0, node});
+
+        while(!que.empty()){
+            auto [dis, nd] = que.top();
+            que.pop();
+
+            for(auto [n, t]: graph[nd]){
+                if(timeGraph[n] > t + dis){
+                    timeGraph[n] = t + dis;
+                    que.push({t + dis, n});
+                }
+            }
+        }
+
+        int count = 0;
+        for(int i = 0; i < n; i++){
+            if(i != node && timeGraph[i] <= thres) count += 1;
+        }
+
+        return count;
+    }
+
+    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
+        unordered_map<int, vector<pair<int, int>>> graph;
+        for(int i = 0; i < edges.size(); i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int w = edges[i][2];
+            graph[u].push_back({v, w});
+            graph[v].push_back({u, w});
+        }
+
+        int key = 0;
+        int val = INT_MAX;
+        for(int i = 0; i < n; i++){
+            int tempAns = dijkstras(n, i, graph, distanceThreshold);
+            // cout << i << " : " << tempAns << endl;
+            if(tempAns <= val){
+                key = i;
+                val = tempAns;
+            }
+        }
+
+        return key;
+    }
+*/
