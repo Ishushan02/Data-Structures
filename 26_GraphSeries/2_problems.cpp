@@ -794,3 +794,52 @@
         return key;
     }
 */
+
+
+/*
+    Minimum Spanning Tree
+    (https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1)
+
+    int spanningTree(int V, vector<vector<int>>& edges) {
+        // code here
+        priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> que;
+        unordered_map<int, vector<pair<int, int>>> graph;
+        for(int i = 0; i < edges.size(); i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int w = edges[i][2];
+            graph[u].push_back({v, w});
+            graph[v].push_back({u, w});
+            // que.push({w, {u, v}});
+        }
+        
+        vector<bool> visited(V, false);
+        // visited[0] = true;
+        que.push({0, {0, -1}});
+        int count = 0;
+        int sum = 0;
+        while(!que.empty()){
+            auto [wt, nd] = que.top();
+            auto [nd1, nd2] = nd;
+            que.pop();
+            if(visited[nd1] == true){
+                continue;
+            }
+            visited[nd1] = true;
+            if(nd2 != -1){
+                visited[nd2] = true;
+            }
+            sum += wt;
+            // cout << nd1 << " : " << wt << " : " << nd2 << endl;
+            for(auto v:graph[nd1]){
+                if(visited[v.first] == false){
+                    que.push({v.second, {v.first, nd1}});
+                }
+                
+            }
+        }
+        
+        return sum;
+    }
+        
+*/
