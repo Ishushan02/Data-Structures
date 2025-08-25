@@ -131,3 +131,63 @@
         return st.size() - 1;
     }
 */
+
+/*
+    684. Redundant Connection
+    (https://leetcode.com/problems/redundant-connection/description/)
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void unionFun(vector<int> &rank, vector<int> &parent, int U, int V){
+
+        int pU = getParent(parent, U);
+        int pV = getParent(parent, V);
+
+        if(pU != pV){
+            if(rank[pU] > rank[pV]){
+                parent[pV] = pU;
+                rank[pU] += rank[pV];
+            }else{
+                parent[pU] = pV;
+                rank[pV] += rank[pU];
+            }
+        }
+    }
+
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        
+        int n = 1;
+        for(auto v:edges){
+            n = max({v[0], n, v[1]});
+        }
+        vector<int> parent(n+1, 0);
+        vector<int> rank(n+1, 1);
+        for(int i = 1; i <= n; i++){
+            parent[i] = i;
+        }
+
+        vector<int> ans(2, 1);
+        for(int i = 0; i < edges.size(); i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int pU = getParent(parent, u);
+            int pV = getParent(parent, v);
+
+            if(pU != pV){
+                unionFun(rank, parent, pU, pV);
+            }else{
+                ans[0] = u;
+                ans[1] = v;
+            }
+        }
+
+        return ans;
+    }
+        
+*/
