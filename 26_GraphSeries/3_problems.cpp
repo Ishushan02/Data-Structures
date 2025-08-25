@@ -256,5 +256,90 @@
 
         return connectionsReq-1;
     }
-        
+
+*/
+
+/*
+    721. Accounts Merge
+    (https://leetcode.com/problems/accounts-merge/)
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void unionFun(vector<int> &parent, vector<int> &rank, int U, int V){
+
+        int pU = getParent(parent, U);
+        int pV = getParent(parent, V);
+
+        if(pU != pV){
+            if(rank[pV] > rank[pU]){
+                parent[pU] = pV;
+                rank[pV] += rank[pU];
+            }else{
+                parent[pV] = pU;
+                rank[pU] += rank[pV];
+            }
+        }
+
+    }
+
+    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
+        int n = accounts.size();
+        vector<int> parent(n, 0);
+        vector<int> rank(n, 1);
+
+
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
+        }
+
+        unordered_map<string, int> stringMap;
+
+        for(int i = 0; i < accounts.size(); i++){
+            for(int j = 1; j < accounts[i].size(); j++){
+                string email = accounts[i][j];
+                if(stringMap.find(email) == stringMap.end()){
+                    // int pu = getParent(parent, i);
+                    stringMap[email] = i;
+                }else{
+                    int pu = getParent(parent, i);
+                    int pv = getParent(parent, stringMap[email]);
+
+                    unionFun(parent, rank, pu, pv);
+                }
+            }
+        }
+
+        // for(auto v:parent){
+        //     auto c = getParent(parent, v);
+        //     cout << v << " ";
+        // }
+        cout<<endl;
+        vector<int> todelete;
+        unordered_map<int, set<string>> ansMap;
+
+        for(int i = 0; i < n; i++){
+                int pNode = getParent(parent, i);
+                ansMap[pNode].insert(accounts[i].begin()+1, accounts[i].end());
+        }
+
+        vector<vector<string>> ans;
+        for(auto [k, val]:ansMap){
+            vector<string> temp;
+            // cout << k << " : ";
+            temp.push_back(accounts[k][0]);
+            for(auto v:val){
+                temp.push_back(v);
+                // cout << v << " ";
+            }
+            // cout<<endl;
+            ans.push_back(temp);
+        }
+
+        return ans;
+    }
 */
