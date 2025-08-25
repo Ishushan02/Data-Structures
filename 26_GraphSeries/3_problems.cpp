@@ -191,3 +191,70 @@
     }
         
 */
+
+/*
+    1319. Number of Operations to Make Network Connected
+    (https://leetcode.com/problems/number-of-operations-to-make-network-connected/description/)
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void unionFun(vector<int> &parent, vector<int> &rank, int U, int V){
+
+        int pU = getParent(parent, U);
+        int pV = getParent(parent, V);
+
+        if(pU != pV){
+            if(rank[pV] > rank[pU]){
+                parent[pU] = pV;
+                rank[pV] += rank[pU];
+            }else{
+                parent[pV] = pU;
+                rank[pU] += rank[pV];
+            }
+        }
+
+    }
+
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        
+        if(connections.size() < n - 1){
+            return -1;
+        }
+        vector<int> rank(n, 1);
+        vector<int> parent(n, 1);
+        for(int i = 0; i <n; i++){
+            parent[i] = i;
+        }
+
+        set<int> uniqueNodes;
+        int connectionsReq = 0;
+        for(int i = 0; i < connections.size(); i++){
+            int u = connections[i][0];
+            int v = connections[i][1];
+
+            uniqueNodes.insert(u);
+            uniqueNodes.insert(v);
+
+            int pU = getParent(parent, u);
+            int pV = getParent(parent, v);
+            if(pU != pV){
+                unionFun(parent, rank, pU, pV);
+            }
+        }
+
+        for(int i = 0; i < n; i++){
+            if(parent[i] == i){
+                connectionsReq += 1;
+            }
+        }
+
+        return connectionsReq-1;
+    }
+        
+*/
