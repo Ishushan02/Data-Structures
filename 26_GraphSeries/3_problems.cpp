@@ -76,3 +76,58 @@
         return minSum;
     }
 */
+
+/*
+    547. Number of Provinces
+    (https://leetcode.com/problems/number-of-provinces/)
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void unionFun(vector<int> &parent, vector<int> &rank, int U, int V){
+
+        int pareU = getParent(parent, U);
+        int pareV = getParent(parent, V);
+        
+        if(pareU != pareV){
+            if(rank[pareU] > rank[pareV]){
+                parent[pareV] = pareU;
+                rank[pareU] = rank[pareU] + rank[pareV];
+            }else{
+                parent[pareU] = pareV;
+                rank[pareV] = rank[pareV] + rank[pareU];
+            }
+        }
+    }
+
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        
+        int n = isConnected.size();
+        vector<int> parent(n + 1, 0);
+        vector<int> rank(n + 1, 1);
+        for(int i = 0; i <= n; i++){
+            parent[i] = i;
+        }
+
+        int count = 0;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                int parenti = getParent(parent, i + 1);
+                int parentj = getParent(parent, j + 1);
+
+                if(j > i && isConnected[i][j] == 1 && parenti != parentj){
+                    unionFun(parent, rank, parenti, parentj);
+                }
+                
+            }
+        }
+
+        unordered_set<int> st(parent.begin(), parent.end());
+
+        return st.size() - 1;
+    }
+*/
