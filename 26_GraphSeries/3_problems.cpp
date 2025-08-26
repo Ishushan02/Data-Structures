@@ -7,6 +7,8 @@
     - 2 Fns, Find Parent, and Union
     - Union can be found either by rank or by size
 
+    KEEP THIS IN  IND IF THERE IS CHANGE IN THE GRAPH EVERY TIME, OF THE GRAPH IS 
+    DYNAMIC USE DISJOINT, UNION SET..
 */
 
 /*
@@ -341,5 +343,86 @@
         }
 
         return ans;
+    }
+*/
+
+/*
+    VVVVV IIIIIIII Question, Please do Again
+    (https://www.geeksforgeeks.org/problems/number-of-islands/1)
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+        
+        return parent[node] = getParent(parent, parent[node]);
+    }
+    
+    void unionFun(vector<int> &rank, vector<int> &parent, int U, int V){
+        
+        int pU = getParent(parent, U);
+        int pV = getParent(parent, V);
+
+        if(pU != pV){
+            if(rank[pU] > rank[pV]){
+                parent[pV] = pU;
+                rank[pU] += rank[pV];
+            }else{
+                parent[pU] = pV;
+                rank[pV] += rank[pU];
+            }
+        }
+    }
+  
+    vector<int> numOfIslands(int n, int m, vector<vector<int>> &operators) {
+        // code here
+        
+        vector<int> parent(n * m, 0);
+        vector<int> rank(n * m, 1);
+        int dx[] = {1, -1, 0, 0};
+        int dy[] = {0, 0, -1, 1};
+        for(int i = 0; i < n*m; i++){
+            parent[i] = i;
+        }
+        // cout <<"Size: " <<n*m << endl;
+        int count = 0;
+        vector<vector<int>> visited(n, vector<int>(m, 0));
+        vector<int> ans;
+        for(int i = 0; i < operators.size(); i++){
+            int x = operators[i][0];
+            int y = operators[i][1];
+            // cout << x << " , " << y << endl;
+            if(visited[x][y] == 1){
+                ans.push_back(count);
+                continue;
+            }
+            
+            visited[x][y] = 1;
+            int u = x * m + y;
+            count++;
+            
+            for(int l = 0; l < 4; l++){
+                int p = x + dx[l];
+                int q = y + dy[l];
+                if(p >= 0 && p < n && q >= 0 && q < m && visited[p][q] == 1){
+                    int v = p * m + q;
+                    int pu = getParent(parent, u);
+                    int pv = getParent(parent, v);
+                    if(pu != pv){
+                        count--;
+                        unionFun(rank, parent, pu, pv);
+                        
+                    }
+                    
+                    
+                }
+            }
+            ans.push_back(count);
+            
+        }
+        
+        return ans;
+        
+        
     }
 */
