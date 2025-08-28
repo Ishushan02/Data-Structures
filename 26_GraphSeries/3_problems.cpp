@@ -426,3 +426,99 @@
         
     }
 */
+
+/*
+    827. Making A Large Island
+    (https://leetcode.com/problems/making-a-large-island/description/)
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void UnionSet(vector<int> &parent, vector<int> &rank, int U, int V){
+        int pU = getParent(parent, U);
+        int pV = getParent(parent, V);
+
+        if(pU != pV){
+            if(rank[pU] > rank[pV]){
+                parent[pV] = pU;
+                rank[pU] += rank[pV];
+            }else{
+                parent[pU] = pV;
+                rank[pV] += rank[pU];
+            }
+        }
+    }
+
+    int largestIsland(vector<vector<int>>& grid) {
+        
+        int n = grid.size();
+
+        vector<int> parent(n * n, 0);
+        vector<int> rank(n * n, 1);
+
+        for(int i = 0; i < n * n; i++){
+            parent[i] = i;
+        }
+
+        int dx[] = {1, 0, -1, 0};
+        int dy[] = {0, 1, 0, -1};
+        int maxArea = 0;
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 1){
+                    int U = n * i + j;
+                    for(int k = 0; k < 4; k++){
+                        int x = i + dx[k];
+                        int y = j + dy[k];
+                        int V = n * x + y;
+                        if(x >= 0 && x < n && y >= 0 && y < n && grid[x][y] == 1){
+                            UnionSet(parent, rank, U, V);
+                        }
+                    }
+                    // grid[i][j] = 0;
+                }
+            }
+        }
+        // for(auto v:rank){
+        //     cout << v << " ";
+        // }
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                set<int> allParents;
+                if(grid[i][j] == 0){
+                    for(int k = 0; k < 4; k++){
+                        int x = i + dx[k];
+                        int y = j + dy[k];
+                        int V = n * x + y;
+                        if(x >= 0 && x < n && y >= 0 && y < n && grid[x][y] == 1){
+                            int p = getParent(parent, V);
+                            allParents.insert(p);
+                        }
+                    }
+                    int size = 1;
+                    for(auto v:allParents){
+                        size += rank[v];
+                    }
+                    maxArea = max(maxArea, size);
+                }
+            }
+        }
+
+        // for(auto v:rank){
+        //     cout << v << " ";
+        // }
+
+        for(auto v:rank){
+            maxArea = max(maxArea, v);
+        }
+
+        return maxArea;
+    }
+*/
