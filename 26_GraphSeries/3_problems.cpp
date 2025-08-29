@@ -522,3 +522,71 @@
         return maxArea;
     }
 */
+
+/*
+    (In this the only important point is making the indexing which is 0, ... row, for rows and for cols col[0] + col...) this is important
+    947. Most Stones Removed with Same Row or Column
+    (https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/description/)
+
+    int getParent(vector<int>& parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void unionFun(vector<int> &parent, vector<int> &rank, int U, int V){
+        int pU = getParent(parent, U);
+        int pV = getParent(parent, V);
+        
+        if(pU != pV){
+            if(rank[pU] > rank[pV]){
+                parent[pV] = pU;
+                rank[pU] += rank[pV];
+            }else{
+                parent[pU] = pV;
+                rank[pV] += rank[pU];
+            }
+        }
+    }
+
+    int removeStones(vector<vector<int>>& stones) {
+        
+        int row = 0;
+        int col = 0;
+        for(auto v:stones){
+            row = max(row, v[0]);
+            col = max(col, v[1]);
+        }
+
+        
+        int n = col + row + 2;
+        vector<int> parent(n, 0);
+        vector<int> rank(n, 1);
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
+        }
+
+        int colStart = row + 1;
+
+        for(auto v:stones){
+            int U = v[0];
+            int V = v[1] + colStart;
+            unionFun(parent, rank, U, V);
+        }
+
+        unordered_set<int> st;
+
+        for(auto v:stones){
+            int x = v[0];
+            int y = colStart + v[1];
+            int node = getParent(parent, x);
+            st.insert(node);
+        }
+
+        return stones.size() - st.size();
+    }
+
+    
+*/
