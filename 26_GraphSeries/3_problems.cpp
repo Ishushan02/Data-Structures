@@ -588,5 +588,90 @@
         return stones.size() - st.size();
     }
 
-    
+
+*/
+
+
+/*
+    2685. Count the Number of Complete Components
+    (https://leetcode.com/problems/count-the-number-of-complete-components/description/)
+
+    int getParent(vector<int> &parent, int node){
+        if(parent[node] == node){
+            return node;
+        }
+        return parent[node] = getParent(parent, parent[node]);
+    }
+
+    void unionFun(vector<int> &parent, vector<int> &rank, int U, int V){
+        int pU = getParent(parent, U);
+        int pV = getParent(parent, V);
+
+        if(pU != pV){
+            if(rank[pU] > rank[pV]){
+                parent[pV] = pU;
+                rank[pU] += rank[pV];
+            }else{
+                parent[pU] = pV;
+                rank[pV] += rank[pU];
+            }
+        }
+    }
+
+    int countCompleteComponents(int n, vector<vector<int>>& edges) {
+        unordered_map<int, vector<int>> graph;
+        int count = 0;
+        for(int i = 0; i < edges.size(); i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            graph[u].push_back(v);
+            graph[v].push_back(u);
+        }
+
+        vector<int> rank(n, 1);
+        vector<int> parent(n, 0);
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
+        }
+
+        for(auto &[u, val]:graph){
+            for(auto v: val){
+                int pU = getParent(parent, u);
+                int pV = getParent(parent, v);
+                unionFun(parent, rank, pU, pV);
+            }
+        }
+
+        // for(int i = 0; i < n; i++){
+        //     if(graph.find(i) == graph.end()){
+        //         graph[i] = {};
+        //     }
+        // }
+
+        unordered_map<int, int> uniqueSet;
+        unordered_map<int, int> uniqueEdge;
+
+        for(int i = 0; i < n; i++){
+            int v = getParent(parent, parent[i]);
+            // cout << v << " ";
+            uniqueSet[v] += 1;
+            uniqueEdge[v] += graph[i].size();
+        }
+        // cout<<endl;
+
+
+        for(auto &[k,v]:uniqueEdge){
+            int edges = v/2;
+            int m = uniqueSet[k];
+            int requiredEdges = m * (m-1)/2;
+            if(requiredEdges == edges){
+                count += 1;
+            }
+
+            // cout << k << " : " << v/2 << endl;
+        }
+
+        return count;
+
+    }
 */
