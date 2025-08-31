@@ -118,5 +118,50 @@
         
         return false;
     }
+
+*/
+
+/*
+    1192. Critical Connections in a Network
+    (https://leetcode.com/problems/critical-connections-in-a-network/)
+
+    void dfsTraversal(int node, int parent, vector<int> &visited, vector<int> &discovered, vector<int> &lowest, unordered_map<int, vector<int>>& connections, int &count, vector<vector<int>> &ans){
+        discovered[node] = count;
+        visited[node] = 1;
+        lowest[node] = count;
+        count += 1;
+
+        for(auto v:connections[node]){
+            if(v == parent){
+                continue;
+            }
+
+            if(visited[v] == 0){
+                dfsTraversal(v, node, visited, discovered, lowest, connections, count , ans);
+                lowest[node] = min(lowest[node], lowest[v]);
+                if(lowest[v] > discovered[node]){
+                    ans.push_back({node, v});
+                }
+            }else{
+                lowest[node] = min(lowest[v], lowest[node]);
+            }
+        }
+    }
+
+    vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
         
+        unordered_map<int, vector<int>> graph;
+        for(auto v:connections){
+            graph[v[0]].push_back(v[1]);
+            graph[v[1]].push_back(v[0]);
+        }
+        vector<int> discovered(n, 0);
+        vector<int> lowest(n, 0);
+        vector<int> visited(n, 0);
+        vector<vector<int>> ans;
+        int count = 1;
+        dfsTraversal(0, -1, visited, discovered, lowest, graph, count, ans);
+
+        return ans;
+    }
 */
