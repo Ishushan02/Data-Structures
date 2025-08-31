@@ -1,4 +1,8 @@
 /*
+    Strongly Connected Components - Graph Important TOPIC
+*/
+
+/*
     Strongly Connected Components
     (https://www.geeksforgeeks.org/problems/strongly-connected-components-kosarajus-algo/1)
 
@@ -56,4 +60,63 @@
         
         return count;
     }
+*/
+
+/*
+    Bridge edge in a graph
+    (https://www.geeksforgeeks.org/problems/bridge-edge-in-graph/1)
+
+    void dfsTravel(int node, vector<int> &visited, unordered_map<int, 
+    vector<int>> &graph){
+        visited[node] = 1;
+        for(auto v: graph[node]){
+            if(visited[v] == 0){
+                dfsTravel(v, visited, graph);
+            }
+        }
+    }
+  
+    bool isBridge(int V, vector<vector<int>> &edges, int c, int d) {
+        // Code here
+        unordered_map<int, vector<int>> graph;
+        unordered_map<int, vector<int>> removedGraph;
+        for(int i = 0; i < edges.size(); i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            graph[u].push_back(v);
+            graph[v].push_back(u);
+            if((u == c && v == d) || (u == d && v == c)){
+                
+            }else{
+                removedGraph[u].push_back(v);
+                removedGraph[v].push_back(u);
+            }
+        }
+        
+        int comp1 = 0;
+        int comp2 = 0;
+        
+        vector<int> visited(V, 0);
+        for(int i = 0; i < V; i++){
+            if(visited[i] == 0){
+                comp1 += 1;
+                dfsTravel(i, visited, graph);
+            }
+        }
+        
+        vector<int> revVisited(V, 0);
+        for(int i = 0; i < V; i++){
+            if(revVisited[i] == 0){
+                comp2 += 1;
+                dfsTravel(i, revVisited, removedGraph);
+            }
+        }
+        
+        if(comp2 > comp1){
+            return true;
+        }
+        
+        return false;
+    }
+        
 */
