@@ -122,6 +122,7 @@
 */
 
 /*
+    TARJAN's ALGORITHM
     1192. Critical Connections in a Network
     (https://leetcode.com/problems/critical-connections-in-a-network/)
 
@@ -164,4 +165,65 @@
 
         return ans;
     }
+*/
+
+/*
+    Articulation Point - I
+    (https://www.geeksforgeeks.org/problems/articulation-point-1/1)
+
+    void trajansAlgo(int node, int parent, vector<int> &visited, vector<int> &discovered,
+    vector<int> &lowest, int &time, vector<int> adj[], vector<int> &mark){
+        visited[node] = 1;
+        discovered[node] = time;
+        lowest[node] = time;
+        time += 1;
+        int child = 0;
+        for(auto v: adj[node]){
+            if(v == parent){
+                continue ;
+            }
+            
+            if(visited[v] == 0){
+                trajansAlgo(v, node, visited, discovered, lowest, time, adj, mark);
+                
+                lowest[node] = min(lowest[node], lowest[v]);
+                if(lowest[v] >= discovered[node] && parent != -1){
+                    mark[node] = 1;
+                }
+                child += 1;
+            }else{
+                lowest[node] = min(lowest[node], discovered[v]);
+            }
+        }
+        
+        if(parent == -1 && child > 1){
+            mark[node] = 1;
+        }
+    }
+  
+    vector<int> articulationPoints(int V, vector<int> adj[]) {
+        // Code here
+        
+        vector<int> visited(V, 0);
+        vector<int> discovered(V, 0);
+        vector<int> lowest(V, 0);
+        int time = 1;
+        vector<int> mark(V, 0);
+        
+        for(int i = 0; i < V; i++){
+            if(visited[i] == 0){
+                trajansAlgo(i, -1, visited, discovered, lowest, time, adj, mark);
+            }
+        }
+        
+        vector<int> ans;
+        for(int i = 0; i < V; i++){
+            if(mark[i] == 1){
+                ans.push_back(i);
+            }
+        }
+        if(ans.size() == 0) return {-1};
+        return ans;
+    }
+        
 */
