@@ -44,3 +44,42 @@
     }
         
 */
+
+/*
+    1776. Car Fleet II
+    (https://leetcode.com/problems/car-fleet-ii/)
+
+    vector<double> getCollisionTimes(vector<vector<int>>& cars) {
+        int n = cars.size();
+        vector<int> timereq(n, -1);
+        stack<int> st;
+        vector<double> ans(n, -1.000);
+
+        for(int i=n-1; i >= 0; i-- ){
+            int pos = cars[i][0];
+            int spd = cars[i][1];
+            // double time = (double)pos/(double)spd;
+            while(!st.empty() && cars[st.top()][1] >= spd){
+                st.pop();
+            }
+            
+            while(!st.empty()){
+                int idx = st.top();
+                int dist = cars[idx][0] - cars[i][0];
+                int v = abs(cars[idx][1] - cars[i][1]);
+                double t = dist/(double)v;
+
+                if(ans[idx] == -1 || t < ans[idx]){
+                    ans[i] = t;
+                    break;
+                }
+                st.pop();
+            }
+
+            st.push(i);
+        }
+
+
+        return ans;
+    }
+*/

@@ -348,3 +348,9 @@ int main(){
     }
     
 */
+
+/*
+
+COMPLETE THE N STACKS IN AN ARRAY - 
+
+*/
