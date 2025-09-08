@@ -83,3 +83,43 @@
         return ans;
     }
 */
+
+/*
+    402. Remove K Digits
+    (https://leetcode.com/problems/remove-k-digits/)
+
+    string removeKdigits(string &num, int k) {
+
+        stack<char> st;
+
+        for(int i = 0; i < num.length(); i++){
+            while(!st.empty() && st.top() > num[i] && k > 0){
+                st.pop();
+                k -= 1;
+            }
+            st.push(num[i]);
+        }
+
+        while(!st.empty() && k != 0){
+            st.pop();
+            k -= 1;
+        }
+
+        string tempans;
+        while(!st.empty()){
+            tempans += st.top();  
+            st.pop();
+        }
+
+        reverse(tempans.begin(), tempans.end());
+    
+        int i = 0;
+        while(i < tempans.length() && tempans[i] == '0'){
+            i += 1;
+        }
+
+        string ans = tempans.substr(i);
+        if(ans == "") ans = "0";
+        return ans;
+    }
+*/
