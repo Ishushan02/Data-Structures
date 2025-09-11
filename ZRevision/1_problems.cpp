@@ -174,3 +174,38 @@
     }
         
 */
+
+/*
+    316. Remove Duplicate Letters
+    (https://leetcode.com/problems/remove-duplicate-letters/)
+
+    string removeDuplicateLetters(string s) {
+        unordered_map<char, int> lastOccurence;
+        unordered_map<char, bool> present;
+        for(int i = 0; i < s.length(); i++){
+            lastOccurence[s[i]] = i;
+        }
+
+        stack<int> st;
+        for(int i = 0; i < s.length(); i++){
+            if(present[s[i]] != 1){
+                while(!st.empty() && lastOccurence[s[st.top()]] > i && s[i] < s[st.top()]){
+                    present[s[st.top()]] = 0;
+                    st.pop();
+                }
+                present[s[i]] = 1;
+                st.push(i);
+            }
+        }
+
+        string ans;
+
+        while(!st.empty()){
+            ans = s[st.top()] + ans;
+            st.pop();
+        }
+
+        return ans;
+    }
+
+*/
