@@ -176,6 +176,11 @@
 */
 
 /*
+
+    So, the Idea is that, if you have a later occurence of a char, and if curre char is larger than top char
+    then pop it out, also mark visited and not visited, if you are popping it mark it unvisited
+
+
     316. Remove Duplicate Letters
     (https://leetcode.com/problems/remove-duplicate-letters/)
 
@@ -208,4 +213,88 @@
         return ans;
     }
 
+*/
+
+/*
+    227. Basic Calculator II
+    (https://leetcode.com/problems/basic-calculator-ii/)
+
+    int calculate(string s) {
+        
+        int i = 0;
+        int n = s.length(); 
+        string temp;
+        while(i < n){
+            if(s[i] == ' '){
+                i += 1;
+                continue;
+            }else{
+                temp += s[i];
+                i += 1;
+            }
+        }
+        
+
+        s = temp;
+        n = s.length();
+        i = 0;
+        // cout << s << endl;
+        stack<int> st;
+        while(i < n){
+
+            if(s[i] == '/' || s[i] == '*'){
+                int a = 0;
+                char c = s[i];
+                i += 1;
+                while(i < n && isdigit(s[i])){
+                    cout << s[i] << endl;
+                    a = a * 10 + (s[i] - '0');
+                    i += 1;
+                }
+                int top = st.top();
+                st.pop();
+                
+                if(c == '*'){
+                    st.push(top*a);
+                }else{
+                    st.push(top/a);
+                }
+
+            }else if(s[i] == '+' || s[i] == '-'){
+                int a = 0;
+                char c = s[i];
+                i += 1;
+                while(i < n && isdigit(s[i])){
+                    a = a * 10 + (s[i] - '0');
+                    i += 1;
+                }
+                
+                if(c == '-'){
+                    st.push(-1*a);
+                }else{
+                    st.push(a);
+                }
+
+
+            }else{
+                int a = 0;
+
+                while(i < n && isdigit(s[i])){
+                    a = a * 10 + (s[i] - '0');
+                    i += 1;
+                }
+                st.push(a);
+            }
+
+        }
+
+        int ans = 0;
+        while(!st.empty()){
+            ans += st.top();
+            st.pop();
+        }
+
+        return ans;
+    }
+        
 */
