@@ -30,3 +30,28 @@
     }
         
 */
+
+/*
+
+    Very Good Question
+    907. Sum of Subarray Minimums (TLE)
+    (https://leetcode.com/problems/sum-of-subarray-minimums/)
+
+    int sumSubarrayMins(vector<int>& arr) {
+        int ans = 0;
+        int n = arr.size();
+        for(int i = 0; i < n; i++){
+            int minVal = arr[i];
+            for(int j = i; j < n; j++){
+                minVal = min(minVal, arr[j]);
+                ans += minVal;
+            }
+            ans = ans % 1000000007;
+        }
+
+        return ans % 1000000007;
+    }
+
+    
+
+*/
