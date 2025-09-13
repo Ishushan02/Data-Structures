@@ -303,7 +303,7 @@
     Very VERY Good Question
     907. Sum of Subarray Minimums (TLE)
     (https://leetcode.com/problems/sum-of-subarray-minimums/)
-    
+
 
     Efficient Method (Stacks)
     Procedure is, get the counts of each numbers in array that will contribute to the min sum of all Subarrays
@@ -379,6 +379,96 @@
             ans = ans % mod;
         }
 
+        return ans;
+    }
+
+*/
+
+
+/*
+
+    2104. Sum of Subarray Ranges
+    (https://leetcode.com/problems/sum-of-subarray-ranges/)
+
+    Same as above, but you have to find max Ranges also
+    and to get all sum(max - min) --> maxSum - minSum
+
+
+    long long int getMax(vector<int>& arr){
+        int n = arr.size();
+        vector<int> leftSmallestRange(n, -1);
+        vector<int> rightSmallestRange(n, n);
+
+        stack<int> st;
+        for(int i = 0; i < n; i++){
+            while(!st.empty() && arr[st.top()] <= arr[i]){
+                st.pop();
+            }
+
+            if(!st.empty()) leftSmallestRange[i] = st.top();
+            st.push(i);
+        }
+
+        stack<int> st2;
+        for(int i = n-1; i >= 0; i--){
+            while(!st2.empty() && arr[st2.top()] < arr[i]){
+                st2.pop();
+            }
+
+            if(!st2.empty()) rightSmallestRange[i] = st2.top();
+            st2.push(i);
+        }
+
+        long long int ans = 0;
+        for(int i = 0; i < n; i++){
+            long long int leftRange = i - leftSmallestRange[i];
+            long long int rightRange = rightSmallestRange[i] - i;
+            long long int num = (arr[i] * leftRange * rightRange);
+            ans += num;
+        }
+
+        return ans;
+    }
+
+    long long int getMin(vector<int>& arr){
+        int n = arr.size();
+        vector<int> leftSmallestRange(n, -1);
+        vector<int> rightSmallestRange(n, n);
+
+        stack<int> st;
+        for(int i = 0; i < n; i++){
+            while(!st.empty() && arr[st.top()] >= arr[i]){
+                st.pop();
+            }
+
+            if(!st.empty()) leftSmallestRange[i] = st.top();
+            st.push(i);
+        }
+
+        stack<int> st2;
+        for(int i = n-1; i >= 0; i--){
+            while(!st2.empty() && arr[st2.top()] > arr[i]){
+                st2.pop();
+            }
+
+            if(!st2.empty()) rightSmallestRange[i] = st2.top();
+            st2.push(i);
+        }
+
+        long long int ans = 0;
+        for(int i = 0; i < n; i++){
+            long long int leftRange = i - leftSmallestRange[i];
+            long long int rightRange = rightSmallestRange[i] - i;
+            long long int num = (arr[i] * leftRange * rightRange);
+            ans += num;
+        }
+
+        return ans;
+    }
+
+
+    long long subArrayRanges(vector<int>& arr) {
+        long long int ans = getMax(arr) - getMin(arr);
         return ans;
     }
 
