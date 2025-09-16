@@ -147,6 +147,45 @@ Steps by Knight (https://www.geeksforgeeks.org/problems/steps-by-knight5927/1)
 
 It is Very Very IMPORTANT which intakes BFS and Queue IMPLEMENTATION, so complete it. 
 
+int minStepToReachTarget(vector<int>& knightPos, vector<int>& targetPos, int n) {
+        // Code here
+        queue<pair<int, pair<int, int>>> que;
+        
+        int steps = 1e9;
+        que.push({0, {knightPos[0]-1, knightPos[1]-1}});
+        vector<int> visited(n * n + 10, 0);
+        while(!que.empty()){
+            
+            auto [dist, pos] = que.front();
+            int i = pos.first;
+            int j = pos.second;
+            if(i == targetPos[0]-1 && j == targetPos[1]-1){
+                // steps = min(steps, dist);
+                return dist;
+            }
+            int idx = i * n + j;
+            que.pop();
+
+            int dx[] = {-2, -2, -1, -1, 1, 1, 2, 2};
+            int dy[] = {-1, 1, -2, 2, -2, 2, -1, 1};
+
+            for(int k = 0; k < 8; k++){
+                int x = i + dx[k];
+                int y = j + dy[k];
+                int idx = x * n + y;
+                if(x < n && x >= 0 && y < n && y >= 0 && visited[idx] == 0){
+                    visited[idx] = 1;
+                    que.push({dist + 1, {x, y}});
+                }
+                
+            }
+            
+        }
+        
+        return steps;
+        
+    }
+
 */
 
 /*
