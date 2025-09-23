@@ -136,3 +136,77 @@
 
 
 */
+
+
+/*
+    2653. Sliding Subarray Beauty
+    (https://leetcode.com/problems/sliding-subarray-beauty/description/)
+
+    vector<int> getSubarrayBeauty(vector<int>& nums, int k, int x) {
+        
+        vector<int> vecNum(102, 0);
+        vector<int> ans;
+        int n = nums.size();
+
+        for(int i = 0; i < k; i++){
+            int idx = nums[i] + 50;
+            vecNum[idx] += 1;
+        }
+
+        int prevIdx = 0;
+        for(int i = k; i < n; i++){
+
+            bool gotAns = false;    
+            int count = x;
+
+            for(int j = 0; j < 50; j++){
+                if(vecNum[j] > 0){
+                    if(count > vecNum[j]){
+                        count -= vecNum[j];
+                    }else{
+                        count = 0;
+                    }
+                }
+                if(count == 0){
+                    gotAns = true;
+                    ans.push_back(j - 50);
+                    break;
+                }
+
+            }
+
+            vecNum[nums[prevIdx] + 50] -= 1;
+            prevIdx += 1;
+
+            if(!gotAns) ans.push_back(0);
+            int idx = nums[i] + 50;
+            vecNum[idx] += 1;
+        }
+
+        bool gotAns = false;    
+        int count = x;
+
+        for(int j = 0; j < 50; j++){
+            if(vecNum[j] > 0){
+                if(count > vecNum[j]){
+                    count -= vecNum[j];
+                }else if(count < vecNum[j]){
+                    vecNum[j] = vecNum[j] - count;
+                    count = 0;
+                }else{
+                    vecNum[j] = 0;
+                    count = 0;
+                }
+            }
+            if(count == 0){
+                gotAns = true;
+                ans.push_back(j - 50);
+                break;
+            }
+
+        }
+        if(!gotAns) ans.push_back(0);
+
+        return ans;
+    }
+*/
