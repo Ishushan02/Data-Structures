@@ -645,45 +645,35 @@ public:
     (https://leetcode.com/problems/number-of-people-aware-of-a-secret/)
 
 
-    Method 1 (TLE) - Brute Force Approach
+    Method 1 (TLE) - Queue 
+
     int peopleAwareOfSecret(int n, int delay, int forget) {
-        
-        vector<bool> available ;
-        vector<int> born ;
+        int mod = 1e9 + 7;
+        queue<pair<int, pair<int, int>>> que;
+        que.push({1, {delay, forget}});
+        int count = 2;
+        for(int i = 1; i < n; i++){
+            int size = que.size();
+            for(int j = 0; j < size; j++){
+                auto [v, vals] = que.front();
+                auto [d, f] = vals;
+                // cout << v << " , " << d << " , " << f << endl;
+                que.pop();
+                if(d > 0) d = d - 1;
 
-        // 1st day
-        available.push_back(true);
-        born.push_back(1);
-
-        for (int each_day = 1; each_day < n; each_day++){
-
-            for(int memb = 0; memb < available.size(); memb++){
-                bool curravail = available[memb];
-                int bv = born[memb];
-
-                // forgets
-                if( each_day + 1 - bv == forget){
-                    available[memb] = false;
+                if(f > 1){
+                    que.push({v, {d, f - 1}});
                 }
-
-                // create
-                if((each_day + 1 - bv >= delay) && (available[memb])){
-                    available.push_back(true);
-                    // delayVal.push_back(delay);
-                    born.push_back(each_day + 1);
+                if(d == 0 && f > 1){
+                    que.push({count, {delay, forget}});
+                    count += 1;
+                    count = count % mod;
                 }
-                }
-
-        }
-    
-        long long int ans = 0;
-        for(auto i:available){
-            if(i){
-                ans += 1;
             }
+            // cout << que.size() << endl;
         }
-        // cout << ans << endl;
-        return ans % (1000000007);
+
+        return que.size()%mod;
     }
 
 
