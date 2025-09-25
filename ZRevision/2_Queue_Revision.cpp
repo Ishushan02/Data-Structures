@@ -210,3 +210,32 @@
         return ans;
     }
 */
+
+
+/*
+    2327. Number of People Aware of a Secret
+    (https://leetcode.com/problems/number-of-people-aware-of-a-secret/)
+
+    int peopleAwareOfSecret(int n, int delay, int forget) {
+        
+        vector<long long int> allAwarePerson(2 * n, 0);
+        allAwarePerson[1] = 1;
+        int mod = 1e9 + 7;
+
+        for(int i = 1; i <= n; i++){
+            for(int j = i + delay; j < i + forget; j++){
+                allAwarePerson[j] = (allAwarePerson[i] + allAwarePerson[j]) % mod;
+            }
+        }
+
+        long long int ans = 0;
+
+        for(int i = n; i >= n - forget + 1; i--){
+            ans += (allAwarePerson[i]);
+            ans = ans % mod;
+        }
+
+        return ans;
+    }
+        
+*/
