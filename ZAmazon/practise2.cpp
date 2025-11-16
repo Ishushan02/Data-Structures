@@ -35,8 +35,6 @@ int solution(string board) {
     return ans;
 }
 
-#include <vector>
-#include <algorithm>
 
 
 int solution2(std::vector<int> &numbers) {
