@@ -1,0 +1,16 @@
+Prefix Sum Pattern
+Two Pointer Pattern
+Sliding Window 
+Subset Pattern
+Fast and Slow Pattern
+Linked-List Inplace Reversal
+Monotonic Stack
+Top K Elements(Priority Queue)
+Overlapping Interval Pattern
+Binary Search and Modified Binary Search
+Binary Tree Traversal
+Depth First Search
+Breadth First Search
+Matrix Traversal Pattern
+BackTracking
+Dynamic Programming
