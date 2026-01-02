@@ -1,5 +1,5 @@
-Prefix Sum Pattern
 Two Pointer Pattern
+Prefix Sum Pattern
 Sliding Window 
 Subset Pattern
 Fast and Slow Pattern
