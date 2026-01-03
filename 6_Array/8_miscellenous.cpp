@@ -220,3 +220,39 @@ public:
     }
     };
 */
+
+
+/*
+    3795. Minimum Subarray Length With Distinct Sum At Least K
+    (https://leetcode.com/problems/minimum-subarray-length-with-distinct-sum-at-least-k/description/)
+
+    int minLength(vector<int>& nums, int k) {
+
+        int i = 0;
+        int minSum = INT_MAX;
+        int sum = 0;
+        unordered_map<int, int> visited;
+
+        for(int j = 0; j < nums.size(); j++){
+
+            if(visited[nums[j]] == 0){
+                sum += nums[j];
+            }
+
+            visited[nums[j]] += 1;
+
+            while(sum >= k){
+                minSum = min(minSum, j - i + 1);
+                visited[nums[i]] -= 1;
+
+                if(visited[nums[i]] == 0){
+                    sum -= nums[i];
+                }
+
+                i += 1;
+            }
+        }
+
+        return minSum == INT_MAX ? -1 : minSum;
+    }
+*/
