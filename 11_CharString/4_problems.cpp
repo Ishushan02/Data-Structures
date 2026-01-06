@@ -269,6 +269,50 @@ string removeDuplicates(string s, int k) {
         return s.substr(0, i);
     }
 
+
+Method 3 // Efficient One
+
+    string removeDuplicates(string s, int k) {
+        stack<pair<char, int>> st;
+
+        int i = 0;
+
+        while(i < s.length()){
+
+            if(st.empty()){
+                st.push({s[i], 1});
+            }else{
+                auto [c, v] = st.top();
+                // cout << c << " :: " << v << endl;
+                if(c == s[i]){
+                    if(v + 1 == k){
+                        st.pop();
+                    }else{
+                        st.pop();
+                        st.push({s[i], v+1});
+                    }
+                }else{
+                    st.push({s[i], 1});
+                }
+            }
+            
+            i += 1;
+        }
+
+        string ans;
+        while(!st.empty()){
+            auto [c, v] = st.top();
+            string t;
+            for(int i = 0; i < v; i++){
+                t += c;
+            }
+            st.pop();
+            t = t + ans;
+            ans = t;
+        }
+        return ans;
+    }
+        
 */
 
 /*
