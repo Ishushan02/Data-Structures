@@ -394,6 +394,28 @@
     (https://leetcode.com/problems/find-the-duplicate-number/)
     287. Find the Duplicate Number
 
+    BEST Approach, {SWAP THE INDICES, when we get equal No, that is repeated}
+    int findDuplicate(vector<int>& nums) {
+        
+        int i = 0;
+        int n = nums.size();
+        while(i < n){
+            int elem = nums[i];
+
+            if(nums[elem] == elem){
+                return elem;
+            }
+
+            if(elem != i - 1){
+                swap(nums[i], nums[elem]);
+            }else{
+                i += 1;
+            }
+        }
+
+        return -1;
+    }
+
     with Array Modification
     int findDuplicate(vector<int>& nums) {
         int n = 0;
