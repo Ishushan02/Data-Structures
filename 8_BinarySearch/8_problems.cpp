@@ -328,6 +328,8 @@ try getting the first closest window and then try increasing the window accordin
 /*
 
 // EXPONENTIAL SEARCH // DOUBLING SEARCH // GALLOPING SEARCH
+Exponential Search is finding an element in a very large sorted array 
+
 
 - It's application is when the size of Array is very Large
 - The main intution of the algorithm is that instead of applying Binary Search
