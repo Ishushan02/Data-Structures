@@ -381,6 +381,48 @@ string reorganizeString(string s) {
         return s;
     }
 
+    Method 2 // Something SImilar
+    string reorganizeString(string s) {
+        int n = s.length();
+        int allChars[26] = {0};
+        int maxFreq = 0;
+        char maxFreChar;
+        for(int i = 0; i < s.length(); i++){
+            allChars[s[i] - 'a']++;
+            if(allChars[s[i] - 'a'] > maxFreq){
+                maxFreq = allChars[s[i] - 'a'];
+                maxFreChar = s[i];
+            }
+        }
+
+        int idx = 0;
+        string ansStr(n, '-');
+        while(maxFreq){
+            if(idx >= n) return "";
+            ansStr[idx] = maxFreChar;
+            idx += 2;
+            maxFreq -= 1;
+        }
+
+        if(maxFreq) return "";
+
+        for(int i = 0; i < 26; i++){
+            int freq = allChars[i];
+            auto val = (char)(i + 'a');
+            if(maxFreChar != val){
+                while(freq){
+                    if(idx >= n) idx = 1;
+                    ansStr[idx] = val;
+                    idx += 2;
+                    freq -= 1;
+                }
+            }
+            // cout << val << " :: " << freq << endl;
+        }
+
+        return ansStr;
+    }
+
 */
 
 /*
