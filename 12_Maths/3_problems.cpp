@@ -40,3 +40,35 @@
     }
 
 */
+
+
+/*
+    Product of Primes
+    (https://www.geeksforgeeks.org/problems/product-of-primes5328/1)
+
+    bool isPrime(int n){
+        if(n <= 1) return false;
+        if(n <= 3) return true;
+        if(n % 2 == 0 || n%3 == 0) return false;
+        
+        for(int i = 5; i * i <= n; i+= 6){
+            if((n % i == 0) || (n % (i+2) == 0)) return false;
+        }
+        
+        return true;
+    }
+  
+    int primeProduct(int L, int R) {
+        // code here
+        long long Mod = 1000000007;
+        long long int prod = 1;
+        
+        for(int i = L; i <= R; i++){
+            if(isPrime(i)){
+                prod = ((i%Mod) * (prod%Mod)) % Mod;
+            }
+        }
+        
+        return prod;
+    }
+*/
