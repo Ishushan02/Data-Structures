@@ -93,3 +93,34 @@
     }
 
 */
+
+
+/*
+    Maximize The Cut Segments
+    (https://www.geeksforgeeks.org/problems/cutted-segments1642/1)
+
+    int solution(int n, int x, int y, int z, vector<int> &dpArr){
+        if(n == 0) return 0;
+        if(n < 0) return INT_MIN;
+
+        if(dpArr[n] != -1) return dpArr[n];
+
+        int xCut = 1 + solution(n - x, x, y, z, dpArr);
+        int yCut = 1 + solution(n - y, x, y, z, dpArr);
+        int zCut = 1 + solution(n - z, x, y, z, dpArr);
+        
+        dpArr[n] = max({xCut, yCut, zCut});
+        
+        return dpArr[n];
+    }
+    
+    int maximizeTheCuts(int n, int x, int y, int z) {
+        // Your code here
+        vector<int> dpArr(n + 1, -1);
+        
+        int ans =  solution(n , x, y, z, dpArr);
+        if(ans == INT_MIN || ans < 0 || ans == -1) return 0;
+        return ans;
+    }
+
+*/
