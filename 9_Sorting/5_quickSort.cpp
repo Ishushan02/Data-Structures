@@ -31,3 +31,6 @@ vector<int> sortArray(vector<int>& nums) {
 
     return nums;
 }
+
+// # Avg Case: O(n logn)
+// # Worst Case: O(n^2)
