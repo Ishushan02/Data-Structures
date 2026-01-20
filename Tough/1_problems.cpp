@@ -203,6 +203,50 @@
     })
 */
 
+
+/*
+
+    PAINTING THE FENCE
+    (https://www.geeksforgeeks.org/problems/painting-the-fence3727/1)
+
+    class Solution {
+    public:
+        int ways(int n, int k, vector<int> &dpArr) {
+            // code here
+            // cout << n << " , " << k << endl;
+            if (n == 1) {
+                return k;
+            }
+            
+            if(n == 2){
+                return k + k * (k - 1);
+            }
+            
+            if(dpArr[n] != -1){
+                return dpArr[n];
+            }
+            
+            int diff = (k - 1) * ways(n-1, k, dpArr);
+            int same = (k - 1) * ways(n-2, k, dpArr);
+            dpArr[n] = same + diff;
+            
+            return dpArr[n];
+        }
+        
+        long long countWays(int n, int k){
+            // code here
+            
+            vector<int> dpArr(n+1, -1);
+            long long ans = (long long) ways(n, k, dpArr);
+
+            return ans % 1000000007;
+        }
+        
+        };
+*/
+
+
+
 /*
     // Proceure is
     // - starting root is currNode
