@@ -38,6 +38,36 @@ int beautySum(string s) {
     }
 
 Time Complexity is O(n * n * 26) -> O(n^2)
+
+    Similar Approach with Arr
+
+    int beautySum(string s) {
+        
+        long long int sum = 0;
+        for(int i = 0; i< s.length(); i++){
+            int arr[256] = {0};
+            for(int j = i; j < s.length(); j++){
+                arr[s[j] + 'a'] += 1;
+                
+                int maxVal = INT_MIN;
+                int minVal = INT_MAX;
+
+                for(int i = 97; i <= 122; i++){
+                    int val = arr[i + 'a'];
+                    if(val != 0){
+                        maxVal = max(maxVal, val);
+                        minVal = min(minVal, val);
+
+                    }
+                }
+                sum += (maxVal - minVal);
+
+            }
+        }
+
+        return sum;
+    }
+        
 */
 
 /*
