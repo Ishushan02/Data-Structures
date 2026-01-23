@@ -199,7 +199,7 @@
 
         return minDiff;
     }
-        
+
 */
 
 
@@ -247,6 +247,40 @@
     (https://leetcode.com/problems/jump-game-ii/)
 
     // DO it unable to do it via DP Method (Top Down Approach - TLE)
+
+    (Solved)
+    int minJump(vector<int> &nums, int idx, vector<int> &dpArray){
+        if(idx >= nums.size()){
+            return INT_MAX;
+        }
+
+        if(idx == nums.size() - 1){
+            return 0;
+        }
+        if(dpArray[idx] != -1 ){
+            return dpArray[idx];
+        }
+
+        if(nums[idx] == 0) return INT_MAX;
+
+        int minCount = INT_MAX;
+        for(int step = 1; step <= nums[idx]; step++){
+            int cnt = minJump(nums, step + idx, dpArray);
+            if(cnt != INT_MAX){
+                minCount = min(minCount, cnt + 1);
+            }
+        }
+
+        dpArray[idx] = minCount;
+        return dpArray[idx];
+    }
+
+    int jump(vector<int>& nums) {
+        
+        vector<int> dpArray(nums.size(), -1);
+        return minJump(nums, 0, dpArray);
+    }
+
 
 */
 
