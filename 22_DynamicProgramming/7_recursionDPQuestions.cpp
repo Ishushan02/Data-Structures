@@ -168,6 +168,38 @@
     (https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/)
 
     // DO it unable to do it via DP Method (Top Down Approach - TLE)
+
+    (Solved )
+    void absMinDiff(vector<vector<int>>& mat, int target, int sum, int rowIdx, int &minDiff, vector<vector<int>> &dpArray){
+        if(rowIdx >= mat.size()){
+            minDiff = min(minDiff, abs(target - sum));
+            return ;
+        }
+        if(dpArray[rowIdx][sum] != -1) return ;
+
+        for(int col = 0; col < mat[0].size(); col++){
+            absMinDiff(mat, target, sum + mat[rowIdx][col], rowIdx+1, minDiff, dpArray);
+        }
+        
+        dpArray[rowIdx][sum] = minDiff;
+    }
+
+
+    int minimizeTheDifference(vector<vector<int>>& mat, int target) {
+
+        int minDiff = INT_MAX;
+        int totSum = 0;
+        for(int i = 0; i < mat.size(); i++){
+            for(int j = 0; j < mat[0].size(); j++){
+                totSum += mat[i][j];
+            }
+        }
+        vector<vector<int>> dpArray(mat.size() + 2, vector<int>(target + totSum, -1));
+        absMinDiff(mat, target, 0, 0, minDiff, dpArray);
+
+        return minDiff;
+    }
+        
 */
 
 
