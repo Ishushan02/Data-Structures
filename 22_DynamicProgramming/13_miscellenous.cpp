@@ -45,3 +45,39 @@
     })
 
 */
+
+
+/*
+    bool incExcSum(vector<int>& matchsticks, vector<int>& newSides, int idx){
+        if(idx >= matchsticks.size()){
+            return newSides[0] == 0 && newSides[1] == 0 && newSides[2] == 0 && newSides[3] == 0;
+        }
+
+        bool ans = false;
+        for(int k = 0; k < 4; k++){
+            if(newSides[k] >= matchsticks[idx]){
+                newSides[k] -= matchsticks[idx];
+                ans = ans || incExcSum(matchsticks, newSides, idx + 1);
+                if(ans) return true;
+                newSides[k] += matchsticks[idx];
+            }
+        }
+        return ans;
+    }
+
+    bool makesquare(vector<int>& matchsticks) {
+        
+        unordered_map<int, int> storeSum;
+        int totSum = 0;
+        for(auto v: matchsticks){
+            totSum += v;
+        }
+
+        if(totSum % 4 != 0) return false;
+        int eachLen = totSum / 4;
+        vector<int> newSides(4, eachLen);
+        int sum = 0;
+        sort(matchsticks.rbegin(), matchsticks.rend());
+        return incExcSum(matchsticks, newSides, 0);
+    }
+*/
