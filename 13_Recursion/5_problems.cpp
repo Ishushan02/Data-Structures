@@ -123,4 +123,36 @@
         return ans;
     }
 
+
+    Approach 2 Tabulation Approach
+
+    int maximizeTheCuts(int n, int x, int y, int z) {
+        // Your code here
+        
+        vector<int> dpArray(n+2, -1);
+        dpArray[0] = 0;
+       
+        for(int i = 1; i <= n; i++){
+            int xCut = -1;
+            int yCut = -1;
+            int zCut = -1;
+            if(i - x >= 0)
+                 xCut = dpArray[i - x];
+            if(i - y >= 0)
+                 yCut = dpArray[i - y];
+            if(i - z >= 0)
+                 zCut = dpArray[i - z];
+                 
+            if(xCut != -1) xCut += 1;
+            if(yCut != -1) yCut += 1;
+            if(zCut != -1) zCut += 1;
+            
+            dpArray[i] = max({xCut, yCut, zCut});
+            
+        }
+        
+        if(dpArray[n] < 0) return 0;
+        return dpArray[n];
+    }
+
 */
