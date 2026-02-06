@@ -133,6 +133,33 @@
         return getMaxCuboidsHeightDP(cuboids, -1, 0, dpArr);
     }
 
+
+    // Tabulation Approach
+    int maxHeight(vector<vector<int>>& cuboids) {
+        
+        int n = cuboids.size();
+        for(int i = 0; i < n; i++){
+            sort(cuboids[i].begin(), cuboids[i].end());
+        }
+
+        sort(cuboids.begin(), cuboids.end());
+
+        vector<vector<int>> dpArray(n + 2, vector<int>(n + 2, 0));
+        for(int i = n - 1; i >= -1; i--){
+            for(int j = n - 1; j >= 0; j--){
+                int incVal = 0;
+                if(i == -1 || (cuboids[j][0] >= cuboids[i][0] && cuboids[j][1]>=cuboids[i][1] && cuboids[j][2] >= cuboids[i][2])){
+                    incVal = cuboids[j][2] + dpArray[j+1][j+1];//getMaxVal(cuboids, index +1, index);
+                }
+                int excVal = dpArray[j+1][i+1];//getMaxVal(cuboids, j + 1, i + 1);
+
+                dpArray[j][i+1] =  max(excVal, incVal);
+            }
+        }
+
+        return dpArray[0][0];
+    }
+
 */
 
 
