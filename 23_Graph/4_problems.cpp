@@ -325,7 +325,41 @@ int main(){
         return ans;
         
     }
-    
+
+
+    Method 2. (Oo Bhai this is also good)
+    vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
+        // Code here
+        unordered_map<int, vector<pair<int, int>>> graph;
+        int E = edges.size();
+        for(int i = 0; i < E; i++){
+            graph[edges[i][0]].push_back({edges[i][1], edges[i][2]});
+        }
+        
+        vector<int> ans(V, 1e8);
+        queue<pair<int, int>> que;
+        que.push({src, 0});
+        vector<int> negCycle(V, 0);
+        
+        while(!que.empty()){
+            auto [nd, dt] = que.front();
+            ans[nd] = min(ans[nd], dt);
+            que.pop();
+            
+            for(auto val:graph[nd]){
+                auto [v, wt] = val;
+                
+                if(ans[v] == 1e8 || wt + dt < ans[v]){
+                    if(ans[v] < 0) negCycle[v] += 1;
+                    
+                    if(negCycle[v] >= 2) return {-1};
+                    que.push({v, wt + dt});
+                }
+            }
+        }
+        
+        return ans;
+    }
    
 
 */
