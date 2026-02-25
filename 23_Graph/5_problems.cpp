@@ -20,6 +20,8 @@
     - Do the DFS traversal along the stored Nodes and when the loop is stopped which means that 1 componenet 
     of strong connected graph is over.. similarily continue it.
 
+    // storing nodes after the loop is important, and the 2nd iteration after reversing it is also important.
+
     Strongly Connected
     (https://www.geeksforgeeks.org/problems/strongly-connected-components-kosarajus-algo/1)
 
