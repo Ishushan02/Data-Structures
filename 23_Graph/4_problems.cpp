@@ -486,5 +486,53 @@ int main(){
         return ans;
 
     }
+
+*/
+
+/*
+    1462. Course Schedule IV
+
+    (https://leetcode.com/problems/course-schedule-iv/description)
+
+    bool canreach(unordered_map<int, vector<int>>& graph, int src, int des){
+        if (src == des) return true;
+
+        queue<int> q;
+        unordered_set<int> visited;
+
+        q.push(src);
+        visited.insert(src);
+
+        while (!q.empty()) {
+            int node = q.front();
+            q.pop();
+
+            for (int neighbor : graph[node]) {
+                if (visited.count(neighbor)) continue;
+
+                if (neighbor == des) return true;
+
+                visited.insert(neighbor);
+                q.push(neighbor);
+            }
+        }
+
+        return false;
+    }
+
+    vector<bool> checkIfPrerequisite(int numCourses, vector<vector<int>>& prerequisites, vector<vector<int>>& queries) {
+        unordered_map<int, vector<int>> graph;
+        for(int i = 0; i < prerequisites.size(); i++){
+            graph[prerequisites[i][0]].push_back(prerequisites[i][1]);
+        }
+        vector<bool> ans;
+        for(int i = 0; i < queries.size(); i++){
+            int src = queries[i][0];
+            int des = queries[i][1];
+            ans.push_back(canreach(graph, src, des));   
+        }
+
+        return ans;
+    }
         
 */
