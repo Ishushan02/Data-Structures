@@ -424,3 +424,67 @@ int main(){
     Do All Of it. Floyd Warsall Application
     https://leetcode.com/problem-list/9idenloe/
 */
+
+/*
+    399. Evaluate Division
+    (https://leetcode.com/problems/evaluate-division/description/)
+
+    double getValue(unordered_map<string, vector<pair<string, double>>>& graph, string &src, string &des){
+        double ansVal = 1.0;
+
+        queue<pair<string, double>> que;
+        unordered_map<string, bool> visited;
+        que.push({src, ansVal});
+        visited[src] = true;
+
+        while(!que.empty()){
+            auto [strVal, temp] = que.front();
+            que.pop();
+
+            for(auto vals: graph[strVal]){
+                auto [s, w] = vals;
+                if(s == des) return w * temp;
+                if(!visited[s]){
+                    que.push({s, w * temp});
+                }
+            }
+        }
+
+        return -1.0;
+    }
+
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {
+        unordered_map<string, bool> uniqueStrings;
+        unordered_map<string, vector<pair<string, double>>> graph;
+
+        for(int i = 0; i < equations.size(); i++){
+            string a = equations[i][0];
+            string b = equations[i][1];
+            double wt = values[i];
+            double negWt = 1/values[i];
+            graph[b].push_back({a, wt});
+            graph[a].push_back({b, negWt});
+            uniqueStrings[a] = true;
+            uniqueStrings[b] = true;
+        }
+
+        vector<double> ans;
+
+        for(int i = 0; i < queries.size(); i++){
+            string src = queries[i][1];
+            string des = queries[i][0];
+            
+            if(uniqueStrings[src] && uniqueStrings[des]){
+                auto x = getValue(graph, src, des);
+                ans.push_back(x);
+            }else{
+                ans.push_back(-1.0);
+            }
+
+        }
+
+        return ans;
+
+    }
+        
+*/
