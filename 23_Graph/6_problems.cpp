@@ -228,4 +228,40 @@
     }
 
 
+    // Check My Method bro
+    void dfsRun(int src, vector<int>& edges, vector<int>& visited, vector<int> &count, int cnt, int &maxCycle){
+        visited[src] = 1;
+        count[src] = cnt;
+
+        int nextNode = edges[src];
+        if(nextNode != -1){
+            if(visited[nextNode] == -1){
+                dfsRun(nextNode, edges, visited, count, cnt + 1, maxCycle);
+            }else{
+                if(count[nextNode] != -1){
+                    int val = abs(cnt + 1 - count[nextNode]);
+                    maxCycle = max(maxCycle, val);
+                }
+            }
+        }
+
+        count[src] = -1;
+    }
+
+    int longestCycle(vector<int>& edges) {
+        
+        int maxCycle = -1;
+        vector<int>visited(edges.size() + 1, -1);
+        
+        vector<int>count(edges.size()+1, 0);
+        for(int i = 0; i < edges.size(); i++){
+            if(visited[i] == -1){
+                dfsRun(i, edges, visited, count, 1, maxCycle);
+            }
+        }
+
+        return maxCycle;
+    }
+
+
 */
