@@ -341,6 +341,45 @@
         return 0;
 
     }
+
+
+    Method 3
+
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_map<string, bool> wordMap;
+        unordered_map<string, bool> visited;
+
+
+        for(auto v:wordList){
+            wordMap[v] = true;
+        }
+
+        int minAns= INT_MAX;
+        priority_queue<pair<int, string>, vector<pair<int, string>>, greater<pair<int, string>>> que;
+
+        que.push({1, beginWord});
+
+        while(!que.empty()){
+            auto [count, word] = que.top();
+            que.pop();
+            visited[word] = true;
+            if(word == endWord) return count;
+
+            for(int i = 0; i < word.length(); i++){
+                for(char x = 'a'; x<= 'z'; x++){
+                    char currChar = word[i];
+                    word[i] = x;
+                    if(wordMap[word] == true && visited[word] == false){
+                        que.push({count+1, word});
+                    }
+                    word[i] = currChar;
+                }
+                
+            }
+        }
+
+        return 0;
+    }
 */
 
 /*
