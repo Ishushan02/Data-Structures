@@ -141,6 +141,30 @@
         return getMaxDPSol(nums, dpArr, lastidx, 0);
     }
 
+
+    // BEst Method for LIS
+
+    int lengthOfLIS(vector<int>& nums) {
+        
+        int n = nums.size();
+        vector<int> temp;
+        temp.push_back(nums[0]);
+
+        for(int i = 1; i < n; i++){
+            auto itr = lower_bound(temp.begin(), temp.end(), nums[i]);
+
+            if (itr == temp.end()) {
+                temp.push_back(nums[i]);
+            } else {
+                *itr = nums[i];
+            }
+
+        }
+
+        return temp.size();
+
+    }
+        
 */
 
 
