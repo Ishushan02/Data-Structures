@@ -56,6 +56,30 @@ Knapsacks Problems
         // return maxSum;
            
     }
+
+
+    // Tabulation Method
+
+    int knapsack(int W, vector<int> &val, vector<int> &wt) {
+        // code here
+        vector<vector<int>> dpArray(W + 2, vector<int>(val.size() + 2, 0));
+        // return maxValSack(val, wt, W, 0, dpArray);
+        int n = val.size();
+        for(int w = 0; w <= W; w++){
+            for(int i = n - 1; i >= 0; i--){
+                auto inc = 0;
+                if(wt[i] <= w){
+                    inc = val[i] + dpArray[w-wt[i]][i+1];//maxValSack(val, wt, W - wt[i], i + 1, dpArray);
+                }
+                
+                auto exc = dpArray[w][i+1];//maxValSack(val, wt, W, i+1, dpArray);
+                dpArray[w][i] = max(inc, exc);
+            }
+        }
+        
+        return dpArray[W][0];
+    }
+        
 */
 
 
