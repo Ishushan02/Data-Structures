@@ -79,7 +79,7 @@ Knapsacks Problems
         
         return dpArray[W][0];
     }
-        
+
 */
 
 
@@ -164,6 +164,38 @@ Knapsacks Problems
         return checkSum(nums, target, 0, dpArr);
     }
 
+
+    // Efficient Approach
+    bool canPartition(vector<int>& nums) {
+        int totSum = 0;
+        for(auto v: nums){
+            totSum += v;
+        }
+
+        int n = nums.size();
+        if(totSum & 1) return false;
+        int halfSum = totSum/2;
+
+        vector<int> rowAns(halfSum + 1, 0);
+        vector<int> currAns(halfSum + 1, 0);
+
+        rowAns[0] = 1;
+        currAns[0] = 1;
+        for(int idx = n - 1; idx >= 0; idx--){
+            for(int j = 1; j <= halfSum; j++){
+                bool inc = false;
+                if(j >= nums[idx]){
+                    inc = rowAns[j - nums[idx]];
+                }
+                bool exc = rowAns[j];
+                
+                currAns[j] = inc || exc;
+            }
+            rowAns = currAns;
+        }
+
+        return rowAns[halfSum];
+    }
 */
 
 /*
