@@ -230,6 +230,31 @@ Knapsacks Problems
         vector<vector<long long int>> dpArr(n+1, vector<long long int>(target+1, -1));
         return totalways(n, k, target, dpArr);
     }
+
+
+    // Tabulation Method
+    int numRollsToTarget(int n, int k, int target) {
+
+        vector<int> prev(target + 1, 0);
+        prev[0] = 1;
+        vector<int> curr(target + 1, 0);
+
+        for(int nVal = 1; nVal <= n; nVal++){
+            for(int tar = 1; tar <= target; tar++){
+                long long int totalPossibilities = 0;
+                for(int i = 1; i <= k; i++){
+                    if(tar >= i && prev[tar - i] > 0){
+                        totalPossibilities += prev[tar - i];
+                        totalPossibilities = totalPossibilities % 1000000007;
+                    }
+                }
+                curr[tar] = totalPossibilities % 1000000007;
+            }
+            prev = curr;
+        }
+        
+        return curr[target] % 1000000007;
+    }
     
 
 */
