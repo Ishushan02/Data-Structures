@@ -112,6 +112,38 @@
     (https://leetcode.com/problems/maximal-square/)
 
     // Do it using DP Bottom Up Approach - TLE
+    //Done see the 2D Matrix approach on Leetcode
+
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        // vector<vector<int>> dpArray(m + 2, vector<int>(n + 2, 0));
+
+        int maxVal = 0;
+        vector<int> forw(n + 2, 0);
+        vector<int> curr(n + 2, 0);
+
+        
+        for(int i = m -1; i >= 0; i--){
+            for(int j = n - 1; j >= 0; j--){
+                int maxLen = 0;
+                if(matrix[i][j] == '1'){
+                    int bottom = forw[j];
+                    int right = curr[j+1];
+                    int diaog = forw[j+1];
+                    auto val = min({bottom, right, diaog});
+                    maxLen = max(maxLen, val + 1);
+                }
+                curr[j] = maxLen;
+                maxVal = max(maxVal, maxLen);
+            }
+            forw = curr;
+        }
+
+        return maxVal * maxVal;
+    }
+
 */
 
 
