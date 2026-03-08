@@ -621,5 +621,30 @@
 
     }
 
+
+    // Efficient Way
+    int numSquares(int n) {
+        vector<int> dpArray(n + 2, -1);
+        // return getMinCount(n, 0, dpArray);
+        dpArray[n] = 0;
+        
+        for(int idx = n-1; idx >= 0; idx--){
+            auto val = sqrt(n);
+            int minOPS = INT_MAX;
+            for(int i = 1; i <= val ; i++){
+                auto vals = i * i + idx;
+                if(vals <= n){
+                    auto valOps = dpArray[vals];
+                    if(valOps != INT_MAX){
+                        minOPS = min({minOPS, valOps + 1});
+                    }
+                }
+            }
+            dpArray[idx] = minOPS;
+        }
+
+        return dpArray[0];
+    }
+
     
 */
