@@ -451,6 +451,36 @@
 
     Do it using other DP Method
 
+    int longestPalindromeSubseq(string s) {
+        int n = s.length();
+
+        vector<int> curr(n + 1, 0);
+        vector<int> forw(n + 1, 0);
+
+
+        for(int i = n - 1; i >= 0; i--){
+            for(int j = 0; j < n; j++){
+                if(i < j){
+                    int ans = 0;
+                    if(s[i] == s[j]){
+                        auto inc = 2 + forw[j-1];
+                        ans = max(ans, inc);
+                    }else{
+                        auto inc = forw[j];
+                        auto exc = curr[j-1];
+                        ans = max({ans, inc, exc});
+                    }
+                    curr[j] = ans;
+                }else if(i == j){
+                    curr[j] = 1;
+                }
+            }
+            forw = curr;
+        }
+        
+        return forw[n-1];
+    }
+
 */
 
 
