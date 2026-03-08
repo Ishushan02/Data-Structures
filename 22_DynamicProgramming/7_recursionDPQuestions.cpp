@@ -524,6 +524,33 @@
     }
 
 
+    // Using LowerBound ()
+    int minCostPartition(vector<int>& days, vector<int>& costs, int idx, vector<int> &dpArray){
+        if(idx >= days.size()) return 0;
+
+        if(dpArray[idx] != -1) return dpArray[idx];
+        int day1Cost = 0;
+        int day7Cost = 0;
+        int day30Cost = 0;
+
+        day1Cost = costs[0] + minCostPartition(days, costs, idx + 1, dpArray);
+        auto val = lower_bound(days.begin(), days.end(), days[idx] + 7);
+        day7Cost = costs[1] + minCostPartition(days, costs, val-days.begin(), dpArray);
+        val = lower_bound(days.begin(), days.end(), days[idx] + 30);
+        day30Cost = costs[2] + minCostPartition(days, costs, val-days.begin(), dpArray);
+        
+        dpArray[idx] = min({day1Cost, day7Cost, day30Cost});
+        return dpArray[idx];
+    }
+
+    int mincostTickets(vector<int>& days, vector<int>& costs) {
+        
+        vector<int> dpArray(days.size() + 1, -1);
+        return minCostPartition(days, costs, 0, dpArray);
+
+        return 1;
+    }
+
  */
 
 /*
