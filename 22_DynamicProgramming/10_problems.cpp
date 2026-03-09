@@ -267,6 +267,38 @@
     }
 
 
+
+    // BEST APPROACH PLEASE SEE THIS
+    // why are we even considering k, as i + j will be k right.. next thing is make sure to check i+j < s3.length()
+    bool ifStringPresent(string &s1, string &s2, string &s3, int i, int j, vector<vector<int>> &dpArray){
+        if(i >= s1.length() && j >= s2.length()){
+            return true;
+        }
+
+        if(dpArray[i][j] != -1) return dpArray[i][j];
+
+        bool ans = false;
+        if(i + j < s3.length() && s1[i] == s3[i + j]){
+            ans = ans || ifStringPresent(s1, s2, s3, i+1, j, dpArray);
+        } 
+
+        if(i + j < s3.length() && s2[j] == s3[i + j]){
+            ans = ans || ifStringPresent(s1, s2, s3, i, j + 1, dpArray);
+        }
+        dpArray[i][j] = ans;
+        return ans;
+    }
+
+    bool isInterleave(string s1, string s2, string s3) {
+        int n1 = s1.length();
+        int n2 = s2.length();
+        int n3 = s3.length();
+        if((n1 + n2) != n3) return false;
+        vector<vector<int>> dpArray(n1 + 1, vector<int>(n2 + 1, -1));
+        return ifStringPresent(s1, s2, s3, 0, 0, dpArray);
+    }
+
+
 */
 
 
