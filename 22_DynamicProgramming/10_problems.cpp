@@ -34,6 +34,9 @@
 
 
 /*
+
+    Good Question
+
     1049. Last Stone Weight II
     (https://leetcode.com/problems/last-stone-weight-ii/)
 
@@ -103,34 +106,53 @@
     }
 
 
-    // method 3
-    int solveIncExc(vector<int>& stones, int sum, int i){
-        if(i >= stones.size()){
+    // Good Approach here
+    [2,7,4,1,8,1] basically we have to minimize the difference right.. 
+    totSum = 23
 
-            // there are 2 possibilities here
-            // for include case return sum
-            // for excluded case return totalSum - sum
-            int incSum = sum;
-            int excSum = totalSum - sum;
+    so what if we can bundle up this into (12, 11) -> hence diff will be 1
+    or what if it is even (12, 12) -> hence difference is 0
 
-            return abs(incSum - excSum);
+    so calculate total Sum, 
+    inc/exc process of sum up untill the half Sum
+
+    base case is important.. in that find the remainSum = totalSum - sum
+        ans = min(ans, abs(sum - remainSum)) minimize the diff
+        Ex: totSum = 23, halfSum = 12
+            if sum = 11 
+                remainSum = 12, minSum = (abs(12 - 11), 1e9) -> 1
+            if sum = 12
+                remainSum = 11, minSum = (abs(12 - 11), 1e9) -> 1
+            // this step is important
 
 
+    void getMaxRemainWt(vector<int>& stones, int sum, int i, int &halfSum, int& totalSum, 
+    int& minAns, vector<vector<int>> &dpArray){
+        if(i >= stones.size() || sum >= halfSum){
+            int remSum = totalSum - sum;
+            minAns = min(abs(sum - remSum), minAns);
+            return ;
+        }
+
+        if(dpArray[i][sum] != -1) return ;
+        
+        getMaxRemainWt(stones, sum + stones[i], i+1, halfSum, totalSum, minAns, dpArray);
+        getMaxRemainWt(stones, sum, i+1, halfSum, totalSum, minAns, dpArray);
+        dpArray[i][sum] = minAns;
     }
 
     int lastStoneWeightII(vector<int>& stones) {
-        
-        // vector<vector<int>> &dpArr()
+        unordered_map<int, int> dpMap;
+        int totSum = 0;
+        for(auto v: stones){
+            totSum += v;
+        }
+        int halfSum = totSum/2;
+        int minAns = 1e9;
+        vector<vector<int>> dpArray(stones.size()+1, vector<int>(totSum, -1));
+        getMaxRemainWt(stones, 0, 0, halfSum, totSum, minAns, dpArray);
 
-        // return solveWeights(stones, 0, 0);
-
-        // DP 
-        totalSum = accumulate(stones.begin(), stones.end(), 0);
-        // vector<vector<int>> dpArr(stones.size()+1, vector<int>((2 * totalSum + 1), -1));
-        // return solveWeightsDP(stones, 0, 0, dpArr);
-
-        return solveIncExc(stones, 0, 0); // can uptimize it using DP
-    
+        return minAns;
     }
 
 
