@@ -796,42 +796,28 @@ using namespace std;
 
     vector<int> topView(Node *root) {
         // code here
-        vector<int> ans;
-        if(root == NULL){
-            return ans;
-        }
-        queue<pair<Node*, int>> que;
-        unordered_map<int, Node*> minDistmap;
-        que.push(make_pair(root, 0));
         
-        int minDist = INT_MAX;
-        int maxDist = INT_MIN;
+        queue<pair<int, Node*>> que;
+        map<int, int> mapVal;
+        que.push({0, root});
         
         while(!que.empty()){
-            pair<Node*, int> value = que.front();
-            Node* topNode = value.first;
-            int dist = value.second;
+            auto [h, nd] = que.front();
             que.pop();
             
-            minDist = min(minDist, dist);
-            maxDist = max(maxDist, dist);
-            
-            if(minDistmap[dist] == 0){
-                minDistmap[dist] = topNode;
+            if(mapVal.find(h) == mapVal.end()){
+                mapVal[h] = nd->data;
             }
             
-            if(topNode->left){
-                que.push(make_pair(topNode->left, dist-1));
-            }
-            if(topNode->right){
-                que.push(make_pair(topNode->right, dist+1));
-            }
-            
+            if(nd->left)
+                que.push({h-1, nd->left});
+            if(nd->right)
+                que.push({h+1, nd->right});
         }
         
-        for(int i = minDist; i <= maxDist; i++){
-            Node* node = minDistmap[i];
-            ans.push_back(node->data);
+        vector<int> ans;
+        for(auto [k, v]: mapVal){
+            ans.push_back(v);
         }
         
         return ans;
