@@ -177,133 +177,22 @@
     1038. Binary Search Tree to Greater Sum Tree (Same as LC. 538)
     (https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/description/)
 
-    void getSum(TreeNode* root, TreeNode* currNode, int &ans){
-
+    void rightOrder(TreeNode*& root, int& maxSum){
         if(root == NULL){
             return ;
         }
 
-        if(root->val > currNode->val){
-            ans += root->val;
-        }
-        getSum(root->left, currNode, ans);
-        getSum(root->right, currNode, ans);
-
-    }
-
-    void storeNodes(TreeNode* root, TreeNode* rootNode, unordered_map<int, int> &ansMap){
-        if(root == NULL){
-            return;
-        }
-        int ans = root->val;
-        getSum(rootNode, root, ans);
-        ansMap[root->val] = ans;
-
-        
-        storeNodes(root->left, rootNode, ansMap);
-        storeNodes(root->right, rootNode, ansMap);
-
-    }
-
-    void changeNodes(TreeNode* &root, unordered_map<int, int> &ansMap){
-        if(root == NULL){
-            return;
-        }
-        root->val = ansMap[root->val];
-        
-        changeNodes(root->left, ansMap);
-        changeNodes(root->right, ansMap);
-    }
-
-    TreeNode* bstToGst(TreeNode* root) {
-        if(root == NULL){
-            return NULL;
-        }
-        unordered_map<int, int> ansMap;
-        storeNodes(root, root, ansMap);
-        changeNodes(root, ansMap);
-        // for(auto values:ansMap){
-        //     // cout << values.first->val << " ParentNode: " << values.second->val << endl;
-        //     // int sum = getSum(values.second, values.first->val, values.first->val);
-        //     cout << values.first << ": " << values.second << endl;
-
-        // }
-        
-
-
-        return root;
-
-    }
-
-
-    Method 2 (same question 538 and 1038) {BEST APPROACH }
-    538. Convert BST to Greater Tree
-    (https://leetcode.com/problems/convert-bst-to-greater-tree/description/)
-
-    void totalSum(TreeNode* root, int &sum){
-        if(root == NULL){
-            return ;
-        }
-
-        totalSum(root->left, sum);
-        sum += root->val;
-        totalSum(root->right, sum);
-
-    }
-
-    void inorderTraversal(TreeNode* root, int &maxSum){
-        if(root == NULL){
-            return ;
-        }
-
-        inorderTraversal(root->left, maxSum);
-        int temp = root->val;
-        root->val = maxSum;
-        maxSum = maxSum - temp ;
-        inorderTraversal(root->right, maxSum);
-
-    }
-
-
-    Method 3 (Good Approach this as well)
-
-    void traverse(TreeNode* root, int &sum, unordered_map<TreeNode*, int> &valMap){
-        if(root == NULL){
-            return ;
-        }
-
-        traverse(root->right, sum, valMap);
-        if(valMap.find(root) == valMap.end()){
-            valMap[root] = root->val + sum;
-            sum = root->val + sum;
-        }
-        
-        traverse(root->left, sum, valMap);
-    }
-
-    void modifyVal(TreeNode* root, unordered_map<TreeNode*, int> &valMap){
-        if(root == NULL){
-            return;
-        }
-        
-        root->val = valMap[root];
-        modifyVal(root->left, valMap);
-        modifyVal(root->right, valMap);
+        rightOrder(root->right, maxSum);
+        root->val += maxSum;
+        maxSum = max(root->val , maxSum);
+        // cout << root->val << endl;
+        rightOrder(root->left, maxSum);
 
     }
 
     TreeNode* bstToGst(TreeNode* root) {
-        
-        unordered_map<TreeNode*, int> valMap;
-        int sum = 0;
-        traverse(root, sum, valMap);
-
-        // for(auto &[key, val]:valMap){
-        //     cout << key->val << " : " << val << endl;
-        // }
-
-        modifyVal(root, valMap);
-
+        int maxSum = 0;
+        rightOrder(root, maxSum);
         return root;
     }
 
