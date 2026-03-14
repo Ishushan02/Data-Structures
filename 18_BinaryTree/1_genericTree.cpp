@@ -32,6 +32,13 @@ using namespace std;
 
     - Skew Tree all Nodes are only on the left part of the tree or the right part of tree
 
+    - while adding sum path add before and not in null condition (see problems in 2_problems.cpp)
+    - good logic of number nodes (1 --> left is 2 * 1 ,;; right is 2 * 1 + 1)
+        {i, 2 * i, 2* i + 1} {N, L, R}
+    - Level order, 
+    - width calculation along height
+    
+
 */
 
 class Node{
