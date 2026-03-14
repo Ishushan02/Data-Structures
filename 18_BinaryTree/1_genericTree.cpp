@@ -37,7 +37,10 @@ using namespace std;
         {i, 2 * i, 2* i + 1} {N, L, R}
     - Level order, 
     - width calculation along height
-    
+    - the Max Height Approach, that is really Good, get the Intution from that
+        see (Sum of nodes on the longest path (https://www.geeksforgeeks.org/problems/sum-of-the-longest-bloodline-of-a-tree/1)
+        or Lowest Common Ancestors in Deepest Nodes
+)
 
 */
 
