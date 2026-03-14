@@ -258,6 +258,39 @@
 */
 
 
+
+/*
+
+    LC 1123 and LC 865
+
+    BEST EFFICIENT ANSWERS ABOVE 2 PROBLEMS
+    pair<TreeNode*, int> height(TreeNode* root){
+        if(root == NULL){
+            return {NULL, 0};
+        }
+
+        auto [leftNode, lh] = height(root->left);
+        auto [rightNode, rh] = height(root->right);
+
+        // if(leftNode != NULL && rightNode != NULL)
+            // cout << root->val << " : lh: "<< lh << " : LeftNode "<< leftNode->val << " : rh: " << rh <<" : RightNode "<< rightNode->val << endl;
+        
+        if(lh > rh){
+            return {leftNode, lh + 1};
+        }else if(rh > lh){
+            return {rightNode, rh + 1};
+        }
+        cout << root->val << endl;
+        return {root, rh + 1};
+    }
+
+    TreeNode* lcaDeepestLeaves(TreeNode* root) {
+        return height(root).first;
+    }
+
+*/
+
+
 /*
     865. Smallest Subtree with all the Deepest Nodes
     (https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/description/)
