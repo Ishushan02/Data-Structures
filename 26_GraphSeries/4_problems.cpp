@@ -227,3 +227,54 @@
     }
         
 */
+
+
+/*
+
+    GOOD QUESTION Try Doing it Again
+    (https://leetcode.com/problems/minimum-height-trees/)
+
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        if(n == 1) return {0};
+        unordered_map<int, vector<int>> graph;
+        vector<int> indegree(n, 0);
+        for(int i = 0; i < edges.size(); i++){
+            graph[edges[i][0]].push_back(edges[i][1]);
+            graph[edges[i][1]].push_back(edges[i][0]);
+            indegree[edges[i][0]] += 1;
+            indegree[edges[i][1]] += 1;
+        }
+
+        queue<int> que;
+        for(int i = 0; i < n; i++){
+            if(indegree[i] == 1){
+                que.push(i);
+            }
+        }
+
+        while(n > 2){
+            int sz = que.size();
+            n = n - sz;
+            for(int i = 0; i < sz; i++){
+                auto node = que.front();
+                for(auto neigh: graph[node]){
+                    indegree[neigh] -= 1;
+                    if(indegree[neigh] == 1){
+                        que.push(neigh);
+                    }
+                }
+                que.pop();
+            }
+            
+        }
+        
+        vector<int> temp;
+        while(!que.empty()){
+            temp.push_back(que.front());
+            que.pop();
+        }
+
+        return temp;
+    }
+
+*/
