@@ -144,7 +144,7 @@
                     ans.push_back({node, v});
                 }
             }else{
-                lowest[node] = min(lowest[v], lowest[node]);
+                lowest[node] = min(lowest[node], discovered[v]);
             }
         }
     }
