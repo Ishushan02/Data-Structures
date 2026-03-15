@@ -10,6 +10,14 @@
   - repeat from 1st step
 */
 
+/*
+
+Some Good and IMportant things
+
+Peak Mountain, pivot Index 
+
+*/
+
 #include <iostream>
 
 using namespace std;
