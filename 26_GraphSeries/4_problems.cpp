@@ -312,3 +312,102 @@
     }
 
 */
+
+
+/*
+
+    Really Good Question
+    1489. Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree
+    (https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/description/)
+
+    int getParent(int node, vector<int>& parent){
+        if(node == parent[node]) return node;
+
+        return parent[node] = getParent(parent[node], parent);
+    }
+
+    void unionFn(int u, int v, vector<int>&parent, vector<int>& rank){
+
+        int pU = getParent(u, parent);
+        int pV = getParent(v, parent);
+
+        if(rank[pU] >= rank[pV]){
+            parent[pV] = pU;
+            rank[pU] += 1;
+        }else{
+            parent[pU] = pV;
+            rank[pV] += 1;
+        }
+    }
+
+    int minimumSpanningTree(int n, vector<vector<int>>& edges, int skipIdx, int addIdx){
+
+        vector<int> parent(n, 0);
+        vector<int> rank(n, 0);
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
+        }
+
+        int mst = 0;
+
+        if(addIdx != -1){
+            mst += edges[addIdx][2];
+            unionFn(edges[addIdx][0], edges[addIdx][1], parent, rank);
+        }
+
+        for(int i = 0; i < edges.size(); i++){
+            if(i == skipIdx || i == addIdx) continue;
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int wt = edges[i][2];
+
+            int pU = getParent(u, parent);
+            int pV = getParent(v, parent);
+            if(pU != pV){
+                mst += wt;
+                unionFn(u, v, parent, rank);
+            }
+            
+
+        }
+
+        // very Importaant Bhai what if the current is not a MST only
+        for(int i = 0; i < n; i++){
+            if(getParent(i, parent) != getParent(0, parent)) return INT_MAX;
+        }
+
+        return mst;
+    }
+
+    struct comp{
+        bool operator()(vector<int> &a, vector<int> &b){
+            return a[2] < b[2];
+        }
+    };
+
+    vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {
+        
+        for(int i = 0; i < edges.size(); i++){
+            edges[i].push_back(i);
+        }
+        sort(edges.begin(), edges.end(), comp());
+
+        int mst = minimumSpanningTree(n ,edges, -1, -1);
+        vector<int> criticalEdges;
+        vector<int> pseudoCriticalEdges;
+
+        for(int i = 0; i < edges.size(); i++){
+
+            auto valMst = minimumSpanningTree(n, edges, i, -1);
+
+            if(minimumSpanningTree(n, edges, i, -1) > mst){
+                criticalEdges.push_back(edges[i][3]);
+            }else if(minimumSpanningTree(n, edges, -1, i) == mst){
+                pseudoCriticalEdges.push_back(edges[i][3]);
+            }
+        }
+
+        return {criticalEdges, pseudoCriticalEdges};
+    }
+        
+*/
