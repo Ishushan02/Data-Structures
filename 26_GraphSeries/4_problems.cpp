@@ -278,3 +278,37 @@
     }
 
 */
+
+
+/*
+
+    VVVIIII Problem
+    332. Reconstruct Itinerary
+    (https://leetcode.com/problems/reconstruct-itinerary/description/)
+    
+    void dfsTraversal(string& port, unordered_map<string, priority_queue<string, vector<string>, greater<string>>> &graph, vector<string>&ans){
+
+        while(!graph[port].empty()){
+            auto nextPort = graph[port].top();
+            graph[port].pop();
+            dfsTraversal(nextPort, graph, ans);
+        }
+        ans.push_back(port);
+    }
+
+    vector<string> findItinerary(vector<vector<string>>& tickets) {
+        unordered_map<string, priority_queue<string, vector<string>, greater<string>>> graph;
+
+        for(int i = 0; i< tickets.size(); i++){
+            string u = tickets[i][0];
+            string v = tickets[i][1];
+            graph[u].push(v);
+        }
+        vector<string> ans;
+        string src = "JFK";
+        dfsTraversal(src, graph, ans);
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+
+*/
