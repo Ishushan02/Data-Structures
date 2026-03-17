@@ -80,6 +80,7 @@
     Problem 17
     152. Maximum Product Subarray
     (https://leetcode.com/problems/maximum-product-subarray/)
+    Ex: nums = {-1, -2, -3} from front max is 2 but from back it is 6
 
     KADANES ALGORITHM FROM FRONT AND BEHIND.. it is that SIMPLE
 
