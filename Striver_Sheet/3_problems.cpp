@@ -672,24 +672,34 @@
     (https://leetcode.com/problems/maximum-product-subarray/)
     152. Maximum Product Subarray
 
+    KADANES ALGORITHM FROM FRONT AND BEHIND.. it is that SIMPLE
+
     int maxProduct(vector<int>& nums) {
-        // if(nums.size() == 1){
-        //     return nums[0];
-        // }
+        
+        int prod = 1;
         int maxProd = INT_MIN;
         for(int i = 0; i < nums.size(); i++){
-            int prod = nums[i];
+            prod = prod * nums[i];
             maxProd = max(maxProd, prod);
-            for(int j = i; j < nums.size(); j++){
-                if(j > i){
-                    prod = prod * nums[j];
-                    maxProd = max(maxProd, prod);
-                }
+
+            if(prod == 0){
+                prod = 1;
+            }
+        }
+
+        prod = 1;
+        for(int i = nums.size() - 1; i >= 0; i--){
+            prod = prod * nums[i];
+            maxProd = max(maxProd, prod);
+
+            if(prod == 0){
+                prod = 1;
             }
         }
 
         return maxProd;
     }
+        
 */
 
 /*

@@ -81,59 +81,28 @@
     152. Maximum Product Subarray
     (https://leetcode.com/problems/maximum-product-subarray/)
 
-    void productMax(vector<int> &nums, int i, int product, int &maxProduct, map<pair<int, int>, int> &dpMap){
-        if(i >= nums.size()){
-            maxProduct = max(maxProduct, product);
-            return ;
-        }
-
-        if(dpMap.find({i, product}) != dpMap.end()){
-            // maxProduct = max(dpMap[{i, product}], maxProduct);
-            return ;
-        }
-
-        // include nums[i]
-        maxProduct = max(maxProduct, nums[i] * product);
-        productMax(nums, i + 1, nums[i] * product, maxProduct, dpMap);
-
-        // exclude nums[i]
-        if(i + 1 < nums.size()){
-            productMax(nums, i + 1, 1, maxProduct, dpMap);
-        }else{
-            productMax(nums, i + 1, nums[i], maxProduct, dpMap);
-        }
-
-        dpMap[{i, product}] = maxProduct;
-
-    }
+    KADANES ALGORITHM FROM FRONT AND BEHIND.. it is that SIMPLE
 
     int maxProduct(vector<int>& nums) {
-        if(nums.size() == 1){
-            return nums[0];
-        }
-        map<pair<int, int>, int> dpMap;
-        int ans = 1;
-        int maxAns = INT_MIN;
         
-        productMax(nums, 0, 1, maxAns, dpMap);
-        return maxAns;
-    }
-
-
-    // Easiest Way
-    int maxProduct(vector<int>& nums) {
-        // if(nums.size() == 1){
-        //     return nums[0];
-        // }
+        int prod = 1;
         int maxProd = INT_MIN;
         for(int i = 0; i < nums.size(); i++){
-            int prod = nums[i];
+            prod = prod * nums[i];
             maxProd = max(maxProd, prod);
-            for(int j = i; j < nums.size(); j++){
-                if(j > i){
-                    prod = prod * nums[j];
-                    maxProd = max(maxProd, prod);
-                }
+
+            if(prod == 0){
+                prod = 1;
+            }
+        }
+
+        prod = 1;
+        for(int i = nums.size() - 1; i >= 0; i--){
+            prod = prod * nums[i];
+            maxProd = max(maxProd, prod);
+
+            if(prod == 0){
+                prod = 1;
             }
         }
 
