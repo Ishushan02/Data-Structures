@@ -203,7 +203,25 @@ Given 2 integers L ,...... R (L and R), find all the primes in between L and R
 // Global Array of int, double, char array with limit of 10^6 size
 // Global Array of bool  with limit of 10^6 size
 
-
+int countPrimes(int L, int R) {
+        // code here
+        vector<bool> seiveVal(R+1, true);
+        
+        for(int i = 2; i <= sqrt(R); i++){
+            if(seiveVal[i]){
+                for(int j = i * i; j <= R; j += i){
+                    seiveVal[j] = false;
+                }
+            }
+        }
+        
+        int ans = 0;
+        for(int i = max(2, L); i<= R; i++){
+            if(seiveVal[i]) ans += 1;
+        }
+        
+        return ans;
+    }
 
 */
 
@@ -240,7 +258,7 @@ class Solution {
         }
 
         return a == 0 ? b:a;
-    }e
+    }
 };
 
 */
