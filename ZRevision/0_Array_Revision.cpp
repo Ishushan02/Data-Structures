@@ -29,3 +29,32 @@
         return maxLen;
     }
 */
+
+
+/*
+    560. Subarray Sum Equals K
+    (https://leetcode.com/problems/subarray-sum-equals-k/description)
+
+    int subarraySum(vector<int>& nums, int k) {
+        
+        unordered_map<int, int> mapSum;
+        int sum = 0;
+        int count = 0;
+
+        for(int i = 0; i < nums.size(); i++){
+            sum += nums[i];
+            if(sum == k){
+                count += 1;
+            }
+
+            int rem = sum - k;
+            if(mapSum.find(rem) != mapSum.end()){
+                count += mapSum[rem];
+            }
+            mapSum[sum] += 1;
+        }
+
+        return count;
+    }
+        
+*/
