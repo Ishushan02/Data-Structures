@@ -56,7 +56,20 @@ public:
  
 int main() {
     MusicService svc;
-    svc.login("alice");
-    for (int i = 0; i < 10; i++) svc.stream("alice", "Adele", i < 7 ? "Pop" : "Soul");
-    cout << svc.recommend("alice") << endl;
+    svc.login("Ishan");
+    // for (int i = 0; i < 10; i++) svc.stream("alice", "Adele", i < 7 ? "Pop" : "Soul");
+    svc.stream("Ishan", "Arjit", "Soul");
+    svc.stream("Ishan", "Sonu", "Soul");
+    svc.stream("Ishan", "ArRahman", "Sufi");
+    svc.stream("Ishan", "Sonu", "Slow");
+    svc.stream("Ishan", "Arjit", "Romantic");
+    svc.stream("Ishan", "Arjit", "Soul");
+    svc.stream("Ishan", "Sonu", "Romantic");
+    svc.stream("Ishan", "Arjit", "Slow");
+    svc.stream("Ishan", "Sonu", "Slow");
+    svc.stream("Ishan", "Arjit", "Romantic");
+
+
+
+    cout << svc.recommend("Ishan") << endl;
 }
