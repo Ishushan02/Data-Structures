@@ -72,6 +72,25 @@ public:
     }
 };
 
+// / For Testing purpose Only
+class A{
+public:
+    virtual int B(int x, int y){
+        return x + y;
+    }
+};
+
+class Cx: public A{
+public:
+    void D(){
+        cout << " Nothing "<< endl;
+    }
+
+    int B(int x, int y) override {
+        return x * y;
+    }
+};
+
 int main() {
     srand(time(nullptr));
 
@@ -100,5 +119,15 @@ int main() {
         cout << lb2.route("req-" + to_string(i)) << "\n";
 
 
+    // For Testing purpose only    
+    A ax ;
+    Cx cx;
+    int out = ax.B(5, 4);
+    cout << out << endl;
+     out = cx.B(5, 4);
+    cout << out << endl;
+    
     return 0;
 }
+
+
