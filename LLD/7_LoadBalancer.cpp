@@ -75,6 +75,7 @@ public:
 // / For Testing purpose Only
 class A{
 public:
+    int x;
     virtual int B(int x, int y){
         return x + y;
     }
@@ -83,6 +84,7 @@ public:
 class Cx: public A{
 public:
     void D(){
+        cout << x << endl;
         cout << " Nothing "<< endl;
     }
 
